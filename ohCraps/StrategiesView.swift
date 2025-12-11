@@ -1,6 +1,5 @@
 import SwiftUI
-
-// MARK: - FILTER ENUMS
+import UIKit
 
 enum TableMinFilter: CaseIterable {
 	case five, ten, fifteenPlus
@@ -27,12 +26,9 @@ enum BuyInFilter: CaseIterable {
 	}
 }
 
-
-// MARK: - SAFER SECTION KEY
-
 enum SectionKey: Hashable, Comparable {
-	case number            // "#"
-	case letter(Character) // A–Z
+	case number
+	case letter(Character)
 	
 	var display: String {
 		switch self {
@@ -43,115 +39,192 @@ enum SectionKey: Hashable, Comparable {
 	
 	static func < (lhs: SectionKey, rhs: SectionKey) -> Bool {
 		switch (lhs, rhs) {
-		case (.number, .letter): return true
-		case (.letter, .number): return false
-		case (.number, .number): return false
-		case let (.letter(a), .letter(b)): return a < b
+		case (.number, .letter):
+			return true
+		case (.letter, .number):
+			return false
+		case (.number, .number):
+			return false
+		case let (.letter(a), .letter(b)):
+			return a < b
 		}
 	}
 }
 
-
-// MARK: - VIEW
-
 struct StrategiesView: View {
 	
-	@State private var allStrategies: [Strategy] = StrategyLoader.loadAllStrategies()
-	@State private var searchText: String = ""
+	@State private var allStrategies: [Strategy] = []
+	@State private var isLoading = true
+	
+	@State private var searchText = ""
+	@State private var isSearching = false
+	@FocusState private var isSearchFocused: Bool
 	
 	@State private var tableMinFilter: TableMinFilter? = nil
 	@State private var buyInFilter: BuyInFilter? = nil
 	
-	@FocusState private var focusTableMenu: Bool
-	@FocusState private var focusBuyMenu: Bool
+	@AccessibilityFocusState private var isTableMenuFocused: Bool
+	@AccessibilityFocusState private var isBuyMenuFocused: Bool
+	@AccessibilityFocusState private var titleNeedsFocus: Bool
 	
+	@State private var announceWorkItem: DispatchWorkItem?
 	
 	var body: some View {
 		NavigationStack {
-			VStack(spacing: 16) {
+			VStack(spacing: 0) {
+				TopNavBar(
+					title: "Oh Craps!",
+					showBack: false,
+					backAction: {}
+				)
+				.accessibilityFocused($titleNeedsFocus)
 				
-				// SEARCH
-				TextField("Search strategies", text: $searchText)
-					.textFieldStyle(.roundedBorder)
-					.padding(.horizontal)
-					.accessibilityLabel("Search strategies")
-				
-				
-				// FILTER ROW
-				HStack {
-					
-					// TABLE MINIMUM FILTER
-					Menu {
-						Button("Off") {
-							tableMinFilter = nil
-							DispatchQueue.main.async { focusTableMenu = true }
-						}
-						ForEach(TableMinFilter.allCases, id: \.self) { filter in
-							Button(filter.label) {
-								tableMinFilter = filter
-								DispatchQueue.main.async { focusTableMenu = true }
-							}
-						}
-					} label: {
-						AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
-							.accessibilityAddTraits(.isButton)
-					}
-					.accessibilityLabel("Table Minimum Filter")
-					.accessibilityValue(tableMinFilterLabel)
-					.focused($focusTableMenu)
-					
-					
-					// BUY-IN FILTER
-					Menu {
-						Button("Off") {
-							buyInFilter = nil
-							DispatchQueue.main.async { focusBuyMenu = true }
-						}
-						ForEach(BuyInFilter.allCases, id: \.self) { filter in
-							Button(filter.label) {
-								buyInFilter = filter
-								DispatchQueue.main.async { focusBuyMenu = true }
-							}
-						}
-					} label: {
-						AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
-							.accessibilityAddTraits(.isButton)
-					}
-					.accessibilityLabel("Buy-in Filter")
-					.accessibilityValue(buyInFilterLabel)
-					.focused($focusBuyMenu)
+				if isLoading {
+					loadingView
+				} else {
+					contentView
 				}
-				.padding(.horizontal)
-				
-				
-				// STRATEGY LIST
-				List {
-					ForEach(sectionOrder, id: \.self) { section in
-						if let items = sectionedStrategies[section], !items.isEmpty {
-							Section {
-								ForEach(items) { strategy in
-									NavigationLink(destination: StrategyDetailView(strategy: strategy)) {
-										Text(strategy.name)
-									}
-								}
-							} header: {
-								Text(section.display)
-									.font(.title2)
-									.accessibilityAddTraits(.isHeader)
-							}
-						}
-					}
-				}
-				.listStyle(.plain)
-				
 			}
-			.navigationTitle("Oh Craps!")
-			.navigationBarTitleDisplayMode(.large)
+			.onAppear {
+				loadStrategies()
+			}
 		}
 	}
 	
+	private var loadingView: some View {
+		VStack(spacing: 20) {
+			ProgressView()
+				.progressViewStyle(.circular)
+			
+			Text("Loading Strategies…")
+				.font(.headline)
+		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.onAppear {
+			UIAccessibility.post(notification: .announcement, argument: "Loading strategies")
+		}
+	}
 	
-	// MARK: - FILTER LABELS
+	private var contentView: some View {
+		VStack(spacing: 16) {
+			searchBar
+			filterRow
+			
+			List {
+				ForEach(sectionOrder, id: \.self) { section in
+					if let items = sectionedStrategies[section], !items.isEmpty {
+						Section {
+							ForEach(items) { strategy in
+								NavigationLink(
+									destination: StrategyDetailView(strategy: strategy)
+								) {
+									Text(strategy.name)
+								}
+							}
+						} header: {
+							Text(section.display)
+								.font(.title2)
+								.accessibilityAddTraits(.isHeader)
+						}
+					}
+				}
+			}
+			.listStyle(.plain)
+		}
+	}
+	
+	private var searchBar: some View {
+		HStack {
+			TextField(
+				"Search strategies",
+				text: $searchText,
+				onEditingChanged: { editing in
+					isSearching = editing
+				}
+			)
+			.textFieldStyle(.roundedBorder)
+			.focused($isSearchFocused)
+			.submitLabel(.search)
+			.onChange(of: searchText) { _ in
+				announceSearchResultsSoon()
+			}
+			.onSubmit {
+				announceSearchResults()
+			}
+			.toolbar {
+				ToolbarItemGroup(placement: .keyboard) {
+					Spacer()
+					Button("Dismiss Keyboard") {
+						isSearchFocused = false
+					}
+					.accessibilityLabel("Dismiss keyboard")
+				}
+			}
+			
+			if isSearching {
+				Button("Cancel") {
+					searchText = ""
+					isSearching = false
+					isSearchFocused = false
+					announceSearchResults()
+				}
+				.buttonStyle(.borderless)
+				.transition(.opacity)
+			}
+		}
+		.padding(.horizontal)
+	}
+	
+	private var filterRow: some View {
+		HStack {
+			
+			Menu {
+				Button("Off") {
+					tableMinFilter = nil
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+						isTableMenuFocused = true
+					}
+				}
+				ForEach(TableMinFilter.allCases, id: \.self) { filter in
+					Button(filter.label) {
+						tableMinFilter = filter
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+							isTableMenuFocused = true
+						}
+					}
+				}
+			} label: {
+				AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
+					.accessibilityFocused($isTableMenuFocused)
+			}
+			.accessibilityLabel("Table Minimum Filter")
+			.accessibilityValue(tableMinFilterLabel)
+			
+			Menu {
+				Button("Off") {
+					buyInFilter = nil
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+						isBuyMenuFocused = true
+					}
+				}
+				ForEach(BuyInFilter.allCases, id: \.self) { filter in
+					Button(filter.label) {
+						buyInFilter = filter
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+							isBuyMenuFocused = true
+						}
+					}
+				}
+			} label: {
+				AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
+					.accessibilityFocused($isBuyMenuFocused)
+			}
+			.accessibilityLabel("Buy-in Filter")
+			.accessibilityValue(buyInFilterLabel)
+			
+		}
+		.padding(.horizontal)
+	}
 	
 	private var tableMinFilterLabel: String {
 		tableMinFilter?.label ?? "Off"
@@ -161,15 +234,15 @@ struct StrategiesView: View {
 		buyInFilter?.label ?? "Off"
 	}
 	
-	
-	// MARK: - FILTERED STRATEGIES
-	
 	private var filteredStrategies: [Strategy] {
 		var result = allStrategies
 		
-		let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-		if !query.isEmpty {
-			result = result.filter { $0.name.lowercased().contains(query) }
+		let q = searchText
+			.trimmingCharacters(in: .whitespacesAndNewlines)
+			.lowercased()
+		
+		if !q.isEmpty {
+			result = result.filter { $0.name.lowercased().contains(q) }
 		}
 		
 		if let f = tableMinFilter {
@@ -183,45 +256,33 @@ struct StrategiesView: View {
 		return result
 	}
 	
-	
-	// MARK: - TABLE MINIMUM FILTER
-	
 	private func matchesTableMinFilter(strategy: Strategy, filter: TableMinFilter) -> Bool {
 		switch filter {
-		case .five: return strategy.tableMinMin <= 5 && strategy.tableMinMax >= 5
-		case .ten: return strategy.tableMinMin <= 10 && strategy.tableMinMax >= 10
-		case .fifteenPlus: return strategy.tableMinMax >= 15
+		case .five:
+			return strategy.tableMinMin <= 5 && strategy.tableMinMax >= 5
+		case .ten:
+			return strategy.tableMinMin <= 10 && strategy.tableMinMax >= 10
+		case .fifteenPlus:
+			return strategy.tableMinMax >= 15
 		}
 	}
 	
-	
-	// MARK: - BUY-IN FILTER
-	
 	private func matchesBuyInFilter(strategy: Strategy, filter: BuyInFilter) -> Bool {
 		let bucket: (Int, Int)
-		
 		switch filter {
 		case .oneHundred: bucket = (0, 299)
 		case .threeHundred: bucket = (300, 599)
 		case .sixHundred: bucket = (600, 899)
 		case .nineHundredPlus: bucket = (900, Int.max)
 		}
-		
 		return strategy.buyInMin <= bucket.1 &&
-			   strategy.buyInMax >= bucket.0
+			strategy.buyInMax >= bucket.0
 	}
-	
-	
-	// MARK: - NAME NORMALIZATION
 	
 	private func normalizedName(_ strategy: Strategy) -> String {
 		let trimmed = strategy.name.trimmingCharacters(in: .whitespaces)
-		let noDollar = trimmed.drop(while: { $0 == "$" })
-		return String(noDollar)
+		return String(trimmed.drop(while: { $0 == "$" }))
 	}
-	
-	
-	// MARK: - NUMERIC PREFIX FOR SORTING
 	
 	private func numericPrefix(of name: String) -> Int? {
 		var digits = ""
@@ -235,12 +296,8 @@ struct StrategiesView: View {
 		return digits.isEmpty ? nil : Int(digits)
 	}
 	
-	
-	// MARK: - SECTIONED STRATEGIES WITH NUMERIC SORTING
-	
 	private var sectionedStrategies: [SectionKey: [Strategy]] {
-		
-		let grouped: [SectionKey: [Strategy]] = Dictionary(grouping: filteredStrategies) { strategy in
+		let grouped = Dictionary(grouping: filteredStrategies) { strategy -> SectionKey in
 			let n = normalizedName(strategy)
 			guard let first = n.first else { return .number }
 			
@@ -253,22 +310,17 @@ struct StrategiesView: View {
 			group.sorted { a, b in
 				let na = normalizedName(a)
 				let nb = normalizedName(b)
-				
 				let numA = numericPrefix(of: na)
 				let numB = numericPrefix(of: nb)
 				
 				switch (numA, numB) {
-					
 				case let (x?, y?):
 					if x != y { return x < y }
 					return na.localizedCaseInsensitiveCompare(nb) == .orderedAscending
-					
 				case (.some, .none):
 					return true
-					
 				case (.none, .some):
 					return false
-					
 				case (.none, .none):
 					return na.localizedCaseInsensitiveCompare(nb) == .orderedAscending
 				}
@@ -276,10 +328,36 @@ struct StrategiesView: View {
 		}
 	}
 	
-	
-	// MARK: - SECTION ORDER
-	
 	private var sectionOrder: [SectionKey] {
 		sectionedStrategies.keys.sorted()
 	}
+	
+	private func announceSearchResults() {
+		let count = filteredStrategies.count
+		let msg = count == 1 ? "Showing 1 strategy" : "Showing \(count) strategies"
+		UIAccessibility.post(notification: .announcement, argument: msg)
+	}
+	
+	private func announceSearchResultsSoon() {
+		announceWorkItem?.cancel()
+		let task = DispatchWorkItem { announceSearchResults() }
+		announceWorkItem = task
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: task)
+	}
+	
+	private func loadStrategies() {
+		DispatchQueue.global(qos: .userInitiated).async {
+			let loaded = StrategyLoader.loadAllStrategies()
+			
+			DispatchQueue.main.async {
+				allStrategies = loaded
+				isLoading = false
+				
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+					titleNeedsFocus = true
+				}
+			}
+		}
+	}
 }
+
