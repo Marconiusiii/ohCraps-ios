@@ -1,0 +1,13 @@
+<div class="heat" id="heat">
+<h3>Heat Seeker</h3>
+<p>Buy-in: $150</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Only using $30 for each shooter. Double amounts for $10 table.</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>When Point is established, put minimum bets on the 6 and 8, and put down a minimum Come bet.</li>
+<li>Aim to get 4 Points set up and working. When the first Come bet moves up to a number, set down a second Come bet. Once 4 different numbers have been set, stop investing and let the shooter roll on.</li>
+<li>If Come bet hits, put down another Come bet to always have 4 working numbers. If 6 or 8 hit, take down the Place bet and collect winnings since Come bet would now be covering that number.</li>
+<li>After recouping $30 in winnings, start adding 1x odds to Come bets. Add more odds as more winnings come in.</li>
+</ol>
+</div>

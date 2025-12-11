@@ -1,0 +1,18 @@
+<div class="dSideHedge" id="dSideHedge">
+<h3>Dark Side Hedge</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $15</p>
+<ol>
+<li>Make a $15 Don't Pass Bet. Lay $40 each  on the 4 and 10. Bet $1 each on the Yo Eleven  and Boxcars prop bets.
+<ul role="list">
+<li>If 12/Boxcars hits, press bet to $25 for a roll.</li>
+<li>If 4 or 10 hits, replace $40 Lay.</li>
+</ul></li>
+<li>When point is established, Lay enough odds to win $25 if the 7 rolls.
+<ul role="list">
+<li>For 6 and 8, lay $30 Don't Pass Odds.</li>
+<li>For 5 and 9, Lay $45 in Don't Pass Odds.</li>
+</ul></li>
+<li>If 4 or 10 hits after Point is established, replace $40 Lay. Let bets ride until 7 out, then start system over again.</li>
+</ol>
+</div>

@@ -1,0 +1,17 @@
+<div class="seeSaw" id="seeSaw">
+<h3>See-Saw</h3>
+<p>Buy-in: $520</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Similar to Ultimate ROI system, this strategy spreads out from the 6 and 8 and allows you to come down after 3 hits or get you to $64 Across.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $26 each on the 6 and 8. This is an improper bet, but the payout when these hit will be exactly $30.</li>
+<li>If the 6 hits, use the $30 in winnings to place the 4 and 5 for $15 each. If the 8 hits, use the winnings to place the 9 and 10 for $15 each.</li>
+<li>If any of the numbers hit again, use the winnings to cover the rest of the numbers. For example, if the 6 hit first and you have the 4 and 5 covered for $15 each, if the 6 hits again, cover the 9 and 10 for $15 each. If the 4 or 5 hit instead, you'll win $21 and can use that to cover the 9 and 10 for $10 each and collect the $1 extra. Vice versa if you have the 9 and 10 already covered.</li>
+<li>Once everything is covered, on the very next hit on any of the numbers, there are two routes you can take:
+	<ul role="list">
+	<li>See-Saw Go: Immediately take down all your bets and wait for the next shooter with a decent profit in your rack.</li>
+	<li>See-Saw Stay: Use what you have out on the table and the winnings to go to $64 across and collect the rest, then start any progressive collect and press strategy.</li>
+	</ul></li>
+</ol>
+</div>

@@ -1,0 +1,14 @@
+<div class="getEven" id="getEven">
+<h3>Get Even Take and Press</h3>
+<p>Buy-in: $320</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Works on any table minimum; adjust buy-in for 10 shooters depending on the minimum needed to go across for 1 unit each.</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>Place minimum bets across all Place Numbers except for the Point number.</li>
+<li>If 6 or 8 is the Point, cover that number and choose to leave the 5 or 9 unplaced.</li>
+<li>Take down the first two hits on the Place Bets.</li>
+<li>Replenish the Place bets from the next two hits until you are covered across again.</li>
+<li>Once covered, start to collect and press on the individual bets. Collect the winnings the first time a number hits, press it the second time it hits, then alternate from there on out.</li>
+</ol>
+</div>

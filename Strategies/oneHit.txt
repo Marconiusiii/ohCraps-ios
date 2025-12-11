@@ -1,0 +1,16 @@
+<div class="oneHit" id="oneHit">
+<h3>One Hit Win</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Take advantage of the 7 on the come out roll, use the Field as a place bet feeder, and get to $64 across as quickly as possible.</p>
+<ol>
+<li>Start by laying the 6 and 8 for $30 each. Bet $10 in the Field.</li>
+<li>A come out 7 will win $50 from the lay bets, minus the vig and the Field. Replace the Field bet if this happens. Keep the lay bets working on the Come Out roll.</li>
+<li>If the 6 or 8 becomes the point, take down the Lay bet from the sister number and use it as a place bet for that number. If that place bet hits, use the bet plus the winnings to go to $64 across.</li>
+<li>If the 5 rolls as the point, replace the field bet and keep the lay bets up and working to try to proceed to the next part of the system.</li>
+<li>If any other number becomes the point, take down the Lay 6 and 8 and use those bets plus the Field winnings to go to $64 across. Keep the field bet up.</li>
+<li>If place numbers hit that are also in the Field, use the Field winnings to add to the overall press on the Place number; if a $10 Place 9 hits, it wins $14 and the Field wins $10. Drop in $1 to add to the winnings to bring the Place 9 up to a $35 bet, etc.</li>
+<li>Don't replace the field bet if it falls at this point. Use the first hit of any place number to power press that number, then collect the second hit. If you have multiple numbers power pressed, as soon as one of them hits, immediately regress back to $64 across, then start the power pressing progression again.</li>
+<li>After completing one power press and regression, feel free to move to a collect and power press alternating strategy as you see fit.</li>
+</ol>
+</div>

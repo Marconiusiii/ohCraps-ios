@@ -1,0 +1,13 @@
+<div class="7heaven" id="7heaven">
+<h3>7 Heaven</h3>
+<p>Buy-in: $250</p>
+<p>Table Minimum: $25+</p>
+<p>Notes: Quick grind system for short money on higher limit tables. Adjust bankroll based on the bets you are making.</p>
+<ol>
+<li>Start by laying the 6 and 8 for $30 each on the Come Out roll.</li>
+<li>If the shooter throws a winning 7, you'll win $50 minus the vig.</li>
+<li>If a point is established, take down the Lay bets and play any other system or wait for the next come out roll before repeating this system.</li>
+<li>The larger the bets, the more you'll win in a shorter amount of time while still being able to cheer on the shooter for a 7 winner on the come out roll. Anything lower than $30 each on the Lay 6 and 8 will take forever to grind out a win, so try to stick with this as the baseline/lowest bet.</li>
+</ol>
+
+</div>

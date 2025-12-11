@@ -1,0 +1,17 @@
+<div class="national" id="national">
+<h3>National League</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Based on the National League baseball idea of "Get 'em on, get 'em over, and get 'em in." Starts with a $60 outlay, spreads to the 5 and 9, and brings the bets home within a few hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>"Get 'em on" by placing the 6 and 8 for $30 each.</li>
+<li>When either the 6 or 8 hit, "Get 'em over" by using the $35 winnings to place the 5 and 9 for $15 each. Collect the extra $5.</li>
+<li>If the 6 or 8 hit again, "Get 'em in" by taking down the 5 and 9 place bets and collecting the winnings.</li>
+<li>You need to collect $60 to get out of the hand, so pull down the 5 and 9 after they hit a total of 3 times before either the 6 or 8 hit.</li>
+<li>When the 5 and 9 are down, if the 6 or 8 hit again, collect the winnings to ensure profit from the hand.</li>
+<li>Use further hits on the 6 or 8 to spread out to the 5 and 9 for $15 each, and then to the 4 and 10 for $15 each.</li>
+<li>Once all box numbers are covered, begin a collect and press strategy; collect on the first hit of a number, then do a full press on the next hit, collect on the next, and so on.</li>
+<li>Restart strategy after a 7 out.</li>
+</ol>
+</div>

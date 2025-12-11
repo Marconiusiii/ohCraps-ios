@@ -1,0 +1,12 @@
+<div class="passProps" id="passProps">
+<h3>Pass &amp; Props</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Risky but fun ssystem to enjoy the most out of your time at the table.</p>
+<ol>
+<li>Start with a $15 Pass Line bet.</li>
+<li>Once point is established, bet max odds behind the Pass Line bet. Place the 5 and 9 for $15 each. Bet $5 each on all of the Hard Ways bets.</li>
+<li>Let all bets ride until a 7 out. Replace hard ways bets if they fall, and just same bet the place numbers if they hit.</li>
+<li>If the 5 or 9 becomes the point, move that place bet to the 6 or 8 and drop in $3 to make it a proper $18 place bet.</li>
+</ol>
+</div>

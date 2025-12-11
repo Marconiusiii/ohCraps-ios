@@ -1,0 +1,22 @@
+<div class="hawaii50" id="hawaii50">
+<h3>Hawaii 5-O</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Ultimate goal is to press the sister numbers together when they hit and go for 5 total hits on any of the Place numbers before regressing bets back down to $64 across.</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>Bet $204 across: $25 each on the 4 and 10, $35 each on the 5 and 9, $42 each on the 6 and 8.</li>
+<li>On first hit, use winnings to press up the winning number and the sister number. All initial place bets will win $50 for $1 when they hit.
+<ul role="list"><li>If 4 or 10 hit, press them both up to $50.</li>
+<li>If the 5 or 9 hit, press them both up to $60 each.</li>
+<li>If the 6 or 8 hits, press them both up to $66 each.</li>
+</ul></li>
+<li>On the second hit of a pressed Place number, use the winnings to press the numbers up to as close to $100 each as you can get.
+<ul role="list">
+<li>Press the 4, 5, 9, and 10 to $100 each if they have already been pressed and hit again.</li>
+<li>Take the 6 and 8 up to $90 each if they hit.</li>
+</ul></li>
+<li>Go for 5 hits. After the Place numbers hit 5 times no matter how far they've been pressed with the strategy, immediately regress all bets down to 2 units across, or $64 across.</li>
+<li>From here, start basic collect and press strategy, pressing the sister numbers and playing by ear until a 7 out.</li>
+</ol>
+</div>

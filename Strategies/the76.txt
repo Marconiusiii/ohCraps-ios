@@ -1,0 +1,13 @@
+<div class="the76" id="the76">
+<h3>The 4/10 $76</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Initial outlay is $76 before profits, so while this can work with $500, consider buying in for $760 to cover 10 shooters.</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>When Point is established, bet $25 each on the 4 and 10 Place numbers and Buy the bets. Place $12 each on the 6 and 8 Place numbers.</li>
+<li>If the 4 or 10 hit, use the winnings to press the 6 and 8 to $24 each.</li>
+<li>If the 6 or 8 hit, before they are both at $24, use the winnings to press them both up one unit. Repeat this until both numbers are pressed to $24.</li>
+<li>Once established with the 6 and 8 placed for $24 each, and the 4 and 10 bought for $25 each, let the bets ride until a 7 out.</li>
+</ol>
+</div>

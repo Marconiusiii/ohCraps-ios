@@ -1,0 +1,11 @@
+<div class="shinsho" id="shinsho">
+<h3>Shinsho Strategy</h3> 
+<p>Buy-in: $600</p>
+<p>Table Minimum: $15</p>
+<ol>
+<li>Play $5 on the Fire Bet, table minimum on Pass Line if shooting or if required to play bonus bets.</li>
+<li>When Point is established, place the 6 and 8 for $30 each. Bet $15 on the Field, and hop the 5s for $1 each.</li>
+<li>If Field bet hits, move bet and winnings up to Place the 5 and 9; stop playing the Field bet after doing this. If Field bet loses, repeat the $15 bet and Hop the 5s.</li>
+<li>Start collecting and pressing with each hit on the inside numbers. Collect the first hit, then do a full press on the second hit, and so on.</li>
+</ol>
+</div>

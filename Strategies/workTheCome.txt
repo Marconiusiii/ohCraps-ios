@@ -1,0 +1,16 @@
+<div class="workTheCome" id="workTheCome">
+<h3>Work the Come</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Start with minimum Pass Line bet.</li>
+<li>When Point is established, place 2x Pass Line Odds. Make a 1 unit/$5 Come Bet, and bet 2 units across all the Place Number excluding the Point.</li>
+<li>When a Place number hits, take it down and use the winnings to put 2x Odds on the resulting Come Bet moving to the number.</li>
+<li>Keep making Come Bets and using the Place Bet winnings for the odds. Maintain this flow even after all Place Bets have been replaced by Come Bets.</li>
+<li>Additional Plays:
+<ul role="list">
+<li>Place $1 each on all the Hard Ways. When Hard Way number hits, move the bet plus the winnings to the Field and try to double your money.</li>
+<li>Whenever you feel like it, take all winnings from a roll and dump them into the Field to go for a big win. This goes for Horn, Hard Ways, and Come Bets.</li>
+</ul></li>
+</ol>
+</div>

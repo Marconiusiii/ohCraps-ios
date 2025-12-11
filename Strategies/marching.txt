@@ -1,0 +1,16 @@
+<div class="marching" id="marching">
+<h3>Marching Soldiers</h3>
+<p>Buy-in: $7</p>
+<p>Table Minimum: $5</p>
+<p>Notes: This strategy can mostly function as a side bet, and can be taken down at any point in the process since it deals with moving Place Bets, which are not contract bets. This works with any table minimum, will demonstrate with 1 unit on a  $5 minimum; total investment per shooter is $7.</p>
+<ol>
+<li>Make a $5 or 1 unit bet on either the Place 4 or 10. Have them working on the Come Out roll, or otherwise make the bet when you can do so after arriving at the table.</li>
+<li>The whole point of the strategy is to use the winnings to power press the bet and shift it to the next number, pressing and moving until the bet makes it all the way across the Point numbers; if starting at 4, each hit will move the bet to the next number heading towards the 10. If starting at 10, each hit will move the bet towards the 4.</li>
+<li>Starting from the 4, if the 4 hits, you'll win $9. Give the dealer $1 and move your bet plus the winnings to the 5 to make a $15 bet.</li>
+<li>If the 5 hits, you'll win $21. Move your bet to the 6 and add the winnings to make a $36 Place 6 bet.</li>
+<li>If the 6 hits, you'll win $42. Move the bet to the Place 8 and add the winnings so you have a $78 Place 8 bet.</li>
+<li>If the 8 hits, you'll win $91. Once again, shift the bet over to the 9 and add the winnings. Give the dealer another $1 chip to make the bet $170 on the Place 9.</li>
+<li>If the 9 hits, you'll win $238. If you've made it this far, move the bet over to the 10 and add the winnings. To make things easier for the dealers, collect $8 from the winnings and you'll be left with a $400 Place 10 bet.</li>
+<li>Once the 10 hits at this point, collect and take everything down. Starting from a $7 investment ($5 on the 4, $1 for the first bet on the 5, and $1 for the bet on the 9), you'll end up with $1200. Again, at any point in this process, feel free to take down the bet to collect that money.</li>
+</ol>
+</div>

@@ -1,0 +1,12 @@
+<div class="arnold" id="arnold">
+<h3>The Arnold</h3>
+<p>Buy-in: $600-$1000</p>
+<p>Table Minimum: Any</p>
+<p>Notes: Simple strategy that is scalable based on any table minimum.</p>
+<ol>
+<li>Bet 1 unit on the Pass Line.</li>
+<li>When a point is established, bet 4 units on the Don't Come. For a $15 table, this would be $60.</li>
+<li>Once the Don't Come is established, make a 1 unit Come bet for every roll after until a 7 Out or the Don't Come falls.</li>
+<li>If the Don't Come falls, replace it before starting to make Come bets again.</li>
+</ol>
+</div>

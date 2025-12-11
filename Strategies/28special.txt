@@ -1,0 +1,14 @@
+<div class="28special" id="28special">
+<h3>28 Special</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Thanks to /u/VahnNoaGala and their friend Jazz Cabbage from <a href="https://www.reddit.com/r/Craps/comments/11a3gx5/craps_strategy_the_28_special/" target="_blank" id="outToReddit" title="Opens in new window">/r/craps on Reddit.</a></p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $15 each on the 4, 5, 9, and 10 place bets. $60 total investment per shooter.</li>
+<li>Use the first hit on any of these numbers to press the 4 and 10 up to $25 each and Buy them.</li>
+<li>If the 4 or 10 hits, you can either collect the $50 for $1 winnings to mostly get out of the hand, or use the winnings to press both the 4 and 10 up to $50 each if you are feeling aggressive.</li>
+<li>If the 5 or 9 hit, use the winnings to press them both up to $25 each.</li>
+<li>The goal is to get the 4 and 10 pressed up to $50 each as Buy bets so you are collecting $100 on each hit.</li>
+</ol>
+</div>

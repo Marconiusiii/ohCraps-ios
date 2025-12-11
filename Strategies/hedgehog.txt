@@ -1,0 +1,14 @@
+<div class="hedgehog" id="hedgehog">
+<h3>The Hedgehog</h3>
+<p>Buy-in: $500-$1000</p>
+<p>Table Minimum: Any</p>
+<p>Notes: Wizard of Odds strategy that maximizes comps while maintaining time at the table. This works with any unit amount; if you bet $25, use $25 for every bet from then on in the strategy. </p>
+<ol>
+<li>Start with a 1 unit Pass Line bet.</li>
+<li>When a point is established, make a 1 unit Don't Come bet.</li>
+<li>Once the Don't Come moves to a number, make a 1 unit Come bet.</li>
+<li>Continue to alternate making Don't Come and Come bets for each roll until the point is hit or a 7 out.</li>
+<li>If you lose either the Come or Don't Come bet, just make the same bet again until the bet moves to a number.</li>
+<li>Feel free to add odds depending on how the table is rolling out in order to increase profits, otherwise this is meant to keep you afloat while building up comp value. The more you bet as a unit, the higher the comp value over time.</li>
+</ol>
+</div>

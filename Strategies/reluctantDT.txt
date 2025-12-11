@@ -1,0 +1,14 @@
+<div class="reluctant" id="reluctant">
+<h3>Reluctant Double-Tap</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Modified Double-Tap strategy to try to recoup money after pressing up numbers and not hitting any.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $44 inside, or $10 each on the 5 and 9, and $12 each on the 6 and 8.</li>
+<li>Power press the first hit on any of the inside numbers. If the 5 or 9 hit, drop in $1 and use the winnings to press up to a $25 bet. If the 6 or 8 hit, drop in $4 and use the winnings to press it up to a $30 bet.</li>
+<li>If any of the power-pressed bets hit, immediately collect the winnings and regress down to $44 inside.</li>
+<li>If you have 2 numbers power pressed, if a third inside number hits that you haven't yet power pressed, immediately collect the winnings and regress down to $44 inside. You'll have collected $42 in total winnings by this point and are just about out of the hand, so a 7 out at that point doesn't hurt as much.</li>
+<li>At this point, restart the strategy or move into any press and collect strategy that you choose.</li>
+</ol>
+</div>

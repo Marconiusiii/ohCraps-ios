@@ -1,0 +1,15 @@
+<div class="littleGreenMen" id="littleGreenMen">
+<h3>Little Green Men</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Grinder strategy that starts off at 4 units per shooter, but evolves into more opportunity as you win. System instructions written for $25 units, but system can be played with smaller units though it will take quite a lot longer to grind out a decent profit.</p>
+<ol>
+<li>Start with betting $25 on the Don't Pass.</li>
+<li>When a point is established, bet $25 on the Don't Come.</li>
+<li>If the Don't Come moves behind a number, bet $50 on the Come.</li>
+<li>If any of the bets fall, replace them.</li>
+<li>Money management is essential for this system. Once you've pulled in $50 in profit, increase your initial bets by $5 per $25 bet. So start with a $30 Don't Pass, bet a $30 Don't Come after establishing a point, then make a $60 Come Bet after the DC goes to a number.</li>
+<li>Increase the bet amounts again as soon as you are $100 up in profit. Start with a $35 Don't Pass, bet a $35 Don't Come after establishing a point, and bet a $70 Come bet after the DC moves. With $200 in profit, increase the bets again, and so on.</li>
+<li>If your profits go back down or you hit a cold streak, adjust the bets back down so you don't burn through your bankroll.</li>
+</ol>
+</div>

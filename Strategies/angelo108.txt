@@ -1,0 +1,17 @@
+<div class="angelo108" id="angelo108">
+<h3>Uncle Angelo's 108</h3>
+<p>Buy-in: $1500</p>
+<p>Table Minimum: $15-$25</p>
+<p>Notes: Good system for choppy tables, but can be volatile if 4s and 10s keep getting thrown. Bets are always working.</p>
+<ol>
+<li>Lay $100 each on the 4 and 10. Place $110 inside, or $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>Let all bets ride and just collect each hit. Replace the 4 and 10 if they fall.</li>
+</ol>
+<h4>Modifications</h4>
+<ul role="list">
+<li>Collect first 3 hits on Place numbers, then start full/power pressing the inside numbers. When inside numbers are pressed, bump the Lay 4 and 10 up to $200 each. As you press and collect, make sure to bump the Lay bets to keep the base inside numbers covered.</li>
+<li>Hedge the Lay 4 and 10 with $25 Hard 4 and Hard 10 bets.</li>
+<li>After recouping initial outlay by hitting 3 of the inside numbers, take down the Lay 4 and 10 and play the rest of the hand by ear; spread out to the 4 and 10 or continue to collect and press. Restart system after a 7 out.</li>
+<li>A smaller scale variant starts off with $44 Inside and a Lay 4 and 10 for $50 each. After each hit, do a full press of that number. After 3 hits and presses, increase the Lay 4 and 10 to 100 each. The Lay winnings should always cover or be over the total Inside bets. After the next 3 hits and presses, increase the Lay 4 and 10 to $200 each. After this, press the next hits on the inside numbers. As soon as one of these pressed numbers hits again, collect the winnings and immediately regress all the way back down to the starting $44 Inside and $50 Lays on the 4 and 10 and repeat.</li> 
+</ul>
+</div>

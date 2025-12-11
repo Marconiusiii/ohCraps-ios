@@ -1,0 +1,22 @@
+<div class="pathfinder" id="pathfinder">
+<h3>Pathfinder</h3>
+<p>Buy-in: $350</p>
+<p>Table Minimum: $5</p>
+<p>Notes: System for following the path of the dice. Only betting $35 per shooter. System does not rely on the Point, and can be working or Off on the Come Out roll.</p>
+<ol>
+<li>Bet $32 across; $5 each on the 4, 5, 9. 10, and $6 each on the 6 and 8.</li>
+<li>On the first hit of a Place number, take down that place number and spread that bet plus the winnings out to the remaining numbers, adding a few dollars from your rack if needed. For example:
+<ul role="list">
+<li>If the 8 hits, you win $7. Take down the Place 8 bet and put it on the 6 to make it $12, then add $3 from your rack to the $7 winnings to make $10, then spread that to the 5 and 9 to make them $10 each.</li>
+<li>If the 9 hits, you win $7. Taking down the initial $5 Place 9 bet and adding it to the winnings gives you $12, which you can use to bump up the 6 and 8 Place bets to $12 each.</li>
+<li>If the 10 hits, you win $9. Take down the bet and add $1 from your rack to end up with $15 total to spread out to the other numbers. Bump the 4, 5, and 9 up to $10 each with the winnings.</li>
+</ul></li>
+<li>When a second number hits, take that Place bet down, add the winnings, and spread it out to the other remaining numbers as you see fit.
+<ul role="list">
+<li>If the $12 Place 6 hits, you win $14. Take down the 6 and use the winnings and the bet to bump the 5 and 9 up $10 each and collect the rest.</li>
+<li>If the $10 Place 5 hits, you win $14. Take down the 5, add the winnings, and bump the 6 and 8 up $12 each if they are still up, or spread the money out to the remaining numbers evenly and collect the rest.</li>
+<li>If the $10 Place 4 hits, take it down and add it to the $18 winnings. Spread the $28 across the remaining numbers and collect the change.</li>
+</ul></li>
+<li>After taking down a total of 3 Place numbers and spreading the bets plus the winnings arounf to the remaining numbers, one more hit will pay for the initial bet outlay, so collect the hit. Feel free to press and spread back out to all the Place numbers as you see fit.</li>
+</ol>
+</div>

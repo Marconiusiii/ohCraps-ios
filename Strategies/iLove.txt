@@ -1,0 +1,14 @@
+<div class="iLove" id="iLove">
+<h3>Inside Love</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Original bankroll was $500, but best to buy in for at least $2000 for 10 shooters.</p>
+<ol>
+<li>Start with a $10 pass line bet and a $5 C&amp;E.</li>
+<li>If the pass line wins with a 7, press the pass line bet up to $15 and use the other $5 to replenish the C&amp;E. Keep pressing and replenishing if the 7 comes up again.</li>
+<li>If the C&amp;E wins with a 2, 3, 11, or 12, press the C&amp;E up $5 to $10, replenish the $10 pass line  and rack the rest. If the C&amp;E hits again, continue pressing the bet up $5 and replenish the pass line. If the 11 hits, you'll win the most money out of this stage of the strategy.</li>
+<li>When point is established, bet 5 units on the inside numbers, so $220 inside. If one of the inside numbers is the point, cover the other numbers and then place max odds behind your pass line bet. ($40 for 5 and 9, $50 for 6 and 8.)</li>
+<li>On the first hit of any inside number, collect the winnings and immediately regress all your bets down to 1 unit, so $44 inside. If the point is an inside number, take your pass line odds down to $10.</li>
+<li>At this point everything on the table is pure profit, so start a press and collect strategy with the inside numbers. Power press the first hit, collect the second, power press the third hit, and so on.</li>
+</ol>
+</div>

@@ -1,0 +1,15 @@
+<div class="powerCross" id="powerCross">
+<h3>Power Cross</h3>
+<p>Buy-in: $600-$1000</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Iron Cross mixed with power pressing to take advantage of opportunity instead of the basic Iron Cross grind.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 5 for $20, and the 6 and 8 for $24 each. Make a $10 Field bet.</li>
+<li>Use Field winnings to press the 5, 6, and 8 up to $50 and $54 respectively as they hit.</li>
+<li>If the 5, 6, or 8 hit, use the winnings to replenish the $10 Field bet and use the rest of the money to press up the place bet as far as it can go. For the 6 and 8, you may need to drop in a few dollars to get the press amount up to the proper multiple of 6.</li>
+<li>Once the Place bets get up to $50 for the 5 and $54 for the 6 and 8, collect the first hit on the place bets at that level and replenish the Field bet. If any other Field numbers hit, stack the winnings on the Field.</li>
+<li>After collecting the first hit on either the 5, 6, or 8, power press the bet on the next hit. Take the 5 to $100 and the 6 and 8 to $120, continuing to use part of the winnings to put back the $10 Field bet.</li>
+<li>Continue on doubling the Field bets while also pressing and collecting on every other hit on the 5, 6, and 8.</li>
+</ol>
+</div>

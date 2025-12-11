@@ -1,0 +1,14 @@
+<div class="snowball" id="snowball">
+<h3>Snowball Press</h3>
+<p>Buy-in: $450</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Quick short money system that centers winnings on the 6 and 8 before getting you to $64 across.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $44 Inside; $10 each on the 5 and 9, $12 each on the 6 and 8.</li>
+<li>If any inside number hits, you'll win $14. Pull down either the 5 or 9 bet, add it to the winnings, and press the 6 and 8 up to $24 each.</li>
+<li>On the next hit of any remaining number, pull down the 5 or 9 depending on what you took down in the previous step, and press up the 6 and 8 to $36 each.</li>
+<li>When either the 6 or 8 hits, collect the winnings and regress the bets down to $64 Across; $10 on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>You are now playing with profit, so start any collect and press system that you like.</li>
+</ol>
+</div>

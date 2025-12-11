@@ -11,6 +11,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8279C3F32EEA9CF000F13DC9 /* Strategies */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Strategies;
+			sourceTree = "<group>";
+		};
 		82FBC0F82EEA264600FA6E81 /* ohCraps */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ohCraps;
@@ -34,6 +39,7 @@
 			children = (
 				82FBC0F82EEA264600FA6E81 /* ohCraps */,
 				82FBC0F72EEA264600FA6E81 /* Products */,
+				8279C3F32EEA9CF000F13DC9 /* Strategies */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +67,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				8279C3F32EEA9CF000F13DC9 /* Strategies */,
 				82FBC0F82EEA264600FA6E81 /* ohCraps */,
 			);
 			name = ohCraps;
@@ -256,6 +263,7 @@
 				DEVELOPMENT_TEAM = 4FL3XZDQ9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Oh Craps!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,6 +296,7 @@
 				DEVELOPMENT_TEAM = 4FL3XZDQ9P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Oh Craps!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

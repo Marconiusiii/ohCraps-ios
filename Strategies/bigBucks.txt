@@ -1,0 +1,17 @@
+<div class="bigBucks" id="bigBucks">
+<h3>Big Bucks</h3>
+<p>Buy-in: $15,000</p>
+<p>Table Minimum: $15+</p>
+<p>Notes: There are a few variants to this strategy, but the original version calls for a $15,000 bankroll with a $3000 outlay. This can be modified into the same strategy using an $800 bankroll for a $160 initial outlay.</p>
+<ol>
+<li>Wait for a Point to be established. Give the shooter a 1-count, or let them roll the dice one more time after the Point has been established before laying out your bets.</li>
+<li>Place $3000 across all the Place numbers, so $500 bets on every number.</li>
+<li>If a Place number hits, collect the winnings and immediately take all the bets down and wait for the next shooter. If Any number other than the Place Bets rolls, immediately take down your bets and wait for the next shooter.</li>
+</ol>
+<h4>$25 Table Variation:</h4>
+<ol>
+<li>Follow steps above, but Place $160 Across the Place numbers rather than $3000. $25 each on the 4, 5, 9, and 10, $30 each on the 6 and 8.</li>
+<li>If any of the Place numbers hit, regress down to just having the 6 and 8 placed and take all other bets down.</li>
+<li>One more hit on the 6 and 8 will lock in your profits, so from there start collecting, pressing, and spreading out to other numbers as you see fit. This is good if you want to stay up on your bets for the shooter rather than just sitting and waiting.</li>
+</ol>
+</div>

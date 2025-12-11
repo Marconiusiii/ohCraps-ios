@@ -1,0 +1,14 @@
+<div class="68spark" id="68spark">
+<h3>Crapless: 68 Spark</h3>
+<p>Buy-in: $800</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Covers all of the numbers within a few hits, and lowers the house edge via odds.</p>
+<ol>
+<li>Bet $10 on the Pass Line and establish a point.</li>
+<li>Place $30 each on the 6 and 8. Bet $10 on the Pass Line Odds.</li>
+<li>If the 6 hits, you'll win $35. Use the winnings to cover the 3, 4, and 5 with $10 bets. Buy the 3 and 4 if possible. If the 8 hits instead, use the winnings to cover the 9, 10, and 11 with $10 bets and buy the 10 and 11.</li>
+<li>On the next hit, use some of the winnings to cover either the 2 or 12 depending on which number has hit downtown or uptown. Collect the rest.</li>
+<li>Once all of the place numbers are covered, start any collect and press system that you like. Recommend pressing up one unit every time a number hits.</li>
+<li>Don't worry about placing the point number unless the point is 6 or 8.</li>
+</ol>
+</div>

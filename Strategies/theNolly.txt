@@ -1,0 +1,24 @@
+<div class="theNolly" id="theNolly">
+<h3>The Nolly Inside</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Best if you are not the shooter for easier money management.</p>
+<ol>
+<li>Start with $44 inside working on the Come Out. Lay $100 on the 4. Only have the bets working if you have a Lay on the 4, otherwise have them off.</li>
+<li> On the first hit on the inside numbers, go to $22 inside and go down to $50 on the lay 4.</li>
+<li>After hitting the inside numbers a second time, take down the Lay 4 bey, but keep the $22 inside the same.</li>
+<li>Start double-tapping anything that hits from then on, since initial outlay has been paid for. If 6 or 8 hit, drop the dealer $5 and press it to $18. If  5 or 9 hit, press them to $15. When they hit again, collect the winnings, and then continue to press as you like.</li>
+</ol>
+<h4>The Nolly Across Variant</h4>
+<p>The Nolly Across is where you add the 10 into the initial outlay. $100 Lay on the 4 with $54 across the rest of the numbers.</p>
+<ol>
+<li>On the first hit, take the lay down to $50 and take all other bets down to $27 across.</li>
+<li>Collect the second and third hits on the Place numbers, then take down the Lay 4 bet.</li>
+<li>Start triple-luxing from there:
+<ul role="list">
+<li>Press the 6 or 8 up to $18 when they hit, then press them to $42 when they hit again. Collect the third hit. Power press from there on out.</li>
+<li>Press the 5 and 9 up to $15 on their first hit, then press to $36 on their second hit. Collect the third hit. Power press up from there after that.</li>
+<li>Press the 10 up to $15 on the first hit, then press it up to $40 on the second hit and Buy the 10. Collect the third hit, then power press from there. Feel free to take the winnings and spread out to the 4 and do the same triple-lux system.</li>
+</ul></li>
+</ol>
+</div>

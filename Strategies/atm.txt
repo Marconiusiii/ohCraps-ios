@@ -1,0 +1,10 @@
+<div class="atm" id="atm">
+<h3>Dark Side ATM</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $25</p>
+<ol>
+<li>Start with $200 Don't Pass bet. Throughout strategy, if Don't Pass loses, chase the loss with a 50% bet increase, so $300, $450, $675, etc. When one of those wins, immediately reduce the bet down 50% until you win back to the $200 base level.</li>
+<li>When point is established, bet $160 across ($25 on the 4, 5, 9, 10; $30 on 6 and 8) and put down a $25 Field bet. Replace the Field if it loses on a 5, 6, or 8. Make sure 4 and 10 are Buy bets.</li>
+<li>Let bets ride until 7 Out or point is hit.</li>
+</ol>
+</div>

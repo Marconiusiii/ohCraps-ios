@@ -1,0 +1,15 @@
+<div class="ironLaser" id="ironLaser">
+<h3>Iron Laser</h3>
+<p>Buy-in: $200</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Fun grinding strategy that uses the iron cross winnings to place large field bets.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $10 on the Place 5 and $12 each on the 6 and 8.</li>
+<li>Collect every hit on the 5, 6, or 8 and set the winnings aside in your rack separate from your bankroll.</li>
+<li>Once a Field number rolls, immediately turn your Place Bets off, and place all or most of the winnings into the Field.</li>
+<li>If the field hits on the next roll, use part of the winnings to press up your 5, 6, and 8 and collect the rest, including the original "laser" or the bet on the field.</li>
+<li>Continue on with the strategy, using the "laser" bet made up of the place bet winnings anytime a field number rolls, and continuing to collect place bet winnings whenever they hit to build up the laser bet.</li>
+<li>Alternative Strategy: Try not turning the place bets off when you have a Field laser bet in play. Initially this was meant to protect you from the 7, but will ultimately just make you pass up potential winnings. Go with the flow of the table.</li>
+</ol>
+</div>

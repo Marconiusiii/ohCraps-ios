@@ -1,0 +1,19 @@
+<div class="fieldTrip" id="fieldTrip">
+<h3>Field Trip</h3>
+<p>Buy-in: $50-$100</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Ultra short money system meant for a quick trips to the table; for when you are short on both money and time.</p>
+<ol>
+<li>Start with $10 on the Field. You have 5 tries with this system when buying in for $50.</li>
+<li>If the Field loses, go straight back up on it for $10. If the 12 rolls and you get paid triple, go to step 4.</li> 
+<li>If the Field hits, immediately parlay the winnings so you have a $20 Field bet.</li>
+<li>If the Field hits again, use the winnings and the bet to place the 6 and 8 for $30 each. Hold on to the $4 change.</li>
+<li>When the 6 or 8 hits, you can collect the winnings and take all your bets down and will have essentially doubled your money. You can walk away, or carry on with the system if you have more time.</li>
+<li>If staying at the table, when the 6 or 8 hit, regress the bets down and go to $44 inside; $10 each on the 5 and 9, $12 each on the 6 and 8.</li>
+<li>Start any press and collect system you'd like, though for short money, it's recommended to not be aggressive and just use a basic Double-tap strategy. 
+	<ul>
+	<li>On the first hit of the 5 or 9, toss in $1 and use the winnings to press the number up to $25. When the pressed number hits again, immediately regress the bet to $10.</li>
+	<li>If the 6 or 8 hit, just do a full press to $24 and collect the change. When the pressed number hits again, regress the bet back to $12.</li>
+	</ul></li>
+</ol>
+</div>

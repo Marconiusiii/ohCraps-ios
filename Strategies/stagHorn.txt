@@ -1,0 +1,21 @@
+<div class="stagHorn" id="stagHorn">
+<h3>Stag Horn</h3>
+<p>Buy-in: $4000</p>
+<p>Table Minimum: Any</p>
+
+<ol>
+<li>Bet $120 on the Don't Pass, place the 6 and 8 for $210 each, and make a $20 Horn bet, all on the come out roll.</li>
+<li>On the come out, if a horn number hits, immediately go back up on the Horn bet; see a horn, bet a horn.</li>
+<li>As soon as 6 or 8 hits, you'll win $245. Regress Place bets down to $120 inside, so $30 each on the 5, 6, 8, and 9.</li>
+<li>Start a full press and collect strategy, doing a full press on the first hit of any of the inside numbers, then collecting the second hit on that number, pressing on the third hit, and so on.</li>
+</ol>
+<h4>Modification</h4>
+<ul role="list">
+<li>On the Come Out roll, since the 2 and 3 are already covered by the Don't Pass, try betting a $10 Yo Eleven and a $10 Boxcars instead of the Horn to maximize a win if the 11 or 12 roll.</li>
+<li>Use a double-tap or triple-lux pressing strategy instead of the full press and collect strategy.
+	<ul role="list">
+	<li>Double-tap: Do a full press on the first two hits of any place number, then collect third hit.</li>
+	<li>Triple-lux: Do a full press on the first three hits of any place number, then collect the 4th hit.</li>
+	</ul></li>
+</ul>
+</div>

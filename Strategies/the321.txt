@@ -1,0 +1,26 @@
+<div class="the321" id="the321">
+<h3>3-2-1 Low Roller</h3>
+<p>Buy-in: $360-$400</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Minimum pass line bet.</li>
+<li>When point is established:
+	<ul role="list">
+	<li>4 and 10: 1x Pass Line Odds</li>
+	<li>5 and 9: 2x Pass Line Odds</li>
+	<li>6 and 8: 3x Pass Line Odds</li>
+	</ul>
+</li>
+<li>Bet minimum bets on inside numbers. Skip any number if it is the Point and covered by Pass Line bet.</li>
+<li>If Point is 4 or 10, turn all Place Bets off after two hits, otherwise turn Place Bets off after 3 hits if Point is any other number.</li>
+<li>After Place Bets are off, let shooter roll until hitting the Point or a 7 Out., then start strategy over.</li>
+</ol>
+<h4>Alternate Method</h4>
+<p>Much more volatile, but can lead to large wins on a hot roll.</p>
+<ol>
+<li>Make a $10 Pass Line bet.</li>
+<li>Use same Odds numbers from above. 3x Odds on 6 and 8, 2x Odds on 5 and 9, 1x Odds on 4 and 10.</li>
+<li>After Point is established, keep making $10 Come bets. Place Odds when Come bet moves to a number.</li>
+<li>Continue using Come Bets until 4 numbers are established or just stop when you feel like it.</li>
+</ol>
+</div>

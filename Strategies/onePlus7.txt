@@ -1,0 +1,19 @@
+<div class="onePlus7" id="onePlus7">
+<h3>The One + 7</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $15</p>
+<p>Notes:A mix of the One/Cliffhanger strategy while adding a hedge on the 7. Units are for a $15 table, but adjust buy-in for any table minimum.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $66 inside, so $15 each on the 5 and 9, $18 each on the 6 and 8. Make an $80 Don't Come bet, and bet $30 on Any 7.</li>
+<li>If any place number hits, the DC will travel to that number and the bets on the 7 will fall. Proceed on with cliffhanger strategy.</li>
+<li>If any of the inside numbers hit, immediately take that bet down, add the winnings, and use all the money to press either the sister number or the nearest neighbor to create the cliffhanger bets. For example:
+<ul role="list">
+<li>A $18 Place 6 will pay $21. Use the $39 to press the 8 up to $54.</li>
+<li>Use the same winnings from the 6 or 8 to press the 5 or 9 up to $50, or use a hit on the 5 or 9 to press up the sister number.</li>
+<li>A more conservative approach is to use the winnings to press both sister numbers up, so  taking the 6 and 8 up to $30 each after one hit on any number, etc.</li>
+</ul></li>
+<li>Once any cliffhanger bet hits, immediately regress all bets down to $96 across, or $15 each on the 4, 5, 9. and 10, and $18 each on the 6 and 8. Take down the $80 Don't Come bet.</li>
+<li>By now all bets have been paid for, so start any system that works on opportunity, so a press and collect system, power pressing, double-tap, triple-lux, etc.</li>
+</ol>
+</div>

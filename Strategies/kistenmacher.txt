@@ -1,0 +1,16 @@
+<div class="kistenmacher" id="kistenmacher">
+<h3>Kistenmacher Two-Timer</h3>
+<p>Buy-in: $150</p>
+<p>Table Minimum: $5+</p>
+<p>Notes: Dark and Light side hedging strategy that can scale to any table minimum. Lots of action with potential to pull in great profits from the hard ways. Strategy is based on a $5 minimum unit, adjust the bankroll for whichever table minimum or unit minimum you play this with.</p>
+<p>Submitted By: Neal Kistenmacher</p>
+<ol>
+<li>Start with a $5 Don't Pass bet.</li>
+<li>Once a point is established, make a $5 Don't Come bet.</li>
+<li>Once the Don't Come bet moves to a box number, immediately make a 1 unit place bet on that number to hedge it. If the box number has a corresponding Hard Way bet, bet that hard way for $1. Go back up on the Don't Come for $5.</li>
+<li>Continuously make Don't Come bets on every roll and continue to cover where they land with a place bet if none exists.</li>
+<li>When any Place number hits, use the winnings to press up all of the Hard Ways bets.</li>
+<li>If the hard way bet wins, collect it or parlay it as you desire.</li>
+<li>Continue making Don't Come bets and matching place bets until a 7 out. Use winnings to boost the hard way bets equally or as you like, and collect hard ways winnings whenever you want.</li>
+</ol>
+</div>

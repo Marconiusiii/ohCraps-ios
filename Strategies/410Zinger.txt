@@ -1,0 +1,16 @@
+<div class="410Zinger" id="410Zinger">
+<h3>4 10 Zinger</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $15</p>
+<p>Notes: Strategy gets you to $96 across in one hit of the 4 or 10.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 4 and 10 for $100 each as Buy bets.</li>
+<li>When the 4 or 10 hits, collect the winnings and take down the place bet that hit, and use the other $100 place bet to go to $96 across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8. Make a $15 Come bet.</li>
+<li>When a place bet hits, use the place bet as 1x odds for the incoming Come Bet, use $15 out of the place bet winnings to go back up on the Come, and collect the rest.</li>
+<li>Continue making $15 Come bets, setting up 1x Come Odds when the Come bet moves to a number, and taking down the place bet if one is still present on the box number.</li>
+<li>If the point is hit, make a $15 Pass Line bet, and put down 1x Pass Line Odds when the next point is established.</li>
+<li>If the 7 rolls on the Come Out after you have Come bets established, you can choose to restart the system altogether, or continue making $15 Come bets and 1x Come Odds after the next point is established.</li>
+<li>Restart system entirely after a 7 out.
+</ol>
+</div>

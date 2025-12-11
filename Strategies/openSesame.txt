@@ -1,0 +1,12 @@
+<div class="openSesame" id="openSesame">
+<h3>Open Sesame</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Simple dark side strategy meant for cold or choppy tables. Banks of the shooter hitting hard ways and 7ing out before hitting the outside box numbers.</p>
+<p>Credit: Neal Kistenmacher</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Lay $40 each against the 4 and 10, and lay $30 each against the 5 and 9. Bet $5 each on the Hard 4 and 10.</li>
+<li>Let bets ride until a 7 out. Do not follow up/chase any lost Lay bets, and collect all Hard Ways winnings.</li>
+</ol>
+</div>

@@ -1,0 +1,14 @@
+<div class="short25" id="short25">
+<h3>$25 Short</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $25</p>
+<p>A way to play on a $25 table with short money, although it is based around an improper starting bet that may require some explanation to the dealers.</p>
+<ol>
+<li>Start by placing the 6 and 8 for $25 each. This is an improper bet for a 7:6 payout since $25 isn't a multiple of 6.</li>
+<li>If the 6 or 8 hit, you should be paid $29. Dealers would pay the proper bet amount first, so $24 would pay $28, and the remaining cents would round up to $1, so the total win on a $25 6 or 8 bet will be $29.</li>
+<li>Use $22 of the winnings to press the 6 and 8 up to $36 each. Collect the rest.</li>
+<li>On the second hit of either the 6 or 8, collect the $42 win and keep them at the same bet.</li>
+<li>At this point, you've won back all but $1 of your initial outlay. Use further hits on the 6 and 8 to spread out to other numbers with $25 bets. Best to start with the 5 and 9 first, then the 4 and 10 as you can.</li>
+<li>Once set up either with all the inside numbers or all place numbers covered across, start a collect and press strategy until a 7 out.</li>
+</ol>
+</div>

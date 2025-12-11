@@ -1,0 +1,14 @@
+<div class="hollywood" id="hollywood">
+<h3>Hollywood Hustle</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: 3-hit strategy that buys you $66 Inside, a different take on the Squeeze Play.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $66 Inside; $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, drop in $1 and press the bets up to $88 Inside; $20 each on the 5 and 9, $24 each on the 6 and 8.</li>
+<li>On the next hit of any number, drop in $2 and use the winnings to place the 4 and 10 for $15 each.</li>
+<li>On the next hit of any number, collect the winnings and regress the bets back down to $66 Inside.</li>
+<li>Start any press and collect strategy you'd like. Double-tap, triple-lux, or press just one unit on each hit to always collect some profit. Spread out to the 4 and 10 when you feel like it.</li>
+</ol>
+</div>

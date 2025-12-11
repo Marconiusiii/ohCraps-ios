@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct ohCrapsApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+struct OhCrapsApp: App {
+	var body: some Scene {
+		WindowGroup {
+			RootView()
+		}
+	}
 }

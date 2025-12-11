@@ -1,0 +1,17 @@
+<div class="marco" id="marco">
+<h3>Marco's Regress Press Mess!</h3>
+<p>Buy-in: $660</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Works on all table minimums, just adjust bets as necessary.</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>Bet $66/3 units inside: $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>After hitting twice on the inside numbers, regress all bets down to 1 unit. Make a 1 unit Field bet.</li>
+<li>If Field bet hits, immediately move winnings and initial Field bet up to cover the 4 and 10.</li>
+<li>If 5, 6, or 8 hit, press the bet and replenish the Field bet.</li>
+<li>If 4 or 10 hit, immediately do a full press on the bet and collect the change. Buy the 4 and 10 when their bets reach $25 each.</li>
+<li>When all place numbers are covered, start Collect and Press strategy, collecting the first hit and pressing the next time that number comes out.</li>
+<li>Keep Place bets working on the Come Out roll if the Point is hit. Wait until a Point is established to start strategy if the shooter 7s out.</li>
+</ol>
+</div>
+

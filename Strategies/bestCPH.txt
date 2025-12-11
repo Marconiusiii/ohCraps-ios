@@ -1,0 +1,14 @@
+<div class="bestCPH" id="bestCPH">
+<h3>Best Cost per Hour Strategy</h3>
+<p>Buy-in: $440</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: All bets made based on the top 5 bets on the table with the lowest house advantage and the best cost per hour of play.</p>
+<ol>
+<li>Start with a $10 or 1 unit Pass Line bet.</li>
+<li>Once point is established, bet $10 or 1 unit in Pass Line Odds. Place either the 6 or 8 for $12, and Buy either the 4 or 10 for $10. Make a $1 bet on the Hard 4 or 10, and $1 on either the Hard 6 or 8.</li>
+<li>Choose your bets based on the Point and how you feel about the shooter. If the Point is 8, Place the 6, for example. Hard Way bets and the Buy 4 or 10 bets are entirely up to you.</li>
+<li>If place bets hit, begin collect and press strategy or start spreading out to other numbers, totally based on your style of play and comfort.</li>
+<li>If Hard Ways hit, collect or feel free to parlay the winnings. Another strategy is to use the winnings to bump up each of the hard ways bets $1 and collect the rest each time they hit.</li>
+<li>All bets are Off on the come out roll, otherwise keep bets up and repeat strategy on a 7 out.</li>
+</ol>
+</div>

@@ -1,0 +1,15 @@
+<div class="roadRunner" id="roadRunner">
+<h3>Road Runner</h3>
+<p>Buy-in: $1000-$2500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Risky strategy that can potentially have a high reward.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Make a $100 Don't Come bet.</li>
+<li>When that bet moves to a box number, cover the rest of the place numbers with $10 or $12 bets; this will be $52 or $54 across depending on which number is the Don't Come. Make a $25 Come bet.</li>
+<li>When the Come bet moves to a number, collect the corresponding place bet winnings and take down that place bet. Make another $25 Come bet.</li>
+<li>Continue making $25 Come bets and taking down the place bets as they hit and win. Keep this up until a 7 out or until the point is hit, then continue on once a new point is established.</li>
+<li>If the Don't Come falls, replace it with another $100 Don't Come bet. It's up to you as to whether you want to make it $100, or chase the loss with an increased $250 DC bet, but chasing the loss is a great way to burn through your bankroll.</li>
+<li>If the point is hit and a 7 is rolled on the following Come Out, just restart the entire strategy once a point is established.</li>
+</ol>
+</div>

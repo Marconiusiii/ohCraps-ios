@@ -1,0 +1,19 @@
+<div class="low15" id="low15">
+<h3>Low Roller $15</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $15</p>
+<p>Notes: Low roller strategy for smaller bankrolls while playing at a $15 table. Bankroll based on initial investment outlay of $40 per shooter.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $18 each.</li>
+<li>On the first hit of either the 6 and 8. you'll win $21. The $36 outlay + $21 gives you a total of $57 on the table. Drop in $3 to make the total $60 and bump up your Place 6 and 8 to $30 each.</li>
+<li>Another hit on either the 6 or 8 will win $35. This gives you $95 in total on the table. Drop in $1 to make it $96, then bet $96 across all of the place numbers; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8.</li>
+<li>Keep all bets up for 5 hits total on any of the numbers. When any of the place numbers hit, do a full press on that number and collect the change. If you have $4 or more in change, bet that on the Horn.</li>
+<li>After the 5th hit and no matter where your bets are in the pressing progression, take all place bets down and return to beginning of strategy or wait for the next shooter.</li>
+</ol>
+<h4>Modification</h4>
+<ul role="list">
+<li>After getting to $96 across, try using double-tap or triple-lux pressing progression.</li>
+<li>Improvise on bet progressions or use collect and press after going $96 across. Once you've recouped the initial $40 of the strategy, move into whatever strategy you'd like with all the profit on the table.</li>
+</ul>
+</div>

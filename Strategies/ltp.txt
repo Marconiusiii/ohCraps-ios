@@ -1,0 +1,14 @@
+<div class="ltp" id="ltp">
+<h3>Lay to Pay</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Pared-down version of Bruce's Back Wall, maximizing wins with a come out 7 and transitioning to the light side after establishing a point, then getting to $64 across in 2 hits.</p>
+<ol>
+<li>Start by Laying $66 inside, or Lay the 5 and 9 for $15 each and the 6 and 8 for $18 each. Have the Lay bets working on the come out roll. You'll win $50 with a come out 7.</li>
+<li>If 4 or 10 becomes the point, make all your Lay bets become Place bets, so move them down to cover their respective Place numbers.</li>
+<li>Alternatively, if any of the inside numbers become the point, you'll lose that Lay bet. Don't follow it up and change remaining Lay bets into Place bets for their numbers.</li>
+<li>IIf any of the inside pllace bets hit, use the winnings to press both that number and the sister number up. For example, if the 5 hits, you'll win $21. Collect the extra $1 and use the rest to press both the 5 and 9 up to $25 each. If the 6 hits, drop in $3 and use the resulting $24 winnings to press both the 6 and 8 up to $30 each. If the sister of any of these numbers is the point, just use all the winnings to power press that single number up; press the 5 or 9 up to $36, and press the 6 or 8 up to $42 after dropping in $3.</li>
+<li>If any of the pressed numbers hits again, you are now able to regress down to $64 across and are basically out of the hand. You may also regress further down to $44 inside to be a little more conservative and then spread to the 4 and 10 with subsequent hits. Start a power press and collect strategy from here on out.</li>
+<li>If any of the inside numbers becomes the point and the shooter hits the point before hitting any other numbers, it's up to you to leave the place bets up on the following come out roll, or move them back as Lay bets and have them working to try to go for a win with a come out 7. It can be better to consider this a fresh start to the strategy and fill in the missing Lay bet instead of leaving it empty.</li>
+</ol>
+</div>

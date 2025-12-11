@@ -1,0 +1,14 @@
+<div class="crossbow" id="crossbow">
+<h3>Crossbowe</h3>
+<p>Buy-in: $500-$1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Aggressive modified Iron Cross strategy. Attacking Field and Horn numbers while pressing the Place numbers, ultimately aiming for gaining $44 or $64 within 2-3 rolls to switch to a $44 Inside or $64 Across strategy using all the winnings. Strategy can also just be continued by itself and adapted to any play style. Buy-in is for 5 shooters, 10 shooters requires $1000 buy-in due to $101 initial outlay.</p>
+<ol>
+<li>Start with $25 on the Place 5, $30 each on the Place 6 and 8. Bet $10 in the Field. Bet $6 on the Horn ($1 each on the 2 and 12, $2 each on the 3 and 11).</li>
+<li>If the place numbers hit, replenish the Field and Horn bets. Use the rest of the winnings to press the Place 5, 6, and 8 up one unit.</li>
+<li>If the Field hits, parlay the first hit, then collect the second hit. Replace the Horn if it falls.</li>
+<li>Once Place numbers are up to $35 on the 5, $42 on the 6 and 8, stop replenishing the Horn bet. Pay attention to your winnings and transition to $44 Inside or $64 Across strategy as you see fit.</li>
+<li>If keeping on with the Crossbow strategy, progressively press the place numbers each time they hit, using the winnings to replenish the Field bet. With each hit on the parlayed Field bet, use the winnings to place more box numbers.</li>
+<li>Use place number winnings or Field winnings to spread to the hard ways, to the Don't Come if you want to work with the 7, or play the Don't Pass and use the winnings to add Odds to the DC or DP.</li>
+</ol>
+</div>

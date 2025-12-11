@@ -1,0 +1,17 @@
+<div class="coinPusher" id="coinPusher">
+<h3>Coin Pusher</h3>
+<p>Buy-in: $360-$400</p>
+<p>Table Minimum: $15</p>
+<p>Notes: System is based on the coin pushing carnival games where dropping in a coin gave you an opportunity to push more coins back out to you. Incoming Place bet winnings "push" the current bet over to the adjacent number while the winnings are used to replace the outgoing bet. Setup here is for a $15 table, but original system centered around starting off with $30 bets on the 6 and 8 for a $25 table. Adjust buy-in as necessary.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $18 each.</li>
+<li>If the 6 hits, you'll win $21. "Push" the $18 bet over to the 5 to let the incoming winnings take their place on the 6. Take $3 off of the Place 5 bet and put them on the 6 to make the bets proper; $15 on the 5, $24 on the 6.</li>
+<li>If the 5 hits, you'll win $21. Push the $15 bet over to the 4 and use the winnings to make a $20 Place 5 bet. Collect the extra $1 or tip the dealer.</li>
+<li>Instead of the 5, if the 6 hits, you'll win $28. Push the $15 from the 5 over to the 4, move the $24 bet from the 6 to the 5, and slide the winnings onto the 6. Take $2 off the 5 and put it on the 6 to make that bet $30. Take the remaining $2 off the 5 to make it a $20 bet and either collect or tip the dealers.</li>
+<li>At this point, with all the downtown numbers covered, the very next time either the 4, 5, or 6 hit, immediately take down the 4 and 5 bets and regress the 6 back to an $18 bet.</li>
+<li>If the 6 hits again, start the above process over, but this time when the 4 and 5 are covered, leave the bets up on the next hits but pull down the current bet and replace it with the incoming winnings, putting in or removing dollars to make them proper bets. For example, A $20 5 will win $28, so collect the $20 and slide the $28 winnings into the 5 as your place bet, then either add in $2 to make it a $30 bet or take away $3 to make it a $25 bet. Continue on with this progression until a 7 out, then repeat entire strategy.</li>
+<li>Use all the above steps if an 8 rolls, but then only work on the uptown numbers, so the 9 and 10. If the 8 hits, move the original place 8 bet to the 9 and place the 8 with the incoming winnings, and so on.</li>
+<li>The downtown and uptown numbers will work independently of each other, so if you reach the progression where you win while having all the numbers covered on one section the first time, only take down those specific bets and regress either the 6 or 8 depending on which side had the rolled number.</li>
+</ol>
+</div>

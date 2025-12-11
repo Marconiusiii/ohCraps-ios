@@ -1,0 +1,14 @@
+<div class="slingshot" id="slingshot">
+<h3>Slingshot</h3>
+<p>Buy-in: $1500-$4500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Aggressive strategy to get you to $110 inside on the first hit, with an equally aggressive pressing strategy. Adjust the values per your table limit, but note that this is very volatile.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $440 inside; $100 each on the 5 and 9, $120 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, immediately regress down to $110 inside; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>Now, if the 5 rolls, use the winnings to spread to $25 on the 4. alternatively, if the 9 rolls, use the winnings to spread out to $25 on the 10.</li>
+<li>If the 6 or 8 roll, just do a full press and collect the change. If the 4, 5, 9, or 10 roll after being covered, do a full press as well.</li>
+<li>Once all the numbers are covered, keep doing full presses on each number as they hit. Keep on going until a 7 out, then restart the system.</li>
+</ol>
+</div>

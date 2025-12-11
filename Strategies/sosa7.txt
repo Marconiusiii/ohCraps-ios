@@ -1,0 +1,16 @@
+<div class="sosa7" id="sosa7">
+<h3>Sosa 7</h3>
+<p>Buy-in: $300-$600</p>
+<p>Table Minimum: $25</p>
+<p>Notes: Good for higher limit tables when playing with short money. This trategy requires a lot of attention, doesn't count on the point, and all bets are always working. Aim for 7 rolls before taking everything down or restarting. Doesn't work on tables that don't have Hopping bets, and works the best on tables where either the 2 or 12 pays triple in the Field. Initial BUy-in was set to $300, but initial outlay is $60, so $600 would be preferred for 10 shooters.</p>
+<ol>
+<li>Bet $40 on the Field. Hop the 6 and 8 Easies for $10 each.</li>
+<li>On the first hit, use the winnings to bet the Hard 6 and Hard 8 for $10 each. Keep those bets always working. After every roll, always bet the Field for $40 if it falls and replenish the Hop 6 and 8 easies.</li>
+<li>On the second hit, use the winnings to replenish all bets and keep extra winnings handy.</li>
+<li>On the 3rd or 4th hit, Place the 5 for $30 after replenishing any fallen bets.</li>
+<li>On any further hits, try to get the Place 5 up to $50 as soon as possible.</li>
+<li>No matter where you are in the progression, after the 7th roll, take all bets down and either wait for the next shooter or restart the system.</li>
+<li>If the 2 or 12 hit, use the extra Field bonus money to progress further in the system, ultimately ending up with a $40 Field, Hard 6 and 8 for $10 each, the Hop 6 and 8 Easies for $10 each, and a $50 Place 5.</li>
+<li>Use this system to build up a bigger bankroll to eventually get to a point where you can transition to a $110 Inside betting system or something more suited to better opportunity to press and collect with a $25 table.</li>
+</ol>
+</div>

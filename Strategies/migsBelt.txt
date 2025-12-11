@@ -1,0 +1,16 @@
+<div class="migsBelt" id="migsBelt">
+<h3>The Mig's Belt</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Builds a "belt" around the point number and works its way across the box numbers while waiting for the Point to hit.</p>
+<ol>
+<li>Start with a $10 Pass Line bet.</li>
+<li>When point is established, bet $30 in Pass Line Odds if the point is any of the inside numbers, and $20 in Odds if the point is 4 or 10. Immediately place the box numbers on either side of the point number for the table minimum each to make a "belt"; if the point is 9, place the 8 and 10, for example. If the point is 4 or 10, just place the two box numbers next to them, such as the 5 and 6 if the point is 4.</li>
+<li>If any of the place bets hit, use the winnings to place any box number closest to the bets,</li>
+<li>Repeat this until all the place bets are covered except for the point.</li>
+<li>Once all Place bets are covered, if they hit again, immediately do a full press  and collect the change. If the 4 or 10 hit, do a half-press.</li>
+<li>Keep pressing until the point hits. Once the point hits, collect all winnings and take all the place bets down and restart the system. To help the dealers, don't take down the place bets until a new point is established, that way you can leave up the place bets surrounding the point and take down the rest of the box numbers.</li>
+<li>If the 7 or 11 rolls on the Come Out, keep the winnings handy for when the point is established, and then use those winnings to bet more box numbers. If the 7 rolled twice on the come out, bet two more box numbers adjacent to the belt numbers once a point is established.</li>
+<li>After establishing a point, if any of the box numbers that you do not have covered roll twice, take down your Odds for a little protection from any incoming 7 outs. Replace the Odds once the bet place numbers hit and you get bets across all the box numbers.</li>
+</ol>
+</div>

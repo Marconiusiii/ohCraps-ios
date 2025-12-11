@@ -1,0 +1,27 @@
+<div class="3rx" id="3rx">
+<h3>3RX</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: High outlay, but gets you to profit within 2 hits of any number except the 5 and 7.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $42 each, and make a $25 Field bet</li>
+<li>When the 6 or 8 hit, you'll win $49. Use $25 of that to replace the Field and collect the rest.
+	<ul>
+	<li>If the 2 or 12 hits, immediately move to the next stage of the strategy and collect the profit.</li>
+	<li>If the 5 hits, replace the $25 Field bet.</li>
+	</ul></li>
+<li>If the 6, 8, or Field numbers hit twice, you'll have collected around $50 in profit. Take down the Field bet at this point and regress down to $44 Inside on the place bets; $10 each on the 5 and 9, $12 each on the 6 and 8. You are now playing with profit.</li>
+<li>If the 6 or 8 hit, use the winnings to press both the 6 and 8 up to $18 each.</li>
+<li>If the 9 hits, toss in $1 and press the 5 up to $15 and use the rest of the winnings to go into the field for $10.</li>
+<li>Feel free to spread out to the 4 and 10, and move into any collect and press strategy you like.</li>
+</ol>
+<h4>Alternate Strategy: 3RX Come Again</h4>
+<ol>
+<li>After collecting the profit from the $42 6 and 8 and $25 Field, regress to $44 inside.</li>
+<li>On the next hit of any inside number, drop in $8 to add to the $14 winnings and press up to $66 inside; $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>When the inside numbers hit, you'll win $20. Place the $20 into the Come.</li>
+<li>If an inside number is rolled and the Come bet moves to that number, take down the corresponding place bet and put $20 back into the Come bet.</li>
+<li>Continue making $20 Come bets each time you win money from the place or come bets. If the Come moves to the 4 or 10, wait for another win from the inside numbers to make another $20 Come bet.</li>
+</ol> 
+</div>

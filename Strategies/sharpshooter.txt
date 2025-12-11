@@ -1,0 +1,11 @@
+<div class="sharpshooter" id="sharpshooter">
+<h3>Sharpshooter Inside Take and Press</h3>
+<p>Buy-in: $300-$500</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Make a minimum Pass Line bet.</li>
+<li>When Point is established, 2x Pass Line Odds. Place 1 unit on all inside numbers; do not Place the Point. 1 unit bet on the Hard 4 and Hard 10.</li>
+<li>Once set up, collect the first hit on any number, then press when it hits again, repeat until bets are colored up to $25 or $30, then let them ride from there.</li>
+<li>If Hard 4 or 10 hits, press both bets up to 2 units each and collect the rest of the winnings. If they hit again, press both bets up to $25 each and collect the rest.</li>
+</ol>
+</div>

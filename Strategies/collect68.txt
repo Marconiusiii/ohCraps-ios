@@ -1,0 +1,15 @@
+<div class="68collectPress" id="collect68">
+<h3>6 and 8 Collect and Press</h3>
+<p>Buy-in: $220-$400</p>
+<p>Table Minimum:  $5</p>
+<ol>
+<li>Start with $5 Pass Line bet. If 7 or 11 rolls, stack the winnings. If Pass Line wins again, stack up to $15 and pull out your initial $5 investment.</li>
+<li>When Point is established, place minimum bets on the 6 and 8 along with the Field. If 6 or 8 is the Point, move that bet to the 5.</li>
+<li>If Field Bet hits, immediately move winnings and initial bet up to Place numbers and Place from the center out. Cover the 5 and 9 first, then the 4 and 10. Do not Place the Point number.</li>
+<li>If 6 or 8 hits, immediately press that Place Bet and replenish the bet in the Field.</li>
+<li>Once Field Bet has moved up to the Place Bets, use the next Place Bet hits to cover the rest of the Place numbers.</li>
+<li>Once Place is covered, treat each bet as individual bets; collect the first hit, press the bet on the second hit, and so on.</li>
+<li>If the 4 or 10 rolls, immediately use the winnings to bump the Place bet up to $25 and Buy the number.</li>
+<li>If Point is hit, stack the winnings just as mentioned in the first step. Once Pass Line bet starts to move up past the $25 or $30 range, start hedging with $5 Any Craps bet.</li>
+</ol>
+</div>

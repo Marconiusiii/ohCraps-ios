@@ -1,0 +1,13 @@
+<div class="aggro" id="aggro">
+<h3>Aggressive Low-Roller</h3>
+<p>Buy-in: $120</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>Bet $6 each on the 6 and 8.</li>
+<li>Collect the first hit on the 6 or 8.</li>
+<li>On second hit, drop the dealer $5 and increase the bet to $12 each on the 6 and 8.</li>
+<li>Collect the next hit, then on the 4th hit, use the winnings to place the 5 and 9 for 1 unit each.</li>
+<li>Continue collect and press strategy, using the winnings to bump the sister numbers up 1 unit on every other hit. If the 5 hits, use the winnings to press both the 5 and 9 up one unit, etc.</li>
+</ol>
+</div>

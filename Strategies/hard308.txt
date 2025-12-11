@@ -1,0 +1,15 @@
+<div class="hard308" id="hard308">
+<h3>Hard Ways 308 Special</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Very volatile but can be intermixed with other betting systems for more action or hedges if desired.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place  the 6 and 8 for $12 each. Bet $10 each on the Hard 6 and 8.</li>
+<li>If an Easy 6 or 8 rolls, go back up[ on the corresponding Hard Ways bet and rack the rest.</li>
+<li>System wins if the Hard 6 or 8 rolls.</li>
+<li>If there is a 7 Out, wait for next point to be established, then do a mini-Martingale by doubling all the initial bets. $24 each on the Place 6 and 8; $20 each on the Hard 6 and 8.</li>
+<li>If this loses again, double the bet one more time after the next point is established. $48 each on the Place 6 and 8; $40 each on the Hard 6 and 8.</li>
+<li>If a Hard 6 or 8 rolls after this progression, immediately take everything back down to the original outlay and collect everything else. Return to $12 each on the Place 6 and 8; $10 each onthe Hard 6 and 8.</li>
+</ol>
+</div>

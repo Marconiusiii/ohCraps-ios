@@ -1,0 +1,13 @@
+<div class="darkDolly" id="darkDolly">
+<h3>Dark Dolly</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Dark side 3-point Molly system with prop bet hedges.</p>
+<ol>
+<li>Start with a $30 Don't Pass bet. Make a $2 Yo Eleven bet and a $1 Boxcars/Midnight Prop Bet.</li>
+<li>When the point is established, make a $10 Don't Come bet. If the point is 4, 6, 8, or 10, bet the corresponding Hard Ways number to hedge the Don't Pass bet. If the point is 4 or 10, make a $5 Hard 4 or Hard 10 bet. If the point is 6 or 8, make a $3 Hard 6 or Hard 8 bet.</li>
+<li>On the next roll, if the Don't Come moves to a number, make another $10 Don't Come bet. As noted above, if the Don't Come bet goes to any of the Hard Ways numbers, make a corresponding Hard Ways bet for that number.</li>
+<li>Once two Don't Come bets have been established, let all bets ride until a 7 out. If any bets fall, replace them accordingly. So if a Don't Come bet falls, make a new $10 Don't Come bet. If a Hard Ways bet hits, feel free to leave the bet up if you'd like.</li>
+<li>If the Point is hit, don't forget to start back at the first step even if you have DC bets still on the table. Hedge the Don't Pass with the Yo and Boxcars bets and keep your Hard Ways working if any of the Don't Come bets are on Hard Ways numbers.</li>
+</ol>
+</div>

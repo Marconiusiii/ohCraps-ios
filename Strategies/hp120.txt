@@ -1,0 +1,15 @@
+<div class="hp120" id="hp120">
+<h3>HP $120</h3>
+<p>Buy-in: $2400</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Betting with the odds of the game while qualifying the shooter for 6 rolls or more. Good hedging system with $240 total invested in each shooter.</p>
+<ol>
+<li>Start with a $120 Don't Pass bet. Hop the 7s for $30, bet $10 on the 11, and $2 on Boxcars/12.</li>
+<li>If a 2 or 3 rolls, you profit $78. If a 12 rolls, you profit $20. The Hop 7 and the Yo bet cover the Don'T Pass in case they roll. Repeat step 1 if any of these numbers come out.</li>
+<li>When Point is established, set up Iron Cross. $30 each on the 6 and 8, $15 on the field, and hop the 5s for $2. If the point is 6 or 8, place the 5 for $25 instead of using the Hops, and bet $8 on the Hard 6 or Hard 8 depending on which is the point.</li>
+<li>Use the first 2 hits to bump up the Place 5. Make the Place 5 $15 on the first hit, then make it $25 on the second hit. If the 6 or 8 hit, use the winnings to go back into the Field for $15 bump the Place 5 if it hasn't already been bumped, and rack the rest.</li>
+<li>Once the Place 5 is at $25, maintain the Iron Cross for 4 more rolls, replacing the Field bet if it falls. 6 total rolls with this system in place will pay for the initial outlay and then all the money on the table will be pure profit/House money.</li>
+<li>After 6 rolls, you can play the game by ear. The Don't Pass bet can be taken down, but that goes against the general odds of the 7 coming out. Change up from the Iron Cross to $66 Inside or spread across all of the numbers except for the point, then begin a collect and press strategy until the 7 or the point is rolled.</li>
+<li>If the Point rolls and you have money on the Place numbers and Field, maintain the system as an Iron Cross or bet the place numbers inside or across and keep it up until a 7 out, then start from step 1.</li>
+</ol>
+</div>

@@ -1,0 +1,13 @@
+<div class="squeezeField" id="squeezeField">
+<h3>Squeezy Field</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Semi-short money system pairing the Field with the $5 Squeeze Play.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $44 inside, or $10 each on the 5 and 9, $12 each on the 6 and 8 place numbers.</li>
+<li>If any of these numbers hit, you'll win $14. Drop in $1 so you have $15 total, and use that money to place the 4 and 10 for $5 each and bet the field for $5.</li>
+<li>If any of the place numbers hit again, immediately collect the winnings and regress to $32 across, or $5 each on the 4, 5, 9, and 10 and $6 each on the 6 and 8. Take down the field bet if the 4, 9, or 10 roll. If a 2 or 12 rolls, keep that money handy to parlay the Field bet or to keep the field bet up when going to $32 across.</li>
+<li>Start a power press and collect strategy. If the box numbers hit, use the winnings and toss in extra money to press the number up to the 2nd highest unit, then collect the winnings if that number hits again. Feel free to use $5 from any winnings to bet in the Field again as you see fit.</li>
+</ol>
+</div>

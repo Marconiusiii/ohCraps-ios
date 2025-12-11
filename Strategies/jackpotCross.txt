@@ -1,0 +1,19 @@
+<div class="jackpotCross" id="jackpotCross">
+<h3>Jackpot Cross</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Two-hit system based on an Iron Cross by Luke Adams. Originally created for a $5 table, but all bets here have been doubled to be used on a $10 table.</p>
+<ol>
+<li>Start with a $50 Don't Pass bet.</li>
+<li>When a point is established, place the 5 for $20 and the 6 and 8 for $24 each, and place the rest of the numbers for $10 each. Do not place the point number. Bet $10 in the Field, and make a $4 Horn bet.</li>
+<li>On the first hit of any number, use the winnings to press the 5, 6 and 8 up one or two units, and replace the Field bet and Horn bet if they have fallen.</li>
+<li>On the second hit on any covered number, immediately collect the winnings and take down all the place bets. You now have $50 in profit to play with, so first place the point number:
+	<ul>
+	<li>If the point is 6 or 8, place for $30.</li>
+	<li>5 or 9, place for $20.</li>
+	<li>4 or 10, place for $15.</li>
+	</ul></li>
+<li>You can then use what's left over from the $50 to place two more numbers; If the point is 6 or 8, use the remaining $20 to place the 5 and 9 for $10 each, etc.</li>
+<li>Once these bets are set, collect the first hit, then start spreading further winnings to the other place bets and start any collect and press system that you'd like.</li> 
+</ul>
+</div>

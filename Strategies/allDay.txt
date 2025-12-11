@@ -1,0 +1,13 @@
+<div class="allDay" id="allDay">
+<h3>All Day</h3>
+<p>Buy-in: $200-$1000+</p>
+<p>Table Minimum: Any</p>
+<p>Notes: Grinding strategy that works at any minimum. Strategy uses only 4 units total per shooter, so set bankroll accordingly; for example, use a $400 bankroll for a $10 table since you'll use $40 for each shooter. System works the best at higher unit amounts such as $25 to make the most out of the grind.</p>
+<ol>
+<li>Start with 1 unit on the Don't Pass.</li>
+<li>Once Point is established, make a 1 unit Come Bet. This protects you against a point 7 out.</li>
+<li>If that Come bet moves to a number, make a second Come Bet. If the 7 rolls here, you'll break even.</li>
+<li>If the second Come Bet moves to a number, make a 1 unit Don't Come bet. This is where you are most at risk if the 7 rolls. The only four bets you should have up in total are the Don't Pass, two Come bets, and one Don't Come bet. Once these are all set, don't make any more bets unless you win on one of the Come bets.</li>
+<li>If you lose the Don't Pass on the Come Out roll, that means you only have 3 more units to use for that shooter. Use any winnings from the Come bets to replenish any lost bets to get back up to having at least 2 Come bets and a Don't Come bet out there.</li>
+</ol>
+</div>

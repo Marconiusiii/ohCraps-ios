@@ -1,0 +1,13 @@
+<div class="ltod2" id="ltod2">
+<h3>Light to Dark 2</h3>
+<p>Buy-in: $700</p>
+<p>Table Minimum: $10+</p>
+<p>Notes: Another Light to Dark strategy which works at any table minimum. Adjust the bankroll accordingly when playing at higher levels.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $64 across; $10 each on the 4, 5, 9, 10, and $12 each on the 6 and 8. Make a $10 Don't Come bet.</li>
+<li>When a Place number rolls, the Don't Come will move to that number. Take down the place bet and collect the winnings, then make another $10 Don't Come bet.</li>
+<li>Repeat this until you have 3 numbers covered by the Don't Come. Once the third Don't Come is set, take down all of your remaining place bets and wait for a 7 out.</li>
+<li>If your Don't Come numbers roll, make another Don't Come bet and repeat until you have 3 Don't Come bets set.</li>
+</ol>
+</div>

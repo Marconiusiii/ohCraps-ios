@@ -1,0 +1,13 @@
+<div class="lowRisk75" id="lowrisk">
+<h3>Low Risk $75 Don't Come</h3>
+<p>Buy-in: $500-$800</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Works on any table minimum, but $10 is the basis for this strategy as written.</p>
+<ol>
+<li>Start with $10 Pass Line bet.</li>
+<li>When Point is established, bet $75 on the Don't Come.</li>
+<li>When Don't Come, or DC, is established, put down $30 in Pass Line Odds, Place $44 across on the rest of the available Place Numbers, and put $10 in the Come.</li>
+<li>If a Place Number hits, the Come moves to that number. Use the Place winnings to add $20 in Odds to the Come Bet and rack up the rest. Make another $10 Come Bet. Repeat this until Point is hit or a 7 Out.</li>
+<li>If the DC hits, make another $75 DC bet, but turn all Place Bets off and remove Pass Line Odds until another DC number is established. If there are Come Bets, take down all their Odds until DC is established.</li>
+</ol>
+</div>

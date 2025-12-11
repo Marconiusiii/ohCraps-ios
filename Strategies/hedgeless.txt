@@ -1,0 +1,13 @@
+<div class="hedgeless" id="hedgeless">
+<h3>Hedgeless Horsemen</h3>
+<p>Buy-in: Any</p>
+<p>Table Minimum: Any</p>
+<p>Notes: 4 units per shooter, so multiply the table minimum by 4 and then multiply that by 10 to get the buy-in you need for 10 shooters. As you follow or notice table trends, you can add an additional 4 units for each shooter.</p>
+<ol>
+<li>Start with a 1 unit Don't Pass bet.</li>
+<li>Once point is established, make a 1 unit Come bet.</li>
+<li>As the rolls progress, make a total of 3 Come bets. Let all bets ride once 3 Come bets have been made, and bet the Come again if any win and come down.</li>
+<li>Follow table trends if you want. If you notice the box numbers are coming up pretty often, start adding Odds to the Come bets. If there are a lot of 7s, start Laying odds on the Don't Pass bet. Otherwise play it by ear as the game goes on.</li>
+<li>Otherwise, let bets ride until a 7 Out, then repeat strategy. If you are up on 3 Come Bet numbers and the point is hit, you can choose to start the strategy again with a Don't Pass or just let the Come Bets ride until they win or are knocked out with a 7 out, then repeat strategy.</li>
+</ol>
+</div>

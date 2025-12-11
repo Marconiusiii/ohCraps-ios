@@ -1,0 +1,17 @@
+<div class="simpleMath" id="simpleMath">
+<h3>Simple Math</h3>
+<p>Buy-in: $600-$1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Hedge strategy to take advantage of all the ways the place numbers can roll for you.</p>
+<ol>
+<li>Start by making a $45 Don't Pass bet. Place $44 inside, or $10 each on the 5 and 9, $12 each on the 6 and 8. Have all your bets working on the Come Out roll, and Hop the 7s for $5 each for a total of $15.</li>
+<li>If a 7 rolls on the Come Out, replace all the bets. Replace the Hop 7s if an 11 rolls.</li>
+<li>Once a point is established:
+	<ul>
+	<li>If the point is 4 or 10, roll out the strategy until the point is hit or a 7 out. Collect all winnings from the place bets.</li>
+	<li>If the point is 5 or 9, take down that place bet and use it and the winnings to cover the 4 and 10 for $10 each, pulling in $4 in change.</li>
+	<li>If the point is 6 or 8, take down that place bet and use that plus the winnings to cover the $4 and $10 each, collecting the change. Bet $5 on the Hard 6 or 8 depending on which is the point.</li>
+	</ul></li>
+<li>Once the bets are set up, just roll the strategy out and collect on every place number hit until a 7 out or until the point is hit, and then restart the strategy.</li>
+</ol>
+</div>

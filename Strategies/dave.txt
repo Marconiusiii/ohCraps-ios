@@ -1,0 +1,18 @@
+<div class="dave" id="dave">
+<h3>Dave's Method</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<ol>
+<li>Start off with a $10 Don't Pass bet.</li>
+<li>When Point is established, lay the following Odds:
+<ul role="list">
+<li>4 and 10 - do not lay Odds.</li>
+<li>5 or 9 - lay $75 Odds.</li>
+<li>6 or 8 - lay $60 for Odds.</li>
+<li>If you've lost $1000, start setting $180 Odds for 6 or 8; $150 Odds for the 5 or 9; don't place Odds for the 4 or 10. Adjust flat bets per table odds multiplier  accordingly.</li>
+</ul></li>
+<li>Make a $10 Don't Come bet. When the DC is set, add the odds as mentioned above to the DC bet.</li>
+<li>Continue making DC bets as the shooter rolls. If 2 points are lost, take down all Odds and leave the flat bets working and wait for shooter to 7 out before restarting system.</li>
+<li>If you end up making $200 in profit, cash out for the day!</li>
+</ol>
+</div>

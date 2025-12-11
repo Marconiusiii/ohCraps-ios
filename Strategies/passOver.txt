@@ -1,0 +1,17 @@
+<div class="passover" id="passOver">
+<h3>The Pass Over Method</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Initial outlay of $110 with a $1000 bankroll, but can be scaled to work with any bankroll amount. Leave bets Off on Come Out roll.</p>
+<ol>
+<li>Wait for a Point to be established. Feel free to play the All Tall Small for $5 if desired.</li>
+<li>Once point is established, place $110 inside; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>When any of the inside numbers hits, use the winnings and power press the adjacent place number; for example, a $30 Place 6 would win $35, so that would be used to press the 8 up to $66 adding $1 from your bankroll. Hitting the 8 would press the 9, hitting the 9 would press the 5, the 5 presses the 6, and so forth.</li>
+<li>Go for 3 hits. No matter where the bets are after 3 hits, collect on the 4th hit and then take everything down to $110 inside. Repeat this progression until a 7 out.</li>
+<li>Progression units:
+<ul role="list">
+<li>5 and 9: $25 - $60 - $86 - $120</li>
+<li>6 and 8: $30 - $66 - $90 - $210</li>
+</ul></li>
+</ol>
+</div>

@@ -1,0 +1,91 @@
+<div class="knockout" id="knockout">
+<h3>Knockout Craps</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Combines a doey/don't system with a strong bet negative progression system.</p>
+<ol>
+<li>Start with a 1 unit bet on both the Pass and Don't Pass Lines. 2, 3, 7, and 11 will push on the Come Out roll, 12 will lose, just replenish the Pass Line bet when that happens.</li>
+<li>Follow the Pass/DP bet and the Don't Pass Lay Odds progression from the table below. If the Don't Pass/Lay Odds bets lose after a point has been established, you bet with the next level. No matter what level you are on, if you win, regress back to Level 1 and start again from there.</li>
+<li>Once point is established, start at Level 1 in the Come/DC progression from the table below. If this bet loses, advance to the next betting level and switch to the opposite bet, so from Come to Don'T Come, and vice versa. If this bet wins, regress down one level in the table, don't go all the way back to Level 1.
+<ul role="list">
+<li>Example: A $10 Come Bet moves to the 6 if a 6 gets rolled after establishing a point. The shooter then rols a 7, so the Come bet loses. The next shooter establishes a point, and you'd make a $15 Don't Come bet to follow the progression and switch to the dark side. If the Don't Come bet wins, collect the winnings and take down the DC bet, then wait for the next point to be established before regressing down to the $10 Level 1 bet, keeping it on the Don't Come. Only switch sides when there is a loss.</li>
+</ul></li>
+<li>Only make one Come or Don't Come bet per point. If you win or lose your Come/DC bet, progress to the next betting level after the shooter 7s out or wins the point and establishes a new point.</li>
+<li>If you lose all the way up to Level 7 in the Come/DC table, it's time to take a break from playing.</li>
+</ol>
+<table>
+<caption>Pass/Don;t Pass Line Progression</caption>
+<thead>
+<tr>
+<th scope="col">Level</th>
+<th scope="col">Pass/Don't Pass Bets</th>
+<th scope="col">4/10 Lay Odds</th>
+<th scope="col">5/9 Lay Odds</th>
+<th scope="col">6/8 Lay Odds</th>
+<th scope="col">Lay Odds Win Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Level 1</th>
+<td>$5 each</td>
+<td>$10</td>
+<td>$9</td>
+<td>$6</td>
+<td>$5</td>
+</tr>
+<tr>
+<th scope="row">Level 2</th>
+<td>$5 each</td>
+<td>$20</td>
+<td>$18</td>
+<td>$12</td>
+<td>$10</td>
+</tr>
+<tr>
+<th scope="row">Level 3</th>
+<td>$10 each</td>
+<td>$60</td>
+<td>$45</td>
+<td>$36</td>
+<td>$30</td>
+</tr>
+<tr>
+<th scope="row">Level 4</th>
+<td>$25 each</td>
+<td>$150</td>
+<td>$120</td>
+<td>$90</td>
+<td>$75</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<caption>Come/Don't Come Progression</caption>
+<thead>
+<tr>
+<th>Level</th>
+<th scope="col">Level 1</th>
+<th scope="col">Level 2</th>
+<th scope="col">Level 3</th>
+<th scope="col">Level 4</th>
+<th scope="col">Level 5</th>
+<th scope="col">Level 6</th>
+<th scope="col">Level 7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Bet</th>
+<td>$10</td>
+<td>$15</td>
+<td>$25</td>
+<td>$50</td>
+<td>$75</td>
+<td>$100</td>
+<td>$175</td>
+</tr>
+</tbody>
+</table>
+</div>

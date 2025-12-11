@@ -1,0 +1,19 @@
+<div class="controlledTakeoff" id="controlledTakeoff">
+<h3>Controlled Takeoff</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Hedged strategy that gets you to $96 across in two hits, then rockets up from there.</p>
+<ol>
+<li>Start with $30 each on the 6 and 8 place bets, and make a $120 Lay bet on the 4. Have these bets working on the come out roll.</li>
+<li>If the 6 or 8 hit, collect the winnings and take the Lay 4 bet down to $50.</li>
+<li>On the next 6 or 8 hit, drop in $1 and use the winnings to go to $96 across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8. Leave the $50 Lay 4 up for one more hit.</li>
+<li>When any of the place numbers hit, collect the winnings and take down the Lay 4 bet. You are now free to start any collect and press strategy that you wish.</li>
+<li>To rocket up, use the next 3 hits of the place numbers to press:
+	<ul role="list">
+	<li>On the first hit, use the winnings to press the inside numbers up one unit to $88 inside. If an inside number hits, you'll need to drop in $1 to add to the $21 winnings to complete the press.</li>
+	<li>On the second hit of any place number, use the winnings to press the inside numbers up again to $110 inside.</li>
+	<li>On third hit of any place bet, press the 4 and 10 up to $25 each.</li>
+	</ul></li>
+<li>Once all pressed up, continue on with a collect and full press strategy until a 7 out.</li>
+</ol>
+</div>

@@ -1,0 +1,14 @@
+<div class="forge" id="forge">
+<h3>The Forge</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Double the bankroll for each increase in table minimum; $600 for a $10 table, $1200 for a $25 table, and so on. System creates opportunity by hedging bets around the table. Good for choppy tables.</p>
+<ol>
+<li>Start with a table minimum Pass Line bet.</li>
+<li>When point is established, for every $5 on the Pass Line, make a $50 Don't Come bet, so $50 DC for $5, $100 for $10, etc. For every $5 on the Pass Line, make a $3 Yo Eleven prop bet.</li>
+<li>If a Don't Come number is rolled, bet max odds on your Pass Line bet and put minimum Place Bets across the rest of the Place numbers. Make a table minimum Come bet. If the DC is a 4, 6, 8, or 10, bet the table minimum on the corresponding Hard Ways bet. So for a $5 table and a Don't Come 4, bet $5 on the Hard 4.</li>
+<li>If the Place numbers hit, the Come bet will travel to that number. Use the place bet and winnings to put max odds on the Come Bet, then make another table minimum Come bet. Continue this until a 7 out or until all place numbers have been covered by Come Bets.</li>
+<li>If the Don't Come hits, use the money from the Hard Ways hedge to put max odds on the Come bet and just keep the system going. If the hedge doesn't work out for the DC, just make a Come bet and move on without the DC hedge.</li>
+</ol>
+</div>
+

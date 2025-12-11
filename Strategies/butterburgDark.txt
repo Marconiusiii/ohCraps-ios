@@ -1,0 +1,11 @@
+<div class="butterburgD" id="butterburgD">
+<h3>Butterburg Dark</h3>
+<p>Buy-in: $10,000</p>
+<p>Table Minimum: Any</p>
+<p>Notes: Very volatile and dangerous strategy but can bring in and amazing win within 1 or 2 hits.</p>
+<ol>
+<li>Start with a $100 Don't Pass bet. Set up the Bruce's Back Wall bet by Laying the 4 and 10 for $200 each, the 5 and 9 for $150 each, and the 6 and 8 for $120 each, all working.</li>
+<li>If a 7 rolls on the Come Out, you'll win $500 net, so feel free to call it a day right there.</li>
+<li>If a Point is established, immediately lay $600 in odds against that number and take down all the Lay bets or turn them off and wait for the 7 out.</li>
+</ol>
+</div>

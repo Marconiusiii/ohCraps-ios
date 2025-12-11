@@ -1,0 +1,13 @@
+<div class="crapless_extremeExchange" id="crapless_extremeExchange">
+<h3>Crapless Craps: Extreme Exchange</h3>
+<p>Buy-in: $600-$1000</p>
+<p>Table Minimum: $15</p>
+<p>Crapless strategy that takes lucky hits on any of the extreme outside numbers to make a profit and leave you up with $66 inside or $96 across.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $100 on the extreme outside numbers and Buy them; $25 each on the 2, 3, 11, and 12.</li>
+<li>If the 2 or 12 hit, you'll win $150 minus the Buy Bet vig. Take down all the extreme outside place bets and use the winnings to go $96 across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8. Rack all the change.</li>
+<li>If the 3 or 11 hit instead, you'll win $75. Take down all the extreme outside bets and use the winnings to go $66 inside; $15 each on the 5 and 9, $18 each on the 6 and 8. Rack the change.</li>
+<li>You are playing with profit at this point, so start any collect and press strategy you like. Feel free to spread out to the 4 and 10 on subsequent hits if you are only set up on the $66 inside.</li>
+</ol>
+</div>

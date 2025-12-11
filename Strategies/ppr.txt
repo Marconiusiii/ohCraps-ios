@@ -1,0 +1,24 @@
+<div class="ppr" id="ppr">
+<h3>Press Press Regress</h3>
+<p>Buy-in: $540</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Aggressive strategy looking to capture $100 black chips after pressing a repeated number twice then regressing.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $54 inside, or $15 each on the 5 and 9, and $12 each on the 6 and 8.</li>
+<li>On the first hit of the 5 or 9, drop in $4 to add to the winnings to press the bet up to $40. If the 6 or 8 hit, drop in $4 to use the winnings to press the bet up to $30.</li>
+<li>On the second hit of a 5 or 9, drop in $4 more and use the winnings to press the bet up to $100. If the 6 or 8 hit a second time, just do a full press with the winnings and take the bet up to $60, collecting the extra $5 from the $35 win.</li>
+<li>When any of these pressed numbers hit a third time, immediately collect the winnings and regress the bet back down to the second level. The $100 5 or 9 bet will win $140, so collect the $100 from the bet and the $100 from the winnings and use the $40 left over to place the bet again.  A $60 6 or 8 will win $70, so collecting the winnings plus half of the place bet makes $100. Regress the place bet back down to $30.</li>
+<li>Keep repeating this press and regress system to continue collecting $100 black chips until a 7 out, then restart the system.</li>
+</ol>
+<h4>Alternate Strategy</h4>
+<p>Note: Buy in is $600 and this works up to a $15 table.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $66 inside; $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, drop in $1 and use the winnings to press all the inside numbers up to $88 inside; $20 each on the 5 and 9, $24 each on the 6 and 8.</li>
+<li>On the second hit of any inside number, use the winnings to press all the inside numbers up to $110 inside and collect the change; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>On the next hit on any inside number, immediately regress all bets down to $66 inside.</li>
+<li>Restart the strategy or start using any press and collect strategy that you like. Recommend spreading out to the 4 and 10, then pressing up half units when any place number hits so you are always collecting profit.</li>
+</ol>
+</div>

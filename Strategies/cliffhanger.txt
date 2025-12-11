@@ -1,0 +1,18 @@
+<div class="cliffhanger" id="cliffhanger">
+<h3>Cliffhanger</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Great for choppy tables. Adjust bets and buy-in per your table minimum.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $32 across, or 1 unit on all of the place numbers.</li>
+<li>When any of the place numbers hit, take that bet down and use the bet plus the winnings to press either the sister number or the neighbor number. For example:
+<ul role="list">
+<li>A hit on the 5 will win $7. Adding the initial $5 bet to the winnings gives you $12, which can then be used to press the 6 up to $18, creating your cliffhanger bet.</li>
+<li>A hit on the 8 will pay $7, and the $13 can be used to press the 9 up to $15.</li>
+<li>The 4 and 10 will pay $9, so the $14 can be used to press the sister number up to $15 or be put on an inside number.</li>
+</ul></li>
+<li>Once a cliffhanger bet hits, collect the winnings and take all the bets back down to $32 across. One hit on a cliffhanger number will just about pay for the entire hand.</li>
+<li>Even if multiple cliffhanger bets are set, regress back down to $32 across when any of them hit, then move on to whatever strategy you are most comfortable with as all the place bets on the table are now pure profit. Move into a doubl;e-tap, triple-lux, iron cross, or a basic power press and collect system.</li>
+</ol>
+</div>

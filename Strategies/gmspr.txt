@@ -1,0 +1,17 @@
+<div id="gmspr" id="gmspr">
+<h3>GM Spin & Rake</h3>
+<p>Buy-in: $1500+</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Variant on the GM Spin strategy, getting to profit within 3 hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $160 Across; $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>If the 4, 5, or 6 hit, take down the 4 and use that and the winnings to press the 5 up to $75. If the 8, 9, or 10 hit, take down the 10 and press the 9 up to $75.</li>
+<li>After pressing up either the 5 or 9, if the 6 or 8 rolls, use the winnings to press up the other number and take down the corresponding outside number. So if the 5 has been pressed already and the 6 rolls, take down the 10 and press the 9 to $75.</li>
+<li>However, if the pressed 5 or 9 hits before this, immediately regress down to $96 across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8.</li>
+<li>If both the 5 and 9 have been pressed, use the next hit of any inside number to regress down to $96 across.</li>
+<li>On the next hit of any place bet, use the winnings to press the inside numbers up $22, so one unit up on each number. You'll need to drop in $1 for this if the inside place bets hit.</li>
+<li>Keep pressing the inside numbers up $22 on each subsequent hit of any number. You can do this up until you have $110 inside and then start collecting from there on out, or push it aggressively up to $154 inside; $35 each on the 5 and 9, $42 each on the 6 and 8.</li>
+<li>Do anything you want from here on out. Same bet each hit, press and collect, or continue to power press with any strategy you like.</li>
+</ol>
+</div>

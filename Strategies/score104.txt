@@ -1,0 +1,16 @@
+<div class="score104" id="score104">
+<h3>10 4 Score</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: A quick system that's meant to get you to $64 across as soon as possible to take advantage of opportunity. Scalable for higher bankrolls and minimums.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Buy the 4 and 10 for $15 each, and bet $44 Inside, or $10 each on the 5 and 9, $12 each on the 6 and 8.</li>
+<li>If the 4 or 10 hit, you'll win $29. Drop in $5 and take $5 each out of the 4 and 10 bets to make them $10 each, and you'll now have exactly $44. Use this to fully press the inside numbers up to $88 inside, or $20 each on the 5 and 9, $24 each on the 6 and 8.</li>
+<li>If any of the inside numbers hit at this stage, immediately take everything to $64 across, or $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>Move into any pressing and collecting strategy that you wish, such as double-tap or triple-lux and go for broke since you are now out of the hand.</li>
+<li>If any of the inside numbers hit in step 3 instead of the 4 or 10, do a double-tap bet on that number. If the 5 or 9 hit, drop in $1 and take them to $25. If the 6 or 8 hit, drop in $4 and take them to $30.</li>
+<li>If any of the double-tapped numbers hit again, then take everything to $64 across and start up a collecting and pressing strategy.</li>
+<li>Should the 4 and 10 hit after double-tapping an inside number after step 6, skip to step 3.</li>
+</ol>
+</div>

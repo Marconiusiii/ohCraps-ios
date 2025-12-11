@@ -1,0 +1,12 @@
+<div class="cantLose678" id="cantLose678">
+<h3>6 7 8 Can't Lose</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: This strategy definitely can lose, but it is banking on the highest probability numbers rolling. Meant for choppy tables. Buy-in set for 3 shooters, adjust as necessary.</p>
+<ol>
+<li>Start with a $40 Don't Pass bet.</li>
+<li>Once point is established, bet $18 each on the Place 6 and 8.</li>
+<li>Let bets ride until a 7 out. After 2 hits on the 6 or 8, you can take down the Don't Pass bet and anything further becomes pure profit. Feel free to press or spread winnings to other numbers as the 6 and 8 continue to hit.</li>
+<li>Repeat strategy after a 7 out. Hold off on playing this strategy if you encounter a shooter who is good at hitting their points.</li>
+</ol>
+</div>

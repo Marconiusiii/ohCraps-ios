@@ -1,0 +1,23 @@
+<div class="levelUp" id="levelUp">
+<h3>Level Up by Press</h3>
+<p>Buy-in: $100-$300</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Progressive betting system using Place Bet winnings to boost a Don't Pass hedge.</p>
+<ol>
+<li>Start off with a $25 Don't Pass bet on the Come Out.</li>
+<li>When Point is established, place the 6 and 8 for $12 each.</li>
+<li>Collect every hit on the 6 and 8 until a 7 out. If Point hits, restart the system from step 1.</li>
+<li>On a 7 Out, use the winnings to press the Don't Pass bet up to $35. When point is established, place the 5 for $10 and the 6 and 8 for $12 each.</li>
+<li>Collect winnings from place number hits until a 7 out.</LI>
+<li>Keep pressing up the Don't Pass with each 7 out using the place bet winnings. After $35, make a $45 Don't Pass bet and add the place 9 to go $44 Inside. Continue to collect winnings from place bet hits and Progress up to $65 on the Don't Pass to cover all the place bet numbers.</li>
+<li>Stay with this level or press further, balancing the Don't Pass bet to cover any pressed place bets. Return to step 1 if the Point hits.</li>
+<li>Progression Reference:
+<ul role="list">
+<li>$25 Don't Pass - $12 Place 6 and $12 Place 8.</li>
+<li>$35 Don't Pass - $10 Place 5 and $12 6 and 8.</li>
+<li>$45 Don't Pass - $44 Inside.</li>
+<li>$55 Don't Pass - $44 Inside with $10 Place 4 or 10.</li>
+<li>$65 Don't Pass - $64 Across.</li>
+</ul></li>
+</ol>
+</div>

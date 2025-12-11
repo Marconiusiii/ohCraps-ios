@@ -1,0 +1,18 @@
+<div class="colorShift" id="colorShift">
+<h3>Color Shifter</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $10</p>
+<ol>
+<li>Start with a $10 Pass Line bet.</li>
+<li>Once Point is established, place $54 across, or $52 if the Point is 6 or 8.</li>
+<li>When a Place number hits, do a full press to change it's color from red chips to green. Press the 4, 5, 9, or 10 to $25 on the first hit, press the 6 or 8 to $30.</li>
+<li>Go for three total hits on the Place numbers. Do a full press with each hit. Bet progression:
+<ul role="list">
+<li>4 and 10: $10 - $25 - $50</li>
+<li>5 and 9: $10 - $25 - $60</li>
+<li>6 and 8: $12 - $30 - $66</li>
+</ul></li>
+<li>After Place bets hit a third time, no matter what stage the bet progression is at, go for one more roll. No matter what hits, regress all bets back down to $52 or $54 across. Repeat strategy.</li>
+<li>Bonus: If any Horn numbers hit (2, 3, 11, 12), immediately make a $10 Field bet. This is optional, only play it for fun and if feeling lucky.</li>
+</ol>
+</div>

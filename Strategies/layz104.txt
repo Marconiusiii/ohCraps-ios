@@ -1,0 +1,13 @@
+<div class="layz104" id="layz104">
+<h3>Lay-Z 10 4</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Good for random rollers, bubble machines, or if you are stuck with $25 table minimums.</p>
+<ol>
+<li>Start with a $50 Don't Pass bet. Lay the 4 and 10 for $50 each.</li>
+<li>Replace the Don't Pass if it falls with an 11 on the Come Out. A 7 will break even minus the vig.</li>
+<li>If either the 4 or 10 become the point, take down the Lay bet from the remaining number and use it as your Don't Pass Odds. Place the remaining number for $25. So if the 4 is the point, place the 10 for $25 and take down the Lay 10 bet and use it for the DP odds.</li>
+<li>If any other number becomes the point, take down both the 4 and 10 Lay bets and place each of them for $25 each. Be sure to Buy the bets if not done so automatically by the casino. Collect any hits on the 4 and 10 and just be patient.</li>
+<li>Once the point is hit or if there is a 7 out, restart the system, taking down any of the Place bets and going back to the $50 4 and 10 Lays and the $50 Don't Pass.</li>
+</ol>
+</div>

@@ -1,0 +1,17 @@
+<div class="choppingBlock" id="choppingBlock">
+<h3>Chopping Block</h3>
+<p>Buy-in: $300-$600</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Short money grind system built for choppy $25 tables.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $30 each.</li>
+<li>If either the 6 or 8 hit, immediately take down the place bets and use $20 of the winnings to bet all the Hard Ways for $5 each. Collect the remaining $15 as your profit.</li>
+<li>If any Easy Way numbers roll, do not replace the Hard Ways bet that falls.</li>
+<li>If a Hard Ways number hits, place the 5 or 9 for $25 and collect the rest of the winnings.</li>
+<li>On the next hit of a Hard Ways bet or the Place bet, collect the winnings.</li>
+<li>Now whenever any bets hit, alternate between collecting the winnings and using the winnings to place another box number. Start with the 5 and 9, move on to the 6 and 8, and then the 4 and 10.</li>
+<li>Once you are all the way across the Place numbers, start any collect and press method you wish, or take everything down and wait for the next shooter.</li>
+<li>Repeat the system on a 7 out.</li>
+</ol>
+</div>

@@ -1,0 +1,15 @@
+<div class="apex" id="apex">
+<h3>Apex Predator</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Aggressive inside pressing strategy that builds up to 3 or 4 units across within a few hits. Adjust bankroll for higher minimums.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $44 Inside, or 1 unit on each of the inside numbers.</li>
+<li>On the first hit of any of the inside numbers, you'll win $14. Drop in $30 to add to the winnings to make it $44 and use that to press all the numbers up to $88 inside. $20 each on the 5 and 9, $24 each on the 6 and 8, or 2 units on each number.</li>
+<li>If the inside numbers hit again, immediately power press the number that hit. Each inside number will win $28, so drop in $2 to press the bet up to $50 on either the 5 or 9 or $54 on the 6 or 8.</li>
+<li>If any of the non-power pressed numbers hit, take your place bets to 3 units across, or $96 across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8.</li>
+<li>If the power pressed number hits instead, immediately take all bets to 4 units or $128 across; $20 each on the 4, 5, 9, and 10 and $24 each on the 6 and 8. You can also drop in more money to go to $160 across if you are feeling lucky.</li>
+<li>At this point, start any power-press and collect system you'd like.</li>
+</ol>
+</div>

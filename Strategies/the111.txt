@@ -1,0 +1,15 @@
+<div class="111" id="111">
+<h3>The 111</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: A press, press, and regress strategy from Shooter Craps. Has a $111 total outlay after the first hit, hence the name.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $110 inside; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, you'll win $35. Drop in $1 and use the winnings to press the 6 and 8 up $18 to $48 each.</li>
+<li>On the next hit of any inside number, use the winnings to press the 5 and 9 up[ to $40 each and collect the change.</li>
+<li>On the next hit of any inside number, immediately collect the winnings and regress back down to $110 inside.</li>
+<li>On the next hit, collect the winnings.</li>
+<li>Move into any collect and press strategy you'd like. Suggest spreading to the 4 and 10 with $15 each on the next hit of the inside numbers, then continuing on with full presses and collecting on each subsequent hit.</li>
+</ol>
+</div>

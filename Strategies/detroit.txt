@@ -1,0 +1,12 @@
+<div class="detroit" id="detroit">
+<h3>Detroit Shuffle</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $25</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $110 Inside, so $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>With any hit on the inside numbers, immediately press up all inside number place bets up 1 unit with the winnings and collect the rest. Essentially using $22 of each hit to press up all the inside numbers.</li>
+<li>After 5 hits and presses, you'll have made back enough money to cover the initial outlay and then some. Spread out to the 4 and 10 for $25 each.</li>
+<li>From the 6th hit and onwards, start collecting and pressing the individual numbers when they hit.</li>
+</ol>
+</div>

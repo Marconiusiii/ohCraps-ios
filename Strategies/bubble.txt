@@ -1,0 +1,19 @@
+<div class="bubble" id="bubble">
+<h3>Bubble Craps</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Best if played on a Bubble Craps machine.</p>
+<ol>
+<li>Start with a $50 Don't Pass bet. Bet $12 Any 7 or $9 Hopping the 7s.</li>
+<li>Outlay depends on Point that is established:
+	<ul role="list">
+	<li>Point 4: Bet 2 units on 5, 6, 8; 1 unit each on 9, 10, Field, and Hard 4.</li>
+	<li>Point 5: 3 units each on 6 and 8; 1 unit on 4, 9, 10, Field</li>
+	<li>Point 6: 2 units on 5 and 8 each; 1 unit on 4, 6, 9, 10, Field, Hard 6</li>
+	<li>Point 8: 2 units on 5 and 6 each; 1 unit on 4, 8, 9, 10, Field, Hard 8</li>
+	<li>Point 9: 2 units each on 5, 6, and 8; 1 unit each on 4, 10, Field.</li>
+	<li>Point 10: 2 units each on 5, 6, and 8; 1 unit each on 4, 9, Field, Hard 10</li>
+	</ul>
+</li>
+</ol>
+</div>

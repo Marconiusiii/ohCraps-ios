@@ -1,0 +1,16 @@
+<div class="theOtherOne" id="theOtherOne">
+<h3>The Other One</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: An older strategy similar to The One by Casino Quest, but has been passed around YouTube for years prior to theirs coming out.</p>
+<ol>
+<li>Make a table minimum Pass Line bet and get a point established.</li>
+<li>Make a $100 Don't Come bet, and hedge it with a $10 Yo Eleven prop bet.</li>
+<li>Once the Don't Come moves behind a number, place the 5 and 9 for $25 each, and the 6 and 8 for $30 each. Don't place them if they are the point or the DC number. Put down 1x odds behind your Pass Line bet.</li>
+<li>If the DC travels to the 4, 6, 8, or 10, make a corresponding $20 Hard Way bet for that specific number.</li>
+<li>If any of the Place Bets hit, do a full press. Take the 5 or 9 up to $50 if they hit, and take the 6 or 8 up to $60 if they hit.</li>
+<li>If the pressed Place Bets hit again, press them up one more time to a level that lets you win $100 each time they hit after that. So take the 5 or 9 up to $75, and take the 6 or 8 up to $90.</li>
+<li>Once a Place Bet is pressed up to this level, just sit back and collect each time they hit. Keep everything up and restart the system on a 7 out. If the DC hits, recuperate the loss with the remaining Place Bets until a 7 out, then restart the strategy.</li>
+<li>If the Point hits, feel free to bump up the Pass Line bet odds when the next point is established; bet up to max odds for the table if you'd like.</li>
+</ol>
+</div>

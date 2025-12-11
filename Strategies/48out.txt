@@ -1,0 +1,19 @@
+<div class="48out" id="48out">
+<h3>$48 Out</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Strategy that spreads from the 6 and 8 box numbers outwards with just a $48 outlay.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $24 each.</li>
+<li>On the first hit of the 6 or 8, use the winnings to press the 6 or 8 up to $30, place the 5 and 9 for $10 each, and collect the change.</li>
+<li>If the 6 or 8 hits again, use the winnings to bring the other 6 or 8 up to $30 to balance them out, place the 4 and 10 for $10 each, and collect the rest.
+	<ul>
+	<li>Note: If the already pressed 6 or 8 hits, use the winnings to bring the other 6 or 8 up to $30 while also covering the 4 and 10.</li>
+	</ul></li>
+<li>Throughout the strategy, always collect when the 4, 5, 9, or 10 hit.</li>
+<li>From this point on, hits on the 6 or 8 will press themselves along with the inside numbers up one unit, and alternating hits will also press the 6 and 8 up along with the 4 and 10 to keep the outside numbers equal.</li>
+<li>If a $30 6 hits, use the $35 winnings to press the 6 and 8 up to $36 each, and press the 5 and 9 up to $15 each. If the 6 or 8 hit again, press the 6 and 8 both up to $42, and press the 4 and 10 up to $15 each, continuing to press from the inside out. On the next 6 or 8 hit, press the 6 and 8 up to $48 each, press the 5 and 9 up to $20 each, and so on.</li>
+<li>Continue pressing from the inside out on the 6 and 8 hits, collecting on all of the other place numbers, and restart on a 7 out.</li>
+</ol>
+</div>

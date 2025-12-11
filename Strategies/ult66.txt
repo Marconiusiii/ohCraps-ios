@@ -1,0 +1,12 @@
+<div class="ult66" id="ult66">
+<h3>Ultimate 66</h3>
+<p>Buy-in: $700</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: $69 per shooter.</p>
+<ol>
+<li>Wait for a Point to be established or set bets up in the Coming Out roll. Bet $66 across the inside numbers and have them always working.</li>
+<li>If 6 or 8 hits, drop the dealer $3 and press them both up to $30 each.</li>
+<li>If 5 or 9 hit, use the winnings to press them both up to $25 each.</li>
+<li>Let bets ride until a 7 Out.</li>
+</ol>
+</div>

@@ -1,0 +1,12 @@
+<div class="ironT" id="ironT">
+<h3>The Iron T Regression</h3>
+<p>Buy-in: $600-$1400</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Modified Iron Cross that removes the 5 and starts with a high outlay, then regresses for a strategy that costs only $20.</p>
+<ol>
+<li>Place the 6 and 8 for $60 each, and make a $20 Field bet. Have these working on the Come Out, or wait for a point to be established. The strategy will be the same either way.</li>
+<li>If the Field bet loses, replace it with the same amount that just lost.</li>
+<li>After one hit on the 6 or 8, or after 3 Field hits, regress the 6 and 8 down to $30 each and take the Field bet down to $10.</li>
+<li>At this point, feel free to ride these bets, or go to $64 across and take down the Field bet and change to a press and collect system.</li>
+</ol>
+</div>

@@ -1,0 +1,12 @@
+<div class="grinderPress" id="grinderpress">
+<h3>Grinder Press</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$15</p>
+<ol>
+<li>Place $96 across ($15 on 4, 5, 9, and 10; $18 6 and 8) and always have them working/always On.</li>
+<li>When Point is established, always put down a $25 Don't Come bet for every roll.</li>
+<li>If 4 or 10 hits, immediately press and Buy them both for $25 each.</li>
+<li>If 5 or 9 hit, immediately press both to $25 each.</li>
+<li>If 6 or 8 hit, immediately press both numbers to $30 each.</li>
+</ol>
+</div>

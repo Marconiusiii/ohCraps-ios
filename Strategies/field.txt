@@ -1,0 +1,10 @@
+<div class="fieldMartin" id="field">
+<h3>Field Martingale</h3>
+<p>Buy-in: Any</p>
+<p>Table Minimum: Any</p>
+<ol>
+<li>At any phase of the game, bet table minimum on the Field.</li>
+<li>If Field bet wins, parlay the first win.</li>
+<li>On second hit, press the bet 50% and rack the rest.</li>
+</ol>
+</div>

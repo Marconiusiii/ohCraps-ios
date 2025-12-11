@@ -1,0 +1,50 @@
+<div class="ultROI" id="ultROI">
+<h3>Ultimate Return on Investment</h3>
+<p>Buy-in: $500-$2000</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: System that builds out from the 6 and 8. Original system involves a Martingale bet hence the need for a large bankroll, but can be played without the Martingale provided you have good rack/money management and a clear goal of when you want to stop playing and walk away.</p>
+<ol>
+<li>Start by placing the 6 and 8 for $42 each, all bets working on the come out roll.</li>
+<li>A hit on the 6 or 8 will win $49. Drop in $1 when they hit and use the winnings to place the nearest box numbers for $25 each. If the 6 hits, bet downtown, or the 4 and 5. If the 8 hits, bet uptown, or the 9 and 10.</li>
+<li>If the 4, 5, 9, or 10 hit, immediately collect the winnings and take down the place bet for that number.</li>
+<li>If the 6 or 8 hit again, always use the winnings to bump up the uptown or downtown place bets. If you've already taken down one of the place bets, just place it again with half of the winnings from the 6 or 8 hit.</li>
+<li>If there is a 7 out, Martingale the 6 and 8 by doubling the initial bet. Place them for $84 each. A hit on the 6 and 8 will win $98, so drop in $2 to be able to use the winnings to split evenly on the uptown or downtown place bets. Each progressive level of the Martingale denotes the amount of money you'll need to throw in on each hit to make the winnings even to split them in half to press up the other place bets. Level 1 wins you $49, so $1 gets you to $50. Level 2 wins you $98, so dropping in $2 gets you to $100, and so forth.</li>
+<li>Return back to level 1 of the Martingale betting progression when you've won enough to recoup your original bankroll. Once you are in the positive and have your original bankroll locked up in your rack, there is no need to Martingale the strategy further unless losses start digging into your original bankroll.</li>
+</ol>
+<h4>Modifications</h4>
+<ul role="list">
+<li>For a smaller bankroll or lower table minimum, try placing the 6 and 8 for $18 each instead of $42. $18 will pay $21, which can be split evenly to place the uptown or downtown numbers for $10 each with $1 in change.</li>
+<li>Do not Martingale the system. Stay at the original $42 bet structure for the 6 and 8 and use rack management to keep track of your original bankroll and profits.</li>
+</ul>
+<table>
+<caption>Martingale bet progression</caption>
+<thead>
+<tr>
+<th scope="row">Level</th>
+<th scope="col">1</th>
+<th scope="col">2</th>
+<th scope="col">3</th>
+<th scope="col">4</th>
+<th scope="col">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Bet</th>
+<td>$42</td>
+<td>$84</td>
+<td>$126</td>
+<td>$168</td>
+<td>$210</td>
+</tr>
+<tr>
+<th scope="row">Winnings</th>
+<td>$49</td>
+<td>$98</td>
+<td>$147</td>
+<td>$196</td>
+<td>$245</td>
+</tr>
+</tbody>
+</table>
+</div>

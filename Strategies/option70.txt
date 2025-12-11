@@ -1,0 +1,17 @@
+<div class="option70" id="option70">
+<h3>Option 70</h3>
+<p>Buy-in: $1000-$4000</p>
+<p>Table Minimum: $15</p>
+<p>Notes: Goal of strategy is to win $70 as soon as possible in order to set up $66 Inside with $2 each on the Hard 4 and 10 within a few hits.</p>
+<ul role="list">
+<li>Option 1 - one-hit setup: Start with an Iron Cross setup. Place the 6 and 8 for $120 each, Place the 5 for $100, and make a $70 Field bet. On one hit, you'll make the $70 needed to continue the strategy with pure casino money. Requires larger bankroll as this uses a $410 initial outlay. Not good for random rollers.</li>
+<li>Option 2 - 2-hit setup: Start with Iron Cross; $50 on the Place 5, $60 each on the 6 and 8, plus a $35 Field bet. You'll win $70 with any 2 hits in this setup. $205 initial outlay for smaller bankrolls. Better for dice controllers/set shooters.</li>
+<li>Option 3 - 3-hits top $70: Start with $60 each on the 6 and 8, $35 on the Field, and hop the 5s for $10; Quarter Pounder with Ease setup. After 2 hits with this outlay, just use $20 from your bankroll to get to the $70 needed for the rest of the strategy. $165 initial outlay wins $50 in 2 hits.</li>
+<li>Option 4 - Lay 4 for $210, then make a $30 Hard 4 bet. $240 invested on the Come Out roll. If the 7 rolls, you'll end up with $70 in winnings. Keep the Lay and Place bets up and working until a point is established, then use winnings to set up rest of strategy if the Hard 4 Hits or a 7 out. You can also take down the Hard 4 and Lay 4 bets once a point is established and qualify the shooter by starting with $18 each on the Place 6 and 8 and building out to the 5 and 9 as they hit along with making $2 bets on the Hard 4 and 10. This puts the least amount of money at risk while assessing how well the shooter is at throwing the dice.</li>
+</ul>
+<ol>
+<li>After winning $70 from any of the options, setup $66 inside, so $15 each on the Place 5 and 9, $18 each on the Place 6 and 8. Bet $2 each on the hard 4 and 10.</li>
+<li>If the Hard 4 or 10 hits, take down the bet and use that and the winnings to make a bet on the corresponding Place number. So if the Hard 10 hits, use the winnings to make a $15 Place bet on the 10 and collect the rest, and so on for the Hard 4.</li>
+<li>If the inside numbers hit, use whatever pressing strategy you prefer. Half-press on each hit, collect and press on alternating hits, or do a full press/double-tap/triple-lux system. Play as you see fit, as by this point you've returned your initial outlay back to your bankroll and are playing with casino money.</li>
+</ol>
+</div>
