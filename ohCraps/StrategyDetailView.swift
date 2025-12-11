@@ -3,26 +3,60 @@ import SwiftUI
 struct StrategyDetailView: View {
 	let strategy: Strategy
 	
-	private var renderedSteps: [String] {
-		var result: [String] = []
+	private struct RenderLine: Identifiable {
+		enum Kind {
+			case heading
+			case step(number: Int)
+			case bullet
+			case paragraph
+		}
+		
+		let id = UUID()
+		let kind: Kind
+		let text: String
+	}
+	
+	private var renderedLines: [RenderLine] {
+		var lines: [RenderLine] = []
 		var stepIndex = 1
 		
-		for line in strategy.steps {
-			let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+		for raw in strategy.steps {
+			let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+			if trimmed.isEmpty { continue }
 			
-			if trimmed.hasPrefix("• ") {
-				// Bullet line: keep as bullet, do not increment stepIndex
-				result.append(trimmed)
-			} else if trimmed.isEmpty {
-				continue
-			} else {
-				// Top-level step: add numbering
-				result.append("\(stepIndex). \(trimmed)")
+			if trimmed.hasPrefix("§H4§") {
+				let text = trimmed.replacingOccurrences(of: "§H4§", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+				guard !text.isEmpty else { continue }
+				
+				lines.append(RenderLine(kind: .heading, text: text))
+				stepIndex = 1 // reset numbering after a subheading
+				
+			} else if trimmed.hasPrefix("§STEP§") {
+				let text = trimmed.replacingOccurrences(of: "§STEP§", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+				guard !text.isEmpty else { continue }
+				
+				lines.append(RenderLine(kind: .step(number: stepIndex), text: text))
 				stepIndex += 1
+				
+			} else if trimmed.hasPrefix("§BULLET§") {
+				let text = trimmed.replacingOccurrences(of: "§BULLET§", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+				guard !text.isEmpty else { continue }
+				
+				lines.append(RenderLine(kind: .bullet, text: text))
+				
+			} else if trimmed.hasPrefix("§PARA§") {
+				let text = trimmed.replacingOccurrences(of: "§PARA§", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+				guard !text.isEmpty else { continue }
+				
+				lines.append(RenderLine(kind: .paragraph, text: text))
+				
+			} else {
+				// Fallback: treat untagged lines as paragraphs
+				lines.append(RenderLine(kind: .paragraph, text: trimmed))
 			}
 		}
 		
-		return result
+		return lines
 	}
 	
 	var body: some View {
@@ -51,18 +85,28 @@ struct StrategyDetailView: View {
 						.bold()
 						.accessibilityAddTraits(.isHeader)
 					
-					ForEach(renderedSteps.indices, id: \.self) { idx in
-						let line = renderedSteps[idx]
-						
-						if line.hasPrefix("• ") {
-							// Bullet item: indent a bit
-							Text(line)
+					ForEach(renderedLines) { line in
+						switch line.kind {
+						case .heading:
+							Text(line.text)
+								.font(.title3)
+								.bold()
+								.padding(.top, 12)
+								.accessibilityAddTraits(.isHeader)
+							
+						case .step(let number):
+							Text("\(number). \(line.text)")
+								.font(.body)
+								.fixedSize(horizontal: false, vertical: true)
+							
+						case .bullet:
+							Text("• \(line.text)")
 								.font(.body)
 								.padding(.leading, 24)
 								.fixedSize(horizontal: false, vertical: true)
-						} else {
-							// Numbered step
-							Text(line)
+							
+						case .paragraph:
+							Text(line.text)
 								.font(.body)
 								.fixedSize(horizontal: false, vertical: true)
 						}

@@ -1,24 +1,22 @@
 import Foundation
 
 enum StrategyContentBlock {
-	case step(String)        // From <ol><li>
-	case bullet(String)      // From nested <ul><li>
-	case paragraph(String)   // From <p> (non-metadata)
+	case step(String)
+	case bullet(String)
+	case paragraph(String)
+	case heading(String)
 }
 
 struct StrategyLoader {
 	
 	static func loadAllStrategies() -> [Strategy] {
-		// All .txt files are at the top level of the bundle
 		guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: nil) else {
 			return []
 		}
 		
 		return urls
 			.compactMap { loadStrategy(from: $0) }
-			.sorted {
-				$0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
-			}
+			.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 	}
 	
 	static func loadStrategy(from url: URL) -> Strategy? {
@@ -26,13 +24,12 @@ struct StrategyLoader {
 			return nil
 		}
 		
-		// Remove any <table> blocks entirely
-		let html = removeTables(from: raw)
+		let html = raw
 		
 		// NAME
 		let name = extractTag("h3", from: html)
 		
-		// BUY-IN / TABLE MIN / NOTES
+		// METADATA PARAGRAPHS
 		let buyInText = extractValue(
 			prefixes: ["Buy-in:", "Buy-In:", "Buy In:"],
 			from: html
@@ -50,11 +47,11 @@ struct StrategyLoader {
 		)
 		
 		let (buyMin, buyMax) = parseRangeAllowingAny(buyInText)
-		let (tableMin, tableMax) = parseRangeAllowingAny(tableMinText)
+		let (tMin, tMax) = parseRangeAllowingAny(tableMinText)
 		
-		// BODY CONTENT (OL + nested UL + P)
-		let blocks = extractContentBlocks(from: html)
-		let flattenedSteps = flattenBlocks(blocks)
+		// BODY CONTENT (OL / UL / H4 / P)
+		let contentBlocks = extractContentBlocks(from: html)
+		let flattened = flattenBlocks(contentBlocks)
 		
 		return Strategy(
 			id: UUID(),
@@ -63,51 +60,68 @@ struct StrategyLoader {
 			tableMinText: tableMinText,
 			buyInMin: buyMin,
 			buyInMax: buyMax,
-			tableMinMin: tableMin,
-			tableMinMax: tableMax,
+			tableMinMin: tMin,
+			tableMinMax: tMax,
 			notes: notes,
-			steps: flattenedSteps
+			steps: flattened
 		)
 	}
 }
 
 //
-// MARK: - Remove tables entirely
+// MARK: - Basic HTML helpers
 //
 
-private func removeTables(from html: String) -> String {
-	var output = html
-	while let start = output.range(of: "<table", options: .caseInsensitive),
-		let end = output.range(of: "</table>", options: .caseInsensitive, range: start.lowerBound..<output.endIndex),
-		let close = output.range(of: ">", range: end.lowerBound..<output.endIndex) {
-		
-		output.removeSubrange(start.lowerBound..<close.upperBound)
+private func stripHTML(_ s: String) -> String {
+	var result = ""
+	var inside = false
+	
+	for ch in s {
+		if ch == "<" {
+			inside = true
+			continue
+		}
+		if ch == ">" {
+			inside = false
+			continue
+		}
+		if !inside {
+			result.append(ch)
+		}
 	}
-	return output
+	
+	return result
+		.replacingOccurrences(of: "&nbsp;", with: " ")
+		.replacingOccurrences(of: "&amp;", with: "&")
+		.trimmingCharacters(in: .whitespacesAndNewlines)
+}
+
+private func replaceWithSpaces(_ range: Range<String.Index>, in string: inout String) {
+	let length = string.distance(from: range.lowerBound, to: range.upperBound)
+	let spaces = String(repeating: " ", count: length)
+	string.replaceSubrange(range, with: spaces)
 }
 
 //
-// MARK: - Metadata extraction
+// MARK: - Tag extraction (h3)
 //
 
 private func extractTag(_ tag: String, from html: String) -> String {
 	let open = "<\(tag)"
-	guard let start = html.range(of: open, options: .caseInsensitive) else {
-		return ""
-	}
-	guard let openEnd = html.range(of: ">", range: start.lowerBound..<html.endIndex) else {
-		return ""
-	}
+	guard let start = html.range(of: open, options: .caseInsensitive) else { return "" }
+	guard let openEnd = html.range(of: ">", range: start.lowerBound..<html.endIndex) else { return "" }
 	let contentStart = openEnd.upperBound
 	
 	let close = "</\(tag)>"
-	guard let end = html.range(of: close, options: .caseInsensitive, range: contentStart..<html.endIndex) else {
-		return ""
-	}
+	guard let end = html.range(of: close, options: .caseInsensitive, range: contentStart..<html.endIndex) else { return "" }
 	
-	let raw = html[contentStart..<end.lowerBound]
-	return stripHTML(String(raw)).trimmingCharacters(in: .whitespacesAndNewlines)
+	let raw = String(html[contentStart..<end.lowerBound])
+	return stripHTML(raw)
 }
+
+//
+// MARK: - Metadata paragraphs (Buy-in, Table Minimum, Notes)
+//
 
 private func extractValue(
 	prefixes: [String],
@@ -117,22 +131,20 @@ private func extractValue(
 	var searchRange = html.startIndex..<html.endIndex
 	
 	while let pStart = html.range(of: "<p", options: .caseInsensitive, range: searchRange) {
-		guard let openEnd = html.range(of: ">", range: pStart.lowerBound..<html.endIndex) else {
-			break
-		}
+		guard let openEnd = html.range(of: ">", range: pStart.lowerBound..<html.endIndex) else { break }
 		let contentStart = openEnd.upperBound
 		
-		guard let pEnd = html.range(of: "</p>", options: .caseInsensitive, range: contentStart..<html.endIndex) else {
-			break
-		}
+		guard let pEnd = html.range(of: "</p>", options: .caseInsensitive, range: contentStart..<html.endIndex) else { break }
 		
 		let inner = String(html[contentStart..<pEnd.lowerBound])
-		let text = stripHTML(inner).trimmingCharacters(in: .whitespacesAndNewlines)
+		let text = stripHTML(inner)
+		let lower = text.lowercased()
 		
 		for prefix in prefixes {
-			if text.lowercased().hasPrefix(prefix.lowercased()) {
-				let value = text.dropFirst(prefix.count)
-				return value.trimmingCharacters(in: .whitespacesAndNewlines)
+			if lower.hasPrefix(prefix.lowercased()) {
+				let valueStart = text.index(text.startIndex, offsetBy: prefix.count)
+				let value = text[valueStart...].trimmingCharacters(in: .whitespacesAndNewlines)
+				return value
 			}
 		}
 		
@@ -143,183 +155,195 @@ private func extractValue(
 }
 
 //
-// MARK: - Body parsing (OL + nested UL + P) with hierarchy preserved
+// MARK: - Content block extraction
 //
-
-private struct PositionedBlock {
-	let position: Int
-	let block: StrategyContentBlock
-}
+// This function is the heart of the parser. It:
+//
+//	1. Removes tables entirely (replaced with spaces).
+//	2. Blanks out Buy-in / Table Minimum / Notes paragraphs from the working string.
+//	3. Extracts UL bullets, replacing the UL segments with spaces.
+//	4. Extracts OL steps from the “UL-stripped” string.
+//	5. Extracts h4 headings.
+//	6. Extracts remaining paragraphs (non-metadata).
+//	7. Sorts everything by position in the original text.
+//
 
 private func extractContentBlocks(from html: String) -> [StrategyContentBlock] {
-	var records: [PositionedBlock] = []
-	let startIndex = html.startIndex
-	let endIndex = html.endIndex
+	let original = html
+	var work = html
 	
-	// ----------- Ordered lists <ol> (steps) -----------
-	var searchRange = startIndex..<endIndex
-	
-	while let olStart = html.range(of: "<ol", options: .caseInsensitive, range: searchRange) {
-		guard let openEnd = html.range(of: ">", range: olStart.lowerBound..<endIndex) else {
+	// 1) Remove tables, preserving length
+	while let tableStart = work.range(of: "<table", options: .caseInsensitive) {
+		guard let tableEnd = work.range(of: "</table>", options: .caseInsensitive, range: tableStart.lowerBound..<work.endIndex) else {
 			break
 		}
-		let listContentStart = openEnd.upperBound
+		let fullRange = tableStart.lowerBound..<tableEnd.upperBound
+		replaceWithSpaces(fullRange, in: &work)
+	}
+	
+	// 2) Blank metadata paragraphs (Buy-in, Table Minimum, Notes)
+	func blankMetaParagraphs(prefixes: [String]) {
+		var searchRange = work.startIndex..<work.endIndex
 		
-		guard let olEnd = html.range(of: "</ol>", options: .caseInsensitive, range: listContentStart..<endIndex) else {
-			break
-		}
-		
-		let listPos = html.distance(from: startIndex, to: olStart.lowerBound)
-		let listContent = html[listContentStart..<olEnd.lowerBound]
-		
-		var liSearch = listContent.startIndex..<listContent.endIndex
-		
-		while let liStart = listContent.range(of: "<li", options: .caseInsensitive, range: liSearch) {
-			guard let liOpenEnd = listContent.range(of: ">", range: liStart.lowerBound..<listContent.endIndex) else {
-				break
+		while let pStart = work.range(of: "<p", options: .caseInsensitive, range: searchRange) {
+			guard let openEnd = work.range(of: ">", range: pStart.lowerBound..<work.endIndex) else { break }
+			let contentStart = openEnd.upperBound
+			
+			guard let pEnd = work.range(of: "</p>", options: .caseInsensitive, range: contentStart..<work.endIndex) else { break }
+			
+			let innerOriginal = String(original[contentStart..<pEnd.lowerBound])
+			let text = stripHTML(innerOriginal)
+			let lower = text.lowercased()
+			
+			let isMeta = prefixes.contains { prefix in
+				lower.hasPrefix(prefix.lowercased())
 			}
-			let liContentStart = liOpenEnd.upperBound
 			
-			guard let liEnd = listContent.range(of: "</li>", options: .caseInsensitive, range: liContentStart..<listContent.endIndex) else {
-				break
-			}
-			
-			let liInner = listContent[liContentStart..<liEnd.lowerBound]
-			let liString = String(liInner)
-			
-			// Check for nested <ul ...> inside this <li>
-			if let ulStart = liString.range(of: "<ul", options: .caseInsensitive),
-				let ulOpenEnd = liString.range(of: ">", range: ulStart.lowerBound..<liString.endIndex),
-				let ulEnd = liString.range(of: "</ul>", options: .caseInsensitive, range: ulOpenEnd.upperBound..<liString.endIndex) {
-				
-				// Main step text (before nested UL)
-				let mainPart = String(liString[..<ulStart.lowerBound])
-				let mainText = stripHTML(mainPart).trimmingCharacters(in: .whitespacesAndNewlines)
-				if !mainText.isEmpty {
-					records.append(
-						PositionedBlock(
-							position: listPos,
-							block: .step(mainText)
-						)
-					)
-				}
-				
-				// Nested bullets from the UL
-				let ulContent = liString[ulOpenEnd.upperBound..<ulEnd.lowerBound]
-				var bulletSearch = ulContent.startIndex..<ulContent.endIndex
-				
-				while let bLiStart = ulContent.range(of: "<li", options: .caseInsensitive, range: bulletSearch) {
-					guard let bOpenEnd = ulContent.range(of: ">", range: bLiStart.lowerBound..<ulContent.endIndex) else {
-						break
-					}
-					let bContentStart = bOpenEnd.upperBound
-					
-					guard let bLiEnd = ulContent.range(of: "</li>", options: .caseInsensitive, range: bContentStart..<ulContent.endIndex) else {
-						break
-					}
-					
-					let bInner = ulContent[bContentStart..<bLiEnd.lowerBound]
-					let bText = stripHTML(String(bInner)).trimmingCharacters(in: .whitespacesAndNewlines)
-					
-					if !bText.isEmpty {
-						records.append(
-							PositionedBlock(
-								position: listPos,
-								block: .bullet(bText)
-							)
-						)
-					}
-					
-					bulletSearch = bLiEnd.upperBound..<ulContent.endIndex
-				}
-				
+			if isMeta {
+				let fullRange = pStart.lowerBound..<pEnd.upperBound
+				replaceWithSpaces(fullRange, in: &work)
+				searchRange = fullRange.upperBound..<work.endIndex
 			} else {
-				// Simple <li> with no nested UL
-				let stepText = stripHTML(liString).trimmingCharacters(in: .whitespacesAndNewlines)
-				if !stepText.isEmpty {
-					records.append(
-						PositionedBlock(
-							position: listPos,
-							block: .step(stepText)
-						)
-					)
-				}
-			}
-			
-			liSearch = liEnd.upperBound..<listContent.endIndex
-		}
-		
-		searchRange = olEnd.upperBound..<endIndex
-	}
-	
-	// ----------- Paragraphs <p> (non-metadata) -----------
-	var pSearch = startIndex..<endIndex
-	
-	while let pStart = html.range(of: "<p", options: .caseInsensitive, range: pSearch) {
-		guard let pOpenEnd = html.range(of: ">", range: pStart.lowerBound..<endIndex) else {
-			break
-		}
-		let pContentStart = pOpenEnd.upperBound
-		
-		guard let pEnd = html.range(of: "</p>", options: .caseInsensitive, range: pContentStart..<endIndex) else {
-			break
-		}
-		
-		let pInner = html[pContentStart..<pEnd.lowerBound]
-		let pText = stripHTML(String(pInner)).trimmingCharacters(in: .whitespacesAndNewlines)
-		
-		if !pText.isEmpty {
-			let lower = pText.lowercased()
-			let isMeta = lower.hasPrefix("buy-in")
-				|| lower.hasPrefix("buy in")
-				|| lower.hasPrefix("table minimum")
-				|| lower.hasPrefix("notes")
-				|| lower.hasPrefix("note")
-			
-			if !isMeta {
-				let pos = html.distance(from: startIndex, to: pStart.lowerBound)
-				records.append(
-					PositionedBlock(
-						position: pos,
-						block: .paragraph(pText)
-					)
-				)
+				searchRange = pEnd.upperBound..<work.endIndex
 			}
 		}
-		
-		pSearch = pEnd.upperBound..<endIndex
 	}
 	
-	// Sort by position so <p>, OL, nested UL all appear in reading order
-	let sorted = records.sorted { $0.position < $1.position }
+	blankMetaParagraphs(prefixes: [
+		"buy-in:",
+		"buy in:",
+		"table minimum:",
+		"notes:",
+		"note:"
+	])
+	
+	// Storage with positions
+	var positioned: [(pos: Int, block: StrategyContentBlock)] = []
+	
+	// Helper: distance in original
+	func position(for index: String.Index) -> Int {
+		return original.distance(from: original.startIndex, to: index)
+	}
+	
+	// 3) UL bullets: parse from 'work', grab LI text from 'original', then blank UL section
+	var searchRange = work.startIndex..<work.endIndex
+	
+	while let ulStart = work.range(of: "<ul", options: .caseInsensitive, range: searchRange) {
+		guard let ulEndTag = work.range(of: "</ul>", options: .caseInsensitive, range: ulStart.lowerBound..<work.endIndex) else { break }
+		guard let ulTagClose = work.range(of: ">", range: ulStart.lowerBound..<ulEndTag.upperBound) else { break }
+		
+		let ulOpenEnd = ulTagClose.upperBound
+		let ulCloseStart = ulEndTag.lowerBound
+		
+		let ulStartIndex = ulStart.lowerBound
+		
+		// Map inner UL to original for clean text
+		let ulInnerOriginal = original[ulOpenEnd..<ulCloseStart]
+		var ulInner = String(ulInnerOriginal)
+		
+		var innerSearch = ulInner.startIndex..<ulInner.endIndex
+		
+		while let liStart = ulInner.range(of: "<li", options: .caseInsensitive, range: innerSearch) {
+			guard let liTagClose = ulInner.range(of: ">", range: liStart.lowerBound..<ulInner.endIndex) else { break }
+			let liContentStart = liTagClose.upperBound
+			
+			guard let liEndTag = ulInner.range(of: "</li>", options: .caseInsensitive, range: liContentStart..<ulInner.endIndex) else { break }
+			let liContentEnd = liEndTag.lowerBound
+			
+			let liInner = String(ulInner[liContentStart..<liContentEnd])
+			let text = stripHTML(liInner)
+			
+			if !text.isEmpty {
+				let pos = position(for: ulStartIndex)
+				positioned.append((pos: pos, block: .bullet(text)))
+			}
+			
+			innerSearch = liEndTag.upperBound..<ulInner.endIndex
+		}
+		
+		let fullRange = ulStartIndex..<ulEndTag.upperBound
+		replaceWithSpaces(fullRange, in: &work)
+		searchRange = fullRange.upperBound..<work.endIndex
+	}
+	
+	// 4) OL steps: now work has ULs blanked out, so <li> inside <ol> are clean steps
+	searchRange = work.startIndex..<work.endIndex
+	
+	while let olStart = work.range(of: "<ol", options: .caseInsensitive, range: searchRange) {
+		guard let olEndTag = work.range(of: "</ol>", options: .caseInsensitive, range: olStart.lowerBound..<work.endIndex) else { break }
+		guard let olTagClose = work.range(of: ">", range: olStart.lowerBound..<olEndTag.upperBound) else { break }
+		
+		let listStart = olTagClose.upperBound
+		let listEnd = olEndTag.lowerBound
+		
+		var listSearch = listStart..<listEnd
+		
+		while let liStart = work.range(of: "<li", options: .caseInsensitive, range: listSearch) {
+			guard liStart.lowerBound < listEnd else { break }
+			
+			guard let liTagClose = work.range(of: ">", range: liStart.lowerBound..<listEnd) else { break }
+			let liContentStart = liTagClose.upperBound
+			
+			guard let liEndTag = work.range(of: "</li>", options: .caseInsensitive, range: liContentStart..<listEnd) else { break }
+			let liContentEnd = liEndTag.lowerBound
+			
+			let liInnerSlice = work[liContentStart..<liContentEnd]
+			let text = stripHTML(String(liInnerSlice))
+			
+			if !text.isEmpty {
+				let pos = position(for: liStart.lowerBound)
+				positioned.append((pos: pos, block: .step(text)))
+			}
+			
+			listSearch = liEndTag.upperBound..<listEnd
+		}
+		
+		searchRange = olEndTag.upperBound..<work.endIndex
+	}
+	
+	// 5) H4 headings
+	searchRange = work.startIndex..<work.endIndex
+	
+	while let hStart = work.range(of: "<h4", options: .caseInsensitive, range: searchRange) {
+		guard let tagClose = work.range(of: ">", range: hStart.lowerBound..<work.endIndex) else { break }
+		let contentStart = tagClose.upperBound
+		
+		guard let endTag = work.range(of: "</h4>", options: .caseInsensitive, range: contentStart..<work.endIndex) else { break }
+		let contentEnd = endTag.lowerBound
+		
+		let headingText = stripHTML(String(original[contentStart..<contentEnd]))
+		
+		if !headingText.isEmpty {
+			let pos = position(for: hStart.lowerBound)
+			positioned.append((pos: pos, block: .heading(headingText)))
+		}
+		
+		searchRange = endTag.upperBound..<work.endIndex
+	}
+	
+	// 6) Remaining paragraphs (non-metadata, since metadata areas were blanked out)
+	searchRange = work.startIndex..<work.endIndex
+	
+	while let pStart = work.range(of: "<p", options: .caseInsensitive, range: searchRange) {
+		guard let tagClose = work.range(of: ">", range: pStart.lowerBound..<work.endIndex) else { break }
+		let contentStart = tagClose.upperBound
+		
+		guard let pEndTag = work.range(of: "</p>", options: .caseInsensitive, range: contentStart..<work.endIndex) else { break }
+		let contentEnd = pEndTag.lowerBound
+		
+		let paragraphText = stripHTML(String(original[contentStart..<contentEnd]))
+		
+		if !paragraphText.isEmpty {
+			let pos = position(for: pStart.lowerBound)
+			positioned.append((pos: pos, block: .paragraph(paragraphText)))
+		}
+		
+		searchRange = pEndTag.upperBound..<work.endIndex
+	}
+	
+	// 7) Sort by original position and return blocks
+	let sorted = positioned.sorted { $0.pos < $1.pos }
 	return sorted.map { $0.block }
-}
-
-//
-// MARK: - Strip HTML tags
-//
-
-private func stripHTML(_ s: String) -> String {
-	var result = ""
-	var insideTag = false
-	
-	for ch in s {
-		if ch == "<" {
-			insideTag = true
-			continue
-		}
-		if ch == ">" {
-			insideTag = false
-			continue
-		}
-		if !insideTag {
-			result.append(ch)
-		}
-	}
-	
-	return result
-		.replacingOccurrences(of: "&nbsp;", with: " ")
-		.replacingOccurrences(of: "&amp;", with: "&")
 }
 
 //
@@ -343,31 +367,32 @@ private func parseRangeAllowingAny(_ text: String) -> (Int, Int) {
 		return (minVal, maxVal)
 	}
 	
-	let value = Int(cleaned) ?? 0
+	let value = Int(cleaned.trimmingCharacters(in: .whitespaces)) ?? 0
 	return (value, value)
 }
 
 //
-// MARK: - Flatten blocks to steps array
+// MARK: - Flatten blocks into tagged strings
 //
 
 private func flattenBlocks(_ blocks: [StrategyContentBlock]) -> [String] {
-	var steps: [String] = []
+	var result: [String] = []
 	
 	for block in blocks {
 		switch block {
 		case .step(let text):
-			// Ordered step. UI will add "1.", "2.", etc.
-			steps.append(text)
+			result.append("§STEP§" + text)
 			
 		case .bullet(let text):
-			// Bullet supporting info. Keep bullet marker here.
-			steps.append("• \(text)")
+			result.append("§BULLET§" + text)
 			
 		case .paragraph(let text):
-			steps.append(text)
+			result.append("§PARA§" + text)
+			
+		case .heading(let text):
+			result.append("§H4§" + text)
 		}
 	}
 	
-	return steps
+	return result
 }
