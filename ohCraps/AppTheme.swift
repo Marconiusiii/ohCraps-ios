@@ -1,7 +1,35 @@
 import SwiftUI
 
 struct AppTheme {
-	
+
+	// MARK: - Typography
+
+	static let appTitle = Font.largeTitle.weight(.bold)
+
+	static let sectionHeader = Font.title2.weight(.bold)
+
+	static let cardTitle = Font.headline
+
+	static let bodyText = Font.body
+
+	static let secondaryText = Font.subheadline
+
+	static let metadataText = Font.caption
+
+	// MARK: - Tab Bar
+
+	static let tabBarBackground = Color(
+		red: 0.18,
+		green: 0.10,
+		blue: 0.06
+	)
+
+	static let tabBarBorder = Color.white.opacity(0.25)
+
+	static let tabTextActive = Color.white
+
+	static let tabTextInactive = Color.white.opacity(0.7)
+
 	// MARK: - Colors
 	
 	static let feltTop = Color(red: 0.15, green: 0.47, blue: 0.08)
@@ -48,4 +76,6 @@ struct AppTheme {
 		.background(panelBackground)
 		.cornerRadius(20)
 	}
+	
+	
 }

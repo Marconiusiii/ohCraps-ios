@@ -5,16 +5,16 @@ struct RootView: View {
 		TabView {
 			StrategiesView()
 				.tabItem {
-					Label("Strategies", systemImage: "list.bullet.rectangle")
+					Text("Strategies")
 				}
-				.accessibilityIdentifier("strategiesTab")
-			
+
 			RulesView()
 				.tabItem {
-					Label("Rules", systemImage: "book")
+					Text("Rules")
 				}
-				.accessibilityIdentifier("rulesTab")
 		}
+		.toolbarBackground(AppTheme.tabBarBackground, for: .tabBar)
+		.toolbarBackground(.visible, for: .tabBar)
 	}
 }
 
