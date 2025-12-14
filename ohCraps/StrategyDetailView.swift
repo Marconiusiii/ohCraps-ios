@@ -153,6 +153,7 @@ struct StrategyDetailView: View {
 				.padding()
 			}
 		}
+		.navigationBarBackButtonHidden(true)
 	}
 }
 
