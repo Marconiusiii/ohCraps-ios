@@ -101,11 +101,11 @@ struct StrategyDetailView: View {
 					if !strategy.notes.isEmpty {
 						VStack(alignment: .leading, spacing: 8) {
 							Text("Notes")
-								.font(.headline)
+								.font(AppTheme.sectionHeader)
 								.accessibilityAddTraits(.isHeader)
 							
 							Text(strategy.notes)
-								.font(.body)
+								.font(AppTheme.bodyText)
 								.fixedSize(horizontal: false, vertical: true)
 						}
 					}
@@ -114,29 +114,29 @@ struct StrategyDetailView: View {
 					if !renderedLines.isEmpty {
 						VStack(alignment: .leading, spacing: 12) {
 							Text("Steps")
-								.font(.headline)
+								.font(AppTheme.sectionHeader)
 								.accessibilityAddTraits(.isHeader)
 							
 							ForEach(renderedLines) { line in
 								switch line.kind {
 								case .heading:
 									Text(line.text)
-										.font(.headline)
+										.font(AppTheme.sectionHeader)
 										.padding(.top, 8)
 										.accessibilityAddTraits(.isHeader)
 										.fixedSize(horizontal: false, vertical: true)
 									
 								case .step(let number):
 									Text("\(number). \(line.text)")
-										.font(.body)
+										.font(AppTheme.bodyText)
 										.fixedSize(horizontal: false, vertical: true)
 									
 								case .bullet:
 									HStack(alignment: .top, spacing: 8) {
 										Text("•")
-											.font(.body)
+											.font(AppTheme.bodyText)
 										Text(line.text)
-											.font(.body)
+											.font(AppTheme.bodyText)
 											.fixedSize(horizontal: false, vertical: true)
 
 									}
@@ -145,7 +145,7 @@ struct StrategyDetailView: View {
 									
 								case .paragraph:
 									Text(line.text)
-										.font(.body)
+										.font(AppTheme.secondaryText)
 										.fixedSize(horizontal: false, vertical: true)
 								}
 							}
@@ -168,10 +168,10 @@ struct DetailKVGroup: View {
 	var body: some View {
 		HStack(alignment: .firstTextBaseline) {
 			Text(label + ":")
-				.font(.headline)
+				.font(AppTheme.cardTitle)
 			Spacer(minLength: 8)
 			Text(value)
-				.font(.body)
+				.font(AppTheme.bodyText)
 		}
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("\(label): \(value)")

@@ -97,7 +97,7 @@ struct StrategiesView: View {
 				.progressViewStyle(.circular)
 			
 			Text("Loading Strategies…")
-				.font(.headline)
+				.font(AppTheme.cardTitle)
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.onAppear {
@@ -123,7 +123,7 @@ struct StrategiesView: View {
 							}
 						} header: {
 							Text(section.display)
-								.font(.title2)
+								.font(AppTheme.sectionHeader)
 								.accessibilityAddTraits(.isHeader)
 						}
 					}

@@ -5,53 +5,39 @@ struct TopNavBar: View {
 	let showBack: Bool
 	let backAction: () -> Void
 
-	private let sideSlotWidth: CGFloat = 88
-
 	var body: some View {
-		HStack(spacing: 12) {
-			leadingSlot
+		HStack(alignment: .center, spacing: 8) {
+
+			if showBack {
+				Button(action: backAction) {
+					Text("Back")
+						.font(AppTheme.cardTitle)
+				}
+				.accessibilityLabel("Back")
+			}
+
+			Spacer(minLength: 8)
 
 			Text(title)
-				.font(.title2.weight(.bold))
-				.foregroundColor(AppTheme.textPrimary)
+				.font(AppTheme.screenTitle)
 				.multilineTextAlignment(.center)
-				.lineLimit(2)
+				.lineLimit(
+			2)
 				.minimumScaleFactor(0.85)
 				.accessibilityAddTraits(.isHeader)
-				.frame(maxWidth: .infinity)
+			Spacer(minLength: 8)
 
-			trailingSlot
-		}
-		.padding(.horizontal, 16)
-		.padding(.vertical, 12)
-		.background(AppTheme.tabBarBackground)
-	}
-}
-
-private extension TopNavBar {
-	@ViewBuilder
-	var leadingSlot: some View {
-		if showBack {
-			Button(action: backAction) {
-				Text("Back")
-					.font(.headline)
-					.foregroundColor(AppTheme.textPrimary)
-					.lineLimit(1)
-					.minimumScaleFactor(0.9)
-					.frame(width: sideSlotWidth, alignment: .leading)
+			// BALANCER — preserves visual centering when Back exists
+			if showBack {
+				Color.clear
+					.frame(width: 44)
+					.accessibilityHidden(true)
 			}
-			.accessibilityLabel("Back")
-		} else {
-			Color.clear
-				.frame(width: sideSlotWidth, height: 1)
-				.accessibilityHidden(true)
 		}
-	}
-
-	var trailingSlot: some View {
-		Color.clear
-			.frame(width: sideSlotWidth, height: 1)
-			.accessibilityHidden(true)
+		.padding(.horizontal)
+		.padding(.vertical, 8)
+		.background(AppTheme.topBarBackground)
+		.accessibilityElement(children: .contain)
 	}
 }
 
