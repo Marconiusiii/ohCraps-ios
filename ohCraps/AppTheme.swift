@@ -23,7 +23,10 @@ struct AppTheme {
 		green: 0.10,
 		blue: 0.06
 	)
+//Tob Bar Background
+	static let topBarBackground = Color(red: 0.0, green: 0.35, blue: 0.18)
 
+	
 	static let tabBarBorder = Color.white.opacity(0.25)
 
 	static let tabTextActive = Color.white
