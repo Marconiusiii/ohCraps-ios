@@ -179,7 +179,7 @@ struct StrategiesView: View {
 		HStack {
 			
 			Menu {
-				Button("Off") {
+				Button("Any") {
 					tableMinFilter = nil
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 						isTableMenuFocused = true
@@ -197,11 +197,12 @@ struct StrategiesView: View {
 				AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
 					.accessibilityFocused($isTableMenuFocused)
 			}
-			.accessibilityLabel("Table Minimum Filter")
+			.accessibilityLabel("Table Minimum")
 			.accessibilityValue(tableMinFilterLabel)
+			.accessibilityHint("Filters by Table Minimum")
 			
 			Menu {
-				Button("Off") {
+				Button("Any") {
 					buyInFilter = nil
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 						isBuyMenuFocused = true
@@ -219,19 +220,20 @@ struct StrategiesView: View {
 				AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
 					.accessibilityFocused($isBuyMenuFocused)
 			}
-			.accessibilityLabel("Buy-in Filter")
+			.accessibilityLabel("Buy-in")
 			.accessibilityValue(buyInFilterLabel)
+			.accessibilityHint("Filters by Buy-in amount")
 			
 		}
 		.padding(.horizontal)
 	}
 	
 	private var tableMinFilterLabel: String {
-		tableMinFilter?.label ?? "Off"
+		tableMinFilter?.label ?? "Any"
 	}
 	
 	private var buyInFilterLabel: String {
-		buyInFilter?.label ?? "Off"
+		buyInFilter?.label ?? "Any"
 	}
 	
 	private var filteredStrategies: [Strategy] {

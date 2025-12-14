@@ -138,7 +138,9 @@ struct StrategyDetailView: View {
 										Text(line.text)
 											.font(.body)
 											.fixedSize(horizontal: false, vertical: true)
+
 									}
+									.accessibilityElement(children: .combine)
 									.padding(.leading, 16)
 									
 								case .paragraph:
