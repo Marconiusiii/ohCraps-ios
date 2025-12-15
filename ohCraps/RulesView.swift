@@ -29,10 +29,7 @@ struct RulesView: View {
 				}
 				.padding()
 			}
-			.background(AppTheme.feltGradient
-.ignoresSafeArea())
-			.navigationTitle("Rules")
-			.navigationBarTitleDisplayMode(.inline)
 		}
+		.background(Color.clear)
 	}
 }

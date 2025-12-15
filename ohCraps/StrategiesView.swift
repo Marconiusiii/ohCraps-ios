@@ -71,18 +71,22 @@ struct StrategiesView: View {
 	
 	var body: some View {
 		NavigationStack {
-			VStack(spacing: 0) {
-				TopNavBar(
-					title: "Oh Craps!",
-					showBack: false,
-					backAction: {}
-				)
-				.accessibilityFocused($titleNeedsFocus)
-				
-				if isLoading {
-					loadingView
-				} else {
-					contentView
+			ZStack {
+				FeltBackground()
+
+				VStack(spacing: 0) {
+					TopNavBar(
+						title: "Oh Craps!",
+						showBack: false,
+						backAction: {}
+					)
+					.accessibilityFocused($titleNeedsFocus)
+
+					if isLoading {
+						loadingView
+					} else {
+						contentView
+					}
 				}
 			}
 			.onAppear {
@@ -90,6 +94,8 @@ struct StrategiesView: View {
 			}
 		}
 	}
+
+
 	
 	private var loadingView: some View {
 		VStack(spacing: 20) {
@@ -111,6 +117,7 @@ struct StrategiesView: View {
 			filterRow
 			
 			List {
+		
 				ForEach(sectionOrder, id: \.self) { section in
 					if let items = sectionedStrategies[section], !items.isEmpty {
 						Section {
@@ -120,16 +127,21 @@ struct StrategiesView: View {
 								) {
 									Text(strategy.name)
 								}
+								.listRowBackground(Color.clear)
 							}
 						} header: {
 							Text(section.display)
 								.font(AppTheme.sectionHeader)
 								.accessibilityAddTraits(.isHeader)
+								.accessibilityIdentifier(sectionID(for: section))
 						}
+						.listRowBackground(Color.clear)
 					}
 				}
 			}
 			.listStyle(.plain)
+			.scrollContentBackground(.hidden)
+			.background(Color.clear)
 		}
 	}
 	
@@ -142,7 +154,11 @@ struct StrategiesView: View {
 					isSearching = editing
 				}
 			)
-			.textFieldStyle(.roundedBorder)
+			.textFieldStyle(.plain)
+			.padding(8)
+			.background(Color.white.opacity(0.12))
+			.cornerRadius(8)
+			.foregroundColor(.white)
 			.focused($isSearchFocused)
 			.submitLabel(.search)
 			.onChange(of: searchText) { _ in
@@ -226,6 +242,7 @@ struct StrategiesView: View {
 			
 		}
 		.padding(.horizontal)
+		.background(Color.clear)
 	}
 	
 	private var tableMinFilterLabel: String {
@@ -361,5 +378,13 @@ struct StrategiesView: View {
 			}
 		}
 	}
-}
+	private func sectionID(for key: SectionKey) -> String {
+		switch key {
+		case .number:
+			return "section-number"
+		case .letter(let c):
+			return "section-\(c)"
+		}
+	}
 
+}

@@ -122,7 +122,7 @@ struct StrategyDetailView: View {
 								case .heading:
 									Text(line.text)
 										.font(AppTheme.sectionHeader)
-										.padding(.top, 8)
+										.padding(.top, 6)
 										.accessibilityAddTraits(.isHeader)
 										.fixedSize(horizontal: false, vertical: true)
 									
@@ -154,6 +154,7 @@ struct StrategyDetailView: View {
 				}
 				.padding()
 			}
+			.background(Color.clear)
 		}
 		.navigationBarBackButtonHidden(true)
 	}

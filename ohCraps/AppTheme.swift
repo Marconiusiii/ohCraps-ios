@@ -37,9 +37,11 @@ struct AppTheme {
 	
 	static let feltTop = Color(red: 0.15, green: 0.47, blue: 0.08)
 	static let feltBottom = Color(red: 0.12, green: 0.36, blue: 0.06)
+	static let feltNoise = Color.white.opacity(0.03)
+
 	
-	static let panelBackground = Color.black.opacity(0.55)
-	static let cardBackground = Color.black.opacity(0.80)
+	static let panelBackground = Color.black.opacity(0)
+	static let cardBackground = Color.black.opacity(0)
 	
 	static let textPrimary = Color.white
 	static let headingGold = Color(red: 1.0, green: 0.84, blue: 0.0)
