@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RootView: View {
-	@State private var selectedTab: AppTab = .strategies
+		@State private var selectedTab: AppTab = .strategies
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -18,6 +18,7 @@ struct RootView: View {
 			// CUSTOM TAB BAR
 			CustomTabBar(selectedTab: $selectedTab)
 		}
+		.dynamicTypeSize(.xSmall ... .accessibility5)
 	}
 }
 

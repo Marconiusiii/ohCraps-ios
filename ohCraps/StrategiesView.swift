@@ -18,9 +18,9 @@ enum BuyInFilter: CaseIterable {
 	
 	var label: String {
 		switch self {
-		case .oneHundred: return "$100"
-		case .threeHundred: return "$300"
-		case .sixHundred: return "$600"
+		case .oneHundred: return "$0 to $299"
+		case .threeHundred: return "$300 to $599"
+		case .sixHundred: return "$600 to $899"
 		case .nineHundredPlus: return "$900+"
 		}
 	}
@@ -142,6 +142,7 @@ struct StrategiesView: View {
 								) {
 									Text(strategy.name)
 										.foregroundColor(.white)
+										.fixedSize(horizontal: false, vertical: true)
 								}
 								.listRowBackground(Color.black.opacity(0.45))
 							}
@@ -165,7 +166,7 @@ struct StrategiesView: View {
 	}
 	
 	private var searchBar: some View {
-		HStack {
+		VStack(alignment: .leading, spacing: 8) {
 			searchTextField
 				.onChange(of: searchText) { _ in
 					announceSearchResultsSoon()
@@ -199,61 +200,76 @@ struct StrategiesView: View {
 	}
 
 	private var filterRow: some View {
-		HStack {
-			
-			Menu {
-				Button("Any") {
-					tableMinFilter = nil
+		ViewThatFits {
+			// Preferred layout: horizontal
+			HStack(spacing: 12) {
+				tableMinMenu
+				buyInMenu
+			}
+
+			// Fallback layout: vertical
+			VStack(alignment: .leading, spacing: 8) {
+				tableMinMenu
+				buyInMenu
+			}
+		}
+		.padding(.horizontal)
+		.padding(.vertical, 8)
+		.background(Color.black.opacity(0.4))
+	}
+	
+	private var tableMinMenu: some View {
+		Menu {
+			Button("Any") {
+				tableMinFilter = nil
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+					isTableMenuFocused = true
+				}
+			}
+
+			ForEach(TableMinFilter.allCases, id: \.self) { filter in
+				Button(filter.label) {
+					tableMinFilter = filter
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 						isTableMenuFocused = true
 					}
 				}
-				ForEach(TableMinFilter.allCases, id: \.self) { filter in
-					Button(filter.label) {
-						tableMinFilter = filter
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-							isTableMenuFocused = true
-						}
-					}
-				}
-			} label: {
-				AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
-					.tint(.white)
-					.accessibilityFocused($isTableMenuFocused)
 			}
-			.accessibilityLabel("Table Minimum")
-			.accessibilityValue(tableMinFilterLabel)
-			.accessibilityHint("Filters by Table Minimum")
-			
-			Menu {
-				Button("Any") {
-					buyInFilter = nil
+		} label: {
+			AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
+				.accessibilityFocused($isTableMenuFocused)
+		}
+		.accessibilityLabel("Table Minimum")
+		.accessibilityValue(tableMinFilterLabel)
+	}
+	
+	private var buyInMenu: some View {
+		Menu {
+			Button("Any") {
+				buyInFilter = nil
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+					isBuyMenuFocused = true
+				}
+			}
+
+			ForEach(BuyInFilter.allCases, id: \.self) { filter in
+				Button(filter.label) {
+					buyInFilter = filter
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 						isBuyMenuFocused = true
 					}
 				}
-				ForEach(BuyInFilter.allCases, id: \.self) { filter in
-					Button(filter.label) {
-						buyInFilter = filter
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-							isBuyMenuFocused = true
-						}
-					}
-				}
-			} label: {
-				AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
-					.tint(.white)
-					.accessibilityFocused($isBuyMenuFocused)
 			}
-			.accessibilityLabel("Buy-in")
-			.accessibilityValue(buyInFilterLabel)
-			.accessibilityHint("Filters by Buy-in amount")
-			
+		} label: {
+			AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
+				.accessibilityFocused($isBuyMenuFocused)
 		}
-		.padding(.horizontal)
-		.background(Color.black.opacity(0.4))
+		.accessibilityLabel("Buy-in")
+		.accessibilityValue(buyInFilterLabel)
 	}
-	
+
+
+
 	private var tableMinFilterLabel: String {
 		tableMinFilter?.label ?? "Any"
 	}
