@@ -13,6 +13,7 @@ struct TopNavBar: View {
 					Text("Back")
 						.font(AppTheme.cardTitle)
 				}
+				.foregroundColor(AppTheme.textPrimary)
 				.accessibilityLabel("Back")
 			}
 
@@ -23,7 +24,7 @@ struct TopNavBar: View {
 				.multilineTextAlignment(.center)
 				.lineLimit(
 			2)
-				.minimumScaleFactor(0.85)
+				.minimumScaleFactor(0.75)
 				.accessibilityAddTraits(.isHeader)
 			Spacer(minLength: 8)
 
@@ -35,7 +36,7 @@ struct TopNavBar: View {
 			}
 		}
 		.padding(.horizontal)
-		.padding(.vertical, 8)
+		.padding(.vertical, 6)
 		.background(AppTheme.topBarBackground)
 		.accessibilityElement(children: .contain)
 	}

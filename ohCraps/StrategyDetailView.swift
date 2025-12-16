@@ -81,82 +81,84 @@ struct StrategyDetailView: View {
 	}
 	
 	var body: some View {
-		VStack(spacing: 0) {
-			
-			// Custom header with Back button and dynamic, centered title
-			TopNavBar(
-				title: strategy.name,
-				showBack: true,
-				backAction: { dismiss() }
-			)
-			
-			ScrollView {
-				VStack(alignment: .leading, spacing: 24) {
-					
-					// BUY-IN AND TABLE MINIMUM
-					DetailKVGroup(label: "Buy-in", value: strategy.buyInText)
-					DetailKVGroup(label: "Table Minimum", value: strategy.tableMinText)
-					
-					// NOTES
-					if !strategy.notes.isEmpty {
-						VStack(alignment: .leading, spacing: 8) {
-							Text("Notes")
-								.font(AppTheme.sectionHeader)
-								.accessibilityAddTraits(.isHeader)
-							
-							Text(strategy.notes)
-								.font(AppTheme.bodyText)
-								.fixedSize(horizontal: false, vertical: true)
+		ZStack {
+			FeltBackground()
+			VStack(spacing: 0) {
+				
+				// Custom header with Back button and dynamic, centered title
+				TopNavBar(
+					title: strategy.name,
+					showBack: true,
+					backAction: { dismiss() }
+				)
+				
+				ScrollView {
+					VStack(alignment: .leading, spacing: 24) {
+						
+						// BUY-IN AND TABLE MINIMUM
+						DetailKVGroup(label: "Buy-in", value: strategy.buyInText)
+						DetailKVGroup(label: "Table Minimum", value: strategy.tableMinText)
+						
+						// NOTES
+						if !strategy.notes.isEmpty {
+							VStack(alignment: .leading, spacing: 8) {
+								Text("Notes")
+									.font(AppTheme.sectionHeader)
+									.accessibilityAddTraits(.isHeader)
+								
+								Text(strategy.notes)
+									.font(AppTheme.bodyText)
+									.fixedSize(horizontal: false, vertical: true)
+							}
 						}
-					}
-					
-					// STEPS
-					if !renderedLines.isEmpty {
-						VStack(alignment: .leading, spacing: 12) {
-							Text("Steps")
-								.font(AppTheme.sectionHeader)
-								.accessibilityAddTraits(.isHeader)
-							
-							ForEach(renderedLines) { line in
-								switch line.kind {
-								case .heading:
-									Text(line.text)
-										.font(AppTheme.sectionHeader)
-										.padding(.top, 6)
-										.accessibilityAddTraits(.isHeader)
-										.fixedSize(horizontal: false, vertical: true)
-									
-								case .step(let number):
-									Text("\(number). \(line.text)")
-										.font(AppTheme.bodyText)
-										.fixedSize(horizontal: false, vertical: true)
-									
-								case .bullet:
-									HStack(alignment: .top, spacing: 8) {
-										Text("•")
-											.font(AppTheme.bodyText)
+						
+						// STEPS
+						if !renderedLines.isEmpty {
+							VStack(alignment: .leading, spacing: 12) {
+								Text("Steps")
+									.font(AppTheme.sectionHeader)
+									.accessibilityAddTraits(.isHeader)
+								
+								ForEach(renderedLines) { line in
+									switch line.kind {
+									case .heading:
 										Text(line.text)
+											.font(AppTheme.sectionHeader)
+											.padding(.top, 6)
+											.accessibilityAddTraits(.isHeader)
+											.fixedSize(horizontal: false, vertical: true)
+										
+									case .step(let number):
+										Text("\(number). \(line.text)")
 											.font(AppTheme.bodyText)
 											.fixedSize(horizontal: false, vertical: true)
-
+										
+									case .bullet:
+										HStack(alignment: .top, spacing: 8) {
+											Text("•")
+												.font(AppTheme.bodyText)
+											Text(line.text)
+												.font(AppTheme.bodyText)
+												.fixedSize(horizontal: false, vertical: true)
+											
+										}
+										.accessibilityElement(children: .combine)
+										.padding(.leading, 16)
+										
+									case .paragraph:
+										Text(line.text)
+											.font(AppTheme.secondaryText)
+											.fixedSize(horizontal: false, vertical: true)
 									}
-									.accessibilityElement(children: .combine)
-									.padding(.leading, 16)
-									
-								case .paragraph:
-									Text(line.text)
-										.font(AppTheme.secondaryText)
-										.fixedSize(horizontal: false, vertical: true)
 								}
 							}
 						}
 					}
+					.padding()
 				}
-				.padding()
 			}
-			.background(Color.clear)
+			.navigationBarBackButtonHidden(true)
 		}
-		.navigationBarBackButtonHidden(true)
 	}
 }
 

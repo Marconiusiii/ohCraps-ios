@@ -1,36 +1,22 @@
 import SwiftUI
 
 struct RootView: View {
+	@State private var selectedTab: AppTab = .strategies
+
 	var body: some View {
-		ZStack {
-			AppTheme.feltGradient
-				.ignoresSafeArea()
-			AppTheme.feltNoise
-				.ignoresSafeArea()
-				.blendMode(.overlay)
-			
-			TabView {
+		VStack(spacing: 0) {
+
+			// CONTENT
+			switch selectedTab {
+			case .strategies:
 				StrategiesView()
-					.tabItem {
-						Text("Strategies")
-					}
-				
+
+			case .rules:
 				RulesView()
-					.tabItem {
-						Text("Rules")
-					}
 			}
-			.toolbarBackground(
-				AppTheme.tabBarBackground,
-				for: .tabBar
-			)
-			.toolbarBackground(.visible, for: .tabBar)
-			.overlay(alignment: .bottom) {
-				Rectangle()
-					.fill(AppTheme.tabBarHighlight)
-					.frame(height: 1)
-					.ignoresSafeArea(edges: .bottom)
-			}
+
+			// CUSTOM TAB BAR
+			CustomTabBar(selectedTab: $selectedTab)
 		}
 	}
 }
