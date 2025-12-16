@@ -18,6 +18,8 @@ struct AppTheme {
 
 	// MARK: - Tab Bar
 
+	static let tabBarHighlight = Color.white.opacity(0.08)
+
 	static let tabBarBackground = Color(
 		red: 0.18,
 		green: 0.10,
@@ -82,5 +84,21 @@ struct AppTheme {
 		.cornerRadius(20)
 	}
 	
+	// MARK: - Rail (Craps Table Wood)
+
+	static let railWoodDark = Color(red: 0.16, green: 0.08, blue: 0.04)
+	static let railWoodMid = Color(red: 0.22, green: 0.12, blue: 0.06)
+	static let railWoodLight = Color(red: 0.30, green: 0.18, blue: 0.10)
+
+	static let railGradient = LinearGradient(
+		colors: [
+			railWoodLight,
+			railWoodMid,
+			railWoodDark
+		],
+		startPoint: .top,
+		endPoint: .bottom
+	)
+
 	
 }
