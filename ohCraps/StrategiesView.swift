@@ -20,7 +20,7 @@ enum BuyInFilter: CaseIterable {
 		switch self {
 		case .oneHundred: return "$0 to $299"
 		case .threeHundred: return "$300 to $599"
-		case .sixHundred: return "$600 to $899"
+		case .sixHundred: return "$600"
 		case .nineHundredPlus: return "$900+"
 		}
 	}
@@ -57,9 +57,13 @@ struct StrategiesView: View {
 	@State private var isLoading = true
 	
 	@State private var searchText = ""
-	@State private var isSearching = false
+	
 	@FocusState private var isSearchFocused: Bool
 	
+	private var shouldShowCancel: Bool {
+		isSearchFocused || !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+	}
+
 	@State private var tableMinFilter: TableMinFilter? = nil
 	@State private var buyInFilter: BuyInFilter? = nil
 	
@@ -70,16 +74,26 @@ struct StrategiesView: View {
 	@State private var announceWorkItem: DispatchWorkItem?
 
 	private var searchTextField: some View {
-		TextField("Search strategies", text: $searchText,
-				  prompt: Text("Search strategies")
-					  .foregroundColor(Color.white.opacity(0.8)))
-			.textFieldStyle(.plain)
-			.padding(8)
-			.background(Color(red: 0.05, green: 0.12, blue: 0.07))
-			.cornerRadius(8)
-			.foregroundColor(.white)
-			.focused($isSearchFocused)
-			.submitLabel(.search)
+		ZStack(alignment: .leading) {
+			// Visual placeholder (sighted users only)
+			if searchText.isEmpty {
+				Text("Search strategies")
+					.foregroundColor(Color.white.opacity(0.8))
+					.padding(.leading, 12)
+					.accessibilityHidden(true)
+			}
+
+			TextField("", text: $searchText)
+				.textFieldStyle(.plain)
+				.padding(8)
+				.background(Color(red: 0.05, green: 0.12, blue: 0.07))
+				.cornerRadius(8)
+				.foregroundColor(.white)
+				.focused($isSearchFocused)
+				.submitLabel(.search)
+				.accessibilityLabel("Search Strategies")
+				.accessibilityValue(searchText)
+		}
 	}
 
 	
@@ -166,37 +180,49 @@ struct StrategiesView: View {
 	}
 	
 	private var searchBar: some View {
-		VStack(alignment: .leading, spacing: 8) {
-			searchTextField
-				.onChange(of: searchText) { _ in
-					announceSearchResultsSoon()
+		ViewThatFits {
+			// Preferred: horizontal
+			HStack(alignment: .center, spacing: 12) {
+				searchTextField
+				if shouldShowCancel {
+					cancelSearchButton
 				}
-				.onSubmit {
-					announceSearchResults()
-				}
-				.toolbar {
-					ToolbarItemGroup(placement: .keyboard) {
-						Spacer()
-						Button("Dismiss Keyboard") {
-							isSearchFocused = false
-						}
-						.accessibilityLabel("Dismiss keyboard")
-					}
-				}
+			}
 
-			if isSearching {
-				Button("Cancel") {
-					searchText = ""
-					isSearching = false
-					isSearchFocused = false
-					announceSearchResults()
+			// Fallback: vertical
+			VStack(alignment: .leading, spacing: 8) {
+				searchTextField
+				if shouldShowCancel {
+					cancelSearchButton
 				}
-				.buttonStyle(.plain)
-				.foregroundColor(.white)
-				.transition(.opacity)
 			}
 		}
 		.padding(.horizontal)
+		.onChange(of: searchText) { _ in
+			announceSearchResultsSoon()
+		}
+		.onSubmit {
+			announceSearchResults()
+		}
+		.toolbar {
+			ToolbarItemGroup(placement: .keyboard) {
+				Spacer()
+				Button("Dismiss Keyboard") {
+					isSearchFocused = false
+				}
+				.accessibilityLabel("Dismiss keyboard")
+			}
+		}
+	}
+	private var cancelSearchButton: some View {
+		Button("Cancel") {
+			searchText = ""
+			isSearchFocused = false
+			announceSearchResults()
+		}
+		.buttonStyle(.plain)
+		.foregroundColor(.white)
+		.accessibilityLabel("Clear search")
 	}
 
 	private var filterRow: some View {
