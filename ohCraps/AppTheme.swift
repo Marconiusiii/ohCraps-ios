@@ -68,7 +68,7 @@ struct AppTheme {
 				.foregroundColor(textPrimary)
 		}
 		.padding(8)
-		.background(Color.clear)
+		.background(Color.black.opacity(0.4))
 		.overlay(
 			RoundedRectangle(cornerRadius: 8)
 				.stroke(borderColor, lineWidth: 1)

@@ -68,6 +68,20 @@ struct StrategiesView: View {
 	@AccessibilityFocusState private var titleNeedsFocus: Bool
 	
 	@State private var announceWorkItem: DispatchWorkItem?
+
+	private var searchTextField: some View {
+		TextField("Search strategies", text: $searchText,
+				  prompt: Text("Search strategies")
+					  .foregroundColor(Color.white.opacity(0.8)))
+			.textFieldStyle(.plain)
+			.padding(8)
+			.background(Color(red: 0.05, green: 0.12, blue: 0.07))
+			.cornerRadius(8)
+			.foregroundColor(.white)
+			.focused($isSearchFocused)
+			.submitLabel(.search)
+	}
+
 	
 	var body: some View {
 		NavigationStack {
@@ -101,6 +115,7 @@ struct StrategiesView: View {
 		VStack(spacing: 20) {
 			ProgressView()
 				.progressViewStyle(.circular)
+				.tint(.white)
 			
 			Text("Loading Strategies…")
 				.font(AppTheme.cardTitle)
@@ -126,16 +141,20 @@ struct StrategiesView: View {
 									destination: StrategyDetailView(strategy: strategy)
 								) {
 									Text(strategy.name)
+										.foregroundColor(.white)
 								}
-								.listRowBackground(Color.clear)
+								.listRowBackground(Color.black.opacity(0.45))
 							}
 						} header: {
 							Text(section.display)
 								.font(AppTheme.sectionHeader)
+								.background(Color.black.opacity(0.6))
+								.cornerRadius(6)
 								.accessibilityAddTraits(.isHeader)
 								.accessibilityIdentifier(sectionID(for: section))
 						}
-						.listRowBackground(Color.clear)
+						
+
 					}
 				}
 			}
@@ -147,36 +166,23 @@ struct StrategiesView: View {
 	
 	private var searchBar: some View {
 		HStack {
-			TextField(
-				"Search strategies",
-				text: $searchText,
-				onEditingChanged: { editing in
-					isSearching = editing
+			searchTextField
+				.onChange(of: searchText) { _ in
+					announceSearchResultsSoon()
 				}
-			)
-			.textFieldStyle(.plain)
-			.padding(8)
-			.background(Color.white.opacity(0.12))
-			.cornerRadius(8)
-			.foregroundColor(.white)
-			.focused($isSearchFocused)
-			.submitLabel(.search)
-			.onChange(of: searchText) { _ in
-				announceSearchResultsSoon()
-			}
-			.onSubmit {
-				announceSearchResults()
-			}
-			.toolbar {
-				ToolbarItemGroup(placement: .keyboard) {
-					Spacer()
-					Button("Dismiss Keyboard") {
-						isSearchFocused = false
+				.onSubmit {
+					announceSearchResults()
+				}
+				.toolbar {
+					ToolbarItemGroup(placement: .keyboard) {
+						Spacer()
+						Button("Dismiss Keyboard") {
+							isSearchFocused = false
+						}
+						.accessibilityLabel("Dismiss keyboard")
 					}
-					.accessibilityLabel("Dismiss keyboard")
 				}
-			}
-			
+
 			if isSearching {
 				Button("Cancel") {
 					searchText = ""
@@ -184,13 +190,14 @@ struct StrategiesView: View {
 					isSearchFocused = false
 					announceSearchResults()
 				}
-				.buttonStyle(.borderless)
+				.buttonStyle(.plain)
+				.foregroundColor(.white)
 				.transition(.opacity)
 			}
 		}
 		.padding(.horizontal)
 	}
-	
+
 	private var filterRow: some View {
 		HStack {
 			
@@ -211,6 +218,7 @@ struct StrategiesView: View {
 				}
 			} label: {
 				AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
+					.tint(.white)
 					.accessibilityFocused($isTableMenuFocused)
 			}
 			.accessibilityLabel("Table Minimum")
@@ -234,6 +242,7 @@ struct StrategiesView: View {
 				}
 			} label: {
 				AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
+					.tint(.white)
 					.accessibilityFocused($isBuyMenuFocused)
 			}
 			.accessibilityLabel("Buy-in")
@@ -242,7 +251,7 @@ struct StrategiesView: View {
 			
 		}
 		.padding(.horizontal)
-		.background(Color.clear)
+		.background(Color.black.opacity(0.4))
 	}
 	
 	private var tableMinFilterLabel: String {
