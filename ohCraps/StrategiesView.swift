@@ -51,15 +51,29 @@ enum SectionKey: Hashable, Comparable {
 	}
 }
 
+
 struct StrategiesView: View {
-	
+
 	@State private var allStrategies: [Strategy] = []
 	@State private var isLoading = true
 	
+	private var shouldStackFilters: Bool {
+		dynamicTypeSize >= .accessibility1
+	}
+
 	@State private var searchText = ""
 	
+	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
 	@FocusState private var isSearchFocused: Bool
 	
+	private enum FocusTarget {
+		case tableMenu
+		case buyInMenu
+	}
+
+	@State private var pendingFocusTarget: FocusTarget?
+
 	private var shouldShowCancel: Bool {
 		isSearchFocused || !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
 	}
@@ -67,10 +81,13 @@ struct StrategiesView: View {
 	@State private var tableMinFilter: TableMinFilter? = nil
 	@State private var buyInFilter: BuyInFilter? = nil
 	
-	@AccessibilityFocusState private var isTableMenuFocused: Bool
-	@AccessibilityFocusState private var isBuyMenuFocused: Bool
-	@AccessibilityFocusState private var titleNeedsFocus: Bool
-	
+	private enum A11yFocus {
+		case tableMin
+		case buyIn
+	}
+
+	@AccessibilityFocusState private var a11yFocus: A11yFocus?
+
 	@State private var announceWorkItem: DispatchWorkItem?
 
 	private var searchTextField: some View {
@@ -108,8 +125,6 @@ struct StrategiesView: View {
 						showBack: false,
 						backAction: {}
 					)
-					.accessibilityFocused($titleNeedsFocus)
-
 					if isLoading {
 						loadingView
 					} else {
@@ -144,9 +159,14 @@ struct StrategiesView: View {
 		VStack(spacing: 16) {
 			searchBar
 			filterRow
-			
+				.onChange(of: tableMinFilter) { _ in
+					restorePendingAccessibilityFocus()
+				}
+				.onChange(of: buyInFilter) { _ in
+					restorePendingAccessibilityFocus()
+				}
+
 			List {
-		
 				ForEach(sectionOrder, id: \.self) { section in
 					if let items = sectionedStrategies[section], !items.isEmpty {
 						Section {
@@ -177,6 +197,7 @@ struct StrategiesView: View {
 			.scrollContentBackground(.hidden)
 			.background(Color.clear)
 		}
+
 	}
 	
 	private var searchBar: some View {
@@ -226,44 +247,40 @@ struct StrategiesView: View {
 	}
 
 	private var filterRow: some View {
-		ViewThatFits {
-			// Preferred layout: horizontal
-			HStack(spacing: 12) {
-				tableMinMenu
-				buyInMenu
-			}
-
-			// Fallback layout: vertical
-			VStack(alignment: .leading, spacing: 8) {
-				tableMinMenu
-				buyInMenu
+		Group {
+			if shouldStackFilters {
+				VStack(alignment: .leading, spacing: 8) {
+					tableMinMenu
+					buyInMenu
+				}
+			} else {
+				HStack(spacing: 12) {
+					tableMinMenu
+					buyInMenu
+				}
 			}
 		}
 		.padding(.horizontal)
 		.padding(.vertical, 8)
 		.background(Color.black.opacity(0.4))
 	}
-	
+
 	private var tableMinMenu: some View {
 		Menu {
 			Button("Any") {
+				pendingFocusTarget = .tableMenu
 				tableMinFilter = nil
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-					isTableMenuFocused = true
-				}
 			}
 
 			ForEach(TableMinFilter.allCases, id: \.self) { filter in
 				Button(filter.label) {
+					pendingFocusTarget = .tableMenu
 					tableMinFilter = filter
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-						isTableMenuFocused = true
-					}
 				}
 			}
 		} label: {
 			AppTheme.menuLabel(text: "Table", value: tableMinFilterLabel)
-				.accessibilityFocused($isTableMenuFocused)
+				.accessibilityFocused($a11yFocus, equals: .tableMin)
 		}
 		.accessibilityLabel("Table Minimum")
 		.accessibilityValue(tableMinFilterLabel)
@@ -272,23 +289,19 @@ struct StrategiesView: View {
 	private var buyInMenu: some View {
 		Menu {
 			Button("Any") {
+				pendingFocusTarget = .buyInMenu
 				buyInFilter = nil
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-					isBuyMenuFocused = true
-				}
 			}
 
 			ForEach(BuyInFilter.allCases, id: \.self) { filter in
 				Button(filter.label) {
+					pendingFocusTarget = .buyInMenu
 					buyInFilter = filter
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-						isBuyMenuFocused = true
-					}
 				}
 			}
 		} label: {
 			AppTheme.menuLabel(text: "Buy-in", value: buyInFilterLabel)
-				.accessibilityFocused($isBuyMenuFocused)
+				.accessibilityFocused($a11yFocus, equals: .buyIn)
 		}
 		.accessibilityLabel("Buy-in")
 		.accessibilityValue(buyInFilterLabel)
@@ -349,6 +362,20 @@ struct StrategiesView: View {
 			strategy.buyInMax >= bucket.0
 	}
 	
+	private func restorePendingAccessibilityFocus() {
+		DispatchQueue.main.async {
+			switch pendingFocusTarget {
+			case .tableMenu:
+				a11yFocus = .tableMin
+			case .buyInMenu:
+				a11yFocus = .buyIn
+			case .none:
+				break
+			}
+			pendingFocusTarget = nil
+		}
+	}
+
 	private func normalizedName(_ strategy: Strategy) -> String {
 		let trimmed = strategy.name.trimmingCharacters(in: .whitespaces)
 		return String(trimmed.drop(while: { $0 == "$" }))
@@ -422,10 +449,6 @@ struct StrategiesView: View {
 			DispatchQueue.main.async {
 				allStrategies = loaded
 				isLoading = false
-				
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-					titleNeedsFocus = true
-				}
 			}
 		}
 	}
