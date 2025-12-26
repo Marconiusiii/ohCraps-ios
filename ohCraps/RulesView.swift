@@ -5,13 +5,20 @@ struct RulesView: View {
 	@State private var expandedSections: Set<UUID> = []
 
 	var body: some View {
-		ScrollView {
-			VStack(alignment: .leading, spacing: 24) {
-				ForEach(rulesContent) { section in
-					rulesSectionView(section)
+		VStack(alignment: .leading, spacing: 16) {
+			Text("Rules")
+				.font(.largeTitle)
+				.accessibilityAddTraits(.isHeader)
+				.padding(.horizontal)
+
+			ScrollView {
+				VStack(alignment: .leading, spacing: 24) {
+					ForEach(rulesContent) { section in
+						rulesSectionView(section)
+					}
 				}
+				.padding()
 			}
-			.padding()
 		}
 	}
 
@@ -23,7 +30,18 @@ struct RulesView: View {
 				Text(section.title)
 					.font(.title3)
 			}
-			
+			.accessibilityAddTraits(.isButton)
+			.accessibilityValue(
+				expandedSections.contains(section.id)
+				? "Expanded"
+				: "Collapsed"
+			)
+			.accessibilityHint(
+				expandedSections.contains(section.id)
+				? "Double-tap to collapse"
+				: "Double-tap to expand"
+			)
+
 			if expandedSections.contains(section.id) {
 				ForEach(section.blocks.indices, id: \.self) { index in
 					RulesBlockView(block: section.blocks[index])
@@ -65,6 +83,7 @@ private struct RulesBlockView: View {
 			VStack(alignment: .leading, spacing: 8) {
 				Text(title)
 					.font(.headline)
+					.accessibilityAddTraits(.isHeader)
 
 				ForEach(blocks.indices, id: \.self) { index in
 					RulesBlockView(block: blocks[index])
