@@ -3,6 +3,7 @@ import SwiftUI
 struct RulesView: View {
 
 	@State private var expandedSections: Set<UUID> = []
+	@AccessibilityFocusState private var titleFocused: Bool
 
 	var body: some View {
 		ZStack {
@@ -10,11 +11,13 @@ struct RulesView: View {
 				.ignoresSafeArea()
 
 			VStack(alignment: .leading, spacing: 16) {
-				Text("Rules")
-					.font(AppTheme.screenTitle)
-					.foregroundColor(AppTheme.textPrimary)
-					.accessibilityAddTraits(.isHeader)
-					.padding(.horizontal)
+
+				TopNavBar(
+					title: "Rules",
+					showBack: false,
+					backAction: {}
+				)
+				.accessibilityFocused($titleFocused)
 
 				ScrollView {
 					VStack(alignment: .leading, spacing: 28) {
@@ -27,10 +30,17 @@ struct RulesView: View {
 				}
 			}
 		}
+		.onAppear {
+			// Defer focus until after the tab transition completes
+			DispatchQueue.main.async {
+				titleFocused = true
+			}
+		}
 	}
 
 	private func rulesSectionView(_ section: RulesSection) -> some View {
 		VStack(alignment: .leading, spacing: 16) {
+
 			Button {
 				toggle(section.id)
 			} label: {
@@ -42,7 +52,6 @@ struct RulesView: View {
 					.background(Color.black.opacity(0.4))
 					.cornerRadius(8)
 			}
-			.accessibilityAddTraits(.isButton)
 			.accessibilityValue(
 				expandedSections.contains(section.id)
 				? "Expanded"
@@ -63,7 +72,6 @@ struct RulesView: View {
 			}
 		}
 	}
-
 
 	private func toggle(_ id: UUID) {
 		if expandedSections.contains(id) {
@@ -111,5 +119,4 @@ private struct RulesBlockView: View {
 		}
 	}
 }
-
 
