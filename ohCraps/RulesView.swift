@@ -5,30 +5,42 @@ struct RulesView: View {
 	@State private var expandedSections: Set<UUID> = []
 
 	var body: some View {
-		VStack(alignment: .leading, spacing: 16) {
-			Text("Rules")
-				.font(.largeTitle)
-				.accessibilityAddTraits(.isHeader)
-				.padding(.horizontal)
+		ZStack {
+			AppTheme.feltGradient
+				.ignoresSafeArea()
 
-			ScrollView {
-				VStack(alignment: .leading, spacing: 24) {
-					ForEach(rulesContent) { section in
-						rulesSectionView(section)
+			VStack(alignment: .leading, spacing: 16) {
+				Text("Rules")
+					.font(AppTheme.screenTitle)
+					.foregroundColor(AppTheme.textPrimary)
+					.accessibilityAddTraits(.isHeader)
+					.padding(.horizontal)
+
+				ScrollView {
+					VStack(alignment: .leading, spacing: 28) {
+						ForEach(rulesContent) { section in
+							rulesSectionView(section)
+						}
 					}
+					.padding(.horizontal)
+					.padding(.bottom, 24)
 				}
-				.padding()
 			}
 		}
 	}
 
 	private func rulesSectionView(_ section: RulesSection) -> some View {
-		VStack(alignment: .leading, spacing: 12) {
+		VStack(alignment: .leading, spacing: 16) {
 			Button {
 				toggle(section.id)
 			} label: {
 				Text(section.title)
-					.font(.title3)
+					.font(AppTheme.sectionHeader)
+					.foregroundColor(AppTheme.textPrimary)
+					.padding(.vertical, 12)
+					.padding(.horizontal, 14)
+					.background(Color.black.opacity(0.4))
+					.cornerRadius(8)
 			}
 			.accessibilityAddTraits(.isButton)
 			.accessibilityValue(
@@ -43,8 +55,10 @@ struct RulesView: View {
 			)
 
 			if expandedSections.contains(section.id) {
-				ForEach(section.blocks.indices, id: \.self) { index in
-					RulesBlockView(block: section.blocks[index])
+				VStack(alignment: .leading, spacing: 14) {
+					ForEach(section.blocks.indices, id: \.self) { index in
+						RulesBlockView(block: section.blocks[index])
+					}
 				}
 			}
 		}
@@ -69,12 +83,16 @@ private struct RulesBlockView: View {
 
 		case .paragraph(let text):
 			Text(text)
+				.font(AppTheme.bodyText)
+				.foregroundColor(AppTheme.textPrimary)
 				.frame(maxWidth: .infinity, alignment: .leading)
 
 		case .bulletList(let items):
-			VStack(alignment: .leading, spacing: 6) {
+			VStack(alignment: .leading, spacing: 8) {
 				ForEach(items.indices, id: \.self) { index in
 					Text("• \(items[index])")
+						.font(AppTheme.bodyText)
+						.foregroundColor(AppTheme.textPrimary)
 						.frame(maxWidth: .infinity, alignment: .leading)
 				}
 			}
@@ -82,7 +100,8 @@ private struct RulesBlockView: View {
 		case .subSection(let title, let blocks):
 			VStack(alignment: .leading, spacing: 8) {
 				Text(title)
-					.font(.headline)
+					.font(AppTheme.cardTitle)
+					.foregroundColor(AppTheme.textPrimary)
 					.accessibilityAddTraits(.isHeader)
 
 				ForEach(blocks.indices, id: \.self) { index in
