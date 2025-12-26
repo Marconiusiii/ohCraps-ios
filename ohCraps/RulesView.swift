@@ -2,7 +2,9 @@ import SwiftUI
 
 struct RulesView: View {
 
-	@State private var expandedSections: Set<UUID> = []
+	@AppStorage("rulesExpSec")
+	private var expSecStore: String = ""
+
 	@AccessibilityFocusState private var titleFocused: Bool
 
 	var body: some View {
@@ -31,7 +33,6 @@ struct RulesView: View {
 			}
 		}
 		.onAppear {
-			// Defer focus until after the tab transition completes
 			DispatchQueue.main.async {
 				titleFocused = true
 			}
@@ -39,10 +40,13 @@ struct RulesView: View {
 	}
 
 	private func rulesSectionView(_ section: RulesSection) -> some View {
-		VStack(alignment: .leading, spacing: 16) {
+		let expDict = readExpDict()
+		let isExp = expDict[section.title, default: false]
+
+		return VStack(alignment: .leading, spacing: 16) {
 
 			Button {
-				toggle(section.id)
+				toggleSec(section.title)
 			} label: {
 				Text(section.title)
 					.font(AppTheme.sectionHeader)
@@ -52,18 +56,14 @@ struct RulesView: View {
 					.background(Color.black.opacity(0.4))
 					.cornerRadius(8)
 			}
-			.accessibilityValue(
-				expandedSections.contains(section.id)
-				? "Expanded"
-				: "Collapsed"
-			)
+			.accessibilityValue(isExp ? "Expanded" : "Collapsed")
 			.accessibilityHint(
-				expandedSections.contains(section.id)
+				isExp
 				? "Double-tap to collapse"
 				: "Double-tap to expand"
 			)
 
-			if expandedSections.contains(section.id) {
+			if isExp {
 				VStack(alignment: .leading, spacing: 14) {
 					ForEach(section.blocks.indices, id: \.self) { index in
 						RulesBlockView(block: section.blocks[index])
@@ -73,12 +73,34 @@ struct RulesView: View {
 		}
 	}
 
-	private func toggle(_ id: UUID) {
-		if expandedSections.contains(id) {
-			expandedSections.remove(id)
-		} else {
-			expandedSections.insert(id)
+	private func toggleSec(_ title: String) {
+		var expDict = readExpDict()
+		expDict[title] = !(expDict[title] ?? false)
+		writeExpDict(expDict)
+	}
+
+	private func readExpDict() -> [String: Bool] {
+		var out: [String: Bool] = [:]
+
+		let entries = expSecStore.split(separator: "|")
+		for entry in entries {
+			let parts = entry.split(separator: "=", maxSplits: 1)
+			guard !parts.isEmpty else { continue }
+
+			let key = String(parts[0])
+			let val = (parts.count == 2 && parts[1] == "1")
+			out[key] = val
 		}
+
+		return out
+	}
+
+	private func writeExpDict(_ dict: [String: Bool]) {
+		expSecStore =
+			dict
+			.map { "\($0.key)=\($0.value ? "1" : "0")" }
+			.sorted()
+			.joined(separator: "|")
 	}
 }
 
