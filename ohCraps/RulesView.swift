@@ -1,37 +1,77 @@
 import SwiftUI
 
 struct RulesView: View {
+
+	@State private var expandedSections: Set<UUID> = []
+
 	var body: some View {
-		NavigationStack {
-			ZStack {
-				FeltBackground()
-			}
-			ScrollView {
-				VStack(alignment: .leading, spacing: 16) {
-					Text("Rules of Craps")
-						.font(.largeTitle)
-						.bold()
-					
-					Text("Basic Overview")
-						.font(.title2)
-						.bold()
-					
-					Text("""
-	 Here you can describe the flow of a Craps game, including the come-out roll, point numbers, and basic bets like Pass Line and Don't Pass.
-	 
-	 We can later break this into multiple sections with more headings for different bet types and examples.
-	 """)
-					
-					Text("Key Terms")
-						.font(.title2)
-						.bold()
-					
-					Text("""
-	 Explain key terms such as Shooter, Point, Come Out, Seven Out, and so on.
-	 """)
+		ScrollView {
+			VStack(alignment: .leading, spacing: 24) {
+				ForEach(rulesContent) { section in
+					rulesSectionView(section)
 				}
-				.padding()
+			}
+			.padding()
+		}
+	}
+
+	private func rulesSectionView(_ section: RulesSection) -> some View {
+		VStack(alignment: .leading, spacing: 12) {
+			Button {
+				toggle(section.id)
+			} label: {
+				Text(section.title)
+					.font(.title3)
+			}
+			
+			if expandedSections.contains(section.id) {
+				ForEach(section.blocks.indices, id: \.self) { index in
+					RulesBlockView(block: section.blocks[index])
+				}
 			}
 		}
+	}
+
+
+	private func toggle(_ id: UUID) {
+		if expandedSections.contains(id) {
+			expandedSections.remove(id)
+		} else {
+			expandedSections.insert(id)
 		}
+	}
 }
+
+private struct RulesBlockView: View {
+
+	let block: RulesBlock
+
+	var body: some View {
+		switch block {
+
+		case .paragraph(let text):
+			Text(text)
+				.frame(maxWidth: .infinity, alignment: .leading)
+
+		case .bulletList(let items):
+			VStack(alignment: .leading, spacing: 6) {
+				ForEach(items.indices, id: \.self) { index in
+					Text("• \(items[index])")
+						.frame(maxWidth: .infinity, alignment: .leading)
+				}
+			}
+
+		case .subSection(let title, let blocks):
+			VStack(alignment: .leading, spacing: 8) {
+				Text(title)
+					.font(.headline)
+
+				ForEach(blocks.indices, id: \.self) { index in
+					RulesBlockView(block: blocks[index])
+				}
+			}
+		}
+	}
+}
+
+
