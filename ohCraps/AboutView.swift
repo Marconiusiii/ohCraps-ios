@@ -3,6 +3,7 @@ import SwiftUI
 struct AboutView: View {
 
 	@AccessibilityFocusState private var titleFocused: Bool
+	@State private var showMail = false
 
 	var body: some View {
 		ZStack {
@@ -94,17 +95,26 @@ struct AboutView: View {
 								title: "Square Pair on YouTube",
 								url: "https://www.youtube.com/channel/UCXpqqBCl5qOOHOfbHLSZ9og"
 							)
+
 							externalLink(
 								title: "Oh Craps! Main Website",
 								url: "https://marconius.com/craps/"
 							)
+
 							externalLink(
 								title: "Oh Craps! Game on Github",
 								url: "https://github.com/marconiusiii/OhCraps"
 							)
 						}
 
-						feedbackButton()
+						Button {
+							showMail = true
+						} label: {
+							Text("Provide App Feedback")
+								.font(AppTheme.bodyText)
+								.foregroundColor(AppTheme.textPrimary)
+						}
+						.accessibilityHint("Opens mail composer to send feedback")
 
 						Text(appFooterText)
 							.font(AppTheme.metadataText)
@@ -121,6 +131,13 @@ struct AboutView: View {
 				titleFocused = true
 			}
 		}
+		.sheet(isPresented: $showMail) {
+			MailComposer(
+				recipient: "marco@marconius.com",
+				subject: "Oh Craps! App Feedback",
+				body: nil
+			)
+		}
 	}
 
 	private func externalLink(title: String, url: String) -> some View {
@@ -128,21 +145,9 @@ struct AboutView: View {
 			.font(AppTheme.bodyText)
 			.foregroundColor(AppTheme.textPrimary)
 			.underline()
+			.accessibilityAddTraits(.isLink)
+			.accessibilityRemoveTraits(.isButton)
 			.accessibilityHint("Opens in external browser")
-	}
-
-	private func feedbackButton() -> some View {
-		let subject = "Oh Craps! App Feedback"
-			.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-
-		let mailURL = URL(string: "mailto:marco@marconius.com?subject=\(subject)")!
-
-		return Link("Provide App Feedback", destination: mailURL)
-			.font(AppTheme.bodyText)
-			.foregroundColor(AppTheme.textPrimary)
-			.underline()
-			.padding(.vertical, 12)
-			.accessibilityHint("Opens Mail to send feedback")
 	}
 
 	private var appFooterText: String {
@@ -152,6 +157,7 @@ struct AboutView: View {
 		let build =
 			Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
 
-		return "Oh Craps! by Marco Salsiccia, version \(version), build \(build). © \(Calendar.current.component(.year, from: Date()))"
+		return "Oh Craps! by Marco Salsiccia, version \(version) (\(build)). ©\(Calendar.current.component(.year, from: Date()))"
 	}
 }
+
