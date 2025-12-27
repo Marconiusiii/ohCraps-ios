@@ -104,9 +104,11 @@ struct AboutView: View {
 							)
 						}
 
+						feedbackButton()
+
 						Text(appFooterText)
-							.font(AppTheme.captionText)
-							.foregroundColor(AppTheme.textSecondary)
+							.font(AppTheme.metadataText)
+							.foregroundColor(AppTheme.textPrimary.opacity(0.75))
 							.padding(.top, 24)
 					}
 					.padding(.horizontal)
@@ -124,8 +126,23 @@ struct AboutView: View {
 	private func externalLink(title: String, url: String) -> some View {
 		Link(title, destination: URL(string: url)!)
 			.font(AppTheme.bodyText)
-			.foregroundColor(AppTheme.linkText)
+			.foregroundColor(AppTheme.textPrimary)
+			.underline()
 			.accessibilityHint("Opens in external browser")
+	}
+
+	private func feedbackButton() -> some View {
+		let subject = "Oh Craps! App Feedback"
+			.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+		let mailURL = URL(string: "mailto:marco@marconius.com?subject=\(subject)")!
+
+		return Link("Provide App Feedback", destination: mailURL)
+			.font(AppTheme.bodyText)
+			.foregroundColor(AppTheme.textPrimary)
+			.underline()
+			.padding(.vertical, 12)
+			.accessibilityHint("Opens Mail to send feedback")
 	}
 
 	private var appFooterText: String {
