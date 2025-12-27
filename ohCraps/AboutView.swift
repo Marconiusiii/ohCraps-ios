@@ -1,9 +1,13 @@
 import SwiftUI
+import MessageUI
 
 struct AboutView: View {
 
 	@AccessibilityFocusState private var titleFocused: Bool
 	@State private var showMail = false
+	@Environment(\.openURL)
+	private var openURL
+
 
 	var body: some View {
 		ZStack {
@@ -108,7 +112,11 @@ struct AboutView: View {
 						}
 
 						Button {
-							showMail = true
+							if MFMailComposeViewController.canSendMail() {
+								showMail = true
+							} else {
+								openMailFallback()
+							}
 						} label: {
 							Text("Provide App Feedback")
 								.font(AppTheme.bodyText)
@@ -138,6 +146,17 @@ struct AboutView: View {
 				body: nil
 			)
 		}
+	}
+
+	private func openMailFallback() {
+		let subject =
+			"Oh Craps! App Feedback"
+			.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+		let mailURL =
+			URL(string: "mailto:marco@marconius.com?subject=\(subject)")!
+
+		openURL(mailURL)
 	}
 
 	private func externalLink(title: String, url: String) -> some View {
