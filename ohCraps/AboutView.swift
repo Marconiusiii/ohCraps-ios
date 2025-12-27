@@ -111,6 +111,20 @@ struct AboutView: View {
 							)
 						}
 
+						Text("App Credits")
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityAddTraits(.isHeader)
+							.padding(.top, 12)
+
+						Text("Created by Marco Salsiccia")
+							.font(AppTheme.bodyText)
+							.foregroundColor(AppTheme.textPrimary)
+						Text("Accessibility-First Design and Development")
+							.font(AppTheme.bodyText)
+							.foregroundColor(AppTheme.textPrimary)
+
+
 						Button {
 							if MFMailComposeViewController.canSendMail() {
 								showMail = true
@@ -176,7 +190,7 @@ struct AboutView: View {
 		let build =
 			Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
 
-		return "Oh Craps! by Marco Salsiccia, version \(version) (\(build)). ©\(Calendar.current.component(.year, from: Date()))"
+		return "Oh Craps! version \(version) (\(build)). ©\(Calendar.current.component(.year, from: Date()))"
 	}
 }
 
