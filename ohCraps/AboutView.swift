@@ -123,6 +123,35 @@ struct AboutView: View {
 						Text("Accessibility-First Design and Development")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
+						Text("Responsible Gambling")
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityAddTraits(.isHeader)
+							.padding(.top, 12)
+						Text("Gambling should always be approached as entertainment, not as a way to make money. The strategies presented in this app are educational examples only and do not guarantee winnings or reduce the inherent risk involved in casino games.")
+							.font(AppTheme.bodyText)
+							.foregroundColor(AppTheme.textPrimary)
+
+						Text("If gambling ever stops feeling fun, or if you feel pressure to chase losses, it may be a sign to take a break or seek support. Help is available, and reaching out is a positive step.")
+							.font(AppTheme.bodyText)
+							.foregroundColor(AppTheme.textPrimary)
+						VStack(alignment: .leading, spacing: 12) {
+
+							externalLink(
+								title: "National Problem Gambling Helpline (United States)",
+								url: "https://www.ncpgambling.org/help-treatment/"
+							)
+
+							externalLink(
+								title: "Gamblers Anonymous",
+								url: "https://www.gamblersanonymous.org/"
+							)
+
+							externalLink(
+								title: "International Gambling Support Resources",
+								url: "https://www.gamblingtherapy.org/"
+							)
+						}
 
 
 						Button {
