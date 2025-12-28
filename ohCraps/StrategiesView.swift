@@ -377,10 +377,16 @@ struct StrategiesView: View {
 	}
 
 	private func normalizedName(_ strategy: Strategy) -> String {
-		let trimmed = strategy.name.trimmingCharacters(in: .whitespaces)
-		return String(trimmed.drop(while: { $0 == "$" }))
+		var name = strategy.name.trimmingCharacters(in: .whitespaces)
+		name = String(name.drop(while: { $0 == "$" }))
+
+		if name.lowercased().hasPrefix("the ") {
+			name = String(name.dropFirst(4))
+		}
+
+		return name
 	}
-	
+
 	private func numericPrefix(of name: String) -> Int? {
 		var digits = ""
 		for ch in name {
