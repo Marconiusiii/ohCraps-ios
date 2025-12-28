@@ -16,35 +16,13 @@
 <li>For a smaller bankroll or lower table minimum, try placing the 6 and 8 for $18 each instead of $42. $18 will pay $21, which can be split evenly to place the uptown or downtown numbers for $10 each with $1 in change.</li>
 <li>Do not Martingale the system. Stay at the original $42 bet structure for the 6 and 8 and use rack management to keep track of your original bankroll and profits.</li>
 </ul>
-<table>
-<caption>Martingale bet progression</caption>
-<thead>
-<tr>
-<th scope="row">Level</th>
-<th scope="col">1</th>
-<th scope="col">2</th>
-<th scope="col">3</th>
-<th scope="col">4</th>
-<th scope="col">5</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Bet</th>
-<td>$42</td>
-<td>$84</td>
-<td>$126</td>
-<td>$168</td>
-<td>$210</td>
-</tr>
-<tr>
-<th scope="row">Winnings</th>
-<td>$49</td>
-<td>$98</td>
-<td>$147</td>
-<td>$196</td>
-<td>$245</td>
-</tr>
-</tbody>
-</table>
+
+<h4>Martingale Bet Progression</h4>
+<ol>
+<li>$42 bets on the 6 and 8 win $49</li>
+<li>$84 bets on the 6 and 8 win $98</li>
+<li>$126 bets on the 6 and 8 win $147</li>
+<li>$168 bets on the 6 and 8 win $196</li>
+<li>$210 bets on the 6 and 8 win $245</li>
+</ol>
 </div>

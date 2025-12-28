@@ -5,87 +5,30 @@
 <p>Notes: Combines a doey/don't system with a strong bet negative progression system.</p>
 <ol>
 <li>Start with a 1 unit bet on both the Pass and Don't Pass Lines. 2, 3, 7, and 11 will push on the Come Out roll, 12 will lose, just replenish the Pass Line bet when that happens.</li>
-<li>Follow the Pass/DP bet and the Don't Pass Lay Odds progression from the table below. If the Don't Pass/Lay Odds bets lose after a point has been established, you bet with the next level. No matter what level you are on, if you win, regress back to Level 1 and start again from there.</li>
-<li>Once point is established, start at Level 1 in the Come/DC progression from the table below. If this bet loses, advance to the next betting level and switch to the opposite bet, so from Come to Don'T Come, and vice versa. If this bet wins, regress down one level in the table, don't go all the way back to Level 1.
-<ul role="list">
+<li>Follow the Pass/DP bet and the Don't Pass Lay Odds progression from the lists below. If the Don't Pass/Lay Odds bets lose after a point has been established, you bet with the next level. No matter what level you are on, if you win, regress back to Level 1 and start again from there.</li>
+<li>Once point is established, start at Level 1 in the Come/DC progression from the list below. If this bet loses, advance to the next betting level and switch to the opposite bet, so from Come to Don'T Come, and vice versa. If this bet wins, regress down one level in the list, don't go all the way back to Level 1.
+<ul>
 <li>Example: A $10 Come Bet moves to the 6 if a 6 gets rolled after establishing a point. The shooter then rolls a 7, so the Come bet loses. The next shooter establishes a point, and you'd make a $15 Don't Come bet to follow the progression and switch to the dark side. If the Don't Come bet wins, collect the winnings and take down the DC bet, then wait for the next point to be established before regressing down to the $10 Level 1 bet, keeping it on the Don't Come. Only switch sides when there is a loss.</li>
 </ul></li>
 <li>Only make one Come or Don't Come bet per point. If you win or lose your Come/DC bet, progress to the next betting level after the shooter 7s out or wins the point and establishes a new point.</li>
-<li>If you lose all the way up to Level 7 in the Come/DC table, it's time to take a break from playing.</li>
+<li>If you lose all the way up to Level 7 in the Come/DC list, it's time to take a break from playing.</li>
 </ol>
-<table>
-<caption>Pass/Don't Pass Line Progression</caption>
-<thead>
-<tr>
-<th scope="col">Level</th>
-<th scope="col">Pass/Don't Pass Bets</th>
-<th scope="col">4/10 Lay Odds</th>
-<th scope="col">5/9 Lay Odds</th>
-<th scope="col">6/8 Lay Odds</th>
-<th scope="col">Lay Odds Win Goal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Level 1</th>
-<td>$5 each</td>
-<td>$10</td>
-<td>$9</td>
-<td>$6</td>
-<td>$5</td>
-</tr>
-<tr>
-<th scope="row">Level 2</th>
-<td>$5 each</td>
-<td>$20</td>
-<td>$18</td>
-<td>$12</td>
-<td>$10</td>
-</tr>
-<tr>
-<th scope="row">Level 3</th>
-<td>$10 each</td>
-<td>$60</td>
-<td>$45</td>
-<td>$36</td>
-<td>$30</td>
-</tr>
-<tr>
-<th scope="row">Level 4</th>
-<td>$25 each</td>
-<td>$150</td>
-<td>$120</td>
-<td>$90</td>
-<td>$75</td>
-</tr>
-</tbody>
-</table>
 
-<table>
-<caption>Come/Don't Come Progression</caption>
-<thead>
-<tr>
-<th>Level</th>
-<th scope="col">Level 1</th>
-<th scope="col">Level 2</th>
-<th scope="col">Level 3</th>
-<th scope="col">Level 4</th>
-<th scope="col">Level 5</th>
-<th scope="col">Level 6</th>
-<th scope="col">Level 7</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Bet</th>
-<td>$10</td>
-<td>$15</td>
-<td>$25</td>
-<td>$50</td>
-<td>$75</td>
-<td>$100</td>
-<td>$175</td>
-</tr>
-</tbody>
-</table>
+<h4>Pass/Don't Pass Line Progression</h4>
+<p>Level 1: Pass and Don’t Pass are $5 each. Lay Odds are $10 on 4 or 10, $9 on 5 or 9, and $6 on 6 or 8. Target win is $5.</p>
+<p>Level 2: Pass and Don’t Pass are $5 each. Lay Odds are $20 on 4 or 10, $18 on 5 or 9, and $12 on 6 or 8. Target win is $10.</p>
+<p>Level 3: Pass and Don’t Pass are $10 each. Lay Odds are $60 on 4 or 10, $45 on 5 or 9, and $36 on 6 or 8. Target win is $30.</p>
+<p>Level 4: Pass and Don’t Pass are $25 each. Lay Odds are $150 on 4 or 10, $120 on 5 or 9, and $90 on 6 or 8. Target win is $75.</p>
+
+<h4>Come/Don't Come Progression</h4>
+<ol>
+<li>Bet $10</li>
+<li>Bet $15</li>
+<li>Bet $25</li>
+<li>Bet $50</li>
+<lI>Bet $75</li>
+<li>Bet $100</li>
+<li>Bet $175</li>
+<li>Advance one level after a loss. Regress one level after a win. Stop playing if you lose at Level 7.</li>
+</ol>
 </div>

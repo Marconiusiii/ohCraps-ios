@@ -10,43 +10,4 @@
 <li>On the first hit of any place number now, use the winnings to do a full press on both that number and it's mate. If the 6 or 8 hits, drop in $3 to press them both up to $30 each. If the 5 or 9 hit, collect $1 and use the rest to press them both up to $25 each. If the 4 or 10 hit, drop in $1 and press them both to $30 each.</li>
 <li>When one of the pressed Place numbers hit, collect the winnings, and then use the next hit to power press only that number. Continue on with a collect and power press system from here on out for all the Place numbers until you can get them to the table maximum.</li>
 </ol>
-<table>
-<caption>Power Pressing Progression</caption>
-<thead>
-<tr>
-<th scope="col">Place Numbers</th>
-<th scope="col">Starting Bet</th>
-<th scope="col">1st Hit</th>
-<th scope="col">3rd Hit</th>
-<th scope="col">5th Hit</th>
-<th scope="col">7th Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">4 and 10</th>
-<td>$15</td>
-<td>$30</td>
-<td>$100</td>
-<td>$300</td>
-<td>$1000</td>
-</tr>
-<tr>
-<th scope="row">5 and 9</th>
-<td>$15</td>
-<td>$25</td>
-<td>$60</td>
-<td>$150</td>
-<td>$360</td>
-</tr>
-<tr>
-<th scope="row">6 and 8</th>
-<td>$18</td>
-<td>$30</td>
-<td>$66</td>
-<td>$150</td>
-<td>$330</td>
-</tr>
-</tbody>
-</table>
 </div>

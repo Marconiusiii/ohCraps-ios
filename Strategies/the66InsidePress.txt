@@ -4,54 +4,17 @@
 <p>Table Minimum: $5-$15</p>
 <p>Notes: Buy-in is based on initial $67 outlay for 5 shooters.</p>
 <ol>
-<li>Start with $66 Inside bet; bet $15 each on the 5 and 9, $18 each on the 6 and 8. Bets are always working, point doesn't matter.</li>
+<li>Start with $66 Inside bet; bet $15 each on the 5 and 9, $18 each on the 6 and 8. Bets are always working, and the point doesn't matter.</li>
 <li>On first hit of any inside number, you'll win $21. Drop in $1 and press all inside numbers up 1 unit, or a $22 inside press. The 5 and 9 will be at $20 each, the 6 and 8 at $24 each, or $88 inside.</li>
 <li>On the 2nd hit, use the winnings to do another full $22 inside press again and collect $6 in change. 5 and 9 will be at $25 each, 6 and 8 will be at $30 each, or $110 inside.</li>
 <li>On the 3rd hit, press all numbers up again with a $22 Inside press and collect the change. 5 and 9 will be at $30 each, 6 and 8 will be at $36 each, or $132 Inside.</li>
 <li>On the 4th hit, collect winnings and regress all bets back down to initial $66 Inside. Repeat entire strategy until a 7 out.</li>
 </ol>
 <h4>Modification</h4>
-<ul role="list">
+<ul>
 <li>All Inside numbers should win $42 on the 4th hit. Rather than regressing the bets, drop in $2 and do a full $44 Inside press, taking all inside numbers up 2 units each. The 5 and 9 should be at $40 each, the 6 and 8 at $48 each, or $176 Inside.</li>
 <li>On the 5th hit, all inside numbers will pay out $56. Drop in $10 to do a full $66 Inside press on all inside numbers. 5 and 9 will be at $55 each, 6 and 8 will be at $66 each, or $242 inside.</li>
 <li>The 6th hit will win $77 from the inside numbers. Drop in $11 more to do a full $88 press to take all inside bets up to 15 units each. The 5 and 9 will be at $75 each, the 6 and 8 will be at $90 each. When any of these hit at this level, immediately collect the winnings and regress all bets back down to $66 Inside and start strategy over. Tip your dealers!</li>
 <li>These are just suggested progression levels. Feel free to play the table by ear and collect and regress at any of the levels after the 4th hit.</li>
 </ul>
-<table>
-<caption>$66 Inside Press Bet Progression</caption>
-<thead>
-<tr>
-<td>&nbsp;</td>
-<th scope="col">Outlay</th>
-<th scope="col">1st Hit</th>
-<th scope="col">2nd Hit</th>
-<th scope="col">3rd Hit</th>
-<th scope="col">4th Hit</th>
-<th scope="col">5th Hit</th>
-<th scope="col">6th Hit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Place 5 and 9</th>
-<td>$15</td>
-<td>$20</td>
-<td>$25</td>
-<td>$30</td>
-<td>$40</td>
-<td>$55</td>
-<td>$75</td>
-</tr>
-<tr>
-<th scope="row">Place 6 and 8</th>
-<td>$18</td>
-<td>$24</td>
-<td>$30</td>
-<td>$36</td>
-<td>$48</td>
-<td>$66</td>
-<td>$90</td>
-</tr>
-</tbody>
-</table>
 </div>

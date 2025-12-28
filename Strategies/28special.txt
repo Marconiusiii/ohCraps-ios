@@ -2,7 +2,7 @@
 <h3>28 Special</h3>
 <p>Buy-in: $600</p>
 <p>Table Minimum: $5-$15</p>
-<p>Notes: Thanks to /u/VahnNoaGala and their friend Jazz Cabbage from <a href="https://www.reddit.com/r/Craps/comments/11a3gx5/craps_strategy_the_28_special/" target="_blank" id="outToReddit" title="Opens in new window">/r/craps on Reddit.</a></p>
+<p>Notes: Thanks to /u/VahnNoaGala and their friend Jazz Cabbage from /r/craps on Reddit.</p>
 <ol>
 <li>Wait for a point to be established.</li>
 <li>Bet $15 each on the 4, 5, 9, and 10 place bets. $60 total investment per shooter.</li>
