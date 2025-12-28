@@ -8,11 +8,11 @@
 <li>When Point is established, lay $150 in Odds behind the Don't Pass bet. Place all numbers except for the Point for $25 each, $30 for the 6 and 8.</li>
 <li>When Place number hits, immediately take all Place Bets down to 1 unit each. Take down the Don't Pass bet and the Don't Pass Odds. Place 2x odds bet behind the Pass Line bet.</li>
 <li>Start double-tapping the Place Bets. All Place bets should start at $10 each, $12 for the 6 and 8. As soon as a Place number hits, immediately take that place number up to $25, or $30 if it's the 6 or 8. If that number hits again, collect the winnings and take the bet back down to the minimum. Increase Pass Line Odds with each win, eventually maxing out the odds.</li>
-<li>After double-tapping the place bets and winning at least twice, start triple-luxing the bets; after hitting a number, immediately power press the winnings onto the place bet. Repeat the power press a third time after hitting the number again, then collect the winnings if it hits again, then regress the bet back down to 1 unit.</li>
+<li>After double-tapping the place bets and winning at least twice, start using the triple-lux system on the bets; after hitting a number, immediately power press the winnings onto the place bet. Repeat the power press a third time after hitting the number again, then collect the winnings if it hits again, then regress the bet back down to 1 unit.</li>
 <li>For the 5 and 9, a $10 bet wins $14, press bet to $25. A $25 bet wins $35, press the bet up to 60. $60 wins $84, then press up to $100 and collect the rest. Once that number hits, collect everything and bring it down to $10.</li>
 <li>For the 6 and 8, $12 wins $14, power press up to $30. $30 wins $35, power press up to $60. $60 wins $70, power press up to $130. Collect that and bring it back down to $12.</li>
 <li>For the 4 and 10, a $10 bet wins $18, power press and buy the bet for $25. $25 wins $49 after the vig, power press up to $75. $75 wins $150 minus the vig, then regress down to $10,</li>
-<li>If on a hot roll, go for the jugular and don't take down the power-pressed bets when they hit after the triple-luix. Collect winnings each time you press up enough to color up to a new chip color, then continue to press and collect until you can get the bet to the table maximum.</li>
+<li>If on a hot roll, go for the jugular and don't take down the power-pressed bets when they hit after the triple-lux. Collect winnings each time you press up enough to color up to a new chip color, then continue to press and collect until you can get the bet to the table maximum.</li>
 </ol>
 </div>
 

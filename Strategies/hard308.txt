@@ -10,6 +10,6 @@
 <li>System wins if the Hard 6 or 8 rolls.</li>
 <li>If there is a 7 Out, wait for next point to be established, then do a mini-Martingale by doubling all the initial bets. $24 each on the Place 6 and 8; $20 each on the Hard 6 and 8.</li>
 <li>If this loses again, double the bet one more time after the next point is established. $48 each on the Place 6 and 8; $40 each on the Hard 6 and 8.</li>
-<li>If a Hard 6 or 8 rolls after this progression, immediately take everything back down to the original outlay and collect everything else. Return to $12 each on the Place 6 and 8; $10 each onthe Hard 6 and 8.</li>
+<li>If a Hard 6 or 8 rolls after this progression, immediately take everything back down to the original outlay and collect everything else. Return to $12 each on the Place 6 and 8; $10 each on the Hard 6 and 8.</li>
 </ol>
 </div>

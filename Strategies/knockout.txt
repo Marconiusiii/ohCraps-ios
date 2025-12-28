@@ -8,13 +8,13 @@
 <li>Follow the Pass/DP bet and the Don't Pass Lay Odds progression from the table below. If the Don't Pass/Lay Odds bets lose after a point has been established, you bet with the next level. No matter what level you are on, if you win, regress back to Level 1 and start again from there.</li>
 <li>Once point is established, start at Level 1 in the Come/DC progression from the table below. If this bet loses, advance to the next betting level and switch to the opposite bet, so from Come to Don'T Come, and vice versa. If this bet wins, regress down one level in the table, don't go all the way back to Level 1.
 <ul role="list">
-<li>Example: A $10 Come Bet moves to the 6 if a 6 gets rolled after establishing a point. The shooter then rols a 7, so the Come bet loses. The next shooter establishes a point, and you'd make a $15 Don't Come bet to follow the progression and switch to the dark side. If the Don't Come bet wins, collect the winnings and take down the DC bet, then wait for the next point to be established before regressing down to the $10 Level 1 bet, keeping it on the Don't Come. Only switch sides when there is a loss.</li>
+<li>Example: A $10 Come Bet moves to the 6 if a 6 gets rolled after establishing a point. The shooter then rolls a 7, so the Come bet loses. The next shooter establishes a point, and you'd make a $15 Don't Come bet to follow the progression and switch to the dark side. If the Don't Come bet wins, collect the winnings and take down the DC bet, then wait for the next point to be established before regressing down to the $10 Level 1 bet, keeping it on the Don't Come. Only switch sides when there is a loss.</li>
 </ul></li>
 <li>Only make one Come or Don't Come bet per point. If you win or lose your Come/DC bet, progress to the next betting level after the shooter 7s out or wins the point and establishes a new point.</li>
 <li>If you lose all the way up to Level 7 in the Come/DC table, it's time to take a break from playing.</li>
 </ol>
 <table>
-<caption>Pass/Don;t Pass Line Progression</caption>
+<caption>Pass/Don't Pass Line Progression</caption>
 <thead>
 <tr>
 <th scope="col">Level</th>

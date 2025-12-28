@@ -2,7 +2,7 @@
 <h3>Sosa 7</h3>
 <p>Buy-in: $300-$600</p>
 <p>Table Minimum: $25</p>
-<p>Notes: Good for higher limit tables when playing with short money. This trategy requires a lot of attention, doesn't count on the point, and all bets are always working. Aim for 7 rolls before taking everything down or restarting. Doesn't work on tables that don't have Hopping bets, and works the best on tables where either the 2 or 12 pays triple in the Field. Initial BUy-in was set to $300, but initial outlay is $60, so $600 would be preferred for 10 shooters.</p>
+<p>Notes: Good for higher limit tables when playing with short money. This strategy requires a lot of attention, doesn't count on the point, and all bets are always working. Aim for 7 rolls before taking everything down or restarting. Doesn't work on tables that don't have Hopping bets, and works the best on tables where either the 2 or 12 pays triple in the Field. Initial Buy-in was set to $300, but initial outlay is $60, so $600 would be preferred for 10 shooters.</p>
 <ol>
 <li>Bet $40 on the Field. Hop the 6 and 8 Easies for $10 each.</li>
 <li>On the first hit, use the winnings to bet the Hard 6 and Hard 8 for $10 each. Keep those bets always working. After every roll, always bet the Field for $40 if it falls and replenish the Hop 6 and 8 easies.</li>
