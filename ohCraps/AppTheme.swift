@@ -63,11 +63,14 @@ struct AppTheme {
 	static func menuLabel(text: String, value: String) -> some View {
 		HStack(spacing: 4) {
 			Text("\(text): \(value)")
+				.font(bodyText)
 				.foregroundColor(textPrimary)
+				.fixedSize(horizontal: false, vertical: true)
 			Image(systemName: "chevron.down")
 				.foregroundColor(textPrimary)
 		}
-		.padding(8)
+		.padding(.horizontal, 8)
+		.padding(.vertical, 6)
 		.background(Color.black.opacity(0.4))
 		.overlay(
 			RoundedRectangle(cornerRadius: 8)
