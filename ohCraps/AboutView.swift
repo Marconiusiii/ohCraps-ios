@@ -123,6 +123,14 @@ struct AboutView: View {
 						Text("Accessibility-First Design and Development")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
+						Text("This app is built and maintained independently as one of my personal passion projects. If you’ve enjoyed using it and would like to support ongoing updates and improvements, you’re welcome to leave a tip. There’s never any obligation.")
+							.font(AppTheme.bodyText)
+							.foregroundColor(AppTheme.textPrimary)
+						externalLink(
+							title: "Tip the Dealer",
+							url: "https://www.paypal.me/marconius"
+						)
+
 						Text("Responsible Gambling")
 							.font(AppTheme.sectionHeader)
 							.foregroundColor(AppTheme.textPrimary)
