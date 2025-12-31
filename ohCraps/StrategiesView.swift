@@ -20,7 +20,7 @@ enum BuyInFilter: CaseIterable {
 		switch self {
 		case .oneHundred: return "$0 to $299"
 		case .threeHundred: return "$300 to $599"
-		case .sixHundred: return "$600"
+		case .sixHundred: return "$600 to $899"
 		case .nineHundredPlus: return "$900+"
 		}
 	}
