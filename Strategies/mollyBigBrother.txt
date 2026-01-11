@@ -1,0 +1,17 @@
+<div id="mollyBigBrother">
+<h3>Molly's Big Brothers</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Upgraded 3-point Molly system that has beefed up points and odds after the Come Out roll.</p>
+<ol>
+<li>Start with $10 on the Pass Line.</li>
+<li>Once a point is established, bet $10 for your Pass Line Odds, and make a $20 Come bet.</li>
+<li>When the Come Bet moves to a number, bet $20 in Come Odds on that number, then make a $30 Come Bet.</li>
+<li>Once the $30 Come bet moves to a number, give it $30 in Come Odds. Now sit back and wait for the point to hit, the come bets to hit, or a 7 out.</li>
+<li>If any of the Come Bets win, collect the winnings and make a $10 Come Bet to follow it up.</li>
+<li>Make $10 Come Odds bets when the $10 Come Bets move to their numbers.</li>
+<li>Restart the system after a 7 out.</li>
+<li>If the $20 or $30 Come bets lose before they move to a number, just go back up on the Come bet with the same amount that was lost.</li>
+<li>Always try to have single odds on the pass line bet and at least 2 Come Bets with odds equalling the flat bet as the hand progresses.</li>
+</ol>
+</div>
