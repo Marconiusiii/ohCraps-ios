@@ -2,7 +2,8 @@
 <h3>Kistenmacher Two-Timer</h3>
 <p>Buy-in: $150</p>
 <p>Table Minimum: $5+</p>
-<p>Notes: Dark and Light side hedging strategy that can scale to any table minimum. Lots of action with potential to pull in great profits from the hard ways. Strategy is based on a $5 minimum unit, adjust the bankroll for whichever table minimum or unit minimum you play this with. Submitted By Neal Kistenmacher</p>
+<p>Notes: Dark and Light side hedging strategy that can scale to any table minimum. Lots of action with potential to pull in great profits from the hard ways. Strategy is based on a $5 minimum unit, adjust the bankroll for whichever table minimum or unit minimum you play this with.</p>
+<p>Credit: Neal Kistenmacher</p>
 <ol>
 <li>Start with a $5 Don't Pass bet.</li>
 <li>Once a point is established, make a $5 Don't Come bet.</li>

@@ -17,6 +17,7 @@ struct Strategy: Identifiable {
 	let tableMinMax: Int
 	
 	let notes: String
+	let credit: String
 	let steps: [String]
 }
 
@@ -47,6 +48,7 @@ struct SampleData {
 			tableMinMin: 5,
 			tableMinMax: 15,
 			notes: "Example notes go here.",
+			credit: "Strategy credits",
 			steps: [
 				"Step one goes here.",
 				"Step two goes here."

@@ -46,6 +46,13 @@ struct StrategyLoader {
 			allowMissing: true
 		)
 		
+		let credit = extractValue(
+			prefixes: ["Credit:", "Credits:"],
+			from: html,
+			allowMissing: true
+		)
+
+		
 		let (buyMin, buyMax) = parseRangeAllowingAny(buyInText)
 		let (tMin, tMax) = parseRangeAllowingAny(tableMinText)
 		
@@ -63,6 +70,7 @@ struct StrategyLoader {
 			tableMinMin: tMin,
 			tableMinMax: tMax,
 			notes: notes,
+			credit: credit,
 			steps: flattened
 		)
 	}
@@ -214,7 +222,9 @@ private func extractContentBlocks(from html: String) -> [StrategyContentBlock] {
 		"buy in:",
 		"table minimum:",
 		"notes:",
-		"note:"
+		"note:",
+		"Credit:",
+		"Credits:"
 	])
 	
 	// Storage with positions

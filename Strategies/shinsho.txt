@@ -2,6 +2,7 @@
 <h3>Shinsho Strategy</h3> 
 <p>Buy-in: $600</p>
 <p>Table Minimum: $15</p>
+<p>Credit: Shinsho from /r/craps</p>
 <ol>
 <li>Play $5 on the Fire Bet, table minimum on Pass Line if shooting or if required to play bonus bets.</li>
 <li>When Point is established, place the 6 and 8 for $30 each. Bet $15 on the Field, and hop the 5s for $1 each.</li>

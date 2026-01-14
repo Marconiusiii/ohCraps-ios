@@ -111,6 +111,19 @@ struct StrategyDetailView: View {
 									.fixedSize(horizontal: false, vertical: true)
 							}
 						}
+						// Credits
+						if !strategy.credit.isEmpty {
+							VStack(alignment: .leading, spacing: 8) {
+								Text("Credits")
+									.font(AppTheme.sectionHeader)
+									.accessibilityAddTraits(.isHeader)
+								
+								Text(strategy.credit)
+									.font(AppTheme.bodyText)
+									.fixedSize(horizontal: false, vertical: true)
+							}
+						}
+
 						
 						// STEPS
 						if !renderedLines.isEmpty {
