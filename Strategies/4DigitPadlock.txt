@@ -1,0 +1,14 @@
+<div id="4DigitPadlock">
+<h3>4-Digit Padlock</h3>
+<p>Buy-in: $800</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: A 4-point Molly system where odds are fed by a Field bet, and costs $80 per shooter.</p>
+<ol>
+<li>Start with a $10 Pass Line bet, and bet $10 on the Field. This wins with a 2, 11, or 12 and pushes with a 3 or 7.</li>
+<li>When a Point is established, bet $10 for Pass Line Odds, keep $10 in the Field, and make a $10 Come bet. If the Point is 5, 6, or 8, go back up on the Field for $10.</li>
+<li>Use winnings from the Field to add $10 in Odds to each Come bet that moves to a box number.</li>
+<li>Replace the $10 Field bet and add $10 in Come Odds from your rack if the 5, 6, or 8 roll.</li>
+<li>Once your have 3 Come Bet numbers set with Odds along with the Point, take down the Field bet and let the bets ride.</li>
+<li>When any Come bet wins, go back up on the Field for $10 and make a $10 Come bet to get back up to 4 total numbers covered.</li>
+</ol>
+</div>
