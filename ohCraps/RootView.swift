@@ -13,6 +13,8 @@ struct RootView: View {
 
 			case .rules:
 				RulesView()
+			case .createStrategy:
+				CreateStrategyView()
 			case .about:
 				AboutView()
 			}
