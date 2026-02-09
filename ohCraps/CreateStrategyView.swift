@@ -6,11 +6,14 @@ struct CreateStrategyView: View {
 	@State private var buyIn = ""
 	@State private var tableMinimum = ""
 	@State private var stepsText = ""
-	@State private var notes = ""
+	@State private var notesText = ""
 	@State private var credit = ""
 	@AccessibilityFocusState private var titleFocused: Bool
 
 	@State private var showResetConfirm = false
+
+	private let stepsPlaceholder = "1. Step 1\n2. Step 2\n3. Step 3..."
+	private let notesPlaceholder = "(optional)"
 
 	var body: some View {
 		ZStack {
@@ -26,53 +29,77 @@ struct CreateStrategyView: View {
 					)
 					.accessibilityFocused($titleFocused)
 
-
-					VStack(alignment: .leading, spacing: 12) {
-
-						TextField("Strategy Name", text: $strategyName)
+					VStack(alignment: .leading, spacing: 8) {
+						Text("Strategy Name")
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityHidden(true)
+						TextField("", text: $strategyName)
 							.textFieldStyle(.roundedBorder)
-
-						TextField("Buy-in Amount", text: $buyIn)
-							.textFieldStyle(.roundedBorder)
-
-						TextField("Table Minimum", text: $tableMinimum)
-							.textFieldStyle(.roundedBorder)
+							.accessibilityLabel("Strategy Name")
 					}
 
 					VStack(alignment: .leading, spacing: 8) {
-						Text("Strategy Steps")
+						Text("Buy-in Amount")
 							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityHidden(true)
 
-						TextEditor(text: $stepsText)
-							.frame(minHeight: 180)
-							.padding(8)
-							.background(Color.black.opacity(0.25))
-							.overlay(
-								RoundedRectangle(cornerRadius: 8)
-									.stroke(AppTheme.borderColor)
-							)
+						TextField("", text: $buyIn)
+							.textFieldStyle(.roundedBorder)
+							.accessibilityLabel("Buy-in Amount")
+					}
+
+					VStack(alignment: .leading, spacing: 8) {
+						Text("Table Minimum")
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityHidden(true)
+
+						TextField("", text: $tableMinimum)
+							.textFieldStyle(.roundedBorder)
+							.accessibilityLabel("Table Minimum")
+					}
+
+					Text("Make a numbered list of steps for your strategy.")
+						.font(AppTheme.bodyText)
+						.foregroundColor(AppTheme.textPrimary)
+
+					VStack(alignment: .leading, spacing: 8) {
+						Text("Steps")
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityHidden(true)
+
+						TextField("", text: $stepsText, prompt: Text(stepsPlaceholder), axis: .vertical)
+							.textFieldStyle(.roundedBorder)
+							.lineLimit(2...20)
+							.frame(minHeight: 220, alignment: .top)
+							.accessibilityLabel("Steps")
 					}
 
 					VStack(alignment: .leading, spacing: 8) {
 						Text("Notes")
 							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityHidden(true)
 
-						TextEditor(text: $notes)
-							.frame(minHeight: 120)
-							.padding(8)
-							.background(Color.black.opacity(0.25))
-							.overlay(
-								RoundedRectangle(cornerRadius: 8)
-									.stroke(AppTheme.borderColor)
-							)
+						TextField("", text: $notesText, prompt: Text(notesPlaceholder), axis: .vertical)
+							.textFieldStyle(.roundedBorder)
+							.lineLimit(2...10)
+							.frame(minHeight: 140, alignment: .top)
+							.accessibilityLabel("Notes")
 					}
 
 					VStack(alignment: .leading, spacing: 8) {
 						Text("Credit")
 							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+							.accessibilityHidden(true)
 
-						TextField("Name or handle", text: $credit)
+						TextField("", text: $credit)
 							.textFieldStyle(.roundedBorder)
+							.accessibilityLabel("Credit")
 					}
 
 					HStack {
@@ -85,7 +112,7 @@ struct CreateStrategyView: View {
 						Button("Save Strategy") {
 							saveStrategy()
 						}
-						.disabled(strategyName.isEmpty || stepsText.isEmpty)
+						.disabled(strategyNameTrimmed.isEmpty || stepsTextTrimmed.isEmpty)
 					}
 				}
 				.padding()
@@ -103,6 +130,14 @@ struct CreateStrategyView: View {
 		}
 	}
 
+	private var strategyNameTrimmed: String {
+		strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+
+	private var stepsTextTrimmed: String {
+		stepsText.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+
 	private func saveStrategy() {
 		// Local-only for now
 	}
@@ -112,7 +147,8 @@ struct CreateStrategyView: View {
 		buyIn = ""
 		tableMinimum = ""
 		stepsText = ""
-		notes = ""
+		notesText = ""
 		credit = ""
 	}
 }
+
