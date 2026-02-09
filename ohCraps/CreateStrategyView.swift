@@ -63,6 +63,24 @@ struct CreateStrategyView: View {
 		.onAppear {
 			focusTitle()
 		}
+		.navigationDestination(item: $selectedStrategy) { strategy in
+			StrategyDetailView(strategy: strategy)
+		}
+		.toolbar {
+			ToolbarItemGroup(placement: .keyboard) {
+				Spacer()
+				Button("Dismiss Keyboard") {
+					UIApplication.shared.sendAction(
+						#selector(UIResponder.resignFirstResponder),
+						to: nil,
+						from: nil,
+						for: nil
+					)
+				}
+			}
+		}
+
+
 	}
 
 	// MARK: - Create Form
@@ -173,16 +191,16 @@ struct CreateStrategyView: View {
 	// MARK: - Actions
 
 	private func saveStrategy() {
-		let strategy = UserStrategy(
+		let userStrat = UserStrategy(
 			name: strategyNameTrimmed,
 			buyIn: buyIn,
 			tableMinimum: tableMinimum,
-			steps: stepsTextTrimmed,
+			steps: stepsText,
 			notes: notesText,
 			credit: credit
 		)
 
-		store.add(strategy)
+		store.add(userStrat)
 		resetForm()
 		mode = .myStrategies
 	}
@@ -195,9 +213,32 @@ struct CreateStrategyView: View {
 		notesText = ""
 		credit = ""
 	}
+	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
+		let steps = user.steps
+			.split(separator: "\n")
+			.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+			.filter { !$0.isEmpty }
+			.map { "§STEP§" + $0 }
 
-	private func openStrategy(_ strategy: UserStrategy) {
-		// Next step: map to StrategyDetailView
+		return Strategy(
+			id: user.id,
+			name: user.name,
+			buyInText: user.buyIn,
+			tableMinText: user.tableMinimum,
+			buyInMin: 0,
+			buyInMax: Int.max,
+			tableMinMin: 0,
+			tableMinMax: Int.max,
+			notes: user.notes,
+			credit: user.credit,
+			steps: steps
+		)
+	}
+
+	@State private var selectedStrategy: Strategy?
+
+	private func openStrategy(_ userStrategy: UserStrategy) {
+		selectedStrategy = makeDisplayStrategy(from: userStrategy)
 	}
 
 	private func focusTitle() {

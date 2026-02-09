@@ -1,6 +1,6 @@
 import Foundation
 
-struct Strategy: Identifiable {
+struct Strategy: Identifiable, Hashable {
 	let id: UUID
 	
 	let name: String

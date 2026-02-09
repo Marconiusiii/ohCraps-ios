@@ -19,6 +19,55 @@ struct StrategyLoader {
 			.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 	}
 	
+	static func loadStrategy(fromHTML html: String) -> Strategy? {
+
+		// NAME
+		let name = extractTag("h3", from: html)
+
+		// METADATA
+		let buyInText = extractValue(
+			prefixes: ["Buy-in:", "Buy-In:", "Buy In:"],
+			from: html
+		)
+
+		let tableMinText = extractValue(
+			prefixes: ["Table Minimum:", "Table minimum:"],
+			from: html
+		)
+
+		let notes = extractValue(
+			prefixes: ["Notes:", "Note:"],
+			from: html,
+			allowMissing: true
+		)
+
+		let credit = extractValue(
+			prefixes: ["Credit:", "Credits:"],
+			from: html,
+			allowMissing: true
+		)
+
+		let (buyMin, buyMax) = parseRangeAllowingAny(buyInText)
+		let (tMin, tMax) = parseRangeAllowingAny(tableMinText)
+
+		let contentBlocks = extractContentBlocks(from: html)
+		let flattened = flattenBlocks(contentBlocks)
+
+		return Strategy(
+			id: UUID(),
+			name: name,
+			buyInText: buyInText,
+			tableMinText: tableMinText,
+			buyInMin: buyMin,
+			buyInMax: buyMax,
+			tableMinMin: tMin,
+			tableMinMax: tMax,
+			notes: notes,
+			credit: credit,
+			steps: flattened
+		)
+	}
+
 	static func loadStrategy(from url: URL) -> Strategy? {
 		guard let raw = try? String(contentsOf: url, encoding: .utf8) else {
 			return nil

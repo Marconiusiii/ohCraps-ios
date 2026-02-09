@@ -15,8 +15,10 @@ struct RootView: View {
 			case .rules:
 				RulesView()
 			case .createStrategy:
-				CreateStrategyView()
-					.environmentObject(userStrategyStore)
+				NavigationStack {
+					CreateStrategyView()
+				}
+				.environmentObject(userStrategyStore)
 			case .about:
 				AboutView()
 			}
