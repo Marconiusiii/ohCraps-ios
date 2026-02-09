@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct CreateStrategyView: View {
 
@@ -14,6 +15,15 @@ struct CreateStrategyView: View {
 		}
 	}
 
+	private enum Field: Hashable {
+		case name
+		case buyIn
+		case tableMin
+		case steps
+		case notes
+		case credit
+	}
+
 	@EnvironmentObject private var store: UserStrategyStore
 
 	@State private var mode: Mode = .create
@@ -26,6 +36,9 @@ struct CreateStrategyView: View {
 	@State private var credit = ""
 
 	@State private var showResetAlert = false
+	@State private var selectedStrategy: Strategy?
+
+	@FocusState private var focusField: Field?
 
 	@AccessibilityFocusState private var titleFocused: Bool
 	@AccessibilityFocusState private var resetButtonFocused: Bool
@@ -70,35 +83,62 @@ struct CreateStrategyView: View {
 			ToolbarItemGroup(placement: .keyboard) {
 				Spacer()
 				Button("Dismiss Keyboard") {
-					UIApplication.shared.sendAction(
-						#selector(UIResponder.resignFirstResponder),
-						to: nil,
-						from: nil,
-						for: nil
-					)
+					dismissKeyboard()
 				}
 			}
 		}
-
-
 	}
-
-	// MARK: - Create Form
 
 	private var createForm: some View {
 		VStack(alignment: .leading, spacing: 16) {
 
-			labeledField("Strategy Name", text: $strategyName)
-			labeledField("Buy-in Amount", text: $buyIn)
-			labeledField("Table Minimum", text: $tableMinimum)
+			labeledField(
+				"Strategy Name",
+				text: $strategyName,
+				field: .name,
+				next: .buyIn
+			)
+
+			labeledField(
+				"Buy-in Amount",
+				text: $buyIn,
+				field: .buyIn,
+				next: .tableMin
+			)
+
+			labeledField(
+				"Table Minimum",
+				text: $tableMinimum,
+				field: .tableMin,
+				next: .steps
+			)
 
 			Text("Make a numbered list of steps for your strategy.")
 				.font(AppTheme.bodyText)
 				.foregroundColor(AppTheme.textPrimary)
 
-			labeledMultilineField("Steps", text: $stepsText, minHeight: 180)
-			labeledMultilineField("Notes", text: $notesText, minHeight: 120)
-			labeledField("Credit", text: $credit)
+			labeledMultilineField(
+				"Steps",
+				text: $stepsText,
+				minHeight: 180,
+				field: .steps,
+				next: .notes
+			)
+
+			labeledMultilineField(
+				"Notes",
+				text: $notesText,
+				minHeight: 120,
+				field: .notes,
+				next: .credit
+			)
+
+			labeledField(
+				"Credit",
+				text: $credit,
+				field: .credit,
+				next: nil
+			)
 
 			HStack {
 				Button("Reset Form") {
@@ -127,8 +167,6 @@ struct CreateStrategyView: View {
 		}
 	}
 
-	// MARK: - My Strategies
-
 	private var myStrategiesList: some View {
 		VStack(alignment: .leading, spacing: 16) {
 
@@ -155,9 +193,12 @@ struct CreateStrategyView: View {
 		}
 	}
 
-	// MARK: - Field Helpers
-
-	private func labeledField(_ label: String, text: Binding<String>) -> some View {
+	private func labeledField(
+		_ label: String,
+		text: Binding<String>,
+		field: Field,
+		next: Field?
+	) -> some View {
 		VStack(alignment: .leading, spacing: 6) {
 			Text(label)
 				.font(AppTheme.sectionHeader)
@@ -167,13 +208,25 @@ struct CreateStrategyView: View {
 			TextField("", text: text)
 				.textFieldStyle(.roundedBorder)
 				.accessibilityLabel(label)
+				.focused($focusField, equals: field)
+				.submitLabel(next == nil ? .done : .next)
+				.onSubmit {
+					if let nextField = next {
+						focusField = nextField
+					} else {
+						focusField = nil
+						dismissKeyboard()
+					}
+				}
 		}
 	}
 
 	private func labeledMultilineField(
 		_ label: String,
 		text: Binding<String>,
-		minHeight: CGFloat
+		minHeight: CGFloat,
+		field: Field,
+		next: Field?
 	) -> some View {
 		VStack(alignment: .leading, spacing: 6) {
 			Text(label)
@@ -185,12 +238,23 @@ struct CreateStrategyView: View {
 				.textFieldStyle(.roundedBorder)
 				.frame(minHeight: minHeight, alignment: .top)
 				.accessibilityLabel(label)
+				.focused($focusField, equals: field)
+				.submitLabel(next == nil ? .done : .next)
+				.onSubmit {
+					if let nextField = next {
+						focusField = nextField
+					} else {
+						focusField = nil
+						dismissKeyboard()
+					}
+				}
 		}
 	}
 
-	// MARK: - Actions
-
 	private func saveStrategy() {
+		focusField = nil
+		dismissKeyboard()
+
 		let userStrat = UserStrategy(
 			name: strategyNameTrimmed,
 			buyIn: buyIn,
@@ -206,6 +270,9 @@ struct CreateStrategyView: View {
 	}
 
 	private func resetForm() {
+		focusField = nil
+		dismissKeyboard()
+
 		strategyName = ""
 		buyIn = ""
 		tableMinimum = ""
@@ -213,6 +280,7 @@ struct CreateStrategyView: View {
 		notesText = ""
 		credit = ""
 	}
+
 	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
 		let steps = user.steps
 			.split(separator: "\n")
@@ -235,10 +303,17 @@ struct CreateStrategyView: View {
 		)
 	}
 
-	@State private var selectedStrategy: Strategy?
-
 	private func openStrategy(_ userStrategy: UserStrategy) {
 		selectedStrategy = makeDisplayStrategy(from: userStrategy)
+	}
+
+	private func dismissKeyboard() {
+		UIApplication.shared.sendAction(
+			#selector(UIResponder.resignFirstResponder),
+			to: nil,
+			from: nil,
+			for: nil
+		)
 	}
 
 	private func focusTitle() {
