@@ -16,6 +16,8 @@ struct CreateStrategyView: View {
 	}
 	private enum ValidationError: Identifiable {
 		case missingName
+		case missingBuyIn
+		case missingTableMinimum
 		case missingSteps
 
 		var id: Self { self }
@@ -24,6 +26,10 @@ struct CreateStrategyView: View {
 			switch self {
 			case .missingName:
 				return "Please enter a strategy name."
+			case .missingBuyIn:
+				return "Please enter a buy-in amount."
+			case .missingTableMinimum:
+				return "Please enter a table minimum."
 			case .missingSteps:
 				return "Please enter at least one step for the strategy."
 			}
@@ -33,6 +39,10 @@ struct CreateStrategyView: View {
 			switch self {
 			case .missingName:
 				return .name
+			case .missingBuyIn:
+				return .buyIn
+			case .missingTableMinimum:
+				return .tableMin
 			case .missingSteps:
 				return .steps
 			}
@@ -61,6 +71,7 @@ struct CreateStrategyView: View {
 	@State private var stepsText = ""
 	@State private var notesText = ""
 	@State private var credit = ""
+	@State private var errorField: Field?
 
 	@State private var showResetAlert = false
 	@State private var selectedStrategy: Strategy?
@@ -211,6 +222,7 @@ struct CreateStrategyView: View {
 				title: Text("Missing Information"),
 				message: Text(error.message),
 				dismissButton: .default(Text("OK")) {
+					errorField = error.field
 					DispatchQueue.main.async {
 						focusField = error.field
 					}
@@ -255,6 +267,16 @@ struct CreateStrategyView: View {
 			return
 		}
 
+		if buyInTrimmed.isEmpty {
+			validationError = .missingBuyIn
+			return
+		}
+
+		if tableMinimumTrimmed.isEmpty {
+			validationError = .missingTableMinimum
+			return
+		}
+
 		if stepsTextTrimmed.isEmpty {
 			validationError = .missingSteps
 			return
@@ -280,14 +302,22 @@ struct CreateStrategyView: View {
 				.accessibilityLabel(label)
 				.focused($focusField, equals: field)
 				.submitLabel(next == nil ? .done : .next)
-				.onSubmit {
-					if let nextField = next {
-						focusField = nextField
-					} else {
-						focusField = nil
-						dismissKeyboard()
+				.overlay(
+					RoundedRectangle(cornerRadius: 6)
+						.stroke(
+							errorField == field ? Color.red : Color.clear,
+							lineWidth: 2
+						)
+				)
+				.accessibilityHint(
+					errorField == field ? "This field has an error." : ""
+				)
+				.onChange(of: text.wrappedValue) { _ in
+					if errorField == field {
+						errorField = nil
 					}
 				}
+
 		}
 	}
 
@@ -318,6 +348,22 @@ struct CreateStrategyView: View {
 						dismissKeyboard()
 					}
 				}
+				.overlay(
+					RoundedRectangle(cornerRadius: 6)
+						.stroke(
+							errorField == field ? Color.red : Color.clear,
+							lineWidth: 2
+						)
+				)
+				.accessibilityHint(
+					errorField == field ? "This field has an error." : ""
+				)
+				.onChange(of: text.wrappedValue) { _ in
+					if errorField == field {
+						errorField = nil
+					}
+				}
+
 		}
 	}
 
@@ -403,6 +449,13 @@ struct CreateStrategyView: View {
 
 	private var strategyNameTrimmed: String {
 		strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+	private var buyInTrimmed: String {
+		buyIn.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+
+	private var tableMinimumTrimmed: String {
+		tableMinimum.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 
 	private var stepsTextTrimmed: String {
