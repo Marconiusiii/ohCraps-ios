@@ -8,12 +8,10 @@ struct CreateStrategyView: View {
 	@State private var stepsText = ""
 	@State private var notesText = ""
 	@State private var credit = ""
-	@AccessibilityFocusState private var titleFocused: Bool
 
 	@State private var showResetConfirm = false
 
-	private let stepsPlaceholder = "1. Step 1\n2. Step 2\n3. Step 3..."
-	private let notesPlaceholder = "(optional)"
+	@AccessibilityFocusState private var titleFocused: Bool
 
 	var body: some View {
 		ZStack {
@@ -34,6 +32,7 @@ struct CreateStrategyView: View {
 							.font(AppTheme.sectionHeader)
 							.foregroundColor(AppTheme.textPrimary)
 							.accessibilityHidden(true)
+
 						TextField("", text: $strategyName)
 							.textFieldStyle(.roundedBorder)
 							.accessibilityLabel("Strategy Name")
@@ -71,7 +70,7 @@ struct CreateStrategyView: View {
 							.foregroundColor(AppTheme.textPrimary)
 							.accessibilityHidden(true)
 
-						TextField("", text: $stepsText, prompt: Text(stepsPlaceholder), axis: .vertical)
+						TextField("", text: $stepsText, axis: .vertical)
 							.textFieldStyle(.roundedBorder)
 							.lineLimit(2...20)
 							.frame(minHeight: 220, alignment: .top)
@@ -84,7 +83,7 @@ struct CreateStrategyView: View {
 							.foregroundColor(AppTheme.textPrimary)
 							.accessibilityHidden(true)
 
-						TextField("", text: $notesText, prompt: Text(notesPlaceholder), axis: .vertical)
+						TextField("", text: $notesText, axis: .vertical)
 							.textFieldStyle(.roundedBorder)
 							.lineLimit(2...10)
 							.frame(minHeight: 140, alignment: .top)
@@ -118,6 +117,9 @@ struct CreateStrategyView: View {
 				.padding()
 			}
 		}
+		.onAppear {
+			focusTitleOnce()
+		}
 		.confirmationDialog(
 			"Reset this form?",
 			isPresented: $showResetConfirm,
@@ -136,6 +138,12 @@ struct CreateStrategyView: View {
 
 	private var stepsTextTrimmed: String {
 		stepsText.trimmingCharacters(in: .whitespacesAndNewlines)
+	}
+
+	private func focusTitleOnce() {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+			titleFocused = true
+		}
 	}
 
 	private func saveStrategy() {
