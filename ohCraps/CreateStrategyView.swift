@@ -2,6 +2,15 @@ import SwiftUI
 
 struct CreateStrategyView: View {
 
+	private enum FocusField: Hashable {
+		case strategyName
+		case buyIn
+		case tableMinimum
+		case steps
+		case notes
+		case credit
+	}
+
 	@State private var strategyName = ""
 	@State private var buyIn = ""
 	@State private var tableMinimum = ""
@@ -9,16 +18,19 @@ struct CreateStrategyView: View {
 	@State private var notesText = ""
 	@State private var credit = ""
 
-	@State private var showResetConfirm = false
+	@State private var showResetAlert = false
+
+	@FocusState private var focusedField: FocusField?
 
 	@AccessibilityFocusState private var titleFocused: Bool
+	@AccessibilityFocusState private var resetButtonFocused: Bool
 
 	var body: some View {
 		ZStack {
 			FeltBackground()
 
 			ScrollView {
-				VStack(alignment: .leading, spacing: 20) {
+				VStack(alignment: .leading, spacing: 16) {
 
 					TopNavBar(
 						title: "Create Strategy",
@@ -27,110 +39,144 @@ struct CreateStrategyView: View {
 					)
 					.accessibilityFocused($titleFocused)
 
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Strategy Name")
-							.font(AppTheme.sectionHeader)
-							.foregroundColor(AppTheme.textPrimary)
-							.accessibilityHidden(true)
+					// Top fields
+					labeledTextField(
+						label: "Strategy Name",
+						text: $strategyName,
+						focus: .strategyName
+					)
 
-						TextField("", text: $strategyName)
-							.textFieldStyle(.roundedBorder)
-							.accessibilityLabel("Strategy Name")
-					}
+					labeledTextField(
+						label: "Buy-in Amount",
+						text: $buyIn,
+						focus: .buyIn
+					)
 
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Buy-in Amount")
-							.font(AppTheme.sectionHeader)
-							.foregroundColor(AppTheme.textPrimary)
-							.accessibilityHidden(true)
+					labeledTextField(
+						label: "Table Minimum",
+						text: $tableMinimum,
+						focus: .tableMinimum
+					)
 
-						TextField("", text: $buyIn)
-							.textFieldStyle(.roundedBorder)
-							.accessibilityLabel("Buy-in Amount")
-					}
-
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Table Minimum")
-							.font(AppTheme.sectionHeader)
-							.foregroundColor(AppTheme.textPrimary)
-							.accessibilityHidden(true)
-
-						TextField("", text: $tableMinimum)
-							.textFieldStyle(.roundedBorder)
-							.accessibilityLabel("Table Minimum")
-					}
-
+					// Instruction
 					Text("Make a numbered list of steps for your strategy.")
 						.font(AppTheme.bodyText)
 						.foregroundColor(AppTheme.textPrimary)
 
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Steps")
-							.font(AppTheme.sectionHeader)
-							.foregroundColor(AppTheme.textPrimary)
-							.accessibilityHidden(true)
+					// Steps
+					labeledMultilineField(
+						label: "Steps",
+						text: $stepsText,
+						focus: .steps,
+						minHeight: 180,
+						maxLines: 20
+					)
 
-						TextField("", text: $stepsText, axis: .vertical)
-							.textFieldStyle(.roundedBorder)
-							.lineLimit(2...20)
-							.frame(minHeight: 220, alignment: .top)
-							.accessibilityLabel("Steps")
-					}
+					// Notes
+					labeledMultilineField(
+						label: "Notes",
+						text: $notesText,
+						focus: .notes,
+						minHeight: 120,
+						maxLines: 10
+					)
 
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Notes")
-							.font(AppTheme.sectionHeader)
-							.foregroundColor(AppTheme.textPrimary)
-							.accessibilityHidden(true)
-
-						TextField("", text: $notesText, axis: .vertical)
-							.textFieldStyle(.roundedBorder)
-							.lineLimit(2...10)
-							.frame(minHeight: 140, alignment: .top)
-							.accessibilityLabel("Notes")
-					}
-
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Credit")
-							.font(AppTheme.sectionHeader)
-							.foregroundColor(AppTheme.textPrimary)
-							.accessibilityHidden(true)
-
-						TextField("", text: $credit)
-							.textFieldStyle(.roundedBorder)
-							.accessibilityLabel("Credit")
-					}
+					// Credit – tight spacing like top fields
+					labeledTextField(
+						label: "Credit",
+						text: $credit,
+						focus: .credit
+					)
 
 					HStack {
 						Button("Reset Form") {
-							showResetConfirm = true
+							dismissKeyboard()
+							showResetAlert = true
 						}
+						.accessibilityFocused($resetButtonFocused)
 
 						Spacer()
 
 						Button("Save Strategy") {
+							dismissKeyboard()
 							saveStrategy()
 						}
 						.disabled(strategyNameTrimmed.isEmpty || stepsTextTrimmed.isEmpty)
 					}
+					.padding(.top, 8)
 				}
 				.padding()
 			}
 		}
 		.onAppear {
-			focusTitleOnce()
+			focusTitle()
 		}
-		.confirmationDialog(
-			"Reset this form?",
-			isPresented: $showResetConfirm,
-			titleVisibility: .visible
-		) {
-			Button("Reset Form", role: .destructive) {
-				resetForm()
+		.toolbar {
+			ToolbarItemGroup(placement: .keyboard) {
+				Spacer()
+				Button("Dismiss") {
+					dismissKeyboard()
+				}
 			}
-			Button("Cancel", role: .cancel) {}
+		}
+		.alert("Reset this form?", isPresented: $showResetAlert) {
+
+			Button("Reset Form", role: .destructive) {
+				dismissKeyboard()
+				resetForm()
+				focusTitle()
+			}
+
+			Button("Cancel", role: .cancel) {
+				dismissKeyboard()
+				focusResetButton()
+			}
 		}
 	}
+
+	// MARK: - Field builders
+
+	private func labeledTextField(
+		label: String,
+		text: Binding<String>,
+		focus: FocusField
+	) -> some View {
+		VStack(alignment: .leading, spacing: 6) {
+			Text(label)
+				.font(AppTheme.sectionHeader)
+				.foregroundColor(AppTheme.textPrimary)
+				.accessibilityHidden(true)
+
+			TextField("", text: text)
+				.textFieldStyle(.roundedBorder)
+				.accessibilityLabel(label)
+				.focused($focusedField, equals: focus)
+		}
+	}
+
+	private func labeledMultilineField(
+		label: String,
+		text: Binding<String>,
+		focus: FocusField,
+		minHeight: CGFloat,
+		maxLines: Int
+	) -> some View {
+		VStack(alignment: .leading, spacing: 6) {
+			Text(label)
+				.font(AppTheme.sectionHeader)
+				.foregroundColor(AppTheme.textPrimary)
+				.accessibilityHidden(true)
+
+			TextField("", text: text, axis: .vertical)
+				.textFieldStyle(.roundedBorder)
+				.lineLimit(2...maxLines)
+				.frame(minHeight: minHeight, alignment: .top)
+				.accessibilityLabel(label)
+				.focused($focusedField, equals: focus)
+		}
+	}
+
+	// MARK: - Helpers
 
 	private var strategyNameTrimmed: String {
 		strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -140,9 +186,21 @@ struct CreateStrategyView: View {
 		stepsText.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 
-	private func focusTitleOnce() {
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+	private func dismissKeyboard() {
+		focusedField = nil
+	}
+
+	private func focusTitle() {
+		titleFocused = false
+		DispatchQueue.main.async {
 			titleFocused = true
+		}
+	}
+
+	private func focusResetButton() {
+		resetButtonFocused = false
+		DispatchQueue.main.async {
+			resetButtonFocused = true
 		}
 	}
 
