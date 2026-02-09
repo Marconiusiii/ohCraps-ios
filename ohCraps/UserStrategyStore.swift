@@ -19,7 +19,7 @@ final class UserStrategyStore: ObservableObject {
 	}
 
 	func update(
-		id: UserStrategy.ID,
+		id: UUID,
 		name: String,
 		buyIn: String,
 		tableMinimum: String,
@@ -33,7 +33,7 @@ final class UserStrategyStore: ObservableObject {
 
 		let existing = strategies[index]
 
-		let updated = UserStrategy(
+		strategies[index] = UserStrategy(
 			id: existing.id,
 			name: name,
 			buyIn: buyIn,
@@ -41,13 +41,12 @@ final class UserStrategyStore: ObservableObject {
 			steps: steps,
 			notes: notes,
 			credit: credit,
-			dateCreated: existing.dateCreated,
-			dateLastEdited: Date()
+			dateCreated: existing.dateCreated
 		)
 
-		strategies[index] = updated
 		save()
 	}
+
 
 	func delete(_ strategy: UserStrategy) {
 		strategies.removeAll { $0.id == strategy.id }

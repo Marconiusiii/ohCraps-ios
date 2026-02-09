@@ -73,6 +73,8 @@ struct CreateStrategyView: View {
 	@State private var notesText = ""
 	@State private var credit = ""
 	@State private var errorField: Field?
+	@State private var longPressStrategy: UserStrategy?
+	@State private var showStrategyActions = false
 
 	@State private var isEditing = false
 	@State private var editingStrategyID: UserStrategy.ID?
@@ -142,6 +144,40 @@ struct CreateStrategyView: View {
 				}
 			}
 		}
+		.confirmationDialog(
+			"Strategy Actions",
+			isPresented: $showStrategyActions,
+			titleVisibility: .visible
+		) {
+			if let strategy = longPressStrategy {
+
+				Button("Open") {
+					openStrategy(strategy)
+				}
+
+				Button("Edit") {
+					beginEditing(strategy)
+				}
+
+				Button("Duplicate") {
+					duplicateStrategy(strategy)
+				}
+
+				Button("Submit") {
+					// Submission flow will be wired later
+				}
+
+				Button("Delete", role: .destructive) {
+					// Delete flow will be wired later
+				}
+			}
+
+			Button("Cancel", role: .cancel) {
+				longPressStrategy = nil
+				showStrategyActions = false
+			}
+		}
+
 	}
 
 	private var createForm: some View {
@@ -270,9 +306,13 @@ struct CreateStrategyView: View {
 						VStack(alignment: .leading, spacing: 4) {
 							Text(strategy.name)
 								.font(AppTheme.cardTitle)
-							Text(listSubtitle(for: strategy))
+							Text(formattedDate(strategy.dateCreated))
 								.font(AppTheme.metadataText)
 						}
+					}
+					.onLongPressGesture {
+						longPressStrategy = strategy
+						showStrategyActions = true
 					}
 					.accessibilityFocused(
 						$focusedUserStrategyID,
@@ -533,12 +573,19 @@ struct CreateStrategyView: View {
 		selectedStrategy = makeDisplayStrategy(from: userStrategy)
 	}
 
-	private func listSubtitle(for strategy: UserStrategy) -> String {
-		if let edited = strategy.dateLastEdited {
-			return "Edited \(formattedDate(edited))"
-		}
-		return "Created \(formattedDate(strategy.dateCreated))"
+	private func duplicateStrategy(_ strategy: UserStrategy) {
+		let copy = UserStrategy(
+			name: strategy.name + " (Copy)",
+			buyIn: strategy.buyIn,
+			tableMinimum: strategy.tableMinimum,
+			steps: strategy.steps,
+			notes: strategy.notes,
+			credit: strategy.credit
+		)
+
+		store.add(copy)
 	}
+
 
 	private func dismissKeyboard() {
 		UIApplication.shared.sendAction(
