@@ -18,6 +18,37 @@ final class UserStrategyStore: ObservableObject {
 		save()
 	}
 
+	func update(
+		id: UserStrategy.ID,
+		name: String,
+		buyIn: String,
+		tableMinimum: String,
+		steps: String,
+		notes: String,
+		credit: String
+	) {
+		guard let index = strategies.firstIndex(where: { $0.id == id }) else {
+			return
+		}
+
+		let existing = strategies[index]
+
+		let updated = UserStrategy(
+			id: existing.id,
+			name: name,
+			buyIn: buyIn,
+			tableMinimum: tableMinimum,
+			steps: steps,
+			notes: notes,
+			credit: credit,
+			dateCreated: existing.dateCreated,
+			dateLastEdited: Date()
+		)
+
+		strategies[index] = updated
+		save()
+	}
+
 	func delete(_ strategy: UserStrategy) {
 		strategies.removeAll { $0.id == strategy.id }
 		save()

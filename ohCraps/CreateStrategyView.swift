@@ -14,6 +14,7 @@ struct CreateStrategyView: View {
 			}
 		}
 	}
+
 	private enum ValidationError: Identifiable {
 		case missingName
 		case missingBuyIn
@@ -73,6 +74,10 @@ struct CreateStrategyView: View {
 	@State private var credit = ""
 	@State private var errorField: Field?
 
+	@State private var isEditing = false
+	@State private var editingStrategyID: UserStrategy.ID?
+	@State private var showCancelEditAlert = false
+
 	@State private var showResetAlert = false
 	@State private var selectedStrategy: Strategy?
 
@@ -94,12 +99,14 @@ struct CreateStrategyView: View {
 				)
 				.accessibilityFocused($titleFocused)
 
-				Picker("Mode", selection: $mode) {
-					Text("Create Strategy").tag(Mode.create)
-					Text("My Strategies").tag(Mode.myStrategies)
+				if !isEditing {
+					Picker("Mode", selection: $mode) {
+						Text("Create Strategy").tag(Mode.create)
+						Text("My Strategies").tag(Mode.myStrategies)
+					}
+					.pickerStyle(.segmented)
+					.padding()
 				}
-				.pickerStyle(.segmented)
-				.padding()
 
 				ScrollView {
 					switch mode {
@@ -127,7 +134,6 @@ struct CreateStrategyView: View {
 				}
 			}
 		}
-
 		.toolbar {
 			ToolbarItemGroup(placement: .keyboard) {
 				Spacer()
@@ -200,10 +206,15 @@ struct CreateStrategyView: View {
 
 				Spacer()
 
-				Button("Save Strategy") {
+				if isEditing {
+					Button("Cancel Edit") {
+						showCancelEditAlert = true
+					}
+				}
+
+				Button(isEditing ? "Save Changes" : "Save Strategy") {
 					validateAndSave()
 				}
-//				.disabled(strategyNameTrimmed.isEmpty || stepsTextTrimmed.isEmpty)
 			}
 			.padding(.top, 8)
 		}
@@ -229,7 +240,18 @@ struct CreateStrategyView: View {
 				}
 			)
 		}
-
+		.alert("Cancel Editing?", isPresented: $showCancelEditAlert) {
+			Button("Yes, Cancel", role: .destructive) {
+				cancelEditing()
+			}
+			Button("No, Keep Editing", role: .cancel) {
+				DispatchQueue.main.async {
+					if focusField == nil {
+						focusField = .name
+					}
+				}
+			}
+		}
 	}
 
 	private var myStrategiesList: some View {
@@ -248,7 +270,7 @@ struct CreateStrategyView: View {
 						VStack(alignment: .leading, spacing: 4) {
 							Text(strategy.name)
 								.font(AppTheme.cardTitle)
-							Text(formattedDate(strategy.dateCreated))
+							Text(listSubtitle(for: strategy))
 								.font(AppTheme.metadataText)
 						}
 					}
@@ -256,11 +278,15 @@ struct CreateStrategyView: View {
 						$focusedUserStrategyID,
 						equals: strategy.id
 					)
+					.accessibilityAction(named: Text("Edit")) {
+						beginEditing(strategy)
+					}
 				}
 				.padding()
 			}
 		}
 	}
+
 	private func validateAndSave() {
 		errorField = nil
 
@@ -304,6 +330,14 @@ struct CreateStrategyView: View {
 				.accessibilityLabel(label)
 				.focused($focusField, equals: field)
 				.submitLabel(next == nil ? .done : .next)
+				.onSubmit {
+					if let nextField = next {
+						focusField = nextField
+					} else {
+						focusField = nil
+						dismissKeyboard()
+					}
+				}
 				.overlay(
 					RoundedRectangle(cornerRadius: 6)
 						.stroke(
@@ -325,7 +359,6 @@ struct CreateStrategyView: View {
 					.font(AppTheme.metadataText)
 					.foregroundColor(.red)
 			}
-
 		}
 	}
 
@@ -377,7 +410,6 @@ struct CreateStrategyView: View {
 					.font(AppTheme.metadataText)
 					.foregroundColor(.red)
 			}
-
 		}
 	}
 
@@ -388,11 +420,26 @@ struct CreateStrategyView: View {
 		focusField = nil
 		dismissKeyboard()
 
+		if isEditing, let id = editingStrategyID {
+			store.update(
+				id: id,
+				name: strategyNameTrimmed,
+				buyIn: buyInTrimmed,
+				tableMinimum: tableMinimumTrimmed,
+				steps: stepsTextTrimmed,
+				notes: notesText,
+				credit: credit
+			)
+
+			finishEditingAndReturn(focusID: id)
+			return
+		}
+
 		let userStrat = UserStrategy(
 			name: strategyNameTrimmed,
-			buyIn: buyIn,
-			tableMinimum: tableMinimum,
-			steps: stepsText,
+			buyIn: buyInTrimmed,
+			tableMinimum: tableMinimumTrimmed,
+			steps: stepsTextTrimmed,
 			notes: notesText,
 			credit: credit
 		)
@@ -400,6 +447,10 @@ struct CreateStrategyView: View {
 		store.add(userStrat)
 		resetForm()
 		mode = .myStrategies
+
+		DispatchQueue.main.async {
+			focusedUserStrategyID = userStrat.id
+		}
 	}
 
 	private func resetForm() {
@@ -412,6 +463,47 @@ struct CreateStrategyView: View {
 		stepsText = ""
 		notesText = ""
 		credit = ""
+	}
+
+	private func cancelEditing() {
+		if let id = editingStrategyID {
+			finishEditingAndReturn(focusID: id)
+		} else {
+			isEditing = false
+			editingStrategyID = nil
+			resetForm()
+			mode = .myStrategies
+			focusTitle()
+		}
+	}
+
+	private func finishEditingAndReturn(focusID: UserStrategy.ID) {
+		isEditing = false
+		editingStrategyID = nil
+		resetForm()
+		mode = .myStrategies
+
+		DispatchQueue.main.async {
+			focusedUserStrategyID = focusID
+		}
+	}
+
+	private func beginEditing(_ strategy: UserStrategy) {
+		isEditing = true
+		editingStrategyID = strategy.id
+
+		strategyName = strategy.name
+		buyIn = strategy.buyIn
+		tableMinimum = strategy.tableMinimum
+		stepsText = strategy.steps
+		notesText = strategy.notes
+		credit = strategy.credit
+
+		mode = .create
+
+		DispatchQueue.main.async {
+			focusField = .name
+		}
 	}
 
 	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
@@ -441,6 +533,13 @@ struct CreateStrategyView: View {
 		selectedStrategy = makeDisplayStrategy(from: userStrategy)
 	}
 
+	private func listSubtitle(for strategy: UserStrategy) -> String {
+		if let edited = strategy.dateLastEdited {
+			return "Edited \(formattedDate(edited))"
+		}
+		return "Created \(formattedDate(strategy.dateCreated))"
+	}
+
 	private func dismissKeyboard() {
 		UIApplication.shared.sendAction(
 			#selector(UIResponder.resignFirstResponder),
@@ -467,6 +566,7 @@ struct CreateStrategyView: View {
 	private var strategyNameTrimmed: String {
 		strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
+
 	private var buyInTrimmed: String {
 		buyIn.trimmingCharacters(in: .whitespacesAndNewlines)
 	}

@@ -9,7 +9,8 @@ struct UserStrategy: Identifiable, Codable {
 	let notes: String
 	let credit: String
 	let dateCreated: Date
-	
+	let dateLastEdited: Date?
+
 	init(
 		id: UUID = UUID(),
 		name: String,
@@ -18,7 +19,8 @@ struct UserStrategy: Identifiable, Codable {
 		steps: String,
 		notes: String,
 		credit: String,
-		dateCreated: Date = Date()
+		dateCreated: Date = Date(),
+		dateLastEdited: Date? = nil
 	) {
 		self.id = id
 		self.name = name
@@ -28,5 +30,7 @@ struct UserStrategy: Identifiable, Codable {
 		self.notes = notes
 		self.credit = credit
 		self.dateCreated = dateCreated
+		self.dateLastEdited = dateLastEdited
 	}
 }
+
