@@ -75,6 +75,7 @@ struct CreateStrategyView: View {
 	@State private var errorField: Field?
 	@State private var longPressStrategy: UserStrategy?
 	@State private var showStrategyActions = false
+	@State private var didTriggerLongPress = false
 
 	@State private var isEditing = false
 	@State private var editingStrategyID: UserStrategy.ID?
@@ -175,6 +176,7 @@ struct CreateStrategyView: View {
 			Button("Cancel", role: .cancel) {
 				longPressStrategy = nil
 				showStrategyActions = false
+				didTriggerLongPress = false
 			}
 		}
 
@@ -292,7 +294,6 @@ struct CreateStrategyView: View {
 
 	private var myStrategiesList: some View {
 		VStack(alignment: .leading, spacing: 16) {
-
 			if store.strategies.isEmpty {
 				Text("You haven't created any strategies yet.")
 					.font(AppTheme.bodyText)
@@ -301,25 +302,51 @@ struct CreateStrategyView: View {
 			} else {
 				ForEach(store.strategies) { strategy in
 					Button {
+						if didTriggerLongPress {
+							didTriggerLongPress = false
+							return
+						}
 						openStrategy(strategy)
 					} label: {
 						VStack(alignment: .leading, spacing: 4) {
 							Text(strategy.name)
 								.font(AppTheme.cardTitle)
+
 							Text(formattedDate(strategy.dateCreated))
 								.font(AppTheme.metadataText)
 						}
 					}
-					.onLongPressGesture {
-						longPressStrategy = strategy
-						showStrategyActions = true
-					}
+					.buttonStyle(.plain)
 					.accessibilityFocused(
 						$focusedUserStrategyID,
 						equals: strategy.id
 					)
+					.highPriorityGesture(
+						LongPressGesture(minimumDuration: 0.45, maximumDistance: 12)
+							.onEnded { _ in
+								didTriggerLongPress = true
+								longPressStrategy = strategy
+								showStrategyActions = true
+							}
+					)
+					.accessibilityAction(named: Text("Open")) {
+						openStrategy(strategy)
+					}
 					.accessibilityAction(named: Text("Edit")) {
 						beginEditing(strategy)
+					}
+					.accessibilityAction(named: Text("Duplicate")) {
+						duplicateStrategy(strategy)
+					}
+					.accessibilityAction(named: Text("Submit")) {
+						// Submission flow will be wired later
+						longPressStrategy = strategy
+						showStrategyActions = true
+					}
+					.accessibilityAction(named: Text("Delete")) {
+						// Delete flow will be wired later
+						longPressStrategy = strategy
+						showStrategyActions = true
 					}
 				}
 				.padding()
