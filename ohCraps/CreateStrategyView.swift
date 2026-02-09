@@ -146,7 +146,7 @@ struct CreateStrategyView: View {
 			}
 		}
 		.confirmationDialog(
-			"Strategy Actions",
+			longPressStrategyTitle,
 			isPresented: $showStrategyActions,
 			titleVisibility: .visible
 		) {
@@ -180,6 +180,13 @@ struct CreateStrategyView: View {
 			}
 		}
 
+	}
+
+	private var longPressStrategyTitle: String {
+		guard let strategy = longPressStrategy else {
+			return "Strategy Actions"
+		}
+		return "\(strategy.name) Actions"
 	}
 
 	private var createForm: some View {
@@ -329,22 +336,20 @@ struct CreateStrategyView: View {
 								showStrategyActions = true
 							}
 					)
-					.accessibilityAction(named: Text("Open")) {
+					.accessibilityAction(named: Text("Open \(strategy.name)")) {
 						openStrategy(strategy)
 					}
-					.accessibilityAction(named: Text("Edit")) {
+					.accessibilityAction(named: Text("Edit \(strategy.name)")) {
 						beginEditing(strategy)
 					}
-					.accessibilityAction(named: Text("Duplicate")) {
+					.accessibilityAction(named: Text("Duplicate \(strategy.name)")) {
 						duplicateStrategy(strategy)
 					}
-					.accessibilityAction(named: Text("Submit")) {
-						// Submission flow will be wired later
+					.accessibilityAction(named: Text("Submit \(strategy.name)")) {
 						longPressStrategy = strategy
 						showStrategyActions = true
 					}
-					.accessibilityAction(named: Text("Delete")) {
-						// Delete flow will be wired later
+					.accessibilityAction(named: Text("Delete \(strategy.name)")) {
 						longPressStrategy = strategy
 						showStrategyActions = true
 					}
