@@ -14,6 +14,30 @@ struct CreateStrategyView: View {
 			}
 		}
 	}
+	private enum ValidationError: Identifiable {
+		case missingName
+		case missingSteps
+
+		var id: Self { self }
+
+		var message: String {
+			switch self {
+			case .missingName:
+				return "Please enter a strategy name."
+			case .missingSteps:
+				return "Please enter at least one step for the strategy."
+			}
+		}
+
+		var field: Field {
+			switch self {
+			case .missingName:
+				return .name
+			case .missingSteps:
+				return .steps
+			}
+		}
+	}
 
 	private enum Field: Hashable {
 		case name
@@ -27,6 +51,9 @@ struct CreateStrategyView: View {
 	@EnvironmentObject private var store: UserStrategyStore
 
 	@State private var mode: Mode = .create
+	@State private var lastOpenedStrategyID: UserStrategy.ID?
+	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
+	@State private var validationError: ValidationError?
 
 	@State private var strategyName = ""
 	@State private var buyIn = ""
@@ -78,7 +105,18 @@ struct CreateStrategyView: View {
 		}
 		.navigationDestination(item: $selectedStrategy) { strategy in
 			StrategyDetailView(strategy: strategy)
+				.onDisappear {
+					selectedStrategy = nil
+				}
 		}
+		.onChange(of: selectedStrategy) { newValue in
+			if newValue == nil, let lastID = lastOpenedStrategyID {
+				DispatchQueue.main.async {
+					focusedUserStrategyID = lastID
+				}
+			}
+		}
+
 		.toolbar {
 			ToolbarItemGroup(placement: .keyboard) {
 				Spacer()
@@ -91,6 +129,9 @@ struct CreateStrategyView: View {
 
 	private var createForm: some View {
 		VStack(alignment: .leading, spacing: 16) {
+			Text("All fields are required except for Notes and Credit.")
+				.font(AppTheme.bodyText)
+				.foregroundColor(AppTheme.textPrimary)
 
 			labeledField(
 				"Strategy Name",
@@ -149,9 +190,9 @@ struct CreateStrategyView: View {
 				Spacer()
 
 				Button("Save Strategy") {
-					saveStrategy()
+					validateAndSave()
 				}
-				.disabled(strategyNameTrimmed.isEmpty || stepsTextTrimmed.isEmpty)
+//				.disabled(strategyNameTrimmed.isEmpty || stepsTextTrimmed.isEmpty)
 			}
 			.padding(.top, 8)
 		}
@@ -165,6 +206,18 @@ struct CreateStrategyView: View {
 				focusResetButton()
 			}
 		}
+		.alert(item: $validationError) { error in
+			Alert(
+				title: Text("Missing Information"),
+				message: Text(error.message),
+				dismissButton: .default(Text("OK")) {
+					DispatchQueue.main.async {
+						focusField = error.field
+					}
+				}
+			)
+		}
+
 	}
 
 	private var myStrategiesList: some View {
@@ -187,10 +240,27 @@ struct CreateStrategyView: View {
 								.font(AppTheme.metadataText)
 						}
 					}
+					.accessibilityFocused(
+						$focusedUserStrategyID,
+						equals: strategy.id
+					)
 				}
 				.padding()
 			}
 		}
+	}
+	private func validateAndSave() {
+		if strategyNameTrimmed.isEmpty {
+			validationError = .missingName
+			return
+		}
+
+		if stepsTextTrimmed.isEmpty {
+			validationError = .missingSteps
+			return
+		}
+
+		saveStrategy()
 	}
 
 	private func labeledField(
@@ -304,6 +374,7 @@ struct CreateStrategyView: View {
 	}
 
 	private func openStrategy(_ userStrategy: UserStrategy) {
+		lastOpenedStrategyID = userStrategy.id
 		selectedStrategy = makeDisplayStrategy(from: userStrategy)
 	}
 
