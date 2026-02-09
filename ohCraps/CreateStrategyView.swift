@@ -262,6 +262,8 @@ struct CreateStrategyView: View {
 		}
 	}
 	private func validateAndSave() {
+		errorField = nil
+
 		if strategyNameTrimmed.isEmpty {
 			validationError = .missingName
 			return
@@ -318,6 +320,12 @@ struct CreateStrategyView: View {
 					}
 				}
 
+			if errorField == field {
+				Text("Required.")
+					.font(AppTheme.metadataText)
+					.foregroundColor(.red)
+			}
+
 		}
 	}
 
@@ -364,10 +372,19 @@ struct CreateStrategyView: View {
 					}
 				}
 
+			if errorField == field {
+				Text("Required.")
+					.font(AppTheme.metadataText)
+					.foregroundColor(.red)
+			}
+
 		}
 	}
 
 	private func saveStrategy() {
+		errorField = nil
+		validationError = nil
+
 		focusField = nil
 		dismissKeyboard()
 

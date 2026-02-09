@@ -9,7 +9,7 @@ struct UserStrategy: Identifiable, Codable {
 	let notes: String
 	let credit: String
 	let dateCreated: Date
-
+	
 	init(
 		id: UUID = UUID(),
 		name: String,
