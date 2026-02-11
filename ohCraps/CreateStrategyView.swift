@@ -6,13 +6,15 @@ struct CreateStrategyView: View {
 	enum Mode: Int, CaseIterable {
 		case create
 		case myStrategies
+	}
 
-		var title: String {
-			switch self {
-			case .create: return "Create Strategy"
-			case .myStrategies: return "My Strategies"
-			}
-		}
+	private enum Field: Hashable {
+		case name
+		case buyIn
+		case tableMin
+		case steps
+		case notes
+		case credit
 	}
 
 	private enum ValidationError: Identifiable {
@@ -38,33 +40,19 @@ struct CreateStrategyView: View {
 
 		var field: Field {
 			switch self {
-			case .missingName:
-				return .name
-			case .missingBuyIn:
-				return .buyIn
-			case .missingTableMinimum:
-				return .tableMin
-			case .missingSteps:
-				return .steps
+			case .missingName: return .name
+			case .missingBuyIn: return .buyIn
+			case .missingTableMinimum: return .tableMin
+			case .missingSteps: return .steps
 			}
 		}
-	}
-
-	private enum Field: Hashable {
-		case name
-		case buyIn
-		case tableMin
-		case steps
-		case notes
-		case credit
 	}
 
 	@EnvironmentObject private var store: UserStrategyStore
 
 	@State private var mode: Mode = .create
-	@State private var lastOpenedStrategyID: UserStrategy.ID?
-	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
-	@State private var validationError: ValidationError?
+	@State private var isEditing = false
+	@State private var editingStrategyID: UserStrategy.ID?
 
 	@State private var strategyName = ""
 	@State private var buyIn = ""
@@ -72,22 +60,29 @@ struct CreateStrategyView: View {
 	@State private var stepsText = ""
 	@State private var notesText = ""
 	@State private var credit = ""
+
 	@State private var errorField: Field?
+	@State private var validationError: ValidationError?
+
 	@State private var longPressStrategy: UserStrategy?
 	@State private var showStrategyActions = false
-	@State private var didTriggerLongPress = false
 
-	@State private var isEditing = false
-	@State private var editingStrategyID: UserStrategy.ID?
-	@State private var showCancelEditAlert = false
+	@State private var submittingStrategy: UserStrategy?
+	@State private var showSubmitAlert = false
+	@State private var showMailComposer = false
 
-	@State private var showResetAlert = false
 	@State private var selectedStrategy: Strategy?
+	@State private var lastOpenedStrategyID: UserStrategy.ID?
 
 	@FocusState private var focusField: Field?
-
+	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
 	@AccessibilityFocusState private var titleFocused: Bool
-	@AccessibilityFocusState private var resetButtonFocused: Bool
+	private var strategyActionsTitle: String {
+		if let strategy = longPressStrategy {
+			return "\(strategy.name) Actions"
+		}
+		return "Strategy Actions"
+	}
 
 	var body: some View {
 		ZStack {
@@ -121,32 +116,14 @@ struct CreateStrategyView: View {
 				}
 			}
 		}
-		.onAppear {
-			focusTitle()
-		}
+		.onAppear { focusTitle() }
+
 		.navigationDestination(item: $selectedStrategy) { strategy in
 			StrategyDetailView(strategy: strategy)
-				.onDisappear {
-					selectedStrategy = nil
-				}
 		}
-		.onChange(of: selectedStrategy) { newValue in
-			if newValue == nil, let lastID = lastOpenedStrategyID {
-				DispatchQueue.main.async {
-					focusedUserStrategyID = lastID
-				}
-			}
-		}
-		.toolbar {
-			ToolbarItemGroup(placement: .keyboard) {
-				Spacer()
-				Button("Dismiss Keyboard") {
-					dismissKeyboard()
-				}
-			}
-		}
+
 		.confirmationDialog(
-			longPressStrategyTitle,
+			strategyActionsTitle,
 			isPresented: $showStrategyActions,
 			titleVisibility: .visible
 		) {
@@ -165,224 +142,217 @@ struct CreateStrategyView: View {
 				}
 
 				Button("Submit") {
-					// Submission flow will be wired later
+					beginSubmit(strategy)
 				}
 
-				Button("Delete", role: .destructive) {
-					// Delete flow will be wired later
+				Button("Delete \(strategy.name)", role: .destructive) {
+					beginDelete(strategy)
 				}
 			}
 
-			Button("Cancel", role: .cancel) {
+			Button("Dismiss", role: .cancel) {
 				longPressStrategy = nil
 				showStrategyActions = false
-				didTriggerLongPress = false
 			}
 		}
 
+		.alert(
+			"Submit \(submittingStrategy?.name ?? "") to Oh Craps?",
+			isPresented: $showSubmitAlert
+		) {
+			Button("Yes, Submit") {
+				showSubmitAlert = false
+				showMailComposer = true
+			}
+			Button("Cancel", role: .cancel) {
+				submittingStrategy = nil
+			}
+		} message: {
+			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
+		}
+
+		.sheet(isPresented: $showMailComposer) {
+			if let strategy = submittingStrategy {
+				MailComposer(
+					recipient: "marco@marconius.com",
+					subject: "Oh Craps Strategy Submission: \(strategy.name)",
+					body: submissionEmailBody(for: strategy)
+				)
+			}
+		}
 	}
 
-	private var longPressStrategyTitle: String {
-		guard let strategy = longPressStrategy else {
-			return "Strategy Actions"
-		}
-		return "\(strategy.name) Actions"
-	}
+	// MARK: - Create Form
 
 	private var createForm: some View {
 		VStack(alignment: .leading, spacing: 16) {
+
 			Text("All fields are required except for Notes and Credit.")
 				.font(AppTheme.bodyText)
-				.foregroundColor(AppTheme.textPrimary)
 
-			labeledField(
-				"Strategy Name",
-				text: $strategyName,
-				field: .name,
-				next: .buyIn
-			)
-
-			labeledField(
-				"Buy-in Amount",
-				text: $buyIn,
-				field: .buyIn,
-				next: .tableMin
-			)
-
-			labeledField(
-				"Table Minimum",
-				text: $tableMinimum,
-				field: .tableMin,
-				next: .steps
-			)
+			labeledField("Strategy Name", text: $strategyName, field: .name, next: .buyIn)
+			labeledField("Buy-in Amount", text: $buyIn, field: .buyIn, next: .tableMin)
+			labeledField("Table Minimum", text: $tableMinimum, field: .tableMin, next: .steps)
 
 			Text("Make a numbered list of steps for your strategy.")
-				.font(AppTheme.bodyText)
-				.foregroundColor(AppTheme.textPrimary)
 
-			labeledMultilineField(
-				"Steps",
-				text: $stepsText,
-				minHeight: 180,
-				field: .steps,
-				next: .notes
-			)
+			labeledMultilineField("Steps", text: $stepsText, field: .steps, next: .notes)
+			labeledMultilineField("Notes", text: $notesText, field: .notes, next: .credit)
+			labeledField("Credit", text: $credit, field: .credit, next: nil)
 
-			labeledMultilineField(
-				"Notes",
-				text: $notesText,
-				minHeight: 120,
-				field: .notes,
-				next: .credit
-			)
-
-			labeledField(
-				"Credit",
-				text: $credit,
-				field: .credit,
-				next: nil
-			)
-
-			HStack {
-				Button("Reset Form") {
-					showResetAlert = true
-				}
-				.accessibilityFocused($resetButtonFocused)
-
-				Spacer()
-
-				if isEditing {
-					Button("Cancel Edit") {
-						showCancelEditAlert = true
-					}
-				}
-
-				Button(isEditing ? "Save Changes" : "Save Strategy") {
-					validateAndSave()
-				}
+			Button(isEditing ? "Save Changes" : "Save Strategy") {
+				validateAndSave()
 			}
-			.padding(.top, 8)
 		}
 		.padding()
-		.alert("Reset this form?", isPresented: $showResetAlert) {
-			Button("Reset Form", role: .destructive) {
-				resetForm()
-				focusTitle()
-			}
-			Button("Cancel", role: .cancel) {
-				focusResetButton()
-			}
-		}
-		.alert(item: $validationError) { error in
-			Alert(
-				title: Text("Missing Information"),
-				message: Text(error.message),
-				dismissButton: .default(Text("OK")) {
-					errorField = error.field
-					DispatchQueue.main.async {
-						focusField = error.field
-					}
-				}
-			)
-		}
-		.alert("Cancel Editing?", isPresented: $showCancelEditAlert) {
-			Button("Yes, Cancel", role: .destructive) {
-				cancelEditing()
-			}
-			Button("No, Keep Editing", role: .cancel) {
-				DispatchQueue.main.async {
-					if focusField == nil {
-						focusField = .name
-					}
-				}
-			}
-		}
 	}
+
+	// MARK: - My Strategies
 
 	private var myStrategiesList: some View {
 		VStack(alignment: .leading, spacing: 16) {
-			if store.strategies.isEmpty {
-				Text("You haven't created any strategies yet.")
-					.font(AppTheme.bodyText)
-					.foregroundColor(AppTheme.textPrimary)
-					.padding()
-			} else {
-				ForEach(store.strategies) { strategy in
-					Button {
-						if didTriggerLongPress {
-							didTriggerLongPress = false
-							return
-						}
-						openStrategy(strategy)
-					} label: {
-						VStack(alignment: .leading, spacing: 4) {
-							Text(strategy.name)
-								.font(AppTheme.cardTitle)
 
-							Text(formattedDate(strategy.dateCreated))
-								.font(AppTheme.metadataText)
-						}
-					}
-					.buttonStyle(.plain)
-					.accessibilityFocused(
-						$focusedUserStrategyID,
-						equals: strategy.id
-					)
-					.highPriorityGesture(
-						LongPressGesture(minimumDuration: 0.45, maximumDistance: 12)
-							.onEnded { _ in
-								didTriggerLongPress = true
-								longPressStrategy = strategy
-								showStrategyActions = true
-							}
-					)
-					.accessibilityAction(named: Text("Open \(strategy.name)")) {
+			ForEach(store.strategies) { strategy in
+				StrategyRow(
+					strategy: strategy,
+					open: {
 						openStrategy(strategy)
-					}
-					.accessibilityAction(named: Text("Edit \(strategy.name)")) {
+					},
+					edit: {
 						beginEditing(strategy)
-					}
-					.accessibilityAction(named: Text("Duplicate \(strategy.name)")) {
+					},
+					duplicate: {
 						duplicateStrategy(strategy)
-					}
-					.accessibilityAction(named: Text("Submit \(strategy.name)")) {
+					},
+					submit: {
+						beginSubmit(strategy)
+					},
+					showActions: {
 						longPressStrategy = strategy
 						showStrategyActions = true
 					}
-					.accessibilityAction(named: Text("Delete \(strategy.name)")) {
-						longPressStrategy = strategy
-						showStrategyActions = true
-					}
-				}
-				.padding()
+				)
 			}
 		}
+		.padding()
+	}
+
+	// MARK: - Actions
+	private func beginDelete(_ strategy: UserStrategy) {
+		store.delete(strategy)
+		longPressStrategy = nil
+		showStrategyActions = false
 	}
 
 	private func validateAndSave() {
-		errorField = nil
-
-		if strategyNameTrimmed.isEmpty {
+		if strategyName.isEmpty {
 			validationError = .missingName
+			focusField = .name
 			return
 		}
-
-		if buyInTrimmed.isEmpty {
+		if buyIn.isEmpty {
 			validationError = .missingBuyIn
+			focusField = .buyIn
 			return
 		}
-
-		if tableMinimumTrimmed.isEmpty {
+		if tableMinimum.isEmpty {
 			validationError = .missingTableMinimum
+			focusField = .tableMin
 			return
 		}
-
-		if stepsTextTrimmed.isEmpty {
+		if stepsText.isEmpty {
 			validationError = .missingSteps
+			focusField = .steps
 			return
 		}
-
 		saveStrategy()
+	}
+
+	private func saveStrategy() {
+		let strategy = UserStrategy(
+			name: strategyName,
+			buyIn: buyIn,
+			tableMinimum: tableMinimum,
+			steps: stepsText,
+			notes: notesText,
+			credit: credit
+		)
+
+		store.add(strategy)
+		mode = .myStrategies
+	}
+
+	private func beginSubmit(_ strategy: UserStrategy) {
+		submittingStrategy = strategy
+		showSubmitAlert = true
+	}
+
+	private func openStrategy(_ strategy: UserStrategy) {
+		selectedStrategy = makeDisplayStrategy(from: strategy)
+	}
+
+	private func duplicateStrategy(_ strategy: UserStrategy) {
+		store.add(
+			UserStrategy(
+				name: strategy.name + " (Copy)",
+				buyIn: strategy.buyIn,
+				tableMinimum: strategy.tableMinimum,
+				steps: strategy.steps,
+				notes: strategy.notes,
+				credit: strategy.credit
+			)
+		)
+	}
+
+	private func beginEditing(_ strategy: UserStrategy) {
+		isEditing = true
+		mode = .create
+		strategyName = strategy.name
+		buyIn = strategy.buyIn
+		tableMinimum = strategy.tableMinimum
+		stepsText = strategy.steps
+		notesText = strategy.notes
+		credit = strategy.credit
+	}
+
+	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
+		Strategy(
+			id: user.id,
+			name: user.name,
+			buyInText: user.buyIn,
+			tableMinText: user.tableMinimum,
+			buyInMin: 0,
+			buyInMax: .max,
+			tableMinMin: 0,
+			tableMinMax: .max,
+			notes: user.notes,
+			credit: user.credit,
+			steps: user.steps
+				.split(separator: "\n")
+				.map { "§STEP§" + $0 }
+		)
+	}
+
+	private func submissionEmailBody(for strategy: UserStrategy) -> String {
+		"""
+		Strategy Name:
+		\(strategy.name)
+
+		Buy-in:
+		\(strategy.buyIn)
+
+		Table Minimum:
+		\(strategy.tableMinimum)
+
+		Steps:
+		\(strategy.steps)
+
+		Notes:
+		\(strategy.notes)
+
+		Credit:
+		\(strategy.credit)
+		"""
 	}
 
 	private func labeledField(
@@ -391,277 +361,74 @@ struct CreateStrategyView: View {
 		field: Field,
 		next: Field?
 	) -> some View {
-		VStack(alignment: .leading, spacing: 6) {
-			Text(label)
-				.font(AppTheme.sectionHeader)
-				.foregroundColor(AppTheme.textPrimary)
-				.accessibilityHidden(true)
-
-			TextField("", text: text)
-				.textFieldStyle(.roundedBorder)
-				.accessibilityLabel(label)
-				.focused($focusField, equals: field)
-				.submitLabel(next == nil ? .done : .next)
-				.onSubmit {
-					if let nextField = next {
-						focusField = nextField
-					} else {
-						focusField = nil
-						dismissKeyboard()
-					}
-				}
-				.overlay(
-					RoundedRectangle(cornerRadius: 6)
-						.stroke(
-							errorField == field ? Color.red : Color.clear,
-							lineWidth: 2
-						)
-				)
-				.accessibilityHint(
-					errorField == field ? "This field has an error." : ""
-				)
-				.onChange(of: text.wrappedValue) { _ in
-					if errorField == field {
-						errorField = nil
-					}
-				}
-
-			if errorField == field {
-				Text("Required.")
-					.font(AppTheme.metadataText)
-					.foregroundColor(.red)
-			}
-		}
+		TextField(label, text: text)
+			.focused($focusField, equals: field)
 	}
 
 	private func labeledMultilineField(
 		_ label: String,
 		text: Binding<String>,
-		minHeight: CGFloat,
 		field: Field,
 		next: Field?
 	) -> some View {
-		VStack(alignment: .leading, spacing: 6) {
-			Text(label)
-				.font(AppTheme.sectionHeader)
-				.foregroundColor(AppTheme.textPrimary)
-				.accessibilityHidden(true)
-
-			TextField("", text: text, axis: .vertical)
-				.textFieldStyle(.roundedBorder)
-				.frame(minHeight: minHeight, alignment: .top)
-				.accessibilityLabel(label)
-				.focused($focusField, equals: field)
-				.submitLabel(next == nil ? .done : .next)
-				.onSubmit {
-					if let nextField = next {
-						focusField = nextField
-					} else {
-						focusField = nil
-						dismissKeyboard()
-					}
-				}
-				.overlay(
-					RoundedRectangle(cornerRadius: 6)
-						.stroke(
-							errorField == field ? Color.red : Color.clear,
-							lineWidth: 2
-						)
-				)
-				.accessibilityHint(
-					errorField == field ? "This field has an error." : ""
-				)
-				.onChange(of: text.wrappedValue) { _ in
-					if errorField == field {
-						errorField = nil
-					}
-				}
-
-			if errorField == field {
-				Text("Required.")
-					.font(AppTheme.metadataText)
-					.foregroundColor(.red)
-			}
-		}
-	}
-
-	private func saveStrategy() {
-		errorField = nil
-		validationError = nil
-
-		focusField = nil
-		dismissKeyboard()
-
-		if isEditing, let id = editingStrategyID {
-			store.update(
-				id: id,
-				name: strategyNameTrimmed,
-				buyIn: buyInTrimmed,
-				tableMinimum: tableMinimumTrimmed,
-				steps: stepsTextTrimmed,
-				notes: notesText,
-				credit: credit
-			)
-
-			finishEditingAndReturn(focusID: id)
-			return
-		}
-
-		let userStrat = UserStrategy(
-			name: strategyNameTrimmed,
-			buyIn: buyInTrimmed,
-			tableMinimum: tableMinimumTrimmed,
-			steps: stepsTextTrimmed,
-			notes: notesText,
-			credit: credit
-		)
-
-		store.add(userStrat)
-		resetForm()
-		mode = .myStrategies
-
-		DispatchQueue.main.async {
-			focusedUserStrategyID = userStrat.id
-		}
-	}
-
-	private func resetForm() {
-		focusField = nil
-		dismissKeyboard()
-
-		strategyName = ""
-		buyIn = ""
-		tableMinimum = ""
-		stepsText = ""
-		notesText = ""
-		credit = ""
-	}
-
-	private func cancelEditing() {
-		if let id = editingStrategyID {
-			finishEditingAndReturn(focusID: id)
-		} else {
-			isEditing = false
-			editingStrategyID = nil
-			resetForm()
-			mode = .myStrategies
-			focusTitle()
-		}
-	}
-
-	private func finishEditingAndReturn(focusID: UserStrategy.ID) {
-		isEditing = false
-		editingStrategyID = nil
-		resetForm()
-		mode = .myStrategies
-
-		DispatchQueue.main.async {
-			focusedUserStrategyID = focusID
-		}
-	}
-
-	private func beginEditing(_ strategy: UserStrategy) {
-		isEditing = true
-		editingStrategyID = strategy.id
-
-		strategyName = strategy.name
-		buyIn = strategy.buyIn
-		tableMinimum = strategy.tableMinimum
-		stepsText = strategy.steps
-		notesText = strategy.notes
-		credit = strategy.credit
-
-		mode = .create
-
-		DispatchQueue.main.async {
-			focusField = .name
-		}
-	}
-
-	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
-		let steps = user.steps
-			.split(separator: "\n")
-			.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-			.filter { !$0.isEmpty }
-			.map { "§STEP§" + $0 }
-
-		return Strategy(
-			id: user.id,
-			name: user.name,
-			buyInText: user.buyIn,
-			tableMinText: user.tableMinimum,
-			buyInMin: 0,
-			buyInMax: Int.max,
-			tableMinMin: 0,
-			tableMinMax: Int.max,
-			notes: user.notes,
-			credit: user.credit,
-			steps: steps
-		)
-	}
-
-	private func openStrategy(_ userStrategy: UserStrategy) {
-		lastOpenedStrategyID = userStrategy.id
-		selectedStrategy = makeDisplayStrategy(from: userStrategy)
-	}
-
-	private func duplicateStrategy(_ strategy: UserStrategy) {
-		let copy = UserStrategy(
-			name: strategy.name + " (Copy)",
-			buyIn: strategy.buyIn,
-			tableMinimum: strategy.tableMinimum,
-			steps: strategy.steps,
-			notes: strategy.notes,
-			credit: strategy.credit
-		)
-
-		store.add(copy)
-	}
-
-
-	private func dismissKeyboard() {
-		UIApplication.shared.sendAction(
-			#selector(UIResponder.resignFirstResponder),
-			to: nil,
-			from: nil,
-			for: nil
-		)
+		TextField(label, text: text, axis: .vertical)
+			.focused($focusField, equals: field)
 	}
 
 	private func focusTitle() {
-		titleFocused = false
-		DispatchQueue.main.async {
-			titleFocused = true
-		}
-	}
-
-	private func focusResetButton() {
-		resetButtonFocused = false
-		DispatchQueue.main.async {
-			resetButtonFocused = true
-		}
-	}
-
-	private var strategyNameTrimmed: String {
-		strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
-	}
-
-	private var buyInTrimmed: String {
-		buyIn.trimmingCharacters(in: .whitespacesAndNewlines)
-	}
-
-	private var tableMinimumTrimmed: String {
-		tableMinimum.trimmingCharacters(in: .whitespacesAndNewlines)
-	}
-
-	private var stepsTextTrimmed: String {
-		stepsText.trimmingCharacters(in: .whitespacesAndNewlines)
+		titleFocused = true
 	}
 
 	private func formattedDate(_ date: Date) -> String {
-		let formatter = DateFormatter()
-		formatter.dateStyle = .medium
-		return formatter.string(from: date)
+		DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
+	}
+}
+
+private struct StrategyRow: View {
+
+	let strategy: UserStrategy
+	let open: () -> Void
+	let edit: () -> Void
+	let duplicate: () -> Void
+	let submit: () -> Void
+	let showActions: () -> Void
+
+	var body: some View {
+		VStack(alignment: .leading) {
+			Text(strategy.name)
+			Text(
+				DateFormatter.localizedString(
+					from: strategy.dateCreated,
+					dateStyle: .medium,
+					timeStyle: .none
+				)
+			)
+		}
+		.padding(.vertical, 8)
+		.contentShape(Rectangle())
+		.onTapGesture {
+			open()
+		}
+		.onLongPressGesture(minimumDuration: 0.45) {
+			showActions()
+		}
+		.accessibilityElement(children: .combine)
+		.accessibilityAddTraits(.isButton)
+		.accessibilityAction(named: Text("Open \(strategy.name)")) {
+			open()
+		}
+		.accessibilityAction(named: Text("Edit \(strategy.name)")) {
+			edit()
+		}
+		.accessibilityAction(named: Text("Duplicate \(strategy.name)")) {
+			duplicate()
+		}
+		.accessibilityAction(named: Text("Submit \(strategy.name)")) {
+			submit()
+		}
+		.accessibilityAction(named: Text("Delete \(strategy.name)")) {
+			showActions()
+		}
 	}
 }
 
