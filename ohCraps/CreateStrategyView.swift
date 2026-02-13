@@ -171,10 +171,6 @@ struct CreateStrategyView: View {
 			titleVisibility: .visible
 		) {
 			if let strategy = longPressStrategy {
-				Button("Open") {
-					openStrategy(strategy)
-				}
-
 				Button("Edit") {
 					beginEditing(strategy)
 				}
@@ -640,20 +636,17 @@ private struct StrategyRow: View {
 
 		.accessibilityElement(children: .combine)
 		.accessibilityAddTraits(.isButton)
-		.accessibilityAction(named: Text("Open \(strategy.name)")) {
-			open()
-		}
-		.accessibilityAction(named: Text("Edit \(strategy.name)")) {
-			edit()
-		}
-		.accessibilityAction(named: Text("Duplicate \(strategy.name)")) {
-			duplicate()
+		.accessibilityAction(named: Text("Delete \(strategy.name)")) {
+			delete()
 		}
 		.accessibilityAction(named: Text("\(strategy.isSubmitted ? "Resubmit" : "Submit") \(strategy.name)")) {
 			submit()
 		}
-		.accessibilityAction(named: Text("Delete \(strategy.name)")) {
-			delete()
+		.accessibilityAction(named: Text("Duplicate \(strategy.name)")) {
+			duplicate()
+		}
+		.accessibilityAction(named: Text("Edit \(strategy.name)")) {
+			edit()
 		}
 	}
 }
