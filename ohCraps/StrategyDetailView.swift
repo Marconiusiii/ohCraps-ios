@@ -8,7 +8,6 @@ struct StrategyDetailView: View {
 	let duplicate: (() -> Void)?
 	let submit: (() -> Void)?
 	let delete: (() -> Void)?
-	@State private var showStrategyActions = false
 
 	init(
 		strategy: Strategy,
@@ -113,9 +112,23 @@ struct StrategyDetailView: View {
 					showBack: true,
 					backAction: { dismiss() }
 				)
-				if userStrategy != nil {
-					Button("Strategy Actions") {
-						showStrategyActions = true
+				if let userStrategy = userStrategy {
+					Menu("Strategy Actions") {
+						Button("Edit") {
+							edit?()
+						}
+
+						Button("Duplicate") {
+							duplicate?()
+						}
+
+						Button(userStrategy.isSubmitted ? "Resubmit" : "Submit") {
+							submit?()
+						}
+
+						Button("Delete \(userStrategy.name)", role: .destructive) {
+							delete?()
+						}
 					}
 					.font(AppTheme.cardTitle)
 					.padding(.vertical, 8)
@@ -201,37 +214,6 @@ struct StrategyDetailView: View {
 				}
 			}
 			.navigationBarBackButtonHidden(true)
-		}
-		.confirmationDialog(
-			"Strategy Actions",
-			isPresented: $showStrategyActions,
-			titleVisibility: .visible
-		) {
-			if let userStrategy = userStrategy {
-				Button("Edit") {
-					edit?()
-					showStrategyActions = false
-				}
-
-				Button("Duplicate") {
-					duplicate?()
-					showStrategyActions = false
-				}
-
-				Button(userStrategy.isSubmitted ? "Resubmit" : "Submit") {
-					submit?()
-					showStrategyActions = false
-				}
-
-				Button("Delete \(userStrategy.name)", role: .destructive) {
-					delete?()
-					showStrategyActions = false
-				}
-
-				Button("Close") {
-					showStrategyActions = false
-				}
-			}
 		}
 	}
 }
