@@ -148,13 +148,20 @@ struct CreateStrategyView: View {
 				Button("Delete \(strategy.name)", role: .destructive) {
 					beginDelete(strategy)
 				}
-			}
+				Button("Dismiss") {
+					focusedUserStrategyID = strategy.id
+					longPressStrategy = nil
+					showStrategyActions = false
+				}
 
-			Button("Dismiss", role: .cancel) {
-				longPressStrategy = nil
-				showStrategyActions = false
 			}
 		}
+		.onChange(of: showStrategyActions) { isPresented in
+			if !isPresented {
+				focusedUserStrategyID = longPressStrategy?.id
+			}
+		}
+
 
 		.alert(
 			"Submit \(submittingStrategy?.name ?? "") to Oh Craps?",
@@ -215,6 +222,7 @@ struct CreateStrategyView: View {
 			ForEach(store.strategies) { strategy in
 				StrategyRow(
 					strategy: strategy,
+					focusedUserStrategyID: $focusedUserStrategyID,
 					open: {
 						openStrategy(strategy)
 					},
@@ -387,12 +395,12 @@ struct CreateStrategyView: View {
 private struct StrategyRow: View {
 
 	let strategy: UserStrategy
+	let focusedUserStrategyID: AccessibilityFocusState<UserStrategy.ID?>.Binding
 	let open: () -> Void
 	let edit: () -> Void
 	let duplicate: () -> Void
 	let submit: () -> Void
 	let showActions: () -> Void
-
 	var body: some View {
 		VStack(alignment: .leading) {
 			Text(strategy.name)
@@ -412,6 +420,8 @@ private struct StrategyRow: View {
 		.onLongPressGesture(minimumDuration: 0.45) {
 			showActions()
 		}
+		.accessibilityFocused(focusedUserStrategyID, equals: strategy.id)
+
 		.accessibilityElement(children: .combine)
 		.accessibilityAddTraits(.isButton)
 		.accessibilityAction(named: Text("Open \(strategy.name)")) {
