@@ -70,6 +70,8 @@ struct CreateStrategyView: View {
 	@State private var submittingStrategy: UserStrategy?
 	@State private var showSubmitAlert = false
 	@State private var showMailComposer = false
+	@State private var deleteCandidate: UserStrategy?
+	@State private var showDeleteAlert = false
 
 	@State private var selectedStrategy: Strategy?
 	@State private var lastOpenedStrategyID: UserStrategy.ID?
@@ -177,6 +179,20 @@ struct CreateStrategyView: View {
 		} message: {
 			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
 		}
+		.alert(
+			"Delete \(deleteCandidate?.name ?? "Strategy")?",
+			isPresented: $showDeleteAlert
+		) {
+			Button("Delete", role: .destructive) {
+				if let strategy = deleteCandidate {
+					store.delete(strategy)
+				}
+				deleteCandidate = nil
+			}
+			Button("Cancel") {
+				deleteCandidate = nil
+			}
+		}
 
 		.sheet(isPresented: $showMailComposer) {
 			if let strategy = submittingStrategy {
@@ -235,6 +251,9 @@ struct CreateStrategyView: View {
 					submit: {
 						beginSubmit(strategy)
 					},
+					delete: {
+						beginDelete(strategy)
+					},
 					showActions: {
 						longPressStrategy = strategy
 						showStrategyActions = true
@@ -247,7 +266,8 @@ struct CreateStrategyView: View {
 
 	// MARK: - Actions
 	private func beginDelete(_ strategy: UserStrategy) {
-		store.delete(strategy)
+		deleteCandidate = strategy
+		showDeleteAlert = true
 		longPressStrategy = nil
 		showStrategyActions = false
 	}
@@ -393,14 +413,15 @@ struct CreateStrategyView: View {
 }
 
 private struct StrategyRow: View {
-
 	let strategy: UserStrategy
 	let focusedUserStrategyID: AccessibilityFocusState<UserStrategy.ID?>.Binding
 	let open: () -> Void
 	let edit: () -> Void
 	let duplicate: () -> Void
 	let submit: () -> Void
+	let delete: () -> Void
 	let showActions: () -> Void
+
 	var body: some View {
 		VStack(alignment: .leading) {
 			Text(strategy.name)
@@ -437,7 +458,7 @@ private struct StrategyRow: View {
 			submit()
 		}
 		.accessibilityAction(named: Text("Delete \(strategy.name)")) {
-			showActions()
+			delete()
 		}
 	}
 }
