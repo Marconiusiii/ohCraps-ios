@@ -194,7 +194,8 @@ struct AboutView: View {
 			MailComposer(
 				recipient: "marco@marconius.com",
 				subject: "Oh Craps! App Feedback",
-				body: nil
+				body: nil,
+				onFinish: { _ in }
 			)
 		}
 	}
@@ -230,4 +231,3 @@ struct AboutView: View {
 		return "Oh Craps! version \(version) (\(build)). ©\(Calendar.current.component(.year, from: Date()))"
 	}
 }
-

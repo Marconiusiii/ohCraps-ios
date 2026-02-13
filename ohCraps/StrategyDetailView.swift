@@ -3,7 +3,29 @@ import SwiftUI
 struct StrategyDetailView: View {
 	let strategy: Strategy
 	@Environment(\.dismiss) private var dismiss
-	
+	let userStrategy: UserStrategy?
+	let edit: (() -> Void)?
+	let duplicate: (() -> Void)?
+	let submit: (() -> Void)?
+	let delete: (() -> Void)?
+	@State private var showStrategyActions = false
+
+	init(
+		strategy: Strategy,
+		userStrategy: UserStrategy? = nil,
+		edit: (() -> Void)? = nil,
+		duplicate: (() -> Void)? = nil,
+		submit: (() -> Void)? = nil,
+		delete: (() -> Void)? = nil
+	) {
+		self.strategy = strategy
+		self.userStrategy = userStrategy
+		self.edit = edit
+		self.duplicate = duplicate
+		self.submit = submit
+		self.delete = delete
+	}
+
 	private struct RenderLine: Identifiable {
 		enum Kind {
 			case heading        // from <h4>
@@ -91,7 +113,15 @@ struct StrategyDetailView: View {
 					showBack: true,
 					backAction: { dismiss() }
 				)
-				
+				if userStrategy != nil {
+					Button("Strategy Actions") {
+						showStrategyActions = true
+					}
+					.font(AppTheme.cardTitle)
+					.padding(.vertical, 8)
+					.accessibilityLabel("Strategy Actions")
+				}
+
 				ScrollView {
 					VStack(alignment: .leading, spacing: 24) {
 						
@@ -171,6 +201,37 @@ struct StrategyDetailView: View {
 				}
 			}
 			.navigationBarBackButtonHidden(true)
+		}
+		.confirmationDialog(
+			"Strategy Actions",
+			isPresented: $showStrategyActions,
+			titleVisibility: .visible
+		) {
+			if let userStrategy = userStrategy {
+				Button("Edit") {
+					edit?()
+					showStrategyActions = false
+				}
+
+				Button("Duplicate") {
+					duplicate?()
+					showStrategyActions = false
+				}
+
+				Button(userStrategy.isSubmitted ? "Resubmit" : "Submit") {
+					submit?()
+					showStrategyActions = false
+				}
+
+				Button("Delete \(userStrategy.name)", role: .destructive) {
+					delete?()
+					showStrategyActions = false
+				}
+
+				Button("Close") {
+					showStrategyActions = false
+				}
+			}
 		}
 	}
 }

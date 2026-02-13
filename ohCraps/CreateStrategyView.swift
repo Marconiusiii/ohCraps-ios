@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import MessageUI
 
 struct CreateStrategyView: View {
 
@@ -81,6 +82,8 @@ struct CreateStrategyView: View {
 	@AccessibilityFocusState private var titleFocused: Bool
 	private var strategyActionsTitle: String {
 		if let strategy = longPressStrategy {
+			let submitLabel = strategy.isSubmitted ? "Resubmit" : "Submit"
+
 			return "\(strategy.name) Actions"
 		}
 		return "Strategy Actions"
@@ -121,7 +124,34 @@ struct CreateStrategyView: View {
 		.onAppear { focusTitle() }
 
 		.navigationDestination(item: $selectedStrategy) { strategy in
-			StrategyDetailView(strategy: strategy)
+			let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
+			StrategyDetailView(
+				strategy: strategy,
+				userStrategy: userStrategy,
+				edit: {
+					if let userStrategy = userStrategy {
+						beginEditing(userStrategy)
+						selectedStrategy = nil
+					}
+				},
+				duplicate: {
+					if let userStrategy = userStrategy {
+						duplicateStrategy(userStrategy)
+					}
+				},
+				submit: {
+					if let userStrategy = userStrategy {
+						beginSubmit(userStrategy)
+						selectedStrategy = nil
+					}
+				},
+				delete: {
+					if let userStrategy = userStrategy {
+						beginDelete(userStrategy)
+						selectedStrategy = nil
+					}
+				}
+			)
 		}
 
 		.confirmationDialog(
@@ -130,7 +160,6 @@ struct CreateStrategyView: View {
 			titleVisibility: .visible
 		) {
 			if let strategy = longPressStrategy {
-
 				Button("Open") {
 					openStrategy(strategy)
 				}
@@ -143,19 +172,19 @@ struct CreateStrategyView: View {
 					duplicateStrategy(strategy)
 				}
 
-				Button("Submit") {
+				Button(strategy.isSubmitted ? "Resubmit" : "Submit") {
 					beginSubmit(strategy)
 				}
 
 				Button("Delete \(strategy.name)", role: .destructive) {
 					beginDelete(strategy)
 				}
+
 				Button("Dismiss") {
 					focusedUserStrategyID = strategy.id
 					longPressStrategy = nil
 					showStrategyActions = false
 				}
-
 			}
 		}
 		.onChange(of: showStrategyActions) { isPresented in
@@ -163,7 +192,6 @@ struct CreateStrategyView: View {
 				focusedUserStrategyID = longPressStrategy?.id
 			}
 		}
-
 
 		.alert(
 			"Submit \(submittingStrategy?.name ?? "") to Oh Craps?",
@@ -199,7 +227,13 @@ struct CreateStrategyView: View {
 				MailComposer(
 					recipient: "marco@marconius.com",
 					subject: "Oh Craps Strategy Submission: \(strategy.name)",
-					body: submissionEmailBody(for: strategy)
+					body: submissionEmailBody(for: strategy),
+					onFinish: { result in
+						if result == .sent {
+							store.setSubmitted(id: strategy.id, isSubmitted: true)
+						}
+						submittingStrategy = nil
+					}
 				)
 			}
 		}
@@ -430,7 +464,7 @@ private struct StrategyRow: View {
 					from: strategy.dateCreated,
 					dateStyle: .medium,
 					timeStyle: .none
-				)
+				) + (strategy.isSubmitted ? ", Submitted" : "")
 			)
 		}
 		.padding(.vertical, 8)
@@ -454,7 +488,7 @@ private struct StrategyRow: View {
 		.accessibilityAction(named: Text("Duplicate \(strategy.name)")) {
 			duplicate()
 		}
-		.accessibilityAction(named: Text("Submit \(strategy.name)")) {
+		.accessibilityAction(named: Text("\(strategy.isSubmitted ? "Resubmit" : "Submit") \(strategy.name)")) {
 			submit()
 		}
 		.accessibilityAction(named: Text("Delete \(strategy.name)")) {
@@ -462,4 +496,3 @@ private struct StrategyRow: View {
 		}
 	}
 }
-

@@ -41,7 +41,9 @@ final class UserStrategyStore: ObservableObject {
 			steps: steps,
 			notes: notes,
 			credit: credit,
-			dateCreated: existing.dateCreated
+			dateCreated: existing.dateCreated,
+			dateLastEdited: existing.dateLastEdited,
+			isSubmitted: existing.isSubmitted
 		)
 
 		save()
@@ -50,6 +52,28 @@ final class UserStrategyStore: ObservableObject {
 
 	func delete(_ strategy: UserStrategy) {
 		strategies.removeAll { $0.id == strategy.id }
+		save()
+	}
+	func setSubmitted(id: UUID, isSubmitted: Bool) {
+		guard let index = strategies.firstIndex(where: { $0.id == id }) else {
+			return
+		}
+
+		let existing = strategies[index]
+
+		strategies[index] = UserStrategy(
+			id: existing.id,
+			name: existing.name,
+			buyIn: existing.buyIn,
+			tableMinimum: existing.tableMinimum,
+			steps: existing.steps,
+			notes: existing.notes,
+			credit: existing.credit,
+			dateCreated: existing.dateCreated,
+			dateLastEdited: existing.dateLastEdited,
+			isSubmitted: isSubmitted
+		)
+
 		save()
 	}
 
