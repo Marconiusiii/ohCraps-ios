@@ -49,11 +49,18 @@ struct CreateStrategyView: View {
 		}
 	}
 
+	private enum EditOrigin {
+		case myStrategies
+		case detail(UserStrategy.ID)
+	}
+
 	@EnvironmentObject private var store: UserStrategyStore
 
 	@State private var mode: Mode = .create
 	@State private var isEditing = false
 	@State private var editingStrategyID: UserStrategy.ID?
+	@State private var editOrigin: EditOrigin?
+	@State private var editingOriginalStrategy: UserStrategy?
 
 	@State private var strategyName = ""
 	@State private var buyIn = ""
@@ -64,6 +71,8 @@ struct CreateStrategyView: View {
 
 	@State private var errorField: Field?
 	@State private var validationError: ValidationError?
+	@State private var validationErrors: [ValidationError] = []
+	@State private var showValidationAlert = false
 
 	@State private var longPressStrategy: UserStrategy?
 	@State private var showStrategyActions = false
@@ -73,6 +82,7 @@ struct CreateStrategyView: View {
 	@State private var showMailComposer = false
 	@State private var deleteCandidate: UserStrategy?
 	@State private var showDeleteAlert = false
+	@State private var showDiscardAlert = false
 
 	@State private var selectedStrategy: Strategy?
 	@State private var lastOpenedStrategyID: UserStrategy.ID?
@@ -130,6 +140,7 @@ struct CreateStrategyView: View {
 				userStrategy: userStrategy,
 				edit: {
 					if let userStrategy = userStrategy {
+						editOrigin = .detail(userStrategy.id)
 						beginEditing(userStrategy)
 						selectedStrategy = nil
 					}
@@ -221,6 +232,19 @@ struct CreateStrategyView: View {
 				deleteCandidate = nil
 			}
 		}
+		.alert("Missing Required Fields", isPresented: $showValidationAlert) {
+			Button("OK") {
+				showValidationAlert = false
+			}
+		} message: {
+			Text(validationErrors.map { $0.message }.joined(separator: "\n"))
+		}
+		.alert("Discard Changes?", isPresented: $showDiscardAlert) {
+			Button("Yes, discard", role: .destructive) {
+				discardEditing()
+			}
+			Button("Keep Editing", role: .cancel) {}
+		}
 
 		.sheet(isPresented: $showMailComposer) {
 			if let strategy = submittingStrategy {
@@ -248,20 +272,48 @@ struct CreateStrategyView: View {
 				.font(AppTheme.bodyText)
 
 			labeledField("Strategy Name", text: $strategyName, field: .name, next: .buyIn)
+			fieldErrorText(for: .name)
 			labeledField("Buy-in Amount", text: $buyIn, field: .buyIn, next: .tableMin)
+			fieldErrorText(for: .buyIn)
 			labeledField("Table Minimum", text: $tableMinimum, field: .tableMin, next: .steps)
+			fieldErrorText(for: .tableMin)
 
 			Text("Make a numbered list of steps for your strategy.")
 
 			labeledMultilineField("Steps", text: $stepsText, field: .steps, next: .notes)
+			fieldErrorText(for: .steps)
 			labeledMultilineField("Notes", text: $notesText, field: .notes, next: .credit)
 			labeledField("Credit", text: $credit, field: .credit, next: nil)
 
-			Button(isEditing ? "Save Changes" : "Save Strategy") {
-				validateAndSave()
+			if isEditing {
+				HStack(spacing: 16) {
+					Button("Save Changes") {
+						validateAndSave()
+					}
+					Button("Cancel") {
+						showDiscardAlert = true
+					}
+				}
+			} else {
+				HStack(spacing: 16) {
+					Button("Reset Form") {
+						resetForm()
+					}
+					Button("Save Strategy") {
+						validateAndSave()
+					}
+				}
 			}
 		}
 		.padding()
+		.toolbar {
+			ToolbarItemGroup(placement: .keyboard) {
+				Spacer()
+				Button("Dismiss Keyboard") {
+					focusField = nil
+				}
+			}
+		}
 	}
 
 	// MARK: - My Strategies
@@ -307,26 +359,28 @@ struct CreateStrategyView: View {
 	}
 
 	private func validateAndSave() {
+		validationErrors = []
+
 		if strategyName.isEmpty {
-			validationError = .missingName
-			focusField = .name
-			return
+			validationErrors.append(.missingName)
 		}
 		if buyIn.isEmpty {
-			validationError = .missingBuyIn
-			focusField = .buyIn
-			return
+			validationErrors.append(.missingBuyIn)
 		}
 		if tableMinimum.isEmpty {
-			validationError = .missingTableMinimum
-			focusField = .tableMin
-			return
+			validationErrors.append(.missingTableMinimum)
 		}
 		if stepsText.isEmpty {
-			validationError = .missingSteps
-			focusField = .steps
+			validationErrors.append(.missingSteps)
+		}
+
+		if let firstError = validationErrors.first {
+			validationError = firstError
+			focusField = firstError.field
+			showValidationAlert = true
 			return
 		}
+
 		saveStrategy()
 	}
 
@@ -342,6 +396,7 @@ struct CreateStrategyView: View {
 
 		store.add(strategy)
 		mode = .myStrategies
+		resetForm()
 	}
 
 	private func beginSubmit(_ strategy: UserStrategy) {
@@ -369,12 +424,34 @@ struct CreateStrategyView: View {
 	private func beginEditing(_ strategy: UserStrategy) {
 		isEditing = true
 		mode = .create
+		editOrigin = editOrigin ?? .myStrategies
+		editingOriginalStrategy = strategy
+		editingStrategyID = strategy.id
 		strategyName = strategy.name
 		buyIn = strategy.buyIn
 		tableMinimum = strategy.tableMinimum
 		stepsText = strategy.steps
 		notesText = strategy.notes
 		credit = strategy.credit
+	}
+
+	private func discardEditing() {
+		isEditing = false
+		editingStrategyID = nil
+
+		switch editOrigin {
+		case .detail(let strategyID):
+			if let original = editingOriginalStrategy, original.id == strategyID {
+				selectedStrategy = makeDisplayStrategy(from: original)
+			}
+			mode = .myStrategies
+		default:
+			mode = .myStrategies
+		}
+
+		editOrigin = nil
+		editingOriginalStrategy = nil
+		focusField = nil
 	}
 
 	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
@@ -425,6 +502,15 @@ struct CreateStrategyView: View {
 	) -> some View {
 		TextField(label, text: text)
 			.focused($focusField, equals: field)
+			.submitLabel(next == nil ? .done : .next)
+			.onSubmit {
+				if let next = next {
+					focusField = next
+				} else {
+					focusField = nil
+				}
+			}
+			.accessibilityHint(fieldErrorMessage(for: field) ?? "")
 	}
 
 	private func labeledMultilineField(
@@ -435,6 +521,78 @@ struct CreateStrategyView: View {
 	) -> some View {
 		TextField(label, text: text, axis: .vertical)
 			.focused($focusField, equals: field)
+			.submitLabel(next == nil ? .done : .next)
+			.onSubmit {
+				if let next = next {
+					focusField = next
+				} else {
+					focusField = nil
+				}
+			}
+			.accessibilityHint(fieldErrorMessage(for: field) ?? "")
+	}
+
+	private func fieldErrorMessage(for field: Field) -> String? {
+		guard isFieldEmpty(field) else {
+			return nil
+		}
+
+		switch field {
+		case .name:
+			return validationErrors.contains(.missingName) ? ValidationError.missingName.message : nil
+		case .buyIn:
+			return validationErrors.contains(.missingBuyIn) ? ValidationError.missingBuyIn.message : nil
+		case .tableMin:
+			return validationErrors.contains(.missingTableMinimum) ? ValidationError.missingTableMinimum.message : nil
+		case .steps:
+			return validationErrors.contains(.missingSteps) ? ValidationError.missingSteps.message : nil
+		default:
+			return nil
+		}
+	}
+
+	private func fieldErrorText(for field: Field) -> some View {
+		if let message = fieldErrorMessage(for: field) {
+			return Text("Error: \(message)")
+				.font(AppTheme.metadataText)
+				.foregroundColor(AppTheme.textPrimary)
+				.accessibilityLabel("Error: \(message)")
+				.accessibilityAddTraits(.isStaticText)
+		}
+
+		return Text("")
+			.font(AppTheme.metadataText)
+			.accessibilityHidden(true)
+	}
+
+	private func isFieldEmpty(_ field: Field) -> Bool {
+		switch field {
+		case .name:
+			return strategyName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+		case .buyIn:
+			return buyIn.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+		case .tableMin:
+			return tableMinimum.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+		case .steps:
+			return stepsText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+		case .notes:
+			return notesText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+		case .credit:
+			return credit.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+		}
+	}
+
+	private func resetForm() {
+		strategyName = ""
+		buyIn = ""
+		tableMinimum = ""
+		stepsText = ""
+		notesText = ""
+		credit = ""
+		validationErrors = []
+		validationError = nil
+		showValidationAlert = false
+		focusField = .name
 	}
 
 	private func focusTitle() {
