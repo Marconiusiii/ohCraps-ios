@@ -30,13 +30,18 @@ struct AboutView: View {
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
-						Text("Whenever a new strategy is put up on my main Oh Craps website, this app will be updated. This app has been built with a Blind-first accessibility and usability methodology, and supports Dynamic Type and all other assistive technologies on iOS.")
+						Text("Whenever a new strategy is put up on my main Oh Craps website, this app will be updated. Use the Create Strategy tab to write up and save your own strategies locally to your phone. You can then submit them so everyone who uses this app can check out your strategy!")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
 						Text("Remember, none of these are guaranteed to make you a winner, as you can never predict how the dice will roll in any given session.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
+
+						Text("This app has been built with a Blind-first accessibility and usability methodology, and supports Dynamic Type and all other assistive technologies on iOS.")
+							.font(AppTheme.bodyText)
+							.foregroundColor(AppTheme.textPrimary)
+
 
 						Text("References")
 							.font(AppTheme.sectionHeader)
