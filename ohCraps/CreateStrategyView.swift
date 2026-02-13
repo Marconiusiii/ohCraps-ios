@@ -83,6 +83,7 @@ struct CreateStrategyView: View {
 	@State private var deleteCandidate: UserStrategy?
 	@State private var showDeleteAlert = false
 	@State private var showDiscardAlert = false
+	@State private var showSaveOptionsAlert = false
 
 	@State private var selectedStrategy: Strategy?
 	@State private var lastOpenedStrategyID: UserStrategy.ID?
@@ -243,6 +244,15 @@ struct CreateStrategyView: View {
 			}
 			Button("Keep Editing", role: .cancel) {}
 		}
+		.alert("Save Strategy", isPresented: $showSaveOptionsAlert) {
+			Button("Save Original") {
+				saveEditedStrategy()
+			}
+			Button("Create New") {
+				saveStrategy()
+			}
+			Button("Cancel", role: .cancel) {}
+		}
 
 		.sheet(isPresented: $showMailComposer) {
 			if let strategy = submittingStrategy {
@@ -379,6 +389,11 @@ struct CreateStrategyView: View {
 			return
 		}
 
+		if isEditing {
+			showSaveOptionsAlert = true
+			return
+		}
+
 		saveStrategy()
 	}
 
@@ -393,6 +408,33 @@ struct CreateStrategyView: View {
 		)
 
 		store.add(strategy)
+		finishSaveFlow()
+	}
+
+	private func saveEditedStrategy() {
+		guard let editingID = editingStrategyID else {
+			saveStrategy()
+			return
+		}
+
+		store.update(
+			id: editingID,
+			name: strategyName,
+			buyIn: buyIn,
+			tableMinimum: tableMinimum,
+			steps: stepsText,
+			notes: notesText,
+			credit: credit
+		)
+
+		finishSaveFlow()
+	}
+
+	private func finishSaveFlow() {
+		isEditing = false
+		editingStrategyID = nil
+		editOrigin = nil
+		editingOriginalStrategy = nil
 		mode = .myStrategies
 		resetForm()
 	}
