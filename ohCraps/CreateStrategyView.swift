@@ -228,7 +228,9 @@ struct CreateStrategyView: View {
 				}
 				deleteCandidate = nil
 			}
-			Button("Cancel") {
+		}
+		.onChange(of: showDeleteAlert) { isPresented in
+			if !isPresented {
 				deleteCandidate = nil
 			}
 		}
@@ -452,6 +454,7 @@ struct CreateStrategyView: View {
 		editOrigin = nil
 		editingOriginalStrategy = nil
 		focusField = nil
+		resetForm()
 	}
 
 	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
