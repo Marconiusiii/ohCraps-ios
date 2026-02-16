@@ -339,7 +339,7 @@ struct CreateStrategyView: View {
 				}
 			}
 		}) { payload in
-			ShareSheet(activityItems: [payload.text])
+			ShareSheet(payload: payload)
 		}
 	}
 
@@ -548,7 +548,10 @@ struct CreateStrategyView: View {
 
 	private func beginShare(_ strategy: UserStrategy, originID: UserStrategy.ID) {
 		shareOriginID = originID
-		sharePayload = SharePayload(text: StrategyShareFormatter.shareText(for: strategy))
+		sharePayload = SharePayload(
+			strategyName: strategy.name,
+			text: StrategyShareFormatter.shareText(for: strategy)
+		)
 	}
 
 	private func validateAndSave() {

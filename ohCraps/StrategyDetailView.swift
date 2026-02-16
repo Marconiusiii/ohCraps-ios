@@ -146,7 +146,10 @@ struct StrategyDetailView: View {
 						}
 
 						Button("Share Strategy") {
-							sharePayload = SharePayload(text: StrategyShareFormatter.shareText(for: userStrategy))
+							sharePayload = SharePayload(
+								strategyName: userStrategy.name,
+								text: StrategyShareFormatter.shareText(for: userStrategy)
+							)
 						}
 
 						Button("Delete \(userStrategy.name)", role: .destructive) {
@@ -163,7 +166,10 @@ struct StrategyDetailView: View {
 						.padding(.horizontal)
 				} else {
 					Button("Share Strategy") {
-						sharePayload = SharePayload(text: StrategyShareFormatter.shareText(for: strategy))
+						sharePayload = SharePayload(
+							strategyName: strategy.name,
+							text: StrategyShareFormatter.shareText(for: strategy)
+						)
 					}
 					.font(AppTheme.cardTitle)
 					.padding(.vertical, 8)
@@ -269,7 +275,7 @@ struct StrategyDetailView: View {
 				}
 			}
 		}) { payload in
-			ShareSheet(activityItems: [payload.text])
+			ShareSheet(payload: payload)
 		}
 	}
 
