@@ -18,6 +18,8 @@ struct StrategyDetailView: View {
 	let focusRevision: Int
 	@AccessibilityFocusState private var titleFocused: Bool
 	@AccessibilityFocusState private var actionsFocused: Bool
+	@AccessibilityFocusState private var coreShareFocused: Bool
+	@State private var sharePayload: SharePayload?
 
 	init(
 		strategy: Strategy,
@@ -143,6 +145,10 @@ struct StrategyDetailView: View {
 							submit?()
 						}
 
+						Button("Share Strategy") {
+							sharePayload = SharePayload(text: StrategyShareFormatter.shareText(for: userStrategy))
+						}
+
 						Button("Delete \(userStrategy.name)", role: .destructive) {
 							delete?()
 						}
@@ -155,6 +161,13 @@ struct StrategyDetailView: View {
 					Text(submissionStatusText(for: userStrategy))
 						.font(AppTheme.bodyText)
 						.padding(.horizontal)
+				} else {
+					Button("Share Strategy") {
+						sharePayload = SharePayload(text: StrategyShareFormatter.shareText(for: strategy))
+					}
+					.font(AppTheme.cardTitle)
+					.padding(.vertical, 8)
+					.accessibilityFocused($coreShareFocused)
 				}
 
 				ScrollView {
@@ -246,6 +259,17 @@ struct StrategyDetailView: View {
 		}
 		.onChange(of: focusRevision) { _ in
 			applyAccessibilityFocus(initialAccessibilityFocus)
+		}
+		.sheet(item: $sharePayload, onDismiss: {
+			if userStrategy != nil {
+				applyAccessibilityFocus(.actions)
+			} else {
+				DispatchQueue.main.async {
+					coreShareFocused = true
+				}
+			}
+		}) { payload in
+			ShareSheet(activityItems: [payload.text])
 		}
 	}
 

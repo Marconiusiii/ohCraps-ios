@@ -100,6 +100,8 @@ struct CreateStrategyView: View {
 	@State private var deleteOrigin: ActionOrigin?
 	@State private var submitOrigin: ActionOrigin?
 	@State private var didConfirmDelete = false
+	@State private var sharePayload: SharePayload?
+	@State private var shareOriginID: UserStrategy.ID?
 
 	@FocusState private var focusField: Field?
 	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
@@ -231,6 +233,10 @@ struct CreateStrategyView: View {
 					beginSubmit(strategy, origin: .list(strategy.id))
 				}
 
+				Button("Share Strategy") {
+					beginShare(strategy, originID: strategy.id)
+				}
+
 				Button("Delete \(strategy.name)", role: .destructive) {
 					beginDelete(strategy, origin: .list(strategy.id))
 				}
@@ -325,6 +331,16 @@ struct CreateStrategyView: View {
 				)
 			}
 		}
+		.sheet(item: $sharePayload, onDismiss: {
+			if let id = shareOriginID {
+				DispatchQueue.main.async {
+					focusedUserStrategyID = id
+					shareOriginID = nil
+				}
+			}
+		}) { payload in
+			ShareSheet(activityItems: [payload.text])
+		}
 	}
 
 	// MARK: - Create Form
@@ -404,6 +420,9 @@ struct CreateStrategyView: View {
 					},
 					submit: {
 						beginSubmit(strategy, origin: .list(strategy.id))
+					},
+					share: {
+						beginShare(strategy, originID: strategy.id)
 					},
 					delete: {
 						beginDelete(strategy, origin: .list(strategy.id))
@@ -525,6 +544,11 @@ struct CreateStrategyView: View {
 
 		submittingStrategy = nil
 		submitOrigin = nil
+	}
+
+	private func beginShare(_ strategy: UserStrategy, originID: UserStrategy.ID) {
+		shareOriginID = originID
+		sharePayload = SharePayload(text: StrategyShareFormatter.shareText(for: strategy))
 	}
 
 	private func validateAndSave() {
@@ -879,6 +903,7 @@ private struct StrategyRow: View {
 	let edit: () -> Void
 	let duplicate: () -> Void
 	let submit: () -> Void
+	let share: () -> Void
 	let delete: () -> Void
 	let showActions: () -> Void
 
@@ -907,6 +932,9 @@ private struct StrategyRow: View {
 		.accessibilityAddTraits(.isButton)
 		.accessibilityAction(named: Text("Delete \(strategy.name)")) {
 			delete()
+		}
+		.accessibilityAction(named: Text("Share Strategy")) {
+			share()
 		}
 		.accessibilityAction(named: Text("\(strategy.isSubmitted ? "Resubmit" : "Submit") \(strategy.name)")) {
 			submit()
