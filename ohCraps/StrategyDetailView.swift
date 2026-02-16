@@ -1,5 +1,10 @@
 import SwiftUI
 
+enum DetailFocusTarget {
+	case title
+	case actions
+}
+
 struct StrategyDetailView: View {
 	let strategy: Strategy
 	@Environment(\.dismiss) private var dismiss
@@ -8,6 +13,10 @@ struct StrategyDetailView: View {
 	let duplicate: (() -> Void)?
 	let submit: (() -> Void)?
 	let delete: (() -> Void)?
+	let initialAccessibilityFocus: DetailFocusTarget
+	let focusRevision: Int
+	@AccessibilityFocusState private var titleFocused: Bool
+	@AccessibilityFocusState private var actionsFocused: Bool
 
 	init(
 		strategy: Strategy,
@@ -15,7 +24,9 @@ struct StrategyDetailView: View {
 		edit: (() -> Void)? = nil,
 		duplicate: (() -> Void)? = nil,
 		submit: (() -> Void)? = nil,
-		delete: (() -> Void)? = nil
+		delete: (() -> Void)? = nil,
+		initialAccessibilityFocus: DetailFocusTarget = .title,
+		focusRevision: Int = 0
 	) {
 		self.strategy = strategy
 		self.userStrategy = userStrategy
@@ -23,6 +34,8 @@ struct StrategyDetailView: View {
 		self.duplicate = duplicate
 		self.submit = submit
 		self.delete = delete
+		self.initialAccessibilityFocus = initialAccessibilityFocus
+		self.focusRevision = focusRevision
 	}
 
 	private struct RenderLine: Identifiable {
@@ -112,6 +125,7 @@ struct StrategyDetailView: View {
 					showBack: true,
 					backAction: { dismiss() }
 				)
+				.accessibilityFocused($titleFocused)
 				if let userStrategy = userStrategy {
 					Menu("Strategy Actions") {
 						Button("Edit") {
@@ -133,6 +147,11 @@ struct StrategyDetailView: View {
 					.font(AppTheme.cardTitle)
 					.padding(.vertical, 8)
 					.accessibilityLabel("Strategy Actions")
+					.accessibilityFocused($actionsFocused)
+
+					Text(submissionStatusText(for: userStrategy))
+						.font(AppTheme.bodyText)
+						.padding(.horizontal)
 				}
 
 				ScrollView {
@@ -214,6 +233,35 @@ struct StrategyDetailView: View {
 				}
 			}
 			.navigationBarBackButtonHidden(true)
+		}
+		.onAppear {
+			applyAccessibilityFocus(initialAccessibilityFocus)
+		}
+		.onChange(of: focusRevision) { _ in
+			applyAccessibilityFocus(initialAccessibilityFocus)
+		}
+	}
+
+	private func submissionStatusText(for strategy: UserStrategy) -> String {
+		if strategy.isSubmitted {
+			return "Strategy Submitted to Oh Craps!"
+		}
+		if strategy.hasBeenSubmitted, strategy.dateLastEdited != nil {
+			return "Ready to resubmit."
+		}
+		return "Ready to submit."
+	}
+
+	private func applyAccessibilityFocus(_ target: DetailFocusTarget) {
+		DispatchQueue.main.async {
+			switch target {
+			case .title:
+				titleFocused = true
+				actionsFocused = false
+			case .actions:
+				actionsFocused = true
+				titleFocused = false
+			}
 		}
 	}
 }

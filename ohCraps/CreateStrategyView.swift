@@ -3,6 +3,7 @@ import UIKit
 import MessageUI
 
 struct CreateStrategyView: View {
+	@Binding var hideTabBar: Bool
 
 	enum Mode: Int, CaseIterable {
 		case create
@@ -50,7 +51,12 @@ struct CreateStrategyView: View {
 	}
 
 	private enum EditOrigin {
-		case myStrategies
+		case myStrategies(UserStrategy.ID)
+		case detail(UserStrategy.ID)
+	}
+
+	private enum ActionOrigin {
+		case list(UserStrategy.ID)
 		case detail(UserStrategy.ID)
 	}
 
@@ -86,15 +92,29 @@ struct CreateStrategyView: View {
 	@State private var showSaveOptionsAlert = false
 
 	@State private var selectedStrategy: Strategy?
-	@State private var lastOpenedStrategyID: UserStrategy.ID?
+	@State private var selectedDetailFocus: DetailFocusTarget = .title
+	@State private var detailFocusRevision = 0
+	@State private var listEditOriginID: UserStrategy.ID?
+	@State private var pendingListFocusID: UserStrategy.ID?
+	@State private var focusModePickerAfterDelete = false
+	@State private var deleteOrigin: ActionOrigin?
+	@State private var submitOrigin: ActionOrigin?
+	@State private var didConfirmDelete = false
 
 	@FocusState private var focusField: Field?
 	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
 	@AccessibilityFocusState private var titleFocused: Bool
+	@AccessibilityFocusState private var modePickerFocused: Bool
+	private var screenTitle: String {
+		if isEditing {
+			let trimmed = strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
+			return trimmed.isEmpty ? "Editing Strategy" : "Editing \(trimmed)"
+		}
+		return "Create Strategy"
+	}
+
 	private var strategyActionsTitle: String {
 		if let strategy = longPressStrategy {
-			let submitLabel = strategy.isSubmitted ? "Resubmit" : "Submit"
-
 			return "\(strategy.name) Actions"
 		}
 		return "Strategy Actions"
@@ -107,7 +127,7 @@ struct CreateStrategyView: View {
 			VStack(spacing: 0) {
 
 				TopNavBar(
-					title: "Create Strategy",
+					title: screenTitle,
 					showBack: false,
 					backAction: {}
 				)
@@ -120,6 +140,7 @@ struct CreateStrategyView: View {
 					}
 					.pickerStyle(.segmented)
 					.padding()
+					.accessibilityFocused($modePickerFocused)
 				}
 
 				ScrollView {
@@ -132,7 +153,33 @@ struct CreateStrategyView: View {
 				}
 			}
 		}
-		.onAppear { focusTitle() }
+		.onAppear {
+			focusTitle()
+			hideTabBar = isEditing
+		}
+		.onDisappear {
+			hideTabBar = false
+		}
+		.onChange(of: isEditing) { editing in
+			hideTabBar = editing
+		}
+		.onChange(of: pendingListFocusID) { strategyID in
+			guard let strategyID else { return }
+			if mode == .myStrategies {
+				DispatchQueue.main.async {
+					focusedUserStrategyID = strategyID
+					pendingListFocusID = nil
+				}
+			}
+		}
+		.onChange(of: mode) { newMode in
+			if newMode == .myStrategies, let strategyID = pendingListFocusID {
+				DispatchQueue.main.async {
+					focusedUserStrategyID = strategyID
+					pendingListFocusID = nil
+				}
+			}
+		}
 
 		.navigationDestination(item: $selectedStrategy) { strategy in
 			let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
@@ -141,28 +188,27 @@ struct CreateStrategyView: View {
 				userStrategy: userStrategy,
 				edit: {
 					if let userStrategy = userStrategy {
-						editOrigin = .detail(userStrategy.id)
-						beginEditing(userStrategy)
+						beginEditing(userStrategy, origin: .detail(userStrategy.id))
 						selectedStrategy = nil
 					}
 				},
 				duplicate: {
 					if let userStrategy = userStrategy {
-						duplicateStrategy(userStrategy)
+						duplicateStrategy(userStrategy, origin: .detail(userStrategy.id))
 					}
 				},
 				submit: {
 					if let userStrategy = userStrategy {
-						beginSubmit(userStrategy)
-						selectedStrategy = nil
+						beginSubmit(userStrategy, origin: .detail(userStrategy.id))
 					}
 				},
 				delete: {
 					if let userStrategy = userStrategy {
-						beginDelete(userStrategy)
-						selectedStrategy = nil
+						beginDelete(userStrategy, origin: .detail(userStrategy.id))
 					}
-				}
+				},
+				initialAccessibilityFocus: selectedDetailFocus,
+				focusRevision: detailFocusRevision
 			)
 		}
 
@@ -173,23 +219,24 @@ struct CreateStrategyView: View {
 		) {
 			if let strategy = longPressStrategy {
 				Button("Edit") {
-					beginEditing(strategy)
+					beginEditing(strategy, origin: .myStrategies(strategy.id))
 				}
 
 				Button("Duplicate") {
-					duplicateStrategy(strategy)
+					duplicateStrategy(strategy, origin: .list(strategy.id))
 				}
 
 				Button(strategy.isSubmitted ? "Resubmit" : "Submit") {
-					beginSubmit(strategy)
+					beginSubmit(strategy, origin: .list(strategy.id))
 				}
 
 				Button("Delete \(strategy.name)", role: .destructive) {
-					beginDelete(strategy)
+					beginDelete(strategy, origin: .list(strategy.id))
 				}
 
 				Button("Dismiss") {
 					focusedUserStrategyID = strategy.id
+					listEditOriginID = strategy.id
 					longPressStrategy = nil
 					showStrategyActions = false
 				}
@@ -197,7 +244,9 @@ struct CreateStrategyView: View {
 		}
 		.onChange(of: showStrategyActions) { isPresented in
 			if !isPresented {
-				focusedUserStrategyID = longPressStrategy?.id
+				if let id = listEditOriginID {
+					focusedUserStrategyID = id
+				}
 			}
 		}
 
@@ -210,7 +259,7 @@ struct CreateStrategyView: View {
 				showMailComposer = true
 			}
 			Button("Cancel", role: .cancel) {
-				submittingStrategy = nil
+				handleSubmitCancelled()
 			}
 		} message: {
 			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
@@ -221,13 +270,19 @@ struct CreateStrategyView: View {
 		) {
 			Button("Delete", role: .destructive) {
 				if let strategy = deleteCandidate {
+					didConfirmDelete = true
 					store.delete(strategy)
+					handleDeleteConfirmed(strategy)
 				}
 				deleteCandidate = nil
 			}
 		}
 		.onChange(of: showDeleteAlert) { isPresented in
 			if !isPresented {
+				if !didConfirmDelete {
+					handleDeleteCancelled()
+				}
+				didConfirmDelete = false
 				deleteCandidate = nil
 			}
 		}
@@ -264,7 +319,7 @@ struct CreateStrategyView: View {
 						if result == .sent {
 							store.setSubmitted(id: strategy.id, isSubmitted: true)
 						}
-						submittingStrategy = nil
+						handleSubmitFinished(result: result, strategyID: strategy.id)
 					}
 				)
 			}
@@ -328,6 +383,10 @@ struct CreateStrategyView: View {
 
 	private var myStrategiesList: some View {
 		VStack(alignment: .leading, spacing: 16) {
+			if store.strategies.isEmpty {
+				Text("No saved strategies yet.")
+					.font(AppTheme.bodyText)
+			}
 
 			ForEach(store.strategies) { strategy in
 				StrategyRow(
@@ -337,19 +396,20 @@ struct CreateStrategyView: View {
 						openStrategy(strategy)
 					},
 					edit: {
-						beginEditing(strategy)
+						beginEditing(strategy, origin: .myStrategies(strategy.id))
 					},
 					duplicate: {
-						duplicateStrategy(strategy)
+						duplicateStrategy(strategy, origin: .list(strategy.id))
 					},
 					submit: {
-						beginSubmit(strategy)
+						beginSubmit(strategy, origin: .list(strategy.id))
 					},
 					delete: {
-						beginDelete(strategy)
+						beginDelete(strategy, origin: .list(strategy.id))
 					},
 					showActions: {
 						longPressStrategy = strategy
+						listEditOriginID = strategy.id
 						showStrategyActions = true
 					}
 				)
@@ -359,11 +419,111 @@ struct CreateStrategyView: View {
 	}
 
 	// MARK: - Actions
-	private func beginDelete(_ strategy: UserStrategy) {
+	private func beginDelete(_ strategy: UserStrategy, origin: ActionOrigin) {
 		deleteCandidate = strategy
+		deleteOrigin = origin
+		focusModePickerAfterDelete = false
+		pendingListFocusID = nil
+
+		if case .list = origin, let index = store.strategies.firstIndex(where: { $0.id == strategy.id }) {
+			let strategies = store.strategies
+			if strategies.count > 1 {
+				if index < strategies.count - 1 {
+					pendingListFocusID = strategies[index + 1].id
+				} else {
+					pendingListFocusID = strategies[index - 1].id
+				}
+			} else {
+				focusModePickerAfterDelete = true
+			}
+		}
 		showDeleteAlert = true
 		longPressStrategy = nil
 		showStrategyActions = false
+	}
+
+	private func handleDeleteConfirmed(_ deleted: UserStrategy) {
+		switch deleteOrigin {
+		case .list:
+			mode = .myStrategies
+			if let target = pendingListFocusID {
+				DispatchQueue.main.async {
+					focusedUserStrategyID = target
+				}
+			} else if focusModePickerAfterDelete {
+				DispatchQueue.main.async {
+					modePickerFocused = true
+				}
+			}
+		case .detail:
+			selectedStrategy = nil
+			mode = .myStrategies
+			DispatchQueue.main.async {
+				titleFocused = true
+			}
+		case nil:
+			break
+		}
+
+		deleteOrigin = nil
+		if listEditOriginID == deleted.id {
+			listEditOriginID = nil
+		}
+	}
+
+	private func handleDeleteCancelled() {
+		if case .detail(let strategyID) = deleteOrigin,
+		   let strategy = store.strategies.first(where: { $0.id == strategyID }) {
+			selectedDetailFocus = .actions
+			detailFocusRevision += 1
+			selectedStrategy = makeDisplayStrategy(from: strategy)
+		}
+		deleteOrigin = nil
+	}
+
+	private func handleSubmitCancelled() {
+		switch submitOrigin {
+		case .list(let strategyID):
+			DispatchQueue.main.async {
+				focusedUserStrategyID = strategyID
+			}
+		case .detail(let strategyID):
+			if let strategy = store.strategies.first(where: { $0.id == strategyID }) {
+				selectedDetailFocus = .actions
+				detailFocusRevision += 1
+				selectedStrategy = makeDisplayStrategy(from: strategy)
+			}
+		case nil:
+			break
+		}
+
+		submittingStrategy = nil
+		submitOrigin = nil
+	}
+
+	private func handleSubmitFinished(result: MFMailComposeResult, strategyID: UserStrategy.ID) {
+		if result == .sent {
+			switch submitOrigin {
+			case .list:
+				DispatchQueue.main.async {
+					focusedUserStrategyID = strategyID
+				}
+			case .detail:
+				if let strategy = store.strategies.first(where: { $0.id == strategyID }) {
+					selectedDetailFocus = .title
+					detailFocusRevision += 1
+					selectedStrategy = makeDisplayStrategy(from: strategy)
+				}
+			case nil:
+				break
+			}
+		} else {
+			handleSubmitCancelled()
+			return
+		}
+
+		submittingStrategy = nil
+		submitOrigin = nil
 	}
 
 	private func validateAndSave() {
@@ -408,7 +568,7 @@ struct CreateStrategyView: View {
 		)
 
 		store.add(strategy)
-		finishSaveFlow()
+		finishSaveFlow(savedOriginalID: nil, createdStrategy: strategy)
 	}
 
 	private func saveEditedStrategy() {
@@ -427,44 +587,97 @@ struct CreateStrategyView: View {
 			credit: credit
 		)
 
-		finishSaveFlow()
+		if let updated = store.strategies.first(where: { $0.id == editingID }) {
+			finishSaveFlow(savedOriginalID: editingID, createdStrategy: nil, updatedOriginal: updated)
+		} else {
+			finishSaveFlow(savedOriginalID: editingID, createdStrategy: nil)
+		}
 	}
 
-	private func finishSaveFlow() {
+	private func finishSaveFlow(
+		savedOriginalID: UserStrategy.ID?,
+		createdStrategy: UserStrategy?,
+		updatedOriginal: UserStrategy? = nil
+	) {
+		let origin = editOrigin
+
 		isEditing = false
 		editingStrategyID = nil
-		editOrigin = nil
-		editingOriginalStrategy = nil
 		mode = .myStrategies
 		resetForm()
+
+		switch origin {
+		case .myStrategies(let id):
+			if let created = createdStrategy {
+				pendingListFocusID = created.id
+			} else if let savedID = savedOriginalID {
+				pendingListFocusID = savedID
+			} else {
+				pendingListFocusID = id
+			}
+		case .detail(let id):
+			let target: UserStrategy?
+			if let created = createdStrategy {
+				target = created
+			} else if let updated = updatedOriginal {
+				target = updated
+			} else {
+				target = store.strategies.first(where: { $0.id == id })
+			}
+
+			if let strategy = target {
+				selectedDetailFocus = .title
+				detailFocusRevision += 1
+				selectedStrategy = makeDisplayStrategy(from: strategy)
+			}
+		case nil:
+			if let created = createdStrategy {
+				pendingListFocusID = created.id
+			}
+		}
+
+		editOrigin = nil
+		editingOriginalStrategy = nil
 	}
 
-	private func beginSubmit(_ strategy: UserStrategy) {
+	private func beginSubmit(_ strategy: UserStrategy, origin: ActionOrigin) {
 		submittingStrategy = strategy
+		submitOrigin = origin
 		showSubmitAlert = true
 	}
 
 	private func openStrategy(_ strategy: UserStrategy) {
+		selectedDetailFocus = .title
+		detailFocusRevision += 1
 		selectedStrategy = makeDisplayStrategy(from: strategy)
 	}
 
-	private func duplicateStrategy(_ strategy: UserStrategy) {
-		store.add(
-			UserStrategy(
-				name: strategy.name + " (Copy)",
-				buyIn: strategy.buyIn,
-				tableMinimum: strategy.tableMinimum,
-				steps: strategy.steps,
-				notes: strategy.notes,
-				credit: strategy.credit
-			)
+	private func duplicateStrategy(_ strategy: UserStrategy, origin: ActionOrigin) {
+		let copied = UserStrategy(
+			name: strategy.name + " (Copy)",
+			buyIn: strategy.buyIn,
+			tableMinimum: strategy.tableMinimum,
+			steps: strategy.steps,
+			notes: strategy.notes,
+			credit: strategy.credit
 		)
+		store.add(copied)
+
+		switch origin {
+		case .list:
+			mode = .myStrategies
+			pendingListFocusID = copied.id
+		case .detail:
+			selectedDetailFocus = .title
+			detailFocusRevision += 1
+			selectedStrategy = makeDisplayStrategy(from: copied)
+		}
 	}
 
-	private func beginEditing(_ strategy: UserStrategy) {
+	private func beginEditing(_ strategy: UserStrategy, origin: EditOrigin) {
 		isEditing = true
 		mode = .create
-		editOrigin = editOrigin ?? .myStrategies
+		editOrigin = origin
 		editingOriginalStrategy = strategy
 		editingStrategyID = strategy.id
 		strategyName = strategy.name
@@ -481,10 +694,19 @@ struct CreateStrategyView: View {
 
 		switch editOrigin {
 		case .detail(let strategyID):
-			if let original = editingOriginalStrategy, original.id == strategyID {
+			if let current = store.strategies.first(where: { $0.id == strategyID }) {
+				selectedDetailFocus = .actions
+				detailFocusRevision += 1
+				selectedStrategy = makeDisplayStrategy(from: current)
+			} else if let original = editingOriginalStrategy, original.id == strategyID {
+				selectedDetailFocus = .actions
+				detailFocusRevision += 1
 				selectedStrategy = makeDisplayStrategy(from: original)
 			}
 			mode = .myStrategies
+		case .myStrategies(let strategyID):
+			mode = .myStrategies
+			pendingListFocusID = strategyID
 		default:
 			mode = .myStrategies
 		}

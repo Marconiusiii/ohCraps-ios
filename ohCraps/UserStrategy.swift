@@ -11,6 +11,7 @@ struct UserStrategy: Identifiable, Codable {
 	let dateCreated: Date
 	let dateLastEdited: Date?
 	let isSubmitted: Bool
+	let hasBeenSubmitted: Bool
 
 	init(
 		id: UUID = UUID(),
@@ -22,7 +23,8 @@ struct UserStrategy: Identifiable, Codable {
 		credit: String,
 		dateCreated: Date = Date(),
 		dateLastEdited: Date? = nil,
-		isSubmitted: Bool = false
+		isSubmitted: Bool = false,
+		hasBeenSubmitted: Bool = false
 	) {
 		self.id = id
 		self.name = name
@@ -34,6 +36,7 @@ struct UserStrategy: Identifiable, Codable {
 		self.dateCreated = dateCreated
 		self.dateLastEdited = dateLastEdited
 		self.isSubmitted = isSubmitted
+		self.hasBeenSubmitted = hasBeenSubmitted
 	}
 	
 	enum CodingKeys: String, CodingKey {
@@ -47,6 +50,7 @@ struct UserStrategy: Identifiable, Codable {
 		case dateCreated
 		case dateLastEdited
 		case isSubmitted
+		case hasBeenSubmitted
 	}
 
 	init(from decoder: Decoder) throws {
@@ -62,6 +66,7 @@ struct UserStrategy: Identifiable, Codable {
 		dateCreated = try container.decode(Date.self, forKey: .dateCreated)
 		dateLastEdited = try container.decodeIfPresent(Date.self, forKey: .dateLastEdited)
 		isSubmitted = try container.decodeIfPresent(Bool.self, forKey: .isSubmitted) ?? false
+		hasBeenSubmitted = try container.decodeIfPresent(Bool.self, forKey: .hasBeenSubmitted) ?? false
 	}
 
 	func encode(to encoder: Encoder) throws {
@@ -77,7 +82,7 @@ struct UserStrategy: Identifiable, Codable {
 		try container.encode(dateCreated, forKey: .dateCreated)
 		try container.encodeIfPresent(dateLastEdited, forKey: .dateLastEdited)
 		try container.encode(isSubmitted, forKey: .isSubmitted)
+		try container.encode(hasBeenSubmitted, forKey: .hasBeenSubmitted)
 	}
 
 }
-

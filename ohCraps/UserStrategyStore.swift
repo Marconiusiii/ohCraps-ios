@@ -32,6 +32,8 @@ final class UserStrategyStore: ObservableObject {
 		}
 
 		let existing = strategies[index]
+		let updatedDate = Date()
+		let shouldRequireResubmission = existing.isSubmitted
 
 		strategies[index] = UserStrategy(
 			id: existing.id,
@@ -42,8 +44,9 @@ final class UserStrategyStore: ObservableObject {
 			notes: notes,
 			credit: credit,
 			dateCreated: existing.dateCreated,
-			dateLastEdited: existing.dateLastEdited,
-			isSubmitted: existing.isSubmitted
+			dateLastEdited: updatedDate,
+			isSubmitted: shouldRequireResubmission ? false : existing.isSubmitted,
+			hasBeenSubmitted: existing.hasBeenSubmitted || existing.isSubmitted
 		)
 
 		save()
@@ -71,7 +74,8 @@ final class UserStrategyStore: ObservableObject {
 			credit: existing.credit,
 			dateCreated: existing.dateCreated,
 			dateLastEdited: existing.dateLastEdited,
-			isSubmitted: isSubmitted
+			isSubmitted: isSubmitted,
+			hasBeenSubmitted: existing.hasBeenSubmitted || isSubmitted
 		)
 
 		save()
@@ -97,4 +101,3 @@ final class UserStrategyStore: ObservableObject {
 		strategies = decoded
 	}
 }
-

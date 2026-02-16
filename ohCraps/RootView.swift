@@ -3,6 +3,7 @@ import SwiftUI
 struct RootView: View {
 		@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
+	@State private var hideTabBar = false
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -16,7 +17,7 @@ struct RootView: View {
 				RulesView()
 			case .createStrategy:
 				NavigationStack {
-					CreateStrategyView()
+					CreateStrategyView(hideTabBar: $hideTabBar)
 				}
 				.environmentObject(userStrategyStore)
 			case .about:
@@ -24,9 +25,10 @@ struct RootView: View {
 			}
 
 			// CUSTOM TAB BAR
-			CustomTabBar(selectedTab: $selectedTab)
+			if !hideTabBar {
+				CustomTabBar(selectedTab: $selectedTab)
+			}
 		}
 		.dynamicTypeSize(.xSmall ... .accessibility5)
 	}
 }
-
