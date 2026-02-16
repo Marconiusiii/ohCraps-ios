@@ -35,7 +35,8 @@ private final class StrategyShareItemSource: NSObject, UIActivityItemSource {
 		_ activityViewController: UIActivityViewController,
 		itemForActivityType activityType: UIActivity.ActivityType?
 	) -> Any? {
-		if activityType == .airDrop {
+		let filesActivityRawValue = "com.apple.DocumentManagerUICore.SaveToFiles"
+		if activityType == .airDrop || activityType == .print || activityType?.rawValue == filesActivityRawValue {
 			return airDropFileURL()
 		}
 		return payload.text
