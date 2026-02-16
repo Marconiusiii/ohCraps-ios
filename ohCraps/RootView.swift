@@ -11,7 +11,7 @@ struct RootView: View {
 			// CONTENT
 			switch selectedTab {
 			case .strategies:
-				StrategiesView()
+				StrategiesView(hideTabBar: $hideTabBar)
 
 			case .rules:
 				RulesView()

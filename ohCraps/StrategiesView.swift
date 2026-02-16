@@ -53,6 +53,7 @@ enum SectionKey: Hashable, Comparable {
 
 
 struct StrategiesView: View {
+	@Binding var hideTabBar: Bool
 
 	@State private var allStrategies: [Strategy] = []
 	@State private var isLoading = true
@@ -172,7 +173,10 @@ struct StrategiesView: View {
 						Section {
 							ForEach(items) { strategy in
 								NavigationLink(
-									destination: StrategyDetailView(strategy: strategy)
+									destination: StrategyDetailView(
+										strategy: strategy,
+										hideTabBar: $hideTabBar
+									)
 								) {
 									Text(strategy.name)
 										.foregroundColor(.white)

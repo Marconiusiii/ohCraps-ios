@@ -185,6 +185,7 @@ struct CreateStrategyView: View {
 			let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
 			StrategyDetailView(
 				strategy: strategy,
+				hideTabBar: $hideTabBar,
 				userStrategy: userStrategy,
 				edit: {
 					if let userStrategy = userStrategy {
@@ -686,6 +687,10 @@ struct CreateStrategyView: View {
 		stepsText = strategy.steps
 		notesText = strategy.notes
 		credit = strategy.credit
+		focusField = nil
+		DispatchQueue.main.async {
+			titleFocused = true
+		}
 	}
 
 	private func discardEditing() {
