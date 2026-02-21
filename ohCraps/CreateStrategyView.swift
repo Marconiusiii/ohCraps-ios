@@ -420,11 +420,6 @@ struct CreateStrategyView: View {
 					}
 					.id(strategy.id)
 					.accessibilityFocused($focusedUserStrategyID, equals: strategy.id)
-					.onAppear {
-						if pendingListFocusID == strategy.id {
-							focusRow(strategy.id)
-						}
-					}
 					.listRowBackground(Color.black.opacity(0.45))
 					.simultaneousGesture(TapGesture().onEnded {
 						pendingListFocusID = strategy.id
@@ -1072,6 +1067,9 @@ struct CreateStrategyView: View {
 	}
 
 	private func scheduleRowFocus() {
+		guard pendingListFocusID != nil else {
+			return
+		}
 		restoreWork?.cancel()
 		let work = DispatchWorkItem {
 			tryRestoreRowFocus()
