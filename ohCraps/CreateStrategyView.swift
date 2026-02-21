@@ -96,7 +96,6 @@ struct CreateStrategyView: View {
 	@State private var detailFocusRevision = 0
 	@State private var listEditOriginID: UserStrategy.ID?
 	@State private var pendingListFocusID: UserStrategy.ID?
-	@State private var detailReturnFocusID: UserStrategy.ID?
 	@State private var suppressDetailClose = false
 	@State private var keepBarHiddenOnClose = false
 	@State private var focusModePickerAfterDelete = false
@@ -146,13 +145,13 @@ struct CreateStrategyView: View {
 					.accessibilityFocused($modePickerFocused)
 				}
 
-				ScrollView {
-					switch mode {
-					case .create:
+				switch mode {
+				case .create:
+					ScrollView {
 						createForm
-					case .myStrategies:
-						myStrategiesList
 					}
+				case .myStrategies:
+					myStrategiesList
 				}
 			}
 		}
@@ -368,7 +367,7 @@ struct CreateStrategyView: View {
 	// MARK: - My Strategies
 
 	private var myStrategiesList: some View {
-		VStack(alignment: .leading, spacing: 16) {
+		List {
 			if store.strategies.isEmpty {
 				Text("No saved strategies yet.")
 					.font(AppTheme.bodyText)
@@ -380,7 +379,6 @@ struct CreateStrategyView: View {
 				) {
 					StrategyRow(
 						strategy: strategy,
-						focusedUserStrategyID: $focusedUserStrategyID,
 						edit: {
 							beginEditing(strategy, origin: .myStrategies(strategy.id))
 						},
@@ -403,9 +401,17 @@ struct CreateStrategyView: View {
 						}
 					)
 				}
+				.accessibilityFocused($focusedUserStrategyID, equals: strategy.id)
+				.listRowBackground(Color.black.opacity(0.45))
+				.simultaneousGesture(TapGesture().onEnded {
+					pendingListFocusID = strategy.id
+					modePickerFocused = false
+				})
 			}
 		}
-		.padding()
+		.listStyle(.plain)
+		.scrollContentBackground(.hidden)
+		.background(Color.clear)
 	}
 
 	// MARK: - Actions
@@ -443,12 +449,12 @@ struct CreateStrategyView: View {
 			} else {
 				tryRestoreRowFocus()
 			}
-			case .detail:
-				detailReturnFocusID = nil
-				selectedStrategy = nil
-				mode = .myStrategies
-				DispatchQueue.main.async {
-					modePickerFocused = true
+		case .detail:
+			pendingListFocusID = nil
+			selectedStrategy = nil
+			mode = .myStrategies
+			DispatchQueue.main.async {
+				modePickerFocused = true
 				}
 		case nil:
 			break
@@ -623,7 +629,6 @@ struct CreateStrategyView: View {
 			}
 
 			if let strategy = target {
-				detailReturnFocusID = strategy.id
 				selectedDetailFocus = .title
 				detailFocusRevision += 1
 				selectedStrategy = makeDisplayStrategy(from: strategy)
@@ -693,8 +698,9 @@ struct CreateStrategyView: View {
 			},
 			onShow: {
 				if let id = userStrategy?.id {
-					detailReturnFocusID = id
+					pendingListFocusID = id
 				}
+				modePickerFocused = false
 			},
 			onGone: {
 				if suppressDetailClose {
@@ -706,10 +712,6 @@ struct CreateStrategyView: View {
 					}
 					return
 				}
-				guard mode == .myStrategies, !isEditing else { return }
-				guard let id = detailReturnFocusID else { return }
-				pendingListFocusID = id
-				tryRestoreRowFocus()
 			},
 			initialAccessibilityFocus: selectedDetailFocus,
 			focusRevision: detailFocusRevision
@@ -732,7 +734,6 @@ struct CreateStrategyView: View {
 			mode = .myStrategies
 			pendingListFocusID = copied.id
 		case .detail:
-			detailReturnFocusID = copied.id
 			selectedDetailFocus = .title
 			detailFocusRevision += 1
 			selectedStrategy = makeDisplayStrategy(from: copied)
@@ -952,7 +953,6 @@ struct CreateStrategyView: View {
 
 private struct StrategyRow: View {
 	let strategy: UserStrategy
-	let focusedUserStrategyID: AccessibilityFocusState<UserStrategy.ID?>.Binding
 	let edit: () -> Void
 	let duplicate: () -> Void
 	let submit: () -> Void
@@ -976,7 +976,6 @@ private struct StrategyRow: View {
 		.onLongPressGesture(minimumDuration: 0.45) {
 			showActions()
 		}
-		.accessibilityFocused(focusedUserStrategyID, equals: strategy.id)
 
 		.accessibilityElement(children: .combine)
 		.accessibilityAddTraits(.isButton)
