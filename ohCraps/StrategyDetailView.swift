@@ -145,7 +145,10 @@ struct StrategyDetailView: View {
 				if let userStrategy = userStrategy {
 					Menu("Strategy Actions") {
 						Button("Edit") {
-							edit?()
+							dismiss()
+							DispatchQueue.main.async {
+								edit?()
+							}
 						}
 
 						Button("Duplicate") {

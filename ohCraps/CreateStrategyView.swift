@@ -561,8 +561,9 @@ struct CreateStrategyView: View {
 	}
 
 	private func saveStrategy() {
+		let finalName = newSaveName()
 		let strategy = UserStrategy(
-			name: strategyName,
+			name: finalName,
 			buyIn: buyIn,
 			tableMinimum: tableMinimum,
 			steps: stepsText,
@@ -572,6 +573,44 @@ struct CreateStrategyView: View {
 
 		store.add(strategy)
 		finishSaveFlow(savedOriginalID: nil, createdStrategy: strategy)
+	}
+
+	private func newSaveName() -> String {
+		let typed = strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
+		guard isEditing,
+			  let original = editingOriginalStrategy?.name.trimmingCharacters(in: .whitespacesAndNewlines),
+			  !typed.isEmpty,
+			  typed == original
+		else {
+			return strategyName
+		}
+
+		let used = Set(store.strategies.map { $0.name.lowercased() })
+		let start = nextNumStart(for: typed)
+		var n = start
+		while true {
+			let base = numBase(for: typed)
+			let candidate = base.isEmpty ? "\(n)" : "\(base) \(n)"
+			if !used.contains(candidate.lowercased()) {
+				return candidate
+			}
+			n += 1
+		}
+	}
+
+	private func nextNumStart(for name: String) -> Int {
+		if let hit = name.wholeMatch(of: /^(.*?)(?:\s+)?(\d+)$/),
+		   let n = Int(hit.2) {
+			return n + 1
+		}
+		return 1
+	}
+
+	private func numBase(for name: String) -> String {
+		if let hit = name.wholeMatch(of: /^(.*?)(?:\s+)?(\d+)$/) {
+			return String(hit.1).trimmingCharacters(in: .whitespacesAndNewlines)
+		}
+		return name
 	}
 
 	private func saveEditedStrategy() {
@@ -607,7 +646,7 @@ struct CreateStrategyView: View {
 		isEditing = false
 		editingStrategyID = nil
 		mode = .myStrategies
-		resetForm()
+		resetForm(false)
 
 		switch origin {
 		case .myStrategies(let id):
@@ -641,6 +680,9 @@ struct CreateStrategyView: View {
 
 		editOrigin = nil
 		editingOriginalStrategy = nil
+		DispatchQueue.main.async {
+			tryRestoreRowFocus()
+		}
 	}
 
 	private func beginSubmit(_ strategy: UserStrategy, origin: ActionOrigin) {
@@ -781,7 +823,7 @@ struct CreateStrategyView: View {
 		editOrigin = nil
 		editingOriginalStrategy = nil
 		focusField = nil
-		resetForm()
+		resetForm(false)
 	}
 
 	private func makeDisplayStrategy(from user: UserStrategy) -> Strategy {
@@ -912,7 +954,7 @@ struct CreateStrategyView: View {
 		}
 	}
 
-	private func resetForm() {
+	private func resetForm(_ putFocus: Bool = true) {
 		strategyName = ""
 		buyIn = ""
 		tableMinimum = ""
@@ -922,7 +964,7 @@ struct CreateStrategyView: View {
 		validationErrors = []
 		validationError = nil
 		showValidationAlert = false
-		focusField = .name
+		focusField = putFocus ? .name : nil
 	}
 
 	private func tryRestoreRowFocus() {
@@ -942,8 +984,13 @@ struct CreateStrategyView: View {
 			return
 		}
 		modePickerFocused = false
-		focusedUserStrategyID = targetID
-		pendingListFocusID = nil
+		focusedUserStrategyID = nil
+		DispatchQueue.main.async {
+			focusedUserStrategyID = targetID
+			if pendingListFocusID == targetID {
+				pendingListFocusID = nil
+			}
+		}
 	}
 
 	private func formattedDate(_ date: Date) -> String {
