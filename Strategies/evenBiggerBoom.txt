@@ -1,0 +1,18 @@
+<div id="evenBiggerBoom">
+<h3>Even Bigger Boom</h3>
+<p>Buy-in: $240-$1200</p>
+<p>Table Minimum: Any</p>
+<p>Notes: Use hits to double the initial bets on the 6 and 8, and bolster strategy with hard ways bets that are 1/5th of the initial bets. Scale strategy for any table minimum; the following is for a $15 table.</p>
+<ol>
+<li>Wait for a point to be established, or if shooting, hedge with a Doey-Don't with minimum bets on the Pass and Don't Pass lines.</li>
+<li>Place the 4 and 10 for $15 each, and place the 6 and 8 for $18 each. Make $3 bets on the Hard 6 and 8. SO table minimum Place bets with Hard 6 and 8 bets that are 1/5th of the minimum.</li>
+<li>There are 3 ways to progress:
+<ul>
+<li>If the Hard 6 or 8 roll, take down the 4 and 10 Place bets and use the winnings to press the 6 and 8 up to $36 each, doubling them. Collect the rest.</li>
+<li>If the easy 6 or 8 roll, use the winnings to press the rolled number up to $36 and use the rest to go back up on the hard Way that lost. Leave the 4 and 10 up until both the Place 6 and 8 are pressed to $36 each.</li>
+<li>If the 4 or 10 roll, take the 4 and 10 Place bets down and use those and the winnings to press the 6 and 8 up to $36 each.</li>
+</ul></li>
+<li>Now, let the bets ride. If a hard 6 or 8 rolls, use the winnings to parlay the Hard 6 and 8 up to $15 each, and collect the change or use it to tip the dealer. This is going for the big Boom if the pressed hard ways hit again.</li>
+<li>If an easy 6 or 8 roll, collect the winnings and just go back up on the lost hard way bet for the minimum $3.</li>
+</ol>
+</div>

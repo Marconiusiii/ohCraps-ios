@@ -1,0 +1,12 @@
+<div id="basicHedge">
+<h3>Basic Hedge</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Basic hedge strategy  that gets you to profit in 3 hits.</p>
+<ol>
+<li>Start with a $30 Don't Pass bet.</li>
+<li>When point is established, bet $56 Inside; $10 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>Keep bets up for 3 hits. Keep track of the number of times the inside numbers hit. If the point is hit before the third hit, that subtracts from your count of hits.</li>
+<li>After 3 total hits on the inside numbers, take down the 5 and 9, regress the 6 and 8 down to $12 each, and let the bets ride until a 7 out.</li>
+</ol>
+</div>
