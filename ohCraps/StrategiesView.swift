@@ -198,7 +198,8 @@ struct StrategiesView: View {
 								NavigationLink(
 									destination: StrategyDetailView(
 										strategy: strategy,
-										hideTabBar: $hideTabBar
+										hideTabBar: $hideTabBar,
+										keepTabBarHiddenOnDisappear: .constant(false)
 									)
 								) {
 									Text(strategy.name)

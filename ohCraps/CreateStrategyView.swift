@@ -96,6 +96,9 @@ struct CreateStrategyView: View {
 	@State private var detailFocusRevision = 0
 	@State private var listEditOriginID: UserStrategy.ID?
 	@State private var pendingListFocusID: UserStrategy.ID?
+	@State private var detailReturnFocusID: UserStrategy.ID?
+	@State private var suppressNextDetailCloseFocusRestore = false
+	@State private var keepTabBarHiddenOnDetailDisappear = false
 	@State private var focusModePickerAfterDelete = false
 	@State private var deleteOrigin: ActionOrigin?
 	@State private var submitOrigin: ActionOrigin?
@@ -182,17 +185,39 @@ struct CreateStrategyView: View {
 				}
 			}
 		}
+		.onChange(of: selectedStrategy) { strategy in
+			guard strategy == nil else { return }
+			if suppressNextDetailCloseFocusRestore {
+				suppressNextDetailCloseFocusRestore = false
+				DispatchQueue.main.async {
+					if isEditing {
+						hideTabBar = true
+					}
+				}
+				return
+			}
+			guard mode == .myStrategies, !isEditing else { return }
+			guard let strategyID = detailReturnFocusID else { return }
+
+			detailReturnFocusID = nil
+			pendingListFocusID = strategyID
+		}
 
 		.navigationDestination(item: $selectedStrategy) { strategy in
 			let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
 			StrategyDetailView(
 				strategy: strategy,
 				hideTabBar: $hideTabBar,
+				keepTabBarHiddenOnDisappear: $keepTabBarHiddenOnDetailDisappear,
 				userStrategy: userStrategy,
 				edit: {
 					if let userStrategy = userStrategy {
-						beginEditing(userStrategy, origin: .detail(userStrategy.id))
+						suppressNextDetailCloseFocusRestore = true
+						keepTabBarHiddenOnDetailDisappear = true
 						selectedStrategy = nil
+						DispatchQueue.main.async {
+							beginEditing(userStrategy, origin: .detail(userStrategy.id))
+						}
 					}
 				},
 				duplicate: {
@@ -476,6 +501,7 @@ struct CreateStrategyView: View {
 				}
 			}
 		case .detail:
+			detailReturnFocusID = nil
 			selectedStrategy = nil
 			mode = .myStrategies
 			DispatchQueue.main.async {
@@ -654,6 +680,7 @@ struct CreateStrategyView: View {
 			}
 
 			if let strategy = target {
+				detailReturnFocusID = strategy.id
 				selectedDetailFocus = .title
 				detailFocusRevision += 1
 				selectedStrategy = makeDisplayStrategy(from: strategy)
@@ -675,6 +702,7 @@ struct CreateStrategyView: View {
 	}
 
 	private func openStrategy(_ strategy: UserStrategy) {
+		detailReturnFocusID = strategy.id
 		selectedDetailFocus = .title
 		detailFocusRevision += 1
 		selectedStrategy = makeDisplayStrategy(from: strategy)
@@ -696,6 +724,7 @@ struct CreateStrategyView: View {
 			mode = .myStrategies
 			pendingListFocusID = copied.id
 		case .detail:
+			detailReturnFocusID = copied.id
 			selectedDetailFocus = .title
 			detailFocusRevision += 1
 			selectedStrategy = makeDisplayStrategy(from: copied)

@@ -7,6 +7,7 @@ enum DetailFocusTarget {
 
 struct StrategyDetailView: View {
 	@Binding var hideTabBar: Bool
+	@Binding var keepTabBarHiddenOnDisappear: Bool
 	let strategy: Strategy
 	@Environment(\.dismiss) private var dismiss
 	let userStrategy: UserStrategy?
@@ -24,6 +25,7 @@ struct StrategyDetailView: View {
 	init(
 		strategy: Strategy,
 		hideTabBar: Binding<Bool> = .constant(false),
+		keepTabBarHiddenOnDisappear: Binding<Bool> = .constant(false),
 		userStrategy: UserStrategy? = nil,
 		edit: (() -> Void)? = nil,
 		duplicate: (() -> Void)? = nil,
@@ -33,6 +35,7 @@ struct StrategyDetailView: View {
 		focusRevision: Int = 0
 	) {
 		self._hideTabBar = hideTabBar
+		self._keepTabBarHiddenOnDisappear = keepTabBarHiddenOnDisappear
 		self.strategy = strategy
 		self.userStrategy = userStrategy
 		self.edit = edit
@@ -261,7 +264,8 @@ struct StrategyDetailView: View {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.onDisappear {
-			hideTabBar = false
+			hideTabBar = keepTabBarHiddenOnDisappear
+			keepTabBarHiddenOnDisappear = false
 		}
 		.onChange(of: focusRevision) { _ in
 			applyAccessibilityFocus(initialAccessibilityFocus)
