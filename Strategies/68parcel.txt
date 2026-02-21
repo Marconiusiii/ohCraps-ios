@@ -1,0 +1,18 @@
+<div id="68parcel">
+<h3>6 8 Parcel Place</h3>
+<p>Buy-in: $700</p>
+<p>Table Minimum: $15</p>
+<p>Notes: Name comes from taking down odds bet on pass line bet if place bet 6 or 8 hits first, letting the player turn a contract bet into a parcel place bet.</p>
+<p>Credit: The Universe</p>
+<ol>
+<li>Make a $15 Pass Line bet. Once point is established, wait one roll to avoid a Point Seven Out.</li>
+<li>Bet $5 times the 3x4x5 Pass Line Odds depending on the point; bet $15 in odds for the 4 or 10, $20 in odds for the 5 or 9, and $25 in odds for the 6 or 8.</li>
+<li>Pick either the 6 or 8 and place it with an equivalent value to the Pass Line bet plus the odds; place the 6 or 8 for $30 if the point is 4 or 10, $36 if the point is 5 or 9, or $42 if the point is 6 or 8.</li>
+<li>If the placed 6 or 8 hits, take down both your place bet and the pass line odds and wait for the hand to resolve.</li>
+<li>If the point is hit, take down the place bet and start strategy over.</li>
+</ol>
+
+
+
+
+</div>
