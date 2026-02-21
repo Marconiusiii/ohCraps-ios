@@ -190,11 +190,6 @@ struct AboutView: View {
 				}
 			}
 		}
-		.onAppear {
-			DispatchQueue.main.async {
-				titleFocused = true
-			}
-		}
 		.sheet(isPresented: $showMail) {
 			MailComposer(
 				recipient: "marco@marconius.com",

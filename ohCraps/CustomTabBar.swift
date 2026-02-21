@@ -84,5 +84,6 @@ struct CustomTabBar: View {
 		}
 		.buttonStyle(.plain)
 		.accessibilityAddTraits(isSelected ? [.isSelected] : [])
-		.accessibilityValue("Tab \(index + 1) of \(count)")	}
+		.accessibilityValue("Tab \(index + 1) of \(count)")
+	}
 }

@@ -32,11 +32,6 @@ struct RulesView: View {
 				}
 			}
 		}
-		.onAppear {
-			DispatchQueue.main.async {
-				titleFocused = true
-			}
-		}
 	}
 
 	private func rulesSectionView(_ section: RulesSection) -> some View {
@@ -141,4 +136,3 @@ private struct RulesBlockView: View {
 		}
 	}
 }
-

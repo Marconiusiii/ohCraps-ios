@@ -1,27 +1,35 @@
 import SwiftUI
 
 struct RootView: View {
-		@State private var selectedTab: AppTab = .strategies
+	@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
 	@State private var hideTabBar = false
 
 	var body: some View {
 		VStack(spacing: 0) {
-
-			// CONTENT
-			switch selectedTab {
-			case .strategies:
+			ZStack {
 				StrategiesView(hideTabBar: $hideTabBar)
+					.opacity(selectedTab == .strategies ? 1 : 0)
+					.allowsHitTesting(selectedTab == .strategies)
+					.accessibilityHidden(selectedTab != .strategies)
 
-			case .rules:
 				RulesView()
-			case .createStrategy:
+					.opacity(selectedTab == .rules ? 1 : 0)
+					.allowsHitTesting(selectedTab == .rules)
+					.accessibilityHidden(selectedTab != .rules)
+
 				NavigationStack {
 					CreateStrategyView(hideTabBar: $hideTabBar)
 				}
 				.environmentObject(userStrategyStore)
-			case .about:
+				.opacity(selectedTab == .createStrategy ? 1 : 0)
+				.allowsHitTesting(selectedTab == .createStrategy)
+				.accessibilityHidden(selectedTab != .createStrategy)
+
 				AboutView()
+					.opacity(selectedTab == .about ? 1 : 0)
+					.allowsHitTesting(selectedTab == .about)
+					.accessibilityHidden(selectedTab != .about)
 			}
 
 			// CUSTOM TAB BAR

@@ -39,7 +39,6 @@ struct TopNavBar: View {
 		.padding(.vertical, 6)
 		.frame(minHeight: 44, maxHeight: 72)
 		.background(AppTheme.topBarBackground)
-		.accessibilityElement(children: .contain)
 	}
 	private func titleScale(for text: String) -> CGFloat {
 		let count = text.count
@@ -55,4 +54,3 @@ struct TopNavBar: View {
 		}
 	}
 }
-

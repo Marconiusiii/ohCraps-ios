@@ -199,7 +199,7 @@ struct StrategiesView: View {
 									destination: StrategyDetailView(
 										strategy: strategy,
 										hideTabBar: $hideTabBar,
-										keepTabBarHiddenOnDisappear: .constant(false)
+										keepBarHiddenOnClose: .constant(false)
 									)
 								) {
 									Text(strategy.name)

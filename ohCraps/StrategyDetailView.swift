@@ -7,7 +7,7 @@ enum DetailFocusTarget {
 
 struct StrategyDetailView: View {
 	@Binding var hideTabBar: Bool
-	@Binding var keepTabBarHiddenOnDisappear: Bool
+	@Binding var keepBarHiddenOnClose: Bool
 	let strategy: Strategy
 	@Environment(\.dismiss) private var dismiss
 	let userStrategy: UserStrategy?
@@ -15,33 +15,41 @@ struct StrategyDetailView: View {
 	let duplicate: (() -> Void)?
 	let submit: (() -> Void)?
 	let delete: (() -> Void)?
+	let onShow: (() -> Void)?
+	let onGone: (() -> Void)?
 	let initialAccessibilityFocus: DetailFocusTarget
 	let focusRevision: Int
 	@AccessibilityFocusState private var titleFocused: Bool
 	@AccessibilityFocusState private var actionsFocused: Bool
 	@AccessibilityFocusState private var coreShareFocused: Bool
 	@State private var sharePayload: SharePayload?
+	@State private var showDetailSubmitAlert = false
+	@State private var showDetailDeleteAlert = false
 
 	init(
 		strategy: Strategy,
 		hideTabBar: Binding<Bool> = .constant(false),
-		keepTabBarHiddenOnDisappear: Binding<Bool> = .constant(false),
+		keepBarHiddenOnClose: Binding<Bool> = .constant(false),
 		userStrategy: UserStrategy? = nil,
 		edit: (() -> Void)? = nil,
 		duplicate: (() -> Void)? = nil,
 		submit: (() -> Void)? = nil,
 		delete: (() -> Void)? = nil,
+		onShow: (() -> Void)? = nil,
+		onGone: (() -> Void)? = nil,
 		initialAccessibilityFocus: DetailFocusTarget = .title,
 		focusRevision: Int = 0
 	) {
 		self._hideTabBar = hideTabBar
-		self._keepTabBarHiddenOnDisappear = keepTabBarHiddenOnDisappear
+		self._keepBarHiddenOnClose = keepBarHiddenOnClose
 		self.strategy = strategy
 		self.userStrategy = userStrategy
 		self.edit = edit
 		self.duplicate = duplicate
 		self.submit = submit
 		self.delete = delete
+		self.onShow = onShow
+		self.onGone = onGone
 		self.initialAccessibilityFocus = initialAccessibilityFocus
 		self.focusRevision = focusRevision
 	}
@@ -145,7 +153,7 @@ struct StrategyDetailView: View {
 						}
 
 						Button(userStrategy.isSubmitted ? "Resubmit" : "Submit") {
-							submit?()
+							showDetailSubmitAlert = true
 						}
 
 						Button("Share Strategy") {
@@ -156,7 +164,7 @@ struct StrategyDetailView: View {
 						}
 
 						Button("Delete \(userStrategy.name)", role: .destructive) {
-							delete?()
+							showDetailDeleteAlert = true
 						}
 					}
 					.font(AppTheme.cardTitle)
@@ -261,11 +269,13 @@ struct StrategyDetailView: View {
 		}
 		.onAppear {
 			hideTabBar = true
+			onShow?()
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.onDisappear {
-			hideTabBar = keepTabBarHiddenOnDisappear
-			keepTabBarHiddenOnDisappear = false
+			hideTabBar = keepBarHiddenOnClose
+			keepBarHiddenOnClose = false
+			onGone?()
 		}
 		.onChange(of: focusRevision) { _ in
 			applyAccessibilityFocus(initialAccessibilityFocus)
@@ -280,6 +290,30 @@ struct StrategyDetailView: View {
 			}
 		}) { payload in
 			ShareSheet(payload: payload)
+		}
+		.alert(
+			"Submit \(userStrategy?.name ?? "") to Oh Craps?",
+			isPresented: $showDetailSubmitAlert
+		) {
+			Button("Yes, Submit") {
+				submit?()
+			}
+			Button("Cancel", role: .cancel) {
+				applyAccessibilityFocus(.actions)
+			}
+		} message: {
+			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
+		}
+		.alert(
+			"Delete \(userStrategy?.name ?? "Strategy")?",
+			isPresented: $showDetailDeleteAlert
+		) {
+			Button("Delete", role: .destructive) {
+				delete?()
+			}
+			Button("Cancel", role: .cancel) {
+				applyAccessibilityFocus(.actions)
+			}
 		}
 	}
 

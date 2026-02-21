@@ -97,8 +97,8 @@ struct CreateStrategyView: View {
 	@State private var listEditOriginID: UserStrategy.ID?
 	@State private var pendingListFocusID: UserStrategy.ID?
 	@State private var detailReturnFocusID: UserStrategy.ID?
-	@State private var suppressNextDetailCloseFocusRestore = false
-	@State private var keepTabBarHiddenOnDetailDisappear = false
+	@State private var suppressDetailClose = false
+	@State private var keepBarHiddenOnClose = false
 	@State private var focusModePickerAfterDelete = false
 	@State private var deleteOrigin: ActionOrigin?
 	@State private var submitOrigin: ActionOrigin?
@@ -108,7 +108,6 @@ struct CreateStrategyView: View {
 
 	@FocusState private var focusField: Field?
 	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
-	@AccessibilityFocusState private var titleFocused: Bool
 	@AccessibilityFocusState private var modePickerFocused: Bool
 	private var screenTitle: String {
 		if isEditing {
@@ -136,7 +135,6 @@ struct CreateStrategyView: View {
 					showBack: false,
 					backAction: {}
 				)
-				.accessibilityFocused($titleFocused)
 
 				if !isEditing {
 					Picker("Mode", selection: $mode) {
@@ -159,7 +157,6 @@ struct CreateStrategyView: View {
 			}
 		}
 		.onAppear {
-			focusTitle()
 			hideTabBar = isEditing
 		}
 		.onDisappear {
@@ -168,76 +165,23 @@ struct CreateStrategyView: View {
 		.onChange(of: isEditing) { editing in
 			hideTabBar = editing
 		}
+		.onChange(of: hideTabBar) { hidden in
+			guard !hidden else { return }
+			tryRestoreRowFocus()
+		}
 		.onChange(of: pendingListFocusID) { strategyID in
-			guard let strategyID else { return }
-			if mode == .myStrategies {
-				DispatchQueue.main.async {
-					focusedUserStrategyID = strategyID
-					pendingListFocusID = nil
-				}
-			}
+			guard strategyID != nil else { return }
+			tryRestoreRowFocus()
 		}
 		.onChange(of: mode) { newMode in
-			if newMode == .myStrategies, let strategyID = pendingListFocusID {
-				DispatchQueue.main.async {
-					focusedUserStrategyID = strategyID
-					pendingListFocusID = nil
-				}
-			}
+			guard newMode == .myStrategies else { return }
+			tryRestoreRowFocus()
 		}
-		.onChange(of: selectedStrategy) { strategy in
-			guard strategy == nil else { return }
-			if suppressNextDetailCloseFocusRestore {
-				suppressNextDetailCloseFocusRestore = false
-				DispatchQueue.main.async {
-					if isEditing {
-						hideTabBar = true
-					}
-				}
-				return
-			}
-			guard mode == .myStrategies, !isEditing else { return }
-			guard let strategyID = detailReturnFocusID else { return }
-
-			detailReturnFocusID = nil
-			pendingListFocusID = strategyID
+		.onChange(of: store.strategies.map(\.id)) { _ in
+			tryRestoreRowFocus()
 		}
-
 		.navigationDestination(item: $selectedStrategy) { strategy in
-			let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
-			StrategyDetailView(
-				strategy: strategy,
-				hideTabBar: $hideTabBar,
-				keepTabBarHiddenOnDisappear: $keepTabBarHiddenOnDetailDisappear,
-				userStrategy: userStrategy,
-				edit: {
-					if let userStrategy = userStrategy {
-						suppressNextDetailCloseFocusRestore = true
-						keepTabBarHiddenOnDetailDisappear = true
-						selectedStrategy = nil
-						DispatchQueue.main.async {
-							beginEditing(userStrategy, origin: .detail(userStrategy.id))
-						}
-					}
-				},
-				duplicate: {
-					if let userStrategy = userStrategy {
-						duplicateStrategy(userStrategy, origin: .detail(userStrategy.id))
-					}
-				},
-				submit: {
-					if let userStrategy = userStrategy {
-						beginSubmit(userStrategy, origin: .detail(userStrategy.id))
-					}
-				},
-				delete: {
-					if let userStrategy = userStrategy {
-						beginDelete(userStrategy, origin: .detail(userStrategy.id))
-					}
-				},
-				initialAccessibilityFocus: selectedDetailFocus,
-				focusRevision: detailFocusRevision
-			)
+			detailScreen(strategy)
 		}
 
 		.confirmationDialog(
@@ -343,11 +287,11 @@ struct CreateStrategyView: View {
 
 		.sheet(isPresented: $showMailComposer) {
 			if let strategy = submittingStrategy {
-				MailComposer(
-					recipient: "marco@marconius.com",
-					subject: "Oh Craps Strategy Submission: \(strategy.name)",
-					body: submissionEmailBody(for: strategy),
-					onFinish: { result in
+					MailComposer(
+						recipient: "marco@marconius.com",
+						subject: "Oh Craps! iOS Strategy Submission - \(strategy.name)",
+						body: submissionEmailBody(for: strategy),
+						onFinish: { result in
 						if result == .sent {
 							store.setSubmitted(id: strategy.id, isSubmitted: true)
 						}
@@ -431,33 +375,34 @@ struct CreateStrategyView: View {
 			}
 
 			ForEach(store.strategies) { strategy in
-				StrategyRow(
-					strategy: strategy,
-					focusedUserStrategyID: $focusedUserStrategyID,
-					open: {
-						openStrategy(strategy)
-					},
-					edit: {
-						beginEditing(strategy, origin: .myStrategies(strategy.id))
-					},
-					duplicate: {
-						duplicateStrategy(strategy, origin: .list(strategy.id))
-					},
-					submit: {
-						beginSubmit(strategy, origin: .list(strategy.id))
-					},
-					share: {
-						beginShare(strategy, originID: strategy.id)
-					},
-					delete: {
-						beginDelete(strategy, origin: .list(strategy.id))
-					},
-					showActions: {
-						longPressStrategy = strategy
-						listEditOriginID = strategy.id
-						showStrategyActions = true
-					}
-				)
+				NavigationLink(
+					destination: detailScreen(makeDisplayStrategy(from: strategy))
+				) {
+					StrategyRow(
+						strategy: strategy,
+						focusedUserStrategyID: $focusedUserStrategyID,
+						edit: {
+							beginEditing(strategy, origin: .myStrategies(strategy.id))
+						},
+						duplicate: {
+							duplicateStrategy(strategy, origin: .list(strategy.id))
+						},
+						submit: {
+							beginSubmit(strategy, origin: .list(strategy.id))
+						},
+						share: {
+							beginShare(strategy, originID: strategy.id)
+						},
+						delete: {
+							beginDelete(strategy, origin: .list(strategy.id))
+						},
+						showActions: {
+							longPressStrategy = strategy
+							listEditOriginID = strategy.id
+							showStrategyActions = true
+						}
+					)
+				}
 			}
 		}
 		.padding()
@@ -491,22 +436,20 @@ struct CreateStrategyView: View {
 		switch deleteOrigin {
 		case .list:
 			mode = .myStrategies
-			if let target = pendingListFocusID {
-				DispatchQueue.main.async {
-					focusedUserStrategyID = target
-				}
-			} else if focusModePickerAfterDelete {
+			if focusModePickerAfterDelete {
 				DispatchQueue.main.async {
 					modePickerFocused = true
 				}
+			} else {
+				tryRestoreRowFocus()
 			}
-		case .detail:
-			detailReturnFocusID = nil
-			selectedStrategy = nil
-			mode = .myStrategies
-			DispatchQueue.main.async {
-				titleFocused = true
-			}
+			case .detail:
+				detailReturnFocusID = nil
+				selectedStrategy = nil
+				mode = .myStrategies
+				DispatchQueue.main.async {
+					modePickerFocused = true
+				}
 		case nil:
 			break
 		}
@@ -701,11 +644,76 @@ struct CreateStrategyView: View {
 		showSubmitAlert = true
 	}
 
-	private func openStrategy(_ strategy: UserStrategy) {
-		detailReturnFocusID = strategy.id
-		selectedDetailFocus = .title
-		detailFocusRevision += 1
-		selectedStrategy = makeDisplayStrategy(from: strategy)
+	private func submitFromDetail(_ strategy: UserStrategy) {
+		submittingStrategy = strategy
+		submitOrigin = .detail(strategy.id)
+		showMailComposer = true
+	}
+
+	private func deleteFromDetail(_ strategy: UserStrategy) {
+		deleteOrigin = .detail(strategy.id)
+		didConfirmDelete = true
+		store.delete(strategy)
+		handleDeleteConfirmed(strategy)
+		didConfirmDelete = false
+		deleteCandidate = nil
+	}
+
+	private func detailScreen(_ strategy: Strategy) -> some View {
+		let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
+		return StrategyDetailView(
+			strategy: strategy,
+			hideTabBar: $hideTabBar,
+			keepBarHiddenOnClose: $keepBarHiddenOnClose,
+			userStrategy: userStrategy,
+			edit: {
+				if let userStrategy = userStrategy {
+					suppressDetailClose = true
+					keepBarHiddenOnClose = true
+					selectedStrategy = nil
+					DispatchQueue.main.async {
+						beginEditing(userStrategy, origin: .detail(userStrategy.id))
+					}
+				}
+			},
+			duplicate: {
+				if let userStrategy = userStrategy {
+					duplicateStrategy(userStrategy, origin: .detail(userStrategy.id))
+				}
+			},
+			submit: {
+				if let userStrategy = userStrategy {
+					submitFromDetail(userStrategy)
+				}
+			},
+			delete: {
+				if let userStrategy = userStrategy {
+					deleteFromDetail(userStrategy)
+				}
+			},
+			onShow: {
+				if let id = userStrategy?.id {
+					detailReturnFocusID = id
+				}
+			},
+			onGone: {
+				if suppressDetailClose {
+					suppressDetailClose = false
+					DispatchQueue.main.async {
+						if isEditing {
+							hideTabBar = true
+						}
+					}
+					return
+				}
+				guard mode == .myStrategies, !isEditing else { return }
+				guard let id = detailReturnFocusID else { return }
+				pendingListFocusID = id
+				tryRestoreRowFocus()
+			},
+			initialAccessibilityFocus: selectedDetailFocus,
+			focusRevision: detailFocusRevision
+		)
 	}
 
 	private func duplicateStrategy(_ strategy: UserStrategy, origin: ActionOrigin) {
@@ -744,9 +752,6 @@ struct CreateStrategyView: View {
 		notesText = strategy.notes
 		credit = strategy.credit
 		focusField = nil
-		DispatchQueue.main.async {
-			titleFocused = true
-		}
 	}
 
 	private func discardEditing() {
@@ -919,8 +924,25 @@ struct CreateStrategyView: View {
 		focusField = .name
 	}
 
-	private func focusTitle() {
-		titleFocused = true
+	private func tryRestoreRowFocus() {
+		guard mode == .myStrategies, let targetID = pendingListFocusID else {
+			return
+		}
+		guard selectedStrategy == nil else {
+			return
+		}
+		guard !isEditing else {
+			return
+		}
+		guard !showDeleteAlert, !showSubmitAlert, !showStrategyActions else {
+			return
+		}
+		guard store.strategies.contains(where: { $0.id == targetID }) else {
+			return
+		}
+		modePickerFocused = false
+		focusedUserStrategyID = targetID
+		pendingListFocusID = nil
 	}
 
 	private func formattedDate(_ date: Date) -> String {
@@ -931,7 +953,6 @@ struct CreateStrategyView: View {
 private struct StrategyRow: View {
 	let strategy: UserStrategy
 	let focusedUserStrategyID: AccessibilityFocusState<UserStrategy.ID?>.Binding
-	let open: () -> Void
 	let edit: () -> Void
 	let duplicate: () -> Void
 	let submit: () -> Void
@@ -952,9 +973,6 @@ private struct StrategyRow: View {
 		}
 		.padding(.vertical, 8)
 		.contentShape(Rectangle())
-		.onTapGesture {
-			open()
-		}
 		.onLongPressGesture(minimumDuration: 0.45) {
 			showActions()
 		}
