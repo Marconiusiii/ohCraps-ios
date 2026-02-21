@@ -38,6 +38,17 @@ final class UserStrategyStore: ObservableObject {
 		}
 
 		let existing = strategies[index]
+		let didChange =
+			existing.name != name ||
+			existing.buyIn != buyIn ||
+			existing.tableMinimum != tableMinimum ||
+			existing.steps != steps ||
+			existing.notes != notes ||
+			existing.credit != credit
+		guard didChange else {
+			return
+		}
+
 		let updatedDate = Date()
 		let shouldRequireResubmission = existing.isSubmitted
 
@@ -60,7 +71,11 @@ final class UserStrategyStore: ObservableObject {
 
 
 	func delete(_ strategy: UserStrategy) {
+		let oldCount = strategies.count
 		strategies.removeAll { $0.id == strategy.id }
+		guard strategies.count != oldCount else {
+			return
+		}
 		save()
 	}
 	func setSubmitted(id: UUID, isSubmitted: Bool) {
@@ -69,6 +84,9 @@ final class UserStrategyStore: ObservableObject {
 		}
 
 		let existing = strategies[index]
+		guard existing.isSubmitted != isSubmitted else {
+			return
+		}
 
 		strategies[index] = UserStrategy(
 			id: existing.id,

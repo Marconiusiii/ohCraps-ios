@@ -9,6 +9,7 @@ struct StrategyDetailView: View {
 	@Binding var hideTabBar: Bool
 	@Binding var keepBarHiddenOnClose: Bool
 	let strategy: Strategy
+	@EnvironmentObject private var store: UserStrategyStore
 	@Environment(\.dismiss) private var dismiss
 	let userStrategy: UserStrategy?
 	let edit: (() -> Void)?
@@ -25,6 +26,10 @@ struct StrategyDetailView: View {
 	@State private var sharePayload: SharePayload?
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
+
+	private var liveUser: UserStrategy? {
+		store.strategies.first(where: { $0.id == strategy.id }) ?? userStrategy
+	}
 
 	init(
 		strategy: Strategy,
@@ -142,7 +147,7 @@ struct StrategyDetailView: View {
 					backAction: { dismiss() }
 				)
 				.accessibilityFocused($titleFocused)
-				if let userStrategy = userStrategy {
+				if let userStrategy = liveUser {
 					Menu("Strategy Actions") {
 						Button("Edit") {
 							dismiss()
@@ -284,7 +289,7 @@ struct StrategyDetailView: View {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.sheet(item: $sharePayload, onDismiss: {
-			if userStrategy != nil {
+			if liveUser != nil {
 				applyAccessibilityFocus(.actions)
 			} else {
 				DispatchQueue.main.async {
@@ -295,7 +300,7 @@ struct StrategyDetailView: View {
 			ShareSheet(payload: payload)
 		}
 		.alert(
-			"Submit \(userStrategy?.name ?? "") to Oh Craps?",
+			"Submit \(liveUser?.name ?? "") to Oh Craps?",
 			isPresented: $showDetailSubmitAlert
 		) {
 			Button("Yes, Submit") {
@@ -308,7 +313,7 @@ struct StrategyDetailView: View {
 			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
 		}
 		.alert(
-			"Delete \(userStrategy?.name ?? "Strategy")?",
+			"Delete \(liveUser?.name ?? "Strategy")?",
 			isPresented: $showDetailDeleteAlert
 		) {
 			Button("Delete", role: .destructive) {

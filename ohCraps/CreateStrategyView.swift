@@ -98,6 +98,8 @@ struct CreateStrategyView: View {
 	@State private var pendingListFocusID: UserStrategy.ID?
 	@State private var pendingScrollID: UserStrategy.ID?
 	@State private var restoreWork: DispatchWorkItem?
+	@State private var userByID: [UserStrategy.ID: UserStrategy] = [:]
+	@State private var viewByID: [UserStrategy.ID: Strategy] = [:]
 	@State private var suppressDetailClose = false
 	@State private var keepBarHiddenOnClose = false
 	@State private var focusModePickerAfterDelete = false
@@ -161,6 +163,7 @@ struct CreateStrategyView: View {
 		}
 		.onAppear {
 			hideTabBar = isEditing
+			syncCaches()
 		}
 		.onDisappear {
 			hideTabBar = false
@@ -183,7 +186,8 @@ struct CreateStrategyView: View {
 			guard newMode == .myStrategies else { return }
 			scheduleRowFocus()
 		}
-		.onChange(of: store.strategies.map(\.id)) { _ in
+		.onReceive(store.$strategies) { _ in
+			syncCaches()
 			scheduleRowFocus()
 		}
 		.navigationDestination(item: $selectedStrategy) { strategy in
@@ -387,7 +391,7 @@ struct CreateStrategyView: View {
 
 				ForEach(store.strategies) { strategy in
 					NavigationLink(
-						destination: detailScreen(makeDisplayStrategy(from: strategy))
+						destination: detailScreen(viewByID[strategy.id] ?? makeDisplayStrategy(from: strategy))
 					) {
 						StrategyRow(
 							strategy: strategy,
@@ -496,7 +500,7 @@ struct CreateStrategyView: View {
 
 	private func handleDeleteCancelled() {
 		if case .detail(let strategyID) = deleteOrigin,
-		   let strategy = store.strategies.first(where: { $0.id == strategyID }) {
+		   let strategy = userByID[strategyID] {
 			selectedDetailFocus = .actions
 			detailFocusRevision += 1
 			selectedStrategy = makeDisplayStrategy(from: strategy)
@@ -514,7 +518,7 @@ struct CreateStrategyView: View {
 				scheduleRowFocus()
 			}
 		case .detail(let strategyID):
-			if let strategy = store.strategies.first(where: { $0.id == strategyID }) {
+			if let strategy = userByID[strategyID] {
 				selectedDetailFocus = .actions
 				detailFocusRevision += 1
 				selectedStrategy = makeDisplayStrategy(from: strategy)
@@ -537,7 +541,7 @@ struct CreateStrategyView: View {
 					pendingScrollID = strategyID
 				}
 			case .detail:
-				if let strategy = store.strategies.first(where: { $0.id == strategyID }) {
+				if let strategy = userByID[strategyID] {
 					selectedDetailFocus = .title
 					detailFocusRevision += 1
 					selectedStrategy = makeDisplayStrategy(from: strategy)
@@ -710,7 +714,7 @@ struct CreateStrategyView: View {
 			} else if let updated = updatedOriginal {
 				target = updated
 			} else {
-				target = store.strategies.first(where: { $0.id == id })
+				target = userByID[id]
 			}
 
 			if let strategy = target {
@@ -753,7 +757,7 @@ struct CreateStrategyView: View {
 	}
 
 	private func detailScreen(_ strategy: Strategy) -> some View {
-		let userStrategy = store.strategies.first(where: { $0.id == strategy.id })
+		let userStrategy = userByID[strategy.id]
 		return StrategyDetailView(
 			strategy: strategy,
 			hideTabBar: $hideTabBar,
@@ -853,7 +857,7 @@ struct CreateStrategyView: View {
 
 		switch editOrigin {
 		case .detail(let strategyID):
-			if let current = store.strategies.first(where: { $0.id == strategyID }) {
+			if let current = userByID[strategyID] {
 				selectedDetailFocus = .actions
 				detailFocusRevision += 1
 				selectedStrategy = makeDisplayStrategy(from: current)
@@ -1073,6 +1077,19 @@ struct CreateStrategyView: View {
 		}
 		restoreWork = work
 		DispatchQueue.main.async(execute: work)
+	}
+
+	private func syncCaches() {
+		var nextUser: [UserStrategy.ID: UserStrategy] = [:]
+		var nextView: [UserStrategy.ID: Strategy] = [:]
+		nextUser.reserveCapacity(store.strategies.count)
+		nextView.reserveCapacity(store.strategies.count)
+		for strategy in store.strategies {
+			nextUser[strategy.id] = strategy
+			nextView[strategy.id] = makeDisplayStrategy(from: strategy)
+		}
+		userByID = nextUser
+		viewByID = nextView
 	}
 
 	private func formattedDate(_ date: Date) -> String {
