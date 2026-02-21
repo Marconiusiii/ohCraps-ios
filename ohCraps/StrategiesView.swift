@@ -57,6 +57,9 @@ struct StrategiesView: View {
 
 	@State private var allStrategies: [Strategy] = []
 	@State private var isLoading = true
+	@State private var filteredStrategiesCache: [Strategy] = []
+	@State private var sectionedStrategiesCache: [SectionKey: [Strategy]] = [:]
+	@State private var sectionOrderCache: [SectionKey] = []
 	
 	private var shouldStackFilters: Bool {
 		dynamicTypeSize >= .accessibility1
@@ -137,8 +140,21 @@ struct StrategiesView: View {
 				if allStrategies.isEmpty {
 					loadStrategies()
 				} else {
+					rebuildDerivedStrategies()
 					isLoading = false
 				}
+			}
+			.onChange(of: allStrategies) { _ in
+				rebuildDerivedStrategies()
+			}
+			.onChange(of: searchText) { _ in
+				rebuildDerivedStrategies()
+			}
+			.onChange(of: tableMinFilter) { _ in
+				rebuildDerivedStrategies()
+			}
+			.onChange(of: buyInFilter) { _ in
+				rebuildDerivedStrategies()
 			}
 		}
 	}
@@ -172,8 +188,8 @@ struct StrategiesView: View {
 				}
 
 			List {
-				ForEach(sectionOrder, id: \.self) { section in
-					if let items = sectionedStrategies[section], !items.isEmpty {
+				ForEach(sectionOrderCache, id: \.self) { section in
+					if let items = sectionedStrategiesCache[section], !items.isEmpty {
 						Section {
 							ForEach(items) { strategy in
 								NavigationLink(
@@ -325,28 +341,6 @@ struct StrategiesView: View {
 		buyInFilter?.label ?? "Any"
 	}
 	
-	private var filteredStrategies: [Strategy] {
-		var result = allStrategies
-		
-		let q = searchText
-			.trimmingCharacters(in: .whitespacesAndNewlines)
-			.lowercased()
-		
-		if !q.isEmpty {
-			result = result.filter { $0.name.lowercased().contains(q) }
-		}
-		
-		if let f = tableMinFilter {
-			result = result.filter { matchesTableMinFilter(strategy: $0, filter: f) }
-		}
-		
-		if let f = buyInFilter {
-			result = result.filter { matchesBuyInFilter(strategy: $0, filter: f) }
-		}
-		
-		return result
-	}
-	
 	private func matchesTableMinFilter(strategy: Strategy, filter: TableMinFilter) -> Bool {
 		switch filter {
 		case .five:
@@ -407,7 +401,7 @@ struct StrategiesView: View {
 		return digits.isEmpty ? nil : Int(digits)
 	}
 	
-	private var sectionedStrategies: [SectionKey: [Strategy]] {
+	private func buildSectionedStrategies(from filteredStrategies: [Strategy]) -> [SectionKey: [Strategy]] {
 		let grouped = Dictionary(grouping: filteredStrategies) { strategy -> SectionKey in
 			let n = normalizedName(strategy)
 			guard let first = n.first else { return .number }
@@ -438,13 +432,34 @@ struct StrategiesView: View {
 			}
 		}
 	}
-	
-	private var sectionOrder: [SectionKey] {
-		sectionedStrategies.keys.sorted()
+
+	private func rebuildDerivedStrategies() {
+		var filtered = allStrategies
+
+		let q = searchText
+			.trimmingCharacters(in: .whitespacesAndNewlines)
+			.lowercased()
+
+		if !q.isEmpty {
+			filtered = filtered.filter { $0.name.lowercased().contains(q) }
+		}
+
+		if let f = tableMinFilter {
+			filtered = filtered.filter { matchesTableMinFilter(strategy: $0, filter: f) }
+		}
+
+		if let f = buyInFilter {
+			filtered = filtered.filter { matchesBuyInFilter(strategy: $0, filter: f) }
+		}
+
+		let sectioned = buildSectionedStrategies(from: filtered)
+		filteredStrategiesCache = filtered
+		sectionedStrategiesCache = sectioned
+		sectionOrderCache = sectioned.keys.sorted()
 	}
 	
 	private func announceSearchResults() {
-		let count = filteredStrategies.count
+		let count = filteredStrategiesCache.count
 		let msg = count == 1 ? "Showing 1 strategy" : "Showing \(count) strategies"
 		UIAccessibility.post(notification: .announcement, argument: msg)
 	}
