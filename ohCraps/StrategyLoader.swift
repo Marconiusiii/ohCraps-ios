@@ -8,15 +8,36 @@ enum StrategyContentBlock {
 }
 
 struct StrategyLoader {
+	private static let cacheLock = NSLock()
+	private static var cachedStrategies: [Strategy]?
 	
 	static func loadAllStrategies() -> [Strategy] {
+		cacheLock.lock()
+		if let cached = cachedStrategies {
+			cacheLock.unlock()
+			return cached
+		}
+		cacheLock.unlock()
+
 		guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: nil) else {
 			return []
 		}
 		
-		return urls
+		let loaded = urls
 			.compactMap { loadStrategy(from: $0) }
 			.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+
+		cacheLock.lock()
+		cachedStrategies = loaded
+		cacheLock.unlock()
+
+		return loaded
+	}
+
+	static func clearCache() {
+		cacheLock.lock()
+		cachedStrategies = nil
+		cacheLock.unlock()
 	}
 	
 	static func loadStrategy(fromHTML html: String) -> Strategy? {

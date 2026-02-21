@@ -134,7 +134,11 @@ struct StrategiesView: View {
 				}
 			}
 			.onAppear {
-				loadStrategies()
+				if allStrategies.isEmpty {
+					loadStrategies()
+				} else {
+					isLoading = false
+				}
 			}
 		}
 	}
