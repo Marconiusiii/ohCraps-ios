@@ -96,6 +96,7 @@ struct CreateStrategyView: View {
 	@State private var detailFocusRevision = 0
 	@State private var listEditOriginID: UserStrategy.ID?
 	@State private var pendingListFocusID: UserStrategy.ID?
+	@State private var pendingScrollID: UserStrategy.ID?
 	@State private var suppressDetailClose = false
 	@State private var keepBarHiddenOnClose = false
 	@State private var focusModePickerAfterDelete = false
@@ -108,6 +109,7 @@ struct CreateStrategyView: View {
 	@FocusState private var focusField: Field?
 	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
 	@AccessibilityFocusState private var modePickerFocused: Bool
+	@AccessibilityFocusState private var editTitleFocus: Bool
 	private var screenTitle: String {
 		if isEditing {
 			let trimmed = strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -134,6 +136,7 @@ struct CreateStrategyView: View {
 					showBack: false,
 					backAction: {}
 				)
+				.accessibilityFocused($editTitleFocus)
 
 				if !isEditing {
 					Picker("Mode", selection: $mode) {
@@ -163,6 +166,9 @@ struct CreateStrategyView: View {
 		}
 		.onChange(of: isEditing) { editing in
 			hideTabBar = editing
+			if !editing {
+				editTitleFocus = false
+			}
 		}
 		.onChange(of: hideTabBar) { hidden in
 			guard !hidden else { return }
@@ -367,51 +373,68 @@ struct CreateStrategyView: View {
 	// MARK: - My Strategies
 
 	private var myStrategiesList: some View {
-		List {
-			if store.strategies.isEmpty {
-				Text("No saved strategies yet.")
-					.font(AppTheme.bodyText)
-			}
-
-			ForEach(store.strategies) { strategy in
-				NavigationLink(
-					destination: detailScreen(makeDisplayStrategy(from: strategy))
-				) {
-					StrategyRow(
-						strategy: strategy,
-						edit: {
-							beginEditing(strategy, origin: .myStrategies(strategy.id))
-						},
-						duplicate: {
-							duplicateStrategy(strategy, origin: .list(strategy.id))
-						},
-						submit: {
-							beginSubmit(strategy, origin: .list(strategy.id))
-						},
-						share: {
-							beginShare(strategy, originID: strategy.id)
-						},
-						delete: {
-							beginDelete(strategy, origin: .list(strategy.id))
-						},
-						showActions: {
-							longPressStrategy = strategy
-							listEditOriginID = strategy.id
-							showStrategyActions = true
-						}
-					)
+		ScrollViewReader { proxy in
+			List {
+				if store.strategies.isEmpty {
+					Text("No saved strategies yet.")
+						.font(AppTheme.bodyText)
 				}
-				.accessibilityFocused($focusedUserStrategyID, equals: strategy.id)
-				.listRowBackground(Color.black.opacity(0.45))
-				.simultaneousGesture(TapGesture().onEnded {
-					pendingListFocusID = strategy.id
-					modePickerFocused = false
-				})
+
+				ForEach(store.strategies) { strategy in
+					NavigationLink(
+						destination: detailScreen(makeDisplayStrategy(from: strategy))
+					) {
+						StrategyRow(
+							strategy: strategy,
+							edit: {
+								beginEditing(strategy, origin: .myStrategies(strategy.id))
+							},
+							duplicate: {
+								duplicateStrategy(strategy, origin: .list(strategy.id))
+							},
+							submit: {
+								beginSubmit(strategy, origin: .list(strategy.id))
+							},
+							share: {
+								beginShare(strategy, originID: strategy.id)
+							},
+							delete: {
+								beginDelete(strategy, origin: .list(strategy.id))
+							},
+							showActions: {
+								longPressStrategy = strategy
+								listEditOriginID = strategy.id
+								showStrategyActions = true
+							}
+						)
+					}
+					.id(strategy.id)
+					.accessibilityFocused($focusedUserStrategyID, equals: strategy.id)
+					.onAppear {
+						if pendingListFocusID == strategy.id {
+							focusRow(strategy.id)
+						}
+					}
+					.listRowBackground(Color.black.opacity(0.45))
+					.simultaneousGesture(TapGesture().onEnded {
+						pendingListFocusID = strategy.id
+						modePickerFocused = false
+					})
+				}
 			}
+			.onChange(of: pendingScrollID) { id in
+				guard let id else { return }
+				focusRowNow(id, proxy: proxy)
+			}
+			.onAppear {
+				if let id = pendingScrollID ?? pendingListFocusID {
+					focusRowNow(id, proxy: proxy)
+				}
+			}
+			.listStyle(.plain)
+			.scrollContentBackground(.hidden)
+			.background(Color.clear)
 		}
-		.listStyle(.plain)
-		.scrollContentBackground(.hidden)
-		.background(Color.clear)
 	}
 
 	// MARK: - Actions
@@ -644,19 +667,24 @@ struct CreateStrategyView: View {
 		let origin = editOrigin
 
 		isEditing = false
+		editTitleFocus = false
 		editingStrategyID = nil
 		mode = .myStrategies
 		resetForm(false)
 
 		switch origin {
-		case .myStrategies(let id):
-			if let created = createdStrategy {
-				pendingListFocusID = created.id
-			} else if let savedID = savedOriginalID {
-				pendingListFocusID = savedID
-			} else {
-				pendingListFocusID = id
-			}
+			case .myStrategies(let id):
+				if let created = createdStrategy {
+					pendingListFocusID = created.id
+					pendingScrollID = nil
+					DispatchQueue.main.async {
+						pendingScrollID = created.id
+					}
+				} else if let savedID = savedOriginalID {
+					pendingListFocusID = savedID
+				} else {
+					pendingListFocusID = id
+				}
 		case .detail(let id):
 			let target: UserStrategy?
 			if let created = createdStrategy {
@@ -795,10 +823,14 @@ struct CreateStrategyView: View {
 		notesText = strategy.notes
 		credit = strategy.credit
 		focusField = nil
+		DispatchQueue.main.async {
+			editTitleFocus = true
+		}
 	}
 
 	private func discardEditing() {
 		isEditing = false
+		editTitleFocus = false
 		editingStrategyID = nil
 
 		switch editOrigin {
@@ -983,12 +1015,30 @@ struct CreateStrategyView: View {
 		guard store.strategies.contains(where: { $0.id == targetID }) else {
 			return
 		}
+		focusRow(targetID)
+	}
+
+	private func focusRow(_ id: UserStrategy.ID) {
 		modePickerFocused = false
 		focusedUserStrategyID = nil
 		DispatchQueue.main.async {
-			focusedUserStrategyID = targetID
-			if pendingListFocusID == targetID {
-				pendingListFocusID = nil
+			focusedUserStrategyID = id
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+				if focusedUserStrategyID == id, pendingListFocusID == id {
+					pendingListFocusID = nil
+				}
+			}
+		}
+	}
+
+	private func focusRowNow(_ id: UserStrategy.ID, proxy: ScrollViewProxy) {
+		DispatchQueue.main.async {
+			withAnimation(nil) {
+				proxy.scrollTo(id, anchor: .center)
+			}
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+				focusRow(id)
+				pendingScrollID = nil
 			}
 		}
 	}
