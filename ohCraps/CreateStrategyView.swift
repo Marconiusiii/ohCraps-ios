@@ -97,6 +97,7 @@ struct CreateStrategyView: View {
 	@State private var listEditOriginID: UserStrategy.ID?
 	@State private var pendingListFocusID: UserStrategy.ID?
 	@State private var pendingScrollID: UserStrategy.ID?
+	@State private var restoreWork: DispatchWorkItem?
 	@State private var suppressDetailClose = false
 	@State private var keepBarHiddenOnClose = false
 	@State private var focusModePickerAfterDelete = false
@@ -172,18 +173,18 @@ struct CreateStrategyView: View {
 		}
 		.onChange(of: hideTabBar) { hidden in
 			guard !hidden else { return }
-			tryRestoreRowFocus()
+			scheduleRowFocus()
 		}
 		.onChange(of: pendingListFocusID) { strategyID in
 			guard strategyID != nil else { return }
-			tryRestoreRowFocus()
+			scheduleRowFocus()
 		}
 		.onChange(of: mode) { newMode in
 			guard newMode == .myStrategies else { return }
-			tryRestoreRowFocus()
+			scheduleRowFocus()
 		}
 		.onChange(of: store.strategies.map(\.id)) { _ in
-			tryRestoreRowFocus()
+			scheduleRowFocus()
 		}
 		.navigationDestination(item: $selectedStrategy) { strategy in
 			detailScreen(strategy)
@@ -290,7 +291,11 @@ struct CreateStrategyView: View {
 			Button("Cancel", role: .cancel) {}
 		}
 
-		.sheet(isPresented: $showMailComposer) {
+		.sheet(isPresented: $showMailComposer, onDismiss: {
+			if pendingListFocusID != nil {
+				scheduleRowFocus()
+			}
+		}) {
 			if let strategy = submittingStrategy {
 					MailComposer(
 						recipient: "marco@marconius.com",
@@ -502,8 +507,11 @@ struct CreateStrategyView: View {
 	private func handleSubmitCancelled() {
 		switch submitOrigin {
 		case .list(let strategyID):
+			pendingListFocusID = strategyID
+			pendingScrollID = nil
 			DispatchQueue.main.async {
-				focusedUserStrategyID = strategyID
+				pendingScrollID = strategyID
+				scheduleRowFocus()
 			}
 		case .detail(let strategyID):
 			if let strategy = store.strategies.first(where: { $0.id == strategyID }) {
@@ -523,8 +531,10 @@ struct CreateStrategyView: View {
 		if result == .sent {
 			switch submitOrigin {
 			case .list:
+				pendingListFocusID = strategyID
+				pendingScrollID = nil
 				DispatchQueue.main.async {
-					focusedUserStrategyID = strategyID
+					pendingScrollID = strategyID
 				}
 			case .detail:
 				if let strategy = store.strategies.first(where: { $0.id == strategyID }) {
@@ -682,8 +692,16 @@ struct CreateStrategyView: View {
 					}
 				} else if let savedID = savedOriginalID {
 					pendingListFocusID = savedID
+					pendingScrollID = nil
+					DispatchQueue.main.async {
+						pendingScrollID = savedID
+					}
 				} else {
 					pendingListFocusID = id
+					pendingScrollID = nil
+					DispatchQueue.main.async {
+						pendingScrollID = id
+					}
 				}
 		case .detail(let id):
 			let target: UserStrategy?
@@ -709,7 +727,7 @@ struct CreateStrategyView: View {
 		editOrigin = nil
 		editingOriginalStrategy = nil
 		DispatchQueue.main.async {
-			tryRestoreRowFocus()
+			scheduleRowFocus()
 		}
 	}
 
@@ -1019,8 +1037,13 @@ struct CreateStrategyView: View {
 	}
 
 	private func focusRow(_ id: UserStrategy.ID) {
+		if focusedUserStrategyID == id {
+			if pendingListFocusID == id {
+				pendingListFocusID = nil
+			}
+			return
+		}
 		modePickerFocused = false
-		focusedUserStrategyID = nil
 		DispatchQueue.main.async {
 			focusedUserStrategyID = id
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
@@ -1041,6 +1064,15 @@ struct CreateStrategyView: View {
 				pendingScrollID = nil
 			}
 		}
+	}
+
+	private func scheduleRowFocus() {
+		restoreWork?.cancel()
+		let work = DispatchWorkItem {
+			tryRestoreRowFocus()
+		}
+		restoreWork = work
+		DispatchQueue.main.async(execute: work)
 	}
 
 	private func formattedDate(_ date: Date) -> String {
