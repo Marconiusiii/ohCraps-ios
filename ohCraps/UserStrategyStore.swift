@@ -8,6 +8,12 @@ final class UserStrategyStore: ObservableObject {
 	@Published private(set) var strategies: [UserStrategy] = []
 
 	private let storageKey = "userStrategies"
+	private let persistenceQueue = DispatchQueue(
+		label: "com.ohcraps.userstrategystore.persistence",
+		qos: .utility
+	)
+	private var pendingSaveSnapshot: [UserStrategy]?
+	private var isSaveInFlight = false
 
 	init() {
 		load()
@@ -82,11 +88,31 @@ final class UserStrategyStore: ObservableObject {
 	}
 
 	private func save() {
-		do {
-			let data = try JSONEncoder().encode(strategies)
-			UserDefaults.standard.set(data, forKey: storageKey)
-		} catch {
-			// Fail silently — user data should never crash the app
+		pendingSaveSnapshot = strategies
+		scheduleNextSaveIfNeeded()
+	}
+
+	private func scheduleNextSaveIfNeeded() {
+		guard !isSaveInFlight, let snapshot = pendingSaveSnapshot else {
+			return
+		}
+
+		isSaveInFlight = true
+		pendingSaveSnapshot = nil
+		let storageKey = self.storageKey
+
+		persistenceQueue.async {
+			do {
+				let data = try JSONEncoder().encode(snapshot)
+				UserDefaults.standard.set(data, forKey: storageKey)
+			} catch {
+				// Fail silently — user data should never crash the app
+			}
+
+			Task { @MainActor in
+				self.isSaveInFlight = false
+				self.scheduleNextSaveIfNeeded()
+			}
 		}
 	}
 
