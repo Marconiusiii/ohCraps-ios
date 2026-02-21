@@ -108,6 +108,7 @@ struct CreateStrategyView: View {
 	@State private var didConfirmDelete = false
 	@State private var sharePayload: SharePayload?
 	@State private var shareOriginID: UserStrategy.ID?
+	@State private var forceSubmitID: UserStrategy.ID?
 
 	@FocusState private var focusField: Field?
 	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
@@ -541,11 +542,9 @@ struct CreateStrategyView: View {
 					pendingScrollID = strategyID
 				}
 			case .detail:
-				if let strategy = userByID[strategyID] {
-					selectedDetailFocus = .title
-					detailFocusRevision += 1
-					selectedStrategy = makeDisplayStrategy(from: strategy)
-				}
+				forceSubmitID = strategyID
+				selectedDetailFocus = .title
+				detailFocusRevision += 1
 			case nil:
 				break
 			}
@@ -762,9 +761,11 @@ struct CreateStrategyView: View {
 			strategy: strategy,
 			hideTabBar: $hideTabBar,
 			keepBarHiddenOnClose: $keepBarHiddenOnClose,
+			justSubID: $forceSubmitID,
 			userStrategy: userStrategy,
 			edit: {
 				if let userStrategy = userStrategy {
+					forceSubmitID = nil
 					suppressDetailClose = true
 					keepBarHiddenOnClose = true
 					selectedStrategy = nil

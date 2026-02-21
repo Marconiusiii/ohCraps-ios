@@ -8,8 +8,8 @@ enum DetailFocusTarget {
 struct StrategyDetailView: View {
 	@Binding var hideTabBar: Bool
 	@Binding var keepBarHiddenOnClose: Bool
+	@Binding var justSubID: UserStrategy.ID?
 	let strategy: Strategy
-	@EnvironmentObject private var store: UserStrategyStore
 	@Environment(\.dismiss) private var dismiss
 	let userStrategy: UserStrategy?
 	let edit: (() -> Void)?
@@ -27,14 +27,11 @@ struct StrategyDetailView: View {
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
 
-	private var liveUser: UserStrategy? {
-		store.strategies.first(where: { $0.id == strategy.id }) ?? userStrategy
-	}
-
 	init(
 		strategy: Strategy,
 		hideTabBar: Binding<Bool> = .constant(false),
 		keepBarHiddenOnClose: Binding<Bool> = .constant(false),
+		justSubID: Binding<UserStrategy.ID?> = .constant(nil),
 		userStrategy: UserStrategy? = nil,
 		edit: (() -> Void)? = nil,
 		duplicate: (() -> Void)? = nil,
@@ -47,6 +44,7 @@ struct StrategyDetailView: View {
 	) {
 		self._hideTabBar = hideTabBar
 		self._keepBarHiddenOnClose = keepBarHiddenOnClose
+		self._justSubID = justSubID
 		self.strategy = strategy
 		self.userStrategy = userStrategy
 		self.edit = edit
@@ -147,7 +145,8 @@ struct StrategyDetailView: View {
 					backAction: { dismiss() }
 				)
 				.accessibilityFocused($titleFocused)
-				if let userStrategy = liveUser {
+				if let userStrategy = userStrategy {
+					let isSub = userStrategy.isSubmitted || justSubID == userStrategy.id
 					Menu("Strategy Actions") {
 						Button("Edit") {
 							dismiss()
@@ -160,7 +159,7 @@ struct StrategyDetailView: View {
 							duplicate?()
 						}
 
-						Button(userStrategy.isSubmitted ? "Resubmit" : "Submit") {
+						Button(isSub ? "Resubmit" : "Submit") {
 							showDetailSubmitAlert = true
 						}
 
@@ -289,7 +288,7 @@ struct StrategyDetailView: View {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.sheet(item: $sharePayload, onDismiss: {
-			if liveUser != nil {
+			if userStrategy != nil {
 				applyAccessibilityFocus(.actions)
 			} else {
 				DispatchQueue.main.async {
@@ -300,7 +299,7 @@ struct StrategyDetailView: View {
 			ShareSheet(payload: payload)
 		}
 		.alert(
-			"Submit \(liveUser?.name ?? "") to Oh Craps?",
+			"Submit \(userStrategy?.name ?? "") to Oh Craps?",
 			isPresented: $showDetailSubmitAlert
 		) {
 			Button("Yes, Submit") {
@@ -313,7 +312,7 @@ struct StrategyDetailView: View {
 			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
 		}
 		.alert(
-			"Delete \(liveUser?.name ?? "Strategy")?",
+			"Delete \(userStrategy?.name ?? "Strategy")?",
 			isPresented: $showDetailDeleteAlert
 		) {
 			Button("Delete", role: .destructive) {
@@ -326,7 +325,7 @@ struct StrategyDetailView: View {
 	}
 
 	private func submissionStatusText(for strategy: UserStrategy) -> String {
-		if strategy.isSubmitted {
+		if strategy.isSubmitted || justSubID == strategy.id {
 			return "Strategy Submitted to Oh Craps!"
 		}
 		if strategy.hasBeenSubmitted, strategy.dateLastEdited != nil {
