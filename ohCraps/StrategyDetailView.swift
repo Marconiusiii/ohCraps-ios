@@ -57,7 +57,7 @@ struct StrategyDetailView: View {
 		self.focusRevision = focusRevision
 	}
 
-	private struct RenderLine: Identifiable {
+	private struct RenderLine {
 		enum Kind {
 			case heading        // from <h4>
 			case step(number: Int)
@@ -65,7 +65,6 @@ struct StrategyDetailView: View {
 			case paragraph
 		}
 		
-		let id = UUID()
 		let kind: Kind
 		let text: String
 	}
@@ -234,7 +233,7 @@ struct StrategyDetailView: View {
 									.font(AppTheme.sectionHeader)
 									.accessibilityAddTraits(.isHeader)
 								
-								ForEach(renderedLines) { line in
+								ForEach(Array(renderedLines.enumerated()), id: \.offset) { _, line in
 									switch line.kind {
 									case .heading:
 										Text(line.text)
