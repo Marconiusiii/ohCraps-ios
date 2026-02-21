@@ -122,7 +122,10 @@ final class UserStrategyStore: ObservableObject {
 		persistenceQueue.async {
 			do {
 				let data = try JSONEncoder().encode(snapshot)
-				UserDefaults.standard.set(data, forKey: storageKey)
+				let existing = UserDefaults.standard.data(forKey: storageKey)
+				if existing != data {
+					UserDefaults.standard.set(data, forKey: storageKey)
+				}
 			} catch {
 				// Fail silently — user data should never crash the app
 			}

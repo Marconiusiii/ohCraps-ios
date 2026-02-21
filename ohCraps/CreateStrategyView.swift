@@ -75,8 +75,6 @@ struct CreateStrategyView: View {
 	@State private var notesText = ""
 	@State private var credit = ""
 
-	@State private var errorField: Field?
-	@State private var validationError: ValidationError?
 	@State private var validationErrors: [ValidationError] = []
 	@State private var showValidationAlert = false
 
@@ -577,7 +575,6 @@ struct CreateStrategyView: View {
 		}
 
 		if let firstError = validationErrors.first {
-			validationError = firstError
 			focusField = firstError.field
 			showValidationAlert = true
 			return
@@ -1012,7 +1009,6 @@ struct CreateStrategyView: View {
 		notesText = ""
 		credit = ""
 		validationErrors = []
-		validationError = nil
 		showValidationAlert = false
 		focusField = putFocus ? .name : nil
 	}
@@ -1091,9 +1087,6 @@ struct CreateStrategyView: View {
 		viewByID = nextView
 	}
 
-	private func formattedDate(_ date: Date) -> String {
-		DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .none)
-	}
 }
 
 private struct StrategyRow: View {
