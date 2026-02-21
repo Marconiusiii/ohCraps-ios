@@ -60,6 +60,7 @@ struct StrategiesView: View {
 	@State private var filteredStrategiesCache: [Strategy] = []
 	@State private var sectionedStrategiesCache: [SectionKey: [Strategy]] = [:]
 	@State private var sectionOrderCache: [SectionKey] = []
+	@State private var searchNameIndex: [Strategy.ID: String] = [:]
 	
 	private var shouldStackFilters: Bool {
 		dynamicTypeSize >= .accessibility1
@@ -140,11 +141,13 @@ struct StrategiesView: View {
 				if allStrategies.isEmpty {
 					loadStrategies()
 				} else {
+					rebuildSearchNameIndex()
 					rebuildDerivedStrategies()
 					isLoading = false
 				}
 			}
 			.onChange(of: allStrategies) { _ in
+				rebuildSearchNameIndex()
 				rebuildDerivedStrategies()
 			}
 			.onChange(of: searchText) { _ in
@@ -402,22 +405,47 @@ struct StrategiesView: View {
 	}
 	
 	private func buildSectionedStrategies(from filteredStrategies: [Strategy]) -> [SectionKey: [Strategy]] {
-		let grouped = Dictionary(grouping: filteredStrategies) { strategy -> SectionKey in
-			let n = normalizedName(strategy)
-			guard let first = n.first else { return .number }
-			
-			if first.isNumber { return .number }
-			if first.isLetter { return .letter(Character(first.uppercased())) }
-			return .number
+		struct SortMeta {
+			let normalizedName: String
+			let numericPrefix: Int?
+			let sectionKey: SectionKey
 		}
-		
+
+		let sortMetaByID = Dictionary(uniqueKeysWithValues: filteredStrategies.map { strategy in
+			let normalized = normalizedName(strategy)
+			let first = normalized.first
+			let sectionKey: SectionKey
+			if let first, first.isNumber {
+				sectionKey = .number
+			} else if let first, first.isLetter {
+				sectionKey = .letter(Character(first.uppercased()))
+			} else {
+				sectionKey = .number
+			}
+
+			return (
+				strategy.id,
+				SortMeta(
+					normalizedName: normalized,
+					numericPrefix: numericPrefix(of: normalized),
+					sectionKey: sectionKey
+				)
+			)
+		})
+
+		let grouped = Dictionary(grouping: filteredStrategies) { strategy -> SectionKey in
+			sortMetaByID[strategy.id]?.sectionKey ?? .number
+		}
+
 		return grouped.mapValues { group in
 			group.sorted { a, b in
-				let na = normalizedName(a)
-				let nb = normalizedName(b)
-				let numA = numericPrefix(of: na)
-				let numB = numericPrefix(of: nb)
-				
+				let metaA = sortMetaByID[a.id]
+				let metaB = sortMetaByID[b.id]
+				let na = metaA?.normalizedName ?? normalizedName(a)
+				let nb = metaB?.normalizedName ?? normalizedName(b)
+				let numA = metaA?.numericPrefix
+				let numB = metaB?.numericPrefix
+
 				switch (numA, numB) {
 				case let (x?, y?):
 					if x != y { return x < y }
@@ -441,7 +469,10 @@ struct StrategiesView: View {
 			.lowercased()
 
 		if !q.isEmpty {
-			filtered = filtered.filter { $0.name.lowercased().contains(q) }
+			filtered = filtered.filter { strategy in
+				let indexed = searchNameIndex[strategy.id] ?? strategy.name.lowercased()
+				return indexed.contains(q)
+			}
 		}
 
 		if let f = tableMinFilter {
@@ -456,6 +487,14 @@ struct StrategiesView: View {
 		filteredStrategiesCache = filtered
 		sectionedStrategiesCache = sectioned
 		sectionOrderCache = sectioned.keys.sorted()
+	}
+
+	private func rebuildSearchNameIndex() {
+		searchNameIndex = Dictionary(
+			uniqueKeysWithValues: allStrategies.map { strategy in
+				(strategy.id, strategy.name.lowercased())
+			}
+		)
 	}
 	
 	private func announceSearchResults() {

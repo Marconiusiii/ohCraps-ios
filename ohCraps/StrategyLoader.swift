@@ -10,6 +10,10 @@ enum StrategyContentBlock {
 struct StrategyLoader {
 	private static let cacheLock = NSLock()
 	private static var cachedStrategies: [Strategy]?
+	fileprivate static let buyInPrefixes = ["Buy-in:", "Buy-In:", "Buy In:"]
+	fileprivate static let tableMinPrefixes = ["Table Minimum:", "Table minimum:"]
+	fileprivate static let notesPrefixes = ["Notes:", "Note:"]
+	fileprivate static let creditPrefixes = ["Credit:", "Credits:"]
 	
 	static func loadAllStrategies() -> [Strategy] {
 		cacheLock.lock()
@@ -41,109 +45,42 @@ struct StrategyLoader {
 	}
 	
 	static func loadStrategy(fromHTML html: String) -> Strategy? {
-
-		// NAME
-		let name = extractTag("h3", from: html)
-
-		// METADATA
-		let buyInText = extractValue(
-			prefixes: ["Buy-in:", "Buy-In:", "Buy In:"],
-			from: html
-		)
-
-		let tableMinText = extractValue(
-			prefixes: ["Table Minimum:", "Table minimum:"],
-			from: html
-		)
-
-		let notes = extractValue(
-			prefixes: ["Notes:", "Note:"],
-			from: html,
-			allowMissing: true
-		)
-
-		let credit = extractValue(
-			prefixes: ["Credit:", "Credits:"],
-			from: html,
-			allowMissing: true
-		)
-
-		let (buyMin, buyMax) = parseRangeAllowingAny(buyInText)
-		let (tMin, tMax) = parseRangeAllowingAny(tableMinText)
-
-		let contentBlocks = extractContentBlocks(from: html)
-		let flattened = flattenBlocks(contentBlocks)
-
-		return Strategy(
-			id: UUID(),
-			name: name,
-			buyInText: buyInText,
-			tableMinText: tableMinText,
-			buyInMin: buyMin,
-			buyInMax: buyMax,
-			tableMinMin: tMin,
-			tableMinMax: tMax,
-			notes: notes,
-			credit: credit,
-			steps: flattened
-		)
+		return parseStrategy(html: html, id: UUID())
 	}
 
 	static func loadStrategy(from url: URL) -> Strategy? {
 		guard let raw = try? String(contentsOf: url, encoding: .utf8) else {
 			return nil
 		}
-		
-		let html = raw
-		
-		// NAME
-		let name = extractTag("h3", from: html)
-		
-		// METADATA PARAGRAPHS
-		let buyInText = extractValue(
-			prefixes: ["Buy-in:", "Buy-In:", "Buy In:"],
-			from: html
-		)
-		
-		let tableMinText = extractValue(
-			prefixes: ["Table Minimum:", "Table minimum:"],
-			from: html
-		)
-		
-		let notes = extractValue(
-			prefixes: ["Notes:", "Note:"],
-			from: html,
-			allowMissing: true
-		)
-		
-		let credit = extractValue(
-			prefixes: ["Credit:", "Credits:"],
-			from: html,
-			allowMissing: true
-		)
-
-		
-		let (buyMin, buyMax) = parseRangeAllowingAny(buyInText)
-		let (tMin, tMax) = parseRangeAllowingAny(tableMinText)
-		
-		// BODY CONTENT (OL / UL / H4 / P)
-		let contentBlocks = extractContentBlocks(from: html)
-		let flattened = flattenBlocks(contentBlocks)
-		
-		return Strategy(
-			id: UUID(),
-			name: name,
-			buyInText: buyInText,
-			tableMinText: tableMinText,
-			buyInMin: buyMin,
-			buyInMax: buyMax,
-			tableMinMin: tMin,
-			tableMinMax: tMax,
-			notes: notes,
-			credit: credit,
-			steps: flattened
-		)
+		return parseStrategy(html: raw, id: UUID())
 	}
+}
+
+private func parseStrategy(html: String, id: UUID) -> Strategy {
+	let name = extractTag("h3", from: html)
+	let buyInText = extractValue(prefixes: StrategyLoader.buyInPrefixes, from: html)
+	let tableMinText = extractValue(prefixes: StrategyLoader.tableMinPrefixes, from: html)
+	let notes = extractValue(prefixes: StrategyLoader.notesPrefixes, from: html, allowMissing: true)
+	let credit = extractValue(prefixes: StrategyLoader.creditPrefixes, from: html, allowMissing: true)
+
+	let (buyMin, buyMax) = parseRangeAllowingAny(buyInText)
+	let (tMin, tMax) = parseRangeAllowingAny(tableMinText)
+	let contentBlocks = extractContentBlocks(from: html)
+	let flattened = flattenBlocks(contentBlocks)
+
+	return Strategy(
+		id: id,
+		name: name,
+		buyInText: buyInText,
+		tableMinText: tableMinText,
+		buyInMin: buyMin,
+		buyInMax: buyMax,
+		tableMinMin: tMin,
+		tableMinMax: tMax,
+		notes: notes,
+		credit: credit,
+		steps: flattened
+	)
 }
 
 //
@@ -206,6 +143,7 @@ private func extractValue(
 	from html: String,
 	allowMissing: Bool = false
 ) -> String {
+	let lowerPrefixes = prefixes.map { $0.lowercased() }
 	var searchRange = html.startIndex..<html.endIndex
 	
 	while let pStart = html.range(of: "<p", options: .caseInsensitive, range: searchRange) {
@@ -218,8 +156,8 @@ private func extractValue(
 		let text = stripHTML(inner)
 		let lower = text.lowercased()
 		
-		for prefix in prefixes {
-			if lower.hasPrefix(prefix.lowercased()) {
+		for (prefix, lowerPrefix) in zip(prefixes, lowerPrefixes) {
+			if lower.hasPrefix(lowerPrefix) {
 				let valueStart = text.index(text.startIndex, offsetBy: prefix.count)
 				let value = text[valueStart...].trimmingCharacters(in: .whitespacesAndNewlines)
 				return value
@@ -261,6 +199,7 @@ private func extractContentBlocks(from html: String) -> [StrategyContentBlock] {
 	
 	// 2) Blank metadata paragraphs (Buy-in, Table Minimum, Notes)
 	func blankMetaParagraphs(prefixes: [String]) {
+		let lowerPrefixes = prefixes.map { $0.lowercased() }
 		var searchRange = work.startIndex..<work.endIndex
 		
 		while let pStart = work.range(of: "<p", options: .caseInsensitive, range: searchRange) {
@@ -273,8 +212,8 @@ private func extractContentBlocks(from html: String) -> [StrategyContentBlock] {
 			let text = stripHTML(innerOriginal)
 			let lower = text.lowercased()
 			
-			let isMeta = prefixes.contains { prefix in
-				lower.hasPrefix(prefix.lowercased())
+			let isMeta = lowerPrefixes.contains { lowerPrefix in
+				lower.hasPrefix(lowerPrefix)
 			}
 			
 			if isMeta {
