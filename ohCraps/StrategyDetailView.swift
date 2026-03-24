@@ -292,6 +292,9 @@ struct StrategyDetailView: View {
 			}
 			.navigationBarBackButtonHidden(true)
 		}
+		.accessibilityAction(.escape) {
+			dismiss()
+		}
 		.onAppear {
 			hideTabBar = true
 			onShow?()
@@ -358,6 +361,13 @@ struct StrategyDetailView: View {
 			actionsFocused = false
 			coreShareFocused = false
 			await Task.yield()
+			await Task.yield()
+			switch target {
+			case .title:
+				titleFocused = true
+			case .actions:
+				actionsFocused = true
+			}
 			await Task.yield()
 			switch target {
 			case .title:
