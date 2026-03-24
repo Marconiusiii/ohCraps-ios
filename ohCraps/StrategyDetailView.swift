@@ -156,13 +156,35 @@ struct StrategyDetailView: View {
 			FeltBackground()
 			VStack(spacing: 0) {
 				
-				// Custom header with Back button and dynamic, centered title
-				TopNavBar(
-					title: strategy.name,
-					showBack: true,
-					backAction: { dismiss() }
-				)
-				.accessibilityFocused($titleFocused)
+				HStack(alignment: .center, spacing: 8) {
+					Button(action: { dismiss() }) {
+						Text("Back")
+							.font(AppTheme.cardTitle)
+					}
+					.foregroundColor(AppTheme.textPrimary)
+					.accessibilityLabel("Back")
+
+					Spacer(minLength: 8)
+
+					Text(strategy.name)
+						.font(AppTheme.screenTitle)
+						.multilineTextAlignment(.center)
+						.lineLimit(2)
+						.minimumScaleFactor(titleScale(for: strategy.name))
+						.fixedSize(horizontal: false, vertical: true)
+						.accessibilityAddTraits(.isHeader)
+						.accessibilityFocused($titleFocused)
+
+					Spacer(minLength: 8)
+
+					Color.clear
+						.frame(width: 44)
+						.accessibilityHidden(true)
+				}
+				.padding(.horizontal)
+				.padding(.vertical, 6)
+				.frame(minHeight: 44, maxHeight: 72)
+				.background(AppTheme.topBarBackground)
 				if let userStrategy = userStrategy {
 					let isSub = userStrategy.isSubmitted || justSubID == userStrategy.id
 					Menu("Strategy Actions") {
@@ -375,6 +397,20 @@ struct StrategyDetailView: View {
 			case .actions:
 				actionsFocused = true
 			}
+		}
+	}
+
+	private func titleScale(for text: String) -> CGFloat {
+		let count = text.count
+
+		if count <= 20 {
+			return 1.0
+		} else if count <= 35 {
+			return 0.9
+		} else if count <= 55 {
+			return 0.8
+		} else {
+			return 0.7
 		}
 	}
 }
