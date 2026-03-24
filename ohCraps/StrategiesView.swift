@@ -60,7 +60,6 @@ struct StrategiesView: View {
 	@State private var filteredStrategiesCache: [Strategy] = []
 	@State private var sectionedStrategiesCache: [SectionKey: [Strategy]] = [:]
 	@State private var sectionOrderCache: [SectionKey] = []
-	@State private var searchNameIndex: [Strategy.ID: String] = [:]
 	
 	private var shouldStackFilters: Bool {
 		dynamicTypeSize >= .accessibility1
@@ -141,13 +140,11 @@ struct StrategiesView: View {
 				if allStrategies.isEmpty {
 					loadStrategies()
 				} else {
-					rebuildSearchNameIndex()
 					rebuildDerivedStrategies()
 					isLoading = false
 				}
 			}
 			.onChange(of: allStrategies) { _ in
-				rebuildSearchNameIndex()
 				rebuildDerivedStrategies()
 			}
 			.onChange(of: searchText) { _ in
@@ -382,39 +379,9 @@ struct StrategiesView: View {
 		}
 	}
 
-	private func normalizedName(_ strategy: Strategy) -> String {
-		var name = strategy.name.trimmingCharacters(in: .whitespaces)
-		name = String(name.drop(while: { $0 == "$" }))
-
-		if name.lowercased().hasPrefix("the ") {
-			name = String(name.dropFirst(4))
-		}
-
-		return name
-	}
-
-	private func numericPrefix(of name: String) -> Int? {
-		var digits = ""
-		for ch in name {
-			if ch.isNumber {
-				digits.append(ch)
-			} else {
-				break
-			}
-		}
-		return digits.isEmpty ? nil : Int(digits)
-	}
-	
 	private func buildSectionedStrategies(from filteredStrategies: [Strategy]) -> [SectionKey: [Strategy]] {
-		struct SortMeta {
-			let normalizedName: String
-			let numericPrefix: Int?
-			let sectionKey: SectionKey
-		}
-
-		let sortMetaByID = Dictionary(uniqueKeysWithValues: filteredStrategies.map { strategy in
-			let normalized = normalizedName(strategy)
-			let first = normalized.first
+		let sectionByID = Dictionary(uniqueKeysWithValues: filteredStrategies.map { strategy in
+			let first = strategy.sortName.first
 			let sectionKey: SectionKey
 			if let first, first.isNumber {
 				sectionKey = .number
@@ -424,39 +391,25 @@ struct StrategiesView: View {
 				sectionKey = .number
 			}
 
-			return (
-				strategy.id,
-				SortMeta(
-					normalizedName: normalized,
-					numericPrefix: numericPrefix(of: normalized),
-					sectionKey: sectionKey
-				)
-			)
+			return (strategy.id, sectionKey)
 		})
 
 		let grouped = Dictionary(grouping: filteredStrategies) { strategy -> SectionKey in
-			sortMetaByID[strategy.id]?.sectionKey ?? .number
+			sectionByID[strategy.id] ?? .number
 		}
 
 		return grouped.mapValues { group in
 			group.sorted { a, b in
-				let metaA = sortMetaByID[a.id]
-				let metaB = sortMetaByID[b.id]
-				let na = metaA?.normalizedName ?? normalizedName(a)
-				let nb = metaB?.normalizedName ?? normalizedName(b)
-				let numA = metaA?.numericPrefix
-				let numB = metaB?.numericPrefix
-
-				switch (numA, numB) {
+				switch (a.sortNum, b.sortNum) {
 				case let (x?, y?):
 					if x != y { return x < y }
-					return na.localizedCaseInsensitiveCompare(nb) == .orderedAscending
+					return a.sortName.localizedCaseInsensitiveCompare(b.sortName) == .orderedAscending
 				case (.some, .none):
 					return true
 				case (.none, .some):
 					return false
 				case (.none, .none):
-					return na.localizedCaseInsensitiveCompare(nb) == .orderedAscending
+					return a.sortName.localizedCaseInsensitiveCompare(b.sortName) == .orderedAscending
 				}
 			}
 		}
@@ -471,8 +424,7 @@ struct StrategiesView: View {
 
 		if !q.isEmpty {
 			filtered = filtered.filter { strategy in
-				let indexed = searchNameIndex[strategy.id] ?? strategy.name.lowercased()
-				return indexed.contains(q)
+				strategy.searchName.contains(q)
 			}
 		}
 
@@ -489,15 +441,6 @@ struct StrategiesView: View {
 		sectionedStrategiesCache = sectioned
 		sectionOrderCache = sectioned.keys.sorted()
 	}
-
-	private func rebuildSearchNameIndex() {
-		searchNameIndex = Dictionary(
-			uniqueKeysWithValues: allStrategies.map { strategy in
-				(strategy.id, strategy.name.lowercased())
-			}
-		)
-	}
-	
 	private func announceSearchResults() {
 		let count = filteredStrategiesCache.count
 		let msg = count == 1 ? "Showing 1 strategy" : "Showing \(count) strategies"

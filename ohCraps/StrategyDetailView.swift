@@ -6,6 +6,23 @@ enum DetailFocusTarget {
 }
 
 struct StrategyDetailView: View {
+	private struct LineKey: Hashable {
+		let id: UUID
+		let sig: Int
+	}
+
+	private struct RenderLine {
+		enum Kind {
+			case heading        // from <h4>
+			case step(number: Int)
+			case bullet
+			case paragraph
+		}
+		
+		let kind: Kind
+		let text: String
+	}
+
 	@Binding var hideTabBar: Bool
 	@Binding var keepBarHiddenOnClose: Bool
 	@Binding var justSubID: UserStrategy.ID?
@@ -26,6 +43,9 @@ struct StrategyDetailView: View {
 	@State private var sharePayload: SharePayload?
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
+
+	private static let lineLock = NSLock()
+	private static var lineCache: [LineKey: [RenderLine]] = [:]
 
 	init(
 		strategy: Strategy,
@@ -57,20 +77,16 @@ struct StrategyDetailView: View {
 		self.focusRevision = focusRevision
 	}
 
-	private struct RenderLine {
-		enum Kind {
-			case heading        // from <h4>
-			case step(number: Int)
-			case bullet
-			case paragraph
-		}
-		
-		let kind: Kind
-		let text: String
-	}
-	
 	// Interpret the tagged step strings from Strategy.steps
 	private var renderedLines: [RenderLine] {
+		let key = LineKey(id: strategy.id, sig: strategy.steps.hashValue)
+		Self.lineLock.lock()
+		if let cached = Self.lineCache[key] {
+			Self.lineLock.unlock()
+			return cached
+		}
+		Self.lineLock.unlock()
+
 		var lines: [RenderLine] = []
 		var stepIndex = 1
 		
@@ -129,6 +145,9 @@ struct StrategyDetailView: View {
 			}
 		}
 		
+		Self.lineLock.lock()
+		Self.lineCache[key] = lines
+		Self.lineLock.unlock()
 		return lines
 	}
 	
