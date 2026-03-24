@@ -353,14 +353,17 @@ struct StrategyDetailView: View {
 	}
 
 	private func applyAccessibilityFocus(_ target: DetailFocusTarget) {
-		DispatchQueue.main.async {
+		Task { @MainActor in
+			titleFocused = false
+			actionsFocused = false
+			coreShareFocused = false
+			await Task.yield()
+			await Task.yield()
 			switch target {
 			case .title:
 				titleFocused = true
-				actionsFocused = false
 			case .actions:
 				actionsFocused = true
-				titleFocused = false
 			}
 		}
 	}

@@ -91,8 +91,10 @@ struct StrategiesView: View {
 	}
 
 	@AccessibilityFocusState private var a11yFocus: A11yFocus?
+	@AccessibilityFocusState private var titleFocused: Bool
 
 	@State private var announceWorkItem: DispatchWorkItem?
+	@State private var didFocusTitleOnLoad = false
 
 	private var searchTextField: some View {
 		ZStack(alignment: .leading) {
@@ -129,6 +131,7 @@ struct StrategiesView: View {
 						showBack: false,
 						backAction: {}
 					)
+					.accessibilityFocused($titleFocused)
 					if isLoading {
 						loadingView
 					} else {
@@ -155,6 +158,11 @@ struct StrategiesView: View {
 			}
 			.onChange(of: buyInFilter) { _ in
 				rebuildDerivedStrategies()
+			}
+			.onChange(of: isLoading) { loading in
+				guard !loading, !didFocusTitleOnLoad else { return }
+				didFocusTitleOnLoad = true
+				focusTitleAfterLoad()
 			}
 		}
 	}
@@ -464,6 +472,16 @@ struct StrategiesView: View {
 			}
 		}
 	}
+
+	private func focusTitleAfterLoad() {
+		Task { @MainActor in
+			titleFocused = false
+			await Task.yield()
+			await Task.yield()
+			titleFocused = true
+		}
+	}
+
 	private func sectionID(for key: SectionKey) -> String {
 		switch key {
 		case .number:
