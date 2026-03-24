@@ -1,0 +1,23 @@
+<div id="doubleDownshift">
+<h3>Double Downshift</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Pared down version of a successful regression strategy.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $220 Inside; $50 each on the 5 and 9, $60 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, immediately regress down to $110 Inside; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>On the next hit of any inside number, regress again down to $54 or $52 Across, or minimum units on all the place numbers except for the point.</li>
+<li>On the next hit of any number, use the winnings to cover the point place bet.</li>
+<li>You are playing with profit, so start any collect and press strategy you'd like.</li>
+</ol>
+<h4>Original Downshift Strategy</h4>
+<p>$4500 Buy-in, $10 table minimum.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $440 inside; $100 each on the 5 and 9, $120 each on the 6 and 8.</li>
+<li>On the first hit of any number, regress down to $220 Inside.</li>
+<li>On the next hit of any inside number, regress down to $110 Inside.</li>
+<li>On the next hit, regress all the way down to $44 Inside, then start any collect and press strategy you'd like.</li>
+</ol>
+</div>
