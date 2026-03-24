@@ -1,0 +1,25 @@
+<div id="FARTSqueeze">
+<h3>FART Squeeze</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $25</p>
+<p>Notes: Fast, Aggressive, Regress, Triple meant for 5 shooters.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $440 Inside; $100 each on the 5 and 9, $120 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, immediately regress down to $110 inside, and throw in $50 to cover the 4 and 10 with $25 Buy bets. You'll now have $25 bets on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>On the next hit of any place bet, collect the winnings. You are now playing with full profit.</li>
+<li>Start triple-tapping the next hits on the place numbers:
+	<ul>
+	<li>If the 6 or 8 hit, drop in $25 to add to the winnings to press the bet up to $90.</li>
+	<li>If the 5 or 9 hit, drop in $15 to add to the winnings to press the bet up to $75.</li>
+	<li>If the 4 or 10 hit, pay the vig and use the winnings to press the bet up to $75.</li>
+	</ul></li>
+<li>Collect the next hit on any of the pressed up numbers, and start following the press and collect structure here if you'd like:
+	<ul>
+	<li>6 and 8: From $90, press to $210, then $450, then $900, collecting between each press.</li>
+	<li>5 and 9: from $75, press to $175, then to $375, finally to $750.</li>
+	<li>4 and 10: from $75, press to $200, then just to $500.</li>
+	</ul></li>
+<li>Only run this strategy for 5 shooters, win or lose.</li>
+</ol>
+</div>

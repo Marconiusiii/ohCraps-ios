@@ -1,0 +1,14 @@
+<div class="happyDays" id="happyDays">
+<h3>Happy Days</h3>
+<p>Buy-in: $1000-$2000</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Adaptation of the Arnold which adds in a Lay bet for a Don't Come hedge and place bets instead of ongoing Come bets.</p>
+<ol>
+<li>Start with a $25 Don't Pass bet.</li>
+<li>When a point is established, Lay the 4 or 10 for $100. Make a $100 Don't Come bet.</li>
+<li>Once the Don't Come moves to a number, take down the Lay bet and immediately bet $105 or $110 across the rest of the open place bets. $25 on the 4, 5, 9, and 10, and $30 each on the 6 and 8. Don't place the point nor the Don't Come number.</li>
+<li>Let this setup roll out, collecting and pressing on alternate hits of the place numbers, or just collect all winnings until a 7 out.</li>
+<li>If the Don't Come falls, replace it with another Don't Come bet.</li>
+<li>If the point is hit but you still have a Don't Come up on the table, feel free to have all your place bets working on the come out roll to take full advantage of the 7.</li>
+</ol>
+</div>

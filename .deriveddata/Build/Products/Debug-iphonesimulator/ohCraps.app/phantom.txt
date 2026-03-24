@@ -1,0 +1,19 @@
+<div class="phantom" id="phantom">
+<h3>Phantom Press</h3>
+<p>Buy-In: $600</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Light to Dark system that uses a few Inside Number hits to get into profit before switching to 3-Point Dolly.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $66 Inside; $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, you'll win $21. Drop in $3 and use the winnings to press the 6 and 8 up to $30 each.</li>
+<li>On the next hit of any inside number, there are two conditional place bets depending on what hits:
+	<ul>
+	<li>If the 5 or 9 hit, drop in $1 and use the $22 winnings to press all numbers up one unit; $20 each on the 5 and 9, $36 each on the 6 and 8.</li>
+	<li>If the 6 or 8 hit, use the winnings to press the 5 and 9 up to $25 each, and take the 6 and 8 up to $36 each.</li>
+	</ul></li>
+<li>On the next hit of any inside number, immediately take all the Place Bets down. Start up a 3-Point Dolly by making a $10 Don't Come bet.</li>
+<li>When a Don't Come bet moves up to a box number, lay enough Odds to return 1x the bet; lay $20 on the 4 or 10, lay $15 on the 5 or 9, and lay $12 on the 6 or 8.</li>
+<li>Once three Don't Come bets are set, let the bets ride until a 7 out, then restart the system.</li>
+</ol>
+</div>

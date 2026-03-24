@@ -1,0 +1,13 @@
+<div class="555express" id="555express">
+<h3>555 Express</h3>
+<p>Buy-in: $1500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Quick play on the Don'ts with a roll count.</p>
+<ol>
+<li>Start with a $25 Don't Pass bet.</li>
+<li>If the Point is a 5, 6, 8, or 9, lay $60 in odds against the point. If the point is 4 or 10, lay $100 in odds.</li>
+<li>Wait  for 3 rolls. If nothing has happened by the 3rd roll, make a $25 Don't Come bet for the 4th roll.</li>
+<li>Use the same odds numbers as the initial Don't Pass above; lay $60 in odds if the Don't Come bet goes to an inside number, and lay $100 in odds against a Don't Come 4 or 10.</li>
+<li>Let bets ride until a 7 out or until they are knocked down. Replace the DC if it falls, and start the strategy over completely if the shooter hits the point.</li>
+</ol>
+</div>

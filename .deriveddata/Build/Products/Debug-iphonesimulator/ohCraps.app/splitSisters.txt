@@ -1,0 +1,15 @@
+<div class="splitSisters" id="splitSisters">
+<h3>Split the Sisters</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: All</p>
+<p>Notes: Initial outlay will use 2x the table minimum for the inside numbers, so keep that in mind when assessing buy-in. This scales from Bubble Machines up to high roller tables. This particular write-up assumes playing on a $10 table.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Assuming a $10 table, bet $88 inside, or $20 each on the 5 and 9, $24 each on the 6 and 8, or 2x the table minimum on each number. Bet $5 each on the Hard 4 and 10.</li>
+<li>On the first hit of any inside number, immediately take down that bet and split the bet from the sister number to re-cover it. For example, if the 5 hits, collect the winnings, take down the 5 bet, and split the $20 Place 9 bet so you have $10 each on the 5 and 9.</li>
+<li>On the next hit of any inside number, immediately collect the winnings and regress down to $44 inside, or the table minimum on all the inside numbers. If you hit the other set of the initial bets that haven't yet been split, you'll have won back your initial outlay. If you hit the sister numbers again, you'll almost be breaking even but will still have some money invested.</li>
+<li>If the Hard 4 or 10 hit, collect the winnings and split the bets to $2 each on the Hard 4 and 10. Treat that as one of the 2 initial hits.</li>
+<li>Once regressed to $44 or the table minimum on the inside numbers, start any collect and press system you'd like.</li>
+<li>Feel free to keep the Hard 4 and 10 up, or move them to Place bets if there is a hot roll.</li>
+</ol>
+</div>

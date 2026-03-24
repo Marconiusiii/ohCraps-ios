@@ -1,0 +1,17 @@
+<div class="goldMine" id="goldMine">
+<h3>Green Chip Gold Mine</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Place bet strategy that lets you collect 2 green chips on every hit after getting set up.</p>
+<ol>
+<li>Wait for a point to be established, or if shooting, bet 1 unit on the Pass Line and then bet 2x Odds after rolling a point.</li>
+<li>Place the 4 and 10 for $10 each, the 5 and 9 for $15 each, and the 6 and 8 for $24 each.</li>
+<li>On the first hit of any place number, immediately press it up to an amount that will pay out $49, or $50 (2 green chips) for $1.
+	<ul>
+	<li>When the 4 or 10 hits, press that bet up to $25.</li>
+	<li>When the 5 or 9 hits, press that bet up to $35.</li>
+	<li>When the 6 or 8 hits, press that bet up to $42.</li>
+	</ul></li>
+<li>Once all the place bets are pressed up, continue rolling out the strategy and collecting on every hit until a 7 out.</li>
+</ol>
+</div>

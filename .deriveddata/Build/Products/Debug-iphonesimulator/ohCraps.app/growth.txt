@@ -1,0 +1,17 @@
+<div class="growth" id="growth">
+<h3>Growth Strategy</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Don't Hedge strategy that grows progressively throughout the hand.</p>
+<ol>
+<li>Start with a $10 or 1 unit Don't Pass bet.</li>
+<li>Once point is established, bet $10/1 unit on the Come.</li>
+<li>When Come bet is moved to a box number, bet $30/3 units in odds for that number.</li>
+<li>Make a $20/2 unit Come bet.</li>
+<li>If that bet moves to a number, bet $30 for odds there as well.</li>
+<li>Now that you have $10 and $20 Come bets established with odds, lay $60/6 units in odds for your Don't Pass bet. Make one more $20 Come bet.</li>
+<li>If the third Come bet moves to a new number, leave it flat and don't put Odds on it.</li>
+<li>If any of the Come numbers roll, replenish it with a new Come bet based on the flat bet that won. If your $10 Come Bet with odds wins, immediately make another $10 Come bet. You should always have at least one $10 Come bet with odds, and two $20 Come bets, but only one of those with odds. If the $20 Come bet with odds wins, make another $20 Come bet, and it's up to you as to whether you'd like to put $30 in Odds on the current $20 Come bet you have up on the table or add them to the new Come bet number that rolls.</li>
+<li>Let bets ride until a 7 out, or continue the bet strategy if the point is hit. If the point is hit and a new one is established, make sure to lay $60 in odds for the new Don't Pass bet.</li>
+</ol>
+</div>

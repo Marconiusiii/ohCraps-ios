@@ -1,0 +1,11 @@
+<div class="lightDark" id="lightdark">
+<h3>Light to Dark</h3>
+<p>Buy-in: $440</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>wait for Point to be established, then place $44 inside; $10 each on the 5 and 9, $12 each on the 6 and 8.</li>
+<li>On the first hit of any of the inside numbers, immediately collect winnings and regress bet down to 1 unit. If number hits again, collect winnings and take bet down and wait for the strategy to restart or the next shooter.</li>
+<li>After 3 hits total, bet $20 on the Don't Come. If Don't Come moves up to a Place number on the next roll, follow it up with another $10 Don't Come bet.</li>
+<li>Let bets ride and wait for a 7 Out to restart the strategy.</li>
+</ol>
+</div>

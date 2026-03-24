@@ -1,0 +1,14 @@
+<div class="68low" id="68low">
+<h3>6 8 $15 Low Roller</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $15</p>
+<p>Notes: Only betting a maximum of $40 per shooter and using the winnings to spread out across the Place numbers. $36 for initial outlay, $3 more for the first hit, and then $1 more after the second hit to go to $96 across.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $18 each.</li>
+<li>Once either hit, toss in $3 and press the 6 and 8 to $30 each.</li>
+<li>When either the 6 or 8 hits again, toss in $1 and use the winnings to place $96 across, or $15 on the 4, 5, 9, and 10 and $18 each on the 6 and 8.</li>
+<li>Keep everything up for 5 more hits. When the Place numbers hit, do a full press and use the leftover change from the winnings to bet on the Horn if desired.</li>
+<li>After the 5th hit, take all bets down and restart system.</li>
+</ol>
+</div>

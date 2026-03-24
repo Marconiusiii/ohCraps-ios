@@ -1,0 +1,11 @@
+<div class="ironCrapper" id="ironCrapper">
+<h3>Iron Crapper</h3>
+<p>Buy-in: $420-$500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Adjust for any table minimum.</p>
+<ol>
+<li>Start with a $42 Don't Pass bet.</li>
+<li>Once Point is established, bet minimum bets on all Place numbers, with 2 units on the Point number. Put 1 unit in the Field.</li>
+<li>Let everything ride and replenish Field bet if it gets knocked out.</li>
+</ol>
+</div>

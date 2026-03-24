@@ -1,0 +1,19 @@
+<div class="powerPP" id="powerPP">
+<h3>Power Press and Pull</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5</p>
+<p>Notes: A system built to get you out of the hand within 2 repeated number hits leaving you set up for opportunity. Buy-in is set for $5 table minimum, adjust as necessary for your table minimum unit.</p>
+<ol>
+<li>Wait for point to be established.</li>
+<li>Place $22 inside, or $5 each on the 5 and 9, $6 each on the 6 and 8.</li>
+<li>If the 5 or 9 hit, drop in $3 and press the bet up to $15. If the 6 or 8 hit, drop in $5 to press the bet up to $18.</li>
+<li>If a pressed number hits again, immediately collect the winnings and take the bet down. You are now out of the hand as this pays for the initial outlay of the system.</li>
+<li>If a second pressed number hits, immediately ask the dealer to go $64 across, or 2 units on all the place numbers ($10 each on the 4, 5, 9, and 10; $12 each on the 6 and 8).</li>
+<li>Start a power press and collect strategy from here on out, either double-tap or triple-lux. 
+	<ul role="list">
+	<li>Double Tap: On the first hit on the 5 or 9, drop in $1 to press the bet to $25, then collect the winnings on the second hit of that number. For the 4 and 10, just press the bet up to $25 and collect the extra $4 from the first hit. For the 6 and 8, drop in $4 to press the bet up to $30 and collect the second hit.</li>
+	<li>Triple Lux: Power press bets twice before collecting the winnings on the 3rd hit. For a $10 5 or 9, drop in $1 to press them up to $25 on the first hit, then stack the $35 winnings on the bet on the second hit to press them up to $60, then collect the 3rd hit. For a $10 4 or 10, press them up to $25 on the first hit and buy them, then press them up to $75 with the second hit, then collect the winnings on the third hit. For a $12 6 or 8, drop in $4 to press them up to $30 on the first hit, then drop in $1 on the second hit to press them up to $66, then collect on the third hit.</li>
+	</ul>
+</li>
+</ol>
+</div>

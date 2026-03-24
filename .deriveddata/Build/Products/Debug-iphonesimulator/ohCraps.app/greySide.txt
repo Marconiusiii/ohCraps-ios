@@ -1,0 +1,22 @@
+<div class="greySide" id="greySide">
+<h3>The Grey Side</h3>
+<p>Buy-in: $500-$1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: A hybrid light side and dark side system, hence meeting in the middle with a grey area due to the hedging.</p>
+<ol>
+<li>Start with a $20 Don't Pass bet. Make a $2 Yo Eleven bet and a $5 Any 7 bet. If a 7 rolls, you'll only lose $2, and if the 11 rolls , you'll net $5.</li>
+<li>When a point is established, bet $10 on the Come, then place the 4 and 10 for $10 each, the 5 and 9 for $20 each, and the 6 and 8 for $30 each, excluding the point. If the point is any of the even box numbers, make a Hard Ways bet for that number to reduce the loss should that number roll; this can be any amount you want. Lay enough odds against the point to win $50 should the shooter 7 out:
+	<ul role="list">
+	<li>For the 4 or 10, lay $100 in odds.</li>
+	<li>For the 5 or 9, lay $75 in odds.</li>
+	<li>For the 6 or 8, lay $60 in odds.</li>
+	</ul></li>
+<li>If a box number rolls, the Come bet will move to that number. Use the place bet winnings to put odds on the Come bet and go back up on the Come for $10, and collect any change. Always try to match the amount originally made on the place bet with the come bet and the odds:
+	<ul role="list">
+	<li>For the 6 and 8, bet $20 or $25 in Odds.</li>
+	<li>For the 5 and 9, bet $10 in odds.</li>
+	<li>For the 4 and 10, you can leave the odds out, but may as well bet $10 in odds due to the good payout.</li>
+	</ul></li>
+<li>Keep betting on the Come and betting odds as the numbers hit. If the point hits , restart the system and just take down the place bet should one of those numbers become the next point, then continue on betting the Come and adjust the Lay odds and hard ways bet as necessary. If the shooter 7s out, just restart the system entirely.</li>
+</ol>
+</div>

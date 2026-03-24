@@ -1,0 +1,11 @@
+<div class="doubleD" id="doubleD">
+<h3>Double D</h3>
+<p>Buy-in: $4000</p>
+<p>Table Minimum: Any</p>
+<p>Notes: System buy-in and units can scale  up or down as needed. Based on D'Alembert betting system, so a larger bankroll helps. Aim to win $300-$400 and then walk away. $4000 bankroll is based on using $30 as the base unit.</p>
+<ol>
+<li>Bet 1 unit each on the 6 and 8. Bets are always working and they don't follow the point.</li>
+<li>Collect any hit when at 1 unit. If a 7 rolls, increase bet to 2 units each.</li>
+<li>With each loss, increase the bet by 1 unit. With each win, collect the winnings and decrease the bet by 1 unit. The bets work independently of each other, so if the 6 hits, only decrease the 6 bet and leave the 8 where it is.</li>
+</ol>
+</div>

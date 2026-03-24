@@ -1,0 +1,11 @@
+<div class="ace" id="ace">
+<h3>ACE (Across, Craps, Eleven)</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Betting $34 per shooter. Double this for $10 tables.</p>
+<ol>
+<li>Wait for a Point to be established, then on a $5 table, bet $32 across all the Place numbers. Bet $2 on the C&E.</li>
+<li>Replenish the C&E if it doesn't hit.</li>
+<li>Play by ear on collecting, pressing, and regressing Place bets. Leave them Off on the Come Out roll.</li>
+</ol>
+</div>

@@ -1,0 +1,13 @@
+<div class="crazy8" id="crazy8">
+<h3>Crazy 8</h3>
+<p>Buy-in: $1100</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Ladder system built around pumping up and collecting on the 8.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Buy the 4 and 10 for $25 each, and place the 6 and 8 for $30 each.</li>
+<li>Anytime the Place 6 hits, drop in $1 to make the total winnings $36 and stack it all on the 8.</li>
+<li>Collect the first hit if either the 4 or 10 hits in order to pay for those bets. From the second hit onwards, either collect $1 from the winnings to make them $48 or drop in $5 to make the winnings $54 and stack all of it on the 8.</li>
+<li>As soon as the 8 hits, collect the winnings and take the 8 all the way back down to $30 and start the system again.</li>
+</ol>
+</div>

@@ -1,0 +1,14 @@
+<div class="insideBlitz" id="insideBlitz">
+<h3>Inside Blitz</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Builds up the inside bets with pressing and collecting before spreading out all the way across, plus uses Hard Ways to bolster the system per shooter. Double all of the bets and buy-in if playing on a $10 table, and multiply everything higher based on the table minimum.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $22 inside, or $5 each on the 5 and 9, $6 each on the 6 and 8. Bet $4 across all of the Hard Ways, or $1 each on the Hard 4, 6, 8, and 10.</li>
+<li>On the first hit of any of the inside numbers, immediately use the winnings to press the bet up. Totally up to you if you want to power press or just do a full press.</li>
+<li>Alternate pressing and collecting from the inside numbers as they hit. Collect on the 2nd hit, press on the 3rd, etc. Use any Hard Ways winnings to press up the 6 and 8. If the Hard Ways bets fall, don't replace them until the next shooter.</li>
+<li>Once all of the inside numbers are pressed up to $30 each, use the winnings from the next hit on any of them to place the 4 and 10 for $20 each. You'll need to drop the dealer $5 to do this.</li>
+<li>Once all bets are laid out, let them all ride, or switch to a power pressing/collecting strategy as you see fit.</li>
+</ol>
+</div>

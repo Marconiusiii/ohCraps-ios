@@ -1,0 +1,17 @@
+<div class="psycho" id="psycho">
+<h3>Psycho Field</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Reverse Iron Cross strategy that is just so totally nuts that it's pure genius! System is purely for people who can't get enough of playing the Field.</p>
+<ol>
+<li>Bet $15 in the Field and place the 5 for $10 and the 6 and 8 for $12 each. Bets are always working.</li>
+<li>If the Field bet hits, immediately parlay the winnings so you have $30 in the Field.</li>
+<li>On the second Field hit, collect the winnings and regress the Field bet back to $15. You've now collected $45 of your initial $49 outlay so you are basically out of the hand.</li>
+<li>If the 5, 6, or 8 hits, use the winnings to replenish the $15 Field bet. At this stage, it will require $1 from your rack each time you have to replenish the Field.</li>
+<li>On the next Field hit after the regression, stack the winnings again.</li>
+<li>When the stacked Field bet hits, use $17 of the winnings to press the Place numbers up; $15 on the 5, $18 each on the 6 and 8. Increase the Field bet to $20 and collect the rest. Now if the 5, 6 or 8 hits, use the winnings to replenish the Field and collect the $1 extra.</li>
+<li>Continue on with Field parlay and pressing strategy until a 7 out. When a $40 Field bet hits, press the 5 to $20, the 6 and 8 to $24 each, and make the Field bet $25.</li>
+<li>Each parlayed win will let you bump up all bets $5 while collecting more winnings. Feel free to go Fully Banana Bonkers by parlaying a double or triple 2 or 12 win.</li>
+<li>Return to beginning values of system after a 7 out.</li>
+</ol>
+</div>

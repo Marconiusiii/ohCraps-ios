@@ -1,0 +1,12 @@
+<div class="68funnel" id="funnel68">
+<h3>The 6 8 Funnel Press</h3>
+<p>Buy-in: $640</p>
+<p>Table Minimum: $10</p>
+<ol>
+<li>Wait for Point to be established.</li>
+<li>Bet 2 units across all of the Place numbers, including the point. $64 Across, so $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>Every time the 4, 5, 9, or 10 hits, use the winnings to press the 6 and 8 up 1 unit each. For example, a $10 Place 5 will win $14 when it hits. Use $12 out of the winnings to press the 6 and 8 up $6 each.</li>
+<li>Every time the 6 and 8 hit, collect the winnings.</li>
+<li>Play by ear once initial $64 outlay has been recouped, otherwise continue following strategy until a 7 Out, then start back at the beginning with $64 Across.</li>
+</ol>
+</div>

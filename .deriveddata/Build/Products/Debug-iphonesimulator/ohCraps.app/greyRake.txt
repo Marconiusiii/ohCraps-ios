@@ -1,0 +1,12 @@
+<div class="greyRake" id="greyRake">
+<h3>The Grey Rake</h3>
+<p>Buy-in: $450</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: A mix of dark and light side strategies used to hopefully rake in winnings.</p>
+<ol>
+<li>Start with a $15 Don't Pass bet and a $1 Yo Eleven Prop bet. Lay $30 against either the 4 or 10 and have it working on the Come Out roll as a hedge against the 7.</li>
+<li>When a point is established, take down the Lay bet. Lay Odds against the point in order to win back $15, so $18 Lay Odds for a 6 or 8, $$24 on the 5 or 9, or $30 for the 4 or 10. Place the 6 and 8 for $18 each, and if either are the point, bet the sister number and make a $15 Place bet on the 5 or 9.</li>
+<li>If a place bet hits twice, take the place bet down on the second hit. Once all place bets are down, just sit back and let the hand roll out.</li>
+<li>If the Lay bet hits on the Come Out roll, do not chase the loss. Just continue with the strategy.</li>
+</ol>
+</div>

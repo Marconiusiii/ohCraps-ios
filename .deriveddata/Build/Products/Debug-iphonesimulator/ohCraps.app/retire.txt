@@ -1,0 +1,21 @@
+<div id="retire">
+<h3>Retirement Plan</h3>
+<p>Buy-in: $1500</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Large outlay system that is meant to only be played in one session until you can walk away with $100 in profit, then keep returning each day and doing the same thing to build up a retirement plan.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Make a $150 Don't Come bet. This is the riskiest part of the strategy.</li>
+<li>When the DC bet moves to a number, cover the rest of the Place bets with $25 or $30 bets, so $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8, but not betting on the number that has the DC. Also make a $15 Field bet.</li>
+<li>If the DC rolls before any of the place bets, restart the strategy.</li>
+<li>If any of the Place numbers hit, immediately take down all of the Place bets along with the Field bet if it didn't lose, and then make a place bet on whichever box number has the Don't Come bet at an equivalent bet that will win over $150.
+	<ul>
+	<li>For the Place 4 or 10, bet $100.</li>
+	<li>For the Place 5 or 9, bet $125.</li>
+	<li>For the Place 6 or 8, bet $132.</li>
+	</ul></li>
+<li>Let the rest of the hand roll out until the place number is hit or a 7 out. If the place number hits, take down the place bet and start the strategy over.</li>
+<li>If the point is rolled and a new Come Out roll begins, have all of your bets working.</li>
+<li>Color up and walk away once you've won $100.</li>
+</ol>
+</div>

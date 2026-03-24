@@ -1,0 +1,14 @@
+<div class="dragonfly" id="dragonfly">
+<h3>Dragonfly</h3>
+<p>Buy-in: $1000-$2000</p>
+<p>Table Minimum: $5-$10</p>
+<p>High risk one-roll system. As long as you can hit one place number before the 7, you are playing with nothing but profit.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $204 across; $25 each on the 4 and 10, $35 each on the 5 and 9, and $42 each on the 6 and 8.</li>
+<li>If any place bet hits, you'll win $49. Immediately regress the place bets down to $44 inside; $10 each on the 5 and 9, and $12 each on the 6 and 8.</li>
+<li>Once you are set up with $44 inside, you can start up any collect and press system you'd like. The following is a suggestion for continuing with this original strategy.</li>
+<li>At this point, any time a 6 or 8 rolls, collect the winnings. If the 5 or 9 roll, use the winnings of each hit to cover the 4 and 10 with $10 place bets.</li>
+<li>With all numbers now covered, if the 4 or 5 hit, use $6 of the winnings to press up the place 6. Alternatively, if the 9 or 10 hit, do the same with the place 8. Continue collecting from the 6 and 8 if they hit, and keep this up until a 7 out.</li>
+</ol>
+</div>

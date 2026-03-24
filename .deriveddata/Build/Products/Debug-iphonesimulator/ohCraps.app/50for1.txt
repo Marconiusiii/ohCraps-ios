@@ -1,0 +1,15 @@
+<div class="50for1" id="50for1">
+<h3>50 for 1</h3>
+<p>Buy-In: $700</p>
+<p>Table Minimum: $5-$15</p>
+<p>High outlay that sets you up to win $50 for $1 from any box number within 2 hits, and get you out of the hand by 5 hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $132 inside; $30 each on the 5 and 9, $36 each on the 6 and 8.</li>
+<li>If any inside number hits, use the $42 winnings to place the 4 and 10 for $20 each and collect the change.</li>
+<li>When any box number hits again, use $32 out of the winnings to put $5 pressure across all of your place bets, otherwise known as pressing each place bet up $5, $6 for the 6 and 8. You'll have $25 on the 4 and 10 each, $35 on the 5 and 9 each, and $42 on the 6 and 8.</li>
+<li>At this stage, all the place bets will win $49 when they hit. If you pass the dealer $1, they'll pay you an even $50, hence the name of this strategy.</li>
+<li>At this stage, collecting 3 more hits from the box numbers will put you into profit. Keep collecting on every hit until a 7 out.</li>
+<li>Once in profit, feel free to change to any collect and press method that you'd like, but collecting $50 on every hit is already doing pretty well.</li> 
+</ol>
+</div>

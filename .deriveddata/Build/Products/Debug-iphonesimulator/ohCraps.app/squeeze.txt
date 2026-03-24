@@ -1,0 +1,14 @@
+<div class="squeeze" id="squeeze">
+<h3>Squeeze Play</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Gets you from $66 inside to $64 across all paid within 3 rolls.</p>
+<ol>
+<li>Wait for point to be established.</li>
+<li>Start by placing $66 inside, or $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>On the first hit of any of these numbers, you'll win $21. Collect $1 and use the rest to place the 4 and 10 for $10 each.</li>
+<li>Use the winnings of the second hit on any number to press the inside numbers up to $88 inside. If the inside numbers hit, you'll win $21, so drop in $1 to make it $22 and use that to press all the inside numbers up one unit. If the 4 or 10 hits, you'll win $18 or $19 depending on the Buy bet rules of the casino. Drop in $4 or $3 to press all the inside numbers up $22. You'll now have $88 inside with the $10 4 and 10.</li>
+<li>On the third hit of any of the place numbers, immediately regress everything down to $64 across, or $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>Now start any collect and press strategy you like. Power press, double-tap, triple-lux, etc.</li>
+</ol>
+</div>

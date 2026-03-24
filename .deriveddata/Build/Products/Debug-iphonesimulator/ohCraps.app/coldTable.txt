@@ -1,0 +1,15 @@
+<div class="coldTable" id="coldTable">
+<h3>Cold Table</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $25</p>
+<p>Notes: This strategy can be scaled or regressed for any table minimum and bankroll, and is good for grinding out small wins over a long period of time. Best for replenishing a bankroll when trying to come back from a loss. Only use 4 units per shooter no matter what. Initial outlay is 4 times the table minimum unit, so multiply that by 10 to get the right buy-in for 10 shooters.</p>
+<ol>
+<li>Place 4 $25 chips in your front rack for easy access; only use 4 units per shooter for the strategy. Once all 4 units have been used or lost, do not reach for more chips until the next shooter.</li>
+<li>Start with 1 unit on the Don't Pass.</li>
+<li>Once point is established, use 2nd unit to make a Come bet.</li>
+<li>Use the 3rd unit to make another Come bet, and use the 4th unit to make a Don't Come bet after the 2nd Come bet has been established.</li>
+<li>You will always want to have 2 come bets working while trying to establish 2 Don't Come bets. If any Come bets win during the strategy, make another Come bet and keep the winnings for the next stage of the strategy wherever you are in the progression. You should only have 4 units total in play at any given time, but if you have extra chips from winnings and 2 Come Bets and a Don't Come bet have been established, use the 5th unit to make a Don't Come bet.</li>
+<li>If the point is hit and you have no units left to bet on the Don't Pass for the next round, just wait for the rest of your Come and Don't Come bets to win or fall before starting the strategy over. </li>
+<li>Use any winnings to replenish any of the 4 units that are out in the strategy and lock up the rest for profit.</li>
+</ol>
+</div>

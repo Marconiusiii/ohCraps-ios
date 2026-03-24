@@ -1,0 +1,16 @@
+<div class="windstar" id="windstar">
+<h3>Windstar Walk</h3>
+<p>Buy-in: $200</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Very conservative low-roller/short money strategy.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 5 and 9 for $10 each.</li>
+<li>Collect the first hit on the 5 or 9.</li>
+<li>If the 5 or 9 hit again, use the winnings from this hit and the past hit to go up to $44 inside, so place the 6 and 8 for $12 each along with the $10 5 and 9.</li>
+<li>Same bet for the next 3 hits of the inside numbers, so just collect on the next three hits.</li>
+<li>Place the 4 and 10 for $10 each, and make a $5 C&amp;E bet.</li>
+<li>Keep these bets up for the next 2 hits.</li>
+<li>After 2 hits, take everything back down to $44 inside. Feel free to play any form of collect and press strategy from here on out, spread out to the 4 and 10 again, and keep going until a 7 out.</li>
+</ol>
+</div>

@@ -1,0 +1,11 @@
+<div class="reverseIC" id="reverseIC">
+<h3>Reverse Iron Cross</h3>
+<p>Buy-in: $1250-$1500</p>
+<p>Table Minimum: $25</p>
+<p>Notes: Strategy is scalable to any table minimum amount; adjust buy-in accordingly for 10 shooters. Maximum buy-in accounts for playing the All Tall Small along with the strategy.</p>
+<ol>
+<li>Start with a 1 unit or $@5 Pass Line bet and bet 1 unit/$25 in the Field. The Field will always be working throughout the strategy. Make a $15 All Tall Small bet if available ($5 each on the All, Tall, and Small).</li>
+<li>Once point is established, place the 4, 9, and 10 for 1 unit/$25 each, even if it is the point number.</li>
+<li>Let bets ride through the system, replacing the Field bet if it falls</li>
+</ol>
+</div>

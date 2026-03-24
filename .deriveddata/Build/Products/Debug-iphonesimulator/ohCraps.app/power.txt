@@ -1,0 +1,11 @@
+<div class="power" id="powercraps">
+<h3>Power Craps</h3>
+<p>Buy-in: $560</p>
+<p>Table Minimum: $10</p>
+<ol>
+<li>Start with 1 unit on the Pass Line.</li>
+<li>Once Point is established, Place the 6 and 8 for $18 each. Set down 1x in Pass Line Odds.</li>
+<li>If the 6 or 8 hit, press bet up 50%.</li>
+<li>If Point hits, the next time a Point is established, increase Pass Line Odds by 50%.</li>
+</ol>
+</div>

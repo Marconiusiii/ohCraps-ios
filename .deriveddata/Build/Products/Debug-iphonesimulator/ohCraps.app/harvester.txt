@@ -1,0 +1,11 @@
+<div class="harvester" id="harvester">
+<h3>Hard Ways Harvester</h3>
+<p>Buy-in: $550</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Start off with a minimum Pass Line bet. Place the 5 for $25, bet $5 on the Field, and bet $5 each on all of the Hard Ways. Always have your bets working on the Come Out roll.</li>
+<li>If a Field number hits, collect the first win. If the Field hits again, raise the Field bet up 1 unit. If the Field bet loses, repeat this progression starting back at a 1 unit bet.</li>
+<li>On the Come Out roll, if the 7 or 11 hits, replace all of the bets but stack the Pass Line winnings. If a Point is established and then wins, collect the Pass Line winnings and go back to a 1 unit Pass Line bet for the next Come Out roll.</li>
+<li>If a Hard Way bet falls, immediately replace it with a $5 bet; keep the Hard Ways up and working throughout the strategy.</li>
+</ol>
+</div>

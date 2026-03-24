@@ -1,0 +1,13 @@
+<div class="hawaiiHorn" id="hawaiiHorn">
+<h3>Hawaii Horn</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Large initial outlay intending to win at least $50-$100 off of each shooter within 2 hits.</p>
+<ol>
+<li>Wait for point to be established.</li>
+<li>Place the 4 and 10 for $35 each, the 5 and 9 for $50 each, and the 6 and 8 for $60 each. Bet $20 on the Horn.</li>
+<li>Keep these bets up for 2 hits. Replace the horn bet if it falls. A hit on any of the place numbers will net you $50 in winnings after replacing the $20 Horn bet. A hit on the 2 or 12 will net you $135.</li>
+<li>After 2 hits, or after 1 hit on the 2 or 12, take all bets down to $44 inside. At this point you'll have at least $50 in profit off the shooter.</li>
+<li>Play the rest of the hand by ear, collect and press on the inside numbers, spread to the 4 and 10 after a few hits, play in the Field, anything you want until a 7 out, then start the strategy over again for the next shooter.</li>
+</ol>
+</div>

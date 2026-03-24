@@ -1,0 +1,11 @@
+<div class="doubleDont" id="ddont">
+<h3>Double Don't</h3>
+<p>Buy-in: $200</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Only betting up to $20 per shooter.</p>
+<ol>
+<li>Start with a $5 Don't Pass bet.</li>
+<li>Once a Point is established, Lay $10 in Odds for the $5 Don't Pass bet. Make a $5 Don't Come bet.</li>
+<li>If Don't Come number is set, remove Lay odds and ride out the rest of the roll waiting for a 7 Out.</li>
+</ol>
+</div>

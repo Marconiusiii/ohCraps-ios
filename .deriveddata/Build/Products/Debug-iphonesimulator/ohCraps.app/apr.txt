@@ -1,0 +1,18 @@
+<div class="apr" id="apr">
+<h3>APR: Across, Press, Regress</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Large outlay, but gets you to playing with profit in 2 hits of the Place numbers.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $96 across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8.</li>
+<li>On the first hit of any Place bet, use the winnings to power press all of the place bets up one unit, or pressing up $32 Across  to get to $128 across:
+	<ul<
+	<li>If the 4 or 10 hit, drop in $5 and use the $32 total to press all place bets up one unit.</li>
+	<li>If any of the inside numbers hit, drop in $11 to get to the $32 needed to press all the numbers up one unit.</li>
+	</ul></li>
+<li>Now, if the 4 or 10 hit, regress down to $64 across and collect the rest. Only do this if you've hit either the 4 or 10 in the previous step. If you hit an inside number on the previous step or if you roll one now, take down the 4 and 10 and regress down to $44 inside.</li>
+<li>You are now playing with profit, and can start any collect and press system that you wish.</li>
+</ol>
+
+</div>

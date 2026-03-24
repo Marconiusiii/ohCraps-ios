@@ -1,0 +1,12 @@
+<div class="135across" id="135across">
+<h3>$135 Across</h3>
+<p>Buy-in: $1350</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Risky system that will get you to $64 across with house money in 2 hits of the place numbers.</p>
+<ol>
+	<li>Wait for a point to be established.</li>
+<li>Bet $135 across the place numbers excluding the point. This means that the 4, 5, 9, and 10 get placed for $25 each and the 6 and 8 get placed for $30 each. If the point is 6 or 8, you'l only be able to bet $130 across the rest of the numbers, so use the extra $5 to bet on the corresponding Hard Way bet for whichever number is the point.</li>
+<li>You'll win $70 on the first 2 hits on any of the place numbers. Immediately take all the place numbers down to $64 across after the second hit, leaving you with $6 in profit plus what is up on the table. This is $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8, plus this includes the point number.</li>
+<li>Start any pressing and collecting system you'd like from this point on, and reset the system after a 7 out.</li>
+</ol>
+</div>

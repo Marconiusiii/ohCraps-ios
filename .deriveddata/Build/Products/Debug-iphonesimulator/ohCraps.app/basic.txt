@@ -1,0 +1,12 @@
+<div class="basic" id="basic">
+<h3>Basic Strategy</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Bet 1 unit on the Pass Line. When Point is established, back it up with 2x Odds.</li>
+<li>When Point is established, bet 2 units each on the inside numbers. If any of the inside numbers is the Point, don't Place that number as it is covered by the Pass Line.</li>
+<li>Bet $2 each on the Hard 6 and Hard 8. If Hard Ways hit, press each bet up $1 and collect the rest of the winnings. If Easy Way is rolled, replenish the Hard Ways bets. Up to you on whether or not to match the current pressed bet or regress back down to $2 each.</li>
+<li>On first hit of any of the inside numbers, immediately press the 6 and 8 up 1 unit each. Collect winnings on the next hit. Alternate pressing and collecting as hand plays on.</li>
+<li>If 6 or 8 is the Point, press the Pass Line Odds up one unit when pressing the bets after a hit.</li>
+</ol>
+</div>

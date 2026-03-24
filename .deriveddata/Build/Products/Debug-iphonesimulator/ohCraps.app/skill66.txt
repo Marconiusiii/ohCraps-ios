@@ -1,0 +1,13 @@
+<div class="skill66" id="skill66">
+<h3>Skill 66</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $10</p>
+<p>Notes: Basic regression strategy to get to a profit foundation within 2 hits. Scalable for any table minimum.</p>
+<ol>
+<li>Wait for a point to be established or set up bets to work on come out roll. Strategy isn't based around the point number.</li>
+<li>Bet $66 on the inside numbers; $15 each on the 5 and 9, $18 each on the 6 and 8. If using another table minimum, bet the inside amount one unit above the table minimum.</li>
+<li>On the first hit, drop in $1 and press all bets up 1 unit to go to $88 inside.</li>
+<li>On the second hit, immediately collect winnings and regress all bets down to $44 inside, or the table minimum.</li>
+<li>All bets on table are now pure profit, so feel free to change into any strategy from this point onwards. Start a press and collect strategy, use further winnings to spread out to the 4 and 10, switch to double-tap or triple-lux system, etc.</li>
+</ol>
+</div>

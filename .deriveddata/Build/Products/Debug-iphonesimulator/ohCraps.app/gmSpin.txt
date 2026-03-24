@@ -1,0 +1,18 @@
+<div class="gmSpin" id="gmSpin">
+<h3>GM Spin</h3>
+<p>Buy-In: $1600</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Aggressive Double-Tap strategy on steroids, just have to hit some power-pressed numbers twice.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $160 across; $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>When a place number hits, use the winnings and extra from your rack to power press:
+	<ul>
+	<li>4 or 10: Use winnings to press bet up to $75.</li>
+	<li>5 or 9: Drop in $15 and use that plus the winnings to press up to $75.</li>
+	<li>6 or 8: Drop in $25 and use that plus the winnings to press up to $90.</li>
+	</ul></li>
+<li>When a power-pressed number hits, immediately collect the winnings and regress that bet back down to the original $25 or $30. You've now collected almost enough to cover the initial outlay.</li>
+<li>Collect one more hit to ensure that you are in pure profit, then start any press and collect system you like. The system is aggressive, so feel free to make more aggressive power presses across to sister numbers, etc.</li>
+</ol>
+</div>

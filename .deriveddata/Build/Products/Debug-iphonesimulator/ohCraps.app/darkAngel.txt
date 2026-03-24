@@ -1,0 +1,15 @@
+<div class="darkAngel" id="darkAngel">
+<h3>Dark Angel</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Hybrid dark and light system that banks on the 7 always eventually appearing.</p>
+<ol>
+<li>Start with a $30 Don't Pass bet, $15 on the Field, and a $1 Yo Eleven prop bet. The Yo bet hedges the Don't Pass if the 11 rolls.</li>
+<li>If a point is established, place the 6 and 8 for $12 each, but substitute with a $10 5 or 9 place bet if 6 or 8 is the point. If you won on the Field, use the winnings to place either the 5 or 9 for $10. If you doubled or tripled your Field with a 2 or 12 roll before establishing a point, feel free to cover all the inside numbers  when a point is set. If you lose the Field when setting a point, don't replenish it. If the point is 4, 6, 8, or 10, bet the corresponding Hard Way for $4. If the point is 5 or 9, bet each Hard Way for $1 each.</li>
+<li>Leave all bets up for exactly 3 rolls of the dice, collecting if any of the place bets hit. After the 3rd roll, turn all your place bets off or take them down, and then make a $15 Don't Come bet.</li>
+<li>If you've hit the place numbers 2 or 3 times before the 4th roll, feel free to use the winnings to lay odds for the Don't Come if it moves to a number, otherwise just let the DC go to a number with no odds.</li>
+<li>At this stage, let the bets ride until a 7 out, then reset the system.</li>
+<li>If the point is hit or if a 7 rolls on the come out, go back up on the Don't Pass for $30 and make a $2 Yo Eleven prop bet, but don't bet on the Field.</li>
+<li>If you run across a hot shooter who is hitting points, transition into a light-side place bet strategy. This system is ideal for colder tables where shooters can't get past 4-5 rolls before a 7 out.</li>
+</ol>
+</div>

@@ -1,0 +1,15 @@
+<div class="ohw" id="ohw">
+<h3>One Hit Wonder</h3>
+<p>Buy-in: $200</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Very simple system that recoups the outlay in one hit before moving bets to the inside.</p>
+<ol>
+<li>Either wait for a point to be established, or start out with a $10 bet each on the 4 and 10 place numbers and have them working on the come out roll.</li>
+<li>One hit on either the 4 or 10 will win $18 or $19 depending on if the bets are auto-buys based on the casino rules.</li>
+<li>After one hit on either the 4 or 10, collect the winnings and move the bets inwards to cover the 5 and 9 for $10 each.</li>
+<li>If the 5 or 9 hit, use the winnings to cover either the 6 or 8 with a $12 bet and collect the remaining $2. You will now be totally out of the hand at this point.</li>
+<li>Use any hit on the place numbers to fill in all of the inside bets, so bet $12 on the 8 if you have already covered the 6.</li>
+<li>Use any progressive betting strategy from here on out; double-tap, triple-lux, spread to the 4 and 10, etc.</li>
+</ol>
+
+</div>

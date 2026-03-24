@@ -1,0 +1,12 @@
+<div class="ironCross" id="ironCross">
+<h3>Iron Cross</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Adjust as necessary for any table minimum.</p>
+<ol>
+<li>Bet 1 unit on the Pass Line. When Point is established, back it up with 2x in Odds.</li>
+<li>After establishing a Point, place 2 units each on the 5, 6, and 8 and bet 1 unit in the Field. Don't place the 5, 6, or 8 if they come out as the Point.</li>
+<li>If 5, 6, or 8 hit, replenish the Field bet.</li>
+<li>Let bets ride until you get 4 hits total. After 4 hits, remove the Field bet and take the Place bets down to 1 unit each. Let those ride or switch to a Collect and Press method until Point is hit or a 7 out.</li>
+</ol>
+</div>

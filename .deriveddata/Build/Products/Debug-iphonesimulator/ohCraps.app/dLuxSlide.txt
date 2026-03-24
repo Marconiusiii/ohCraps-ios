@@ -1,0 +1,13 @@
+<div class="dLuxSlide" id="dLuxSlide">
+<h3>Double-Lux Slide</h3>
+<p>Buy-in: $1500</p>
+<p>Table Minimum: $5-$15</p>
+<p>Strategy that gets you out of the hand in 2 hits and is geared towards maximizing place bet opportunity.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $202 Across; $25 each on the 4 and 10, $40 each on the 5 and 9, and $36 each on the 6 and 8.</li>
+<li>Power press any first hit on any of the place numbers. Press the 4 or 10 up to $75, press the 5 or 9 up to $100, and the 6 or 8 up to $84 if they hit.</li>
+<li>If a pressed number hits, immediately take all bets down and go to $140 Across; $15 each on the 4 and 10, $25 each on the 5 and 9, $30 each on the 6 and 8. The winnings from the pressed place bet will cover this and get you entirely out of the hand.</li>
+<li>Start any power press and collect system from here on out, such as Double-tap or Triple-Lux.</li>
+</ol>
+</div>

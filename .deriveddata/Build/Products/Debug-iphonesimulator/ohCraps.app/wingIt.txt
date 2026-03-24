@@ -1,0 +1,15 @@
+<div class="wingIt" id="wingIt">
+<h3>Wing It</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Using hop bets and the 6 and 8 to get to $64 across within 2-3 hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $30 each on the 6 and 8. Hop the 5 and 9 for $2 each.</li>
+<li>If the 5 or 9 hits, use $12 of the winnings to press the 6 and 8 place bets up $6 each. Keep the winning hop bet up until it falls, then don't replace it. Use any further winnings to bump up the 6 and 8 bets.</li>
+<li>If the 6 or 8 hit, you'll win $35. Throw in $5 and use that plus the winnings to place the 5 and 9 for $20 each.</li>
+<li>If you were able to press the 6 and 8 up with a hop bet win, you'll win $42 from a $36 6 or 8. In this case, take $2 in change and use the rest to place the 5 and 9 for $20 each.</li>
+<li>Once all the inside numbers are covered, if any of them hit, immediately go to $64 across, or $10 each on the 4, 5, 9, and 10 and $12 each on the 6 and 8.</li>
+<li>You are now playing with house money, so start any collect and press system that you wish.</li>
+</ol>
+</div>

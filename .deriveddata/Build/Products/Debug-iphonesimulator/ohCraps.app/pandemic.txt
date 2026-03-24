@@ -1,0 +1,13 @@
+<div class="pandemic" id="pandemicSpecial">
+<h3>Pandemic Special</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $15</p>
+<p>Notes: Meant for $15 minimum tables, which are becoming prevalent now during the Pandemic. Can potentially work with a $300 minimum bankroll.</p>
+<ol>
+<li>Wait for point to be established.</li>
+<li>Place $15 on the 5 and $18 each on the 6 and 8 after Point is established.</li>
+<li>After one hit on the 5, 6, or 8, press all numbers up 1 unit, so a $20 5, and a $24 6 and 8.</li>
+<li>After one more hit on the 5, 6, or 8, start betting $15 on the Field for every roll and let all bets ride until a 7 out.</li>
+<li>You can start pressing or spreading out to the other Place numbers after 5 or 6 hits to ensure that your initial outlay has been paid for.</li>
+</ol>
+</div>

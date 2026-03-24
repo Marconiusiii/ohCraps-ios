@@ -1,0 +1,21 @@
+<div class="grant" id="grant">
+<h3>Grant's Pyramid</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Modified $66 across strategy with a systematic pressing method for sister numbers.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place the 4 and 10 for $5 each, the 5 and 9 for $10 each, and the 6 and 8 for $18 each. This is $66 in total.</li>
+<li>The first hit on any of the sister pairs will be used to press the next set of inner numbers. The 6 and 8 will always press themselves, while the first hit on the 5 or 9 will be used to press the 6 and 8, and the first hit on the 4 and 10 will be used to press the 5 and 9 together.
+<ul role="list">
+<li>If the 6 or 8 hit, drop in $3 to make the total winnings $24 and then use that to press both numbers up $12 each.</li>
+<li>If the 5 or 9 hit, use $12 from the winnings to press the 6 and 8 up $6 each and collect the extra $2.</li>
+<li>If the 4 and 10 hit, drop in $1 to make the winnings total $10, then press the 5 and 9 up $5 each.</li>
+</ul></li>
+<li>After the 6 and 8 are pressed up twice, start a collect and press system that always uses winnings to press both the 6 and 8 up as far as they can go with every other hit.</li>
+<li>The second time the 4/10 or 5/9 hit, use those winnings to press those numbers up. Always split the winnings or drop in what you need in order to evenly press both numbers in the pair up. A $10 Place 5 will win $14, allowing for both the 5 and 9 to be pressed up $5 each while collecting the rest; a $15 5 will win $21, allowing both the 5 and 9 to be pressed up $10 each, and so on.</li>
+<li>A $5 4 or 10 will win $9, so dropping in $1 will allow the 4 and 10 to be pressed up to $10 each. A $10 4 or 10 will either win $18 if they aren't made Buy bets, or $19 if they are Buy bets. Dropping in $2 or $1 will allow both bets to press up to $20 each, and so forth.</li>
+<li>After bets are initially pressed, keep collecting and pressing on the 6 and 8 wins, and use further hits on the outer numbers to press themselves up. At any time, feel free to regress all the bets back down to the original $66 across from the beginning of the strategy.</li>
+<li>If you regress, only do it once. From that point on, maximize opportunity by doing full power presses and collecting on every other hit. The more you press, the more you'll win, especially now that the original outlay has been paid for.</li>
+</ol>
+</div>

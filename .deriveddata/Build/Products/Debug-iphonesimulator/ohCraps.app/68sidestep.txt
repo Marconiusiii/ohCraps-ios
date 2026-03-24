@@ -1,0 +1,12 @@
+<div class="68sidestep" id="68sidestep">
+<h3>6 8 Sidestep</h3>
+<p>Buy-in: $300</p>
+<p>Table Minimum: $5-$15</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $18 each.</li>
+<li>If the 6 hits, you'll win $21. $21 added to the initial $18 bet makes $39. Drop in $1 to make it $40 and move the bet to the 5. If the 8 rolls, do the same thing but move the $40 bet to the 9.</li>
+<li>If the $40 5 or 9 hit, you'll win $56. If the 5 hits, take it down, collect the winnings, and then go back up on the place 6 for $18. If the 9 hits, take it down, collect the winnings, and go back up on the 8 for $18.</li>
+<li>Repeat.</li>
+</ol>
+</div>

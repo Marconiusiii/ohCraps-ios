@@ -1,0 +1,15 @@
+<div class="shl" id="shl">
+<h3>Squeeze/Hug/Love</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Combines Squeeze Play with an additional bet regression to get out of the hand in 3 hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $64 Across; $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>On the first hit of any box number, take down the 4 and 10 bets, add them to the winnings and drop in an extra $10 to make your total winnings $44. Use this to press up the inside numbers to $88 Across.</li>
+<li>On the next hit of any of the inside numbers, use $22 out of the $28 winnings to press the inside numbers up to $110 inside. Collect the change.</li>
+<li>On the third hit of any of the inside numbers, collect the winnings and take down the 5 and 9 bets, leaving $30 each up on the 6 and 8. You are now fully out of the hand.</li>
+<li>Wait for the 6 or 8 to hit, then drop in $5 to add to the $35 winnings to go up on the rest of the box numbers for $10 each.</li>
+<li>Start any press and collect system that you wish from here on out, then reset the system on a 7 out.</li>
+</ol>
+</div>

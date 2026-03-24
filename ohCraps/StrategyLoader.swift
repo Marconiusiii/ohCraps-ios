@@ -26,9 +26,11 @@ struct StrategyLoader {
 		guard let urls = Bundle.main.urls(forResourcesWithExtension: "txt", subdirectory: nil) else {
 			return []
 		}
-		
-		let loaded = urls
-			.compactMap { loadStrategy(from: $0) }
+
+		let sortedURLs = urls.sorted {
+			$0.lastPathComponent.localizedCaseInsensitiveCompare($1.lastPathComponent) == .orderedAscending
+		}
+		let loaded = loadStrategies(from: sortedURLs)
 			.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 
 		cacheLock.lock()
@@ -53,6 +55,24 @@ struct StrategyLoader {
 			return nil
 		}
 		return parseStrategy(html: raw, id: UUID())
+	}
+
+	private static func loadStrategies(from urls: [URL]) -> [Strategy] {
+		if urls.count < 2 {
+			return urls.compactMap { loadStrategy(from: $0) }
+		}
+
+		let resultLock = NSLock()
+		var loaded = Array<Strategy?>(repeating: nil, count: urls.count)
+
+		DispatchQueue.concurrentPerform(iterations: urls.count) { idx in
+			let strategy = loadStrategy(from: urls[idx])
+			resultLock.lock()
+			loaded[idx] = strategy
+			resultLock.unlock()
+		}
+
+		return loaded.compactMap { $0 }
 	}
 }
 

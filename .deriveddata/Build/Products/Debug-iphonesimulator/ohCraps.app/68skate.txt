@@ -1,0 +1,14 @@
+<div class="68skate" id="68skate">
+<h3>The 6 8 Skate</h3>
+<p>Buy-in: $250</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Short money system that switches from a Lay to a Place setup that can get you out of the hand in 3 hits.</p>
+<ol>
+<li>Start by Laying the 6 and 8 for $12 each on the Come Out roll.</li>
+<li>If the 7 rolls, you'll win $20 minus the vig.</li>
+<li>When a point is established, "skate" the Lay bets down and turn them into Place bets on the 6 and 8.</li>
+<li>If the 6 or 8 hit, it's your choice to power press the number up to $30 or use $12 of the winnings to press each number up to $18 each.</li>
+<li>Collect the next hit and you are essentially out of the hand. Start any power=pressing or general press and collect strategy you like from here on out.</li>
+<li>If the 6 or 8 becomes the point, skate the remaining Lay bet down to become a Place bet. Wait for that number to hit, then use the winnings to place the sister number for $12. Use the next hit to press both the 6 and 8 up to $18 each, then collect the third hit to get out of the hand.</li>
+</ol>
+</div>

@@ -1,0 +1,14 @@
+<div class="roundabout" id="roundabout">
+<h3>Roundabout</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Strategy will get you to $160 across in 2 hits of the inside numbers. Aggressive system that goes for opportunity.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $110 Inside, or $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>On the first hit of any Inside number, you'l win $35. Drop in $75 to add to the winnings and press the inside numbers up to $220 Inside, or $50 each on the 5 and 9, $60 each on the 6 and 8.</li>
+<li>If an inside number hits again, collect the winnings and take that place bet down. Use the rest of the money on the table to go to $160 Across all the numbers; $25 each on the 4, 5, 9, and 10. and $30 each on the 6 and 8.</li>
+<li>If a place number hits again, collect the first hit and you'll have paid for the entire hand.</li>
+<li>Move into a collect and power press strategy of your choosing.</li>
+</ol>
+</div>

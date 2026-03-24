@@ -1,0 +1,13 @@
+<div class="outToIn" id="outToIn">
+<h3>Out to In</h3>
+<p>Buy-in: $600-$1200</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Large outlay on the outside numbers, but gets you to $64 or $96 across in two hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 4 and 10 for $25 each, and place the 5 and 9 for $35 each.</li>
+<li>If any of these numbers hit, immediately go to $160 across, or $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>On the next hit of any box number, immediately regress down to $64 or $96 across and collect the rest as profit.</li>
+<li>Start any collect and press system from here on to a 7-out. Triple lux, double-tap, press press and regress, etc.</li>
+</ol>
+</div>

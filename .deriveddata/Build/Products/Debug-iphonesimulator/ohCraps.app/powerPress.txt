@@ -1,0 +1,13 @@
+<div class="powerPress" id="powerpress">
+<h3>Power Press</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Once Point is established, Place $5 each on the 4 and 10, $10 each on the 5 and 9, $30 each on the 6 and 8. Bet $1 on all the Hard Ways.</li>
+<li>If the 6 or 8 hits, immediately regress Place Bets down to $6 each on both numbers. If the 5 or 9 hit, immediately regress down to $5 each on both numbers.</li>
+<li>If any Hard Ways hit, collect winnings and bump all hard Ways bets up $1. Keep up on all hard Ways and replenish them when they lose, keep bumping them all up when they hit and keep doing so until a 7 Out.</li>
+<li>Once the 5, 6, 8, and 9 have been regressed, start power pressing. When any of them hit, immediately do a full press on the Place Bet. Start power pressing the 4 and 10 as well.</li>
+<li>Once a Place Bet is up to a green, or $25/$30, start collecting and pressing. Collect on one hit, then full press on another hit. Maintain this or regress back to table minimums as you like.</li>
+</ol>
+</div>

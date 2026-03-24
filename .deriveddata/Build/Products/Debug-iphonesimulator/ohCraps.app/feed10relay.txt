@@ -1,0 +1,13 @@
+<div class="feed10relay" id="feed10relay">
+<h3>Feed the 10 Relay</h3>
+<p>Buy-in: $800</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: This strategy is built for the 10, but can also funnel to the 4 depending on how you are feeling.</p>
+<ol>
+<li>The point doesn't matter in this strategy, so you can either be working on the Come Out or wait for a point to be established.</li>
+<li>Bet $160 across, or $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>If any box number other than 10 hits, collect the winnings, then take down the Place Bet and add it to the bet on the Place 10. Each Place Bet hit will bump the Place 10 bet up $25.</li>
+<li>If the 10 hits, just collect the winnings.</li>
+<li>Once all of the other Place Bets have hit and been moved to the 10, you can either wait for the 10 to hit, or redistribute all the bets back to $160 across and start the whole strategy over.</li>
+</ol>
+</div>

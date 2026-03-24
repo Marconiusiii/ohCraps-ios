@@ -1,0 +1,16 @@
+<div class="elToro" id="elToro">
+<h3>El Toro</h3>
+<p>Buy-in: $1100</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Bets and bankroll based on a $10 table. Halve the amounts for a $5 table. System is meant to try to make profit quickly off of random rollers within the average 6-8 rolls before a 7 out.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $10 each on the 4 and 10, $15 each on the 5 and 9, and $30 each on the 6 and 8. A total of $110 distributed across the place numbers.</li>
+<li>When any of the place numbers hit, immediately take down that bet and the sister number bet. If the 6 hits, take down both the 6 and the 8 bets. If the 9 hits, take both that down and the 5. If the 4 hits, take down the 4 and the 10, etc.</li>
+<li>If all place numbers are taken down, be patient and wait for a 7 out or the shooter to hit the point.</li>
+<li>Should the shooter hit the point, as soon as the new point is established, reset the system but lower the bets on the 6 and 8 to $18 each.</li>
+<li>If the shooter hits the second point, as soon as a new point is established, reset the system again, but this time take it to $64 across, or $10 each on the 4, 5, 9, and 10 and $12 each on the 6 and 8.</li>
+<li>You can now play this by ear by taking the bets down as they hit or transition into a collect and press strategy pending on how the shooter is doing.</li>
+<li>If the shooter 7s out, reset the system from the beginning values when a new shooter and point are established.</li>
+</ol>
+</div>

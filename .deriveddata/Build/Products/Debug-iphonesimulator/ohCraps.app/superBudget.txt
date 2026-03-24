@@ -1,0 +1,18 @@
+<div class="superBudget" id="superBudget">
+<h3>Super Budget</h3>
+<p>Buy-in: $100-$240</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Super short money system that gets you into profit in 2 hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place the 6 and 8 for $12 each.</li>
+<li>If either the 6 or 8 hit, drop in $10 to add to the $14 winnings and use it all to press them both up to $24 each.</li>
+<li>If the 6 or 8 hit again, collect the winnings and regress the 6 and 8 bets back down to $12 each. You now have a profit of $18.</li>
+<li>If the 6 or 8 hit again:
+	<ul role="list">
+	<li>On a $5 table, use the winnings to bet $32 across all the place numbers and collect a little more profit.</li>
+	<li>On a $10 table, drop in $6 to add to the winnings and use it all to place the 5 and 9 for $10 each, going $44 inside.</li>
+	</ul></li>
+<li>Start any progressive betting system you like from this point on until a 7 out. Double-tap, triple-lux, collect and press, power press, etc.</li>
+</ol>
+</div>

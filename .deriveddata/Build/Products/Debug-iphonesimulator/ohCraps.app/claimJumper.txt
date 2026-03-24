@@ -1,0 +1,14 @@
+<div class="claimJumper" id="claimJumper">
+<h3>Claim Jumper</h3>
+<p>Buy-in: $800-$1000</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Variation of the Green Chip Gold Mine strategy that uses less of an initial outlay.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Bet $88 Inside; $20 each on the 5 and 9, $24 each on the 6 and 8.</li>
+<li>If any of the inside numbers hit, you'll win $28. Toss in $2 and use that along with the winnings to place the 4 and 10 for $15 each.</li>
+<li>Collect the next 4 hits from any of the place numbers.</li>
+<li>After collecting the 4th hit, you'll now have paid for the outlay and only have profit on the table. Start using the Green Chip Gold Mine strategy. On the next hit of a box number, immediately press it up to a point where it will pay out $49 on each hit; press the 4 or 10 up to $25, the 5 or 9 up to $35, and the 6 or 8 up to $42.</li>
+<li>Continue to collect from this point onwards until a 7 out, then restart the strategy.</li>
+</ol>
+</div>

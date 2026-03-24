@@ -1,0 +1,17 @@
+<div class="jeremy" id="jeremy">
+<h3>Jeremy's Secret Strategy</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Jeremy from ColorUp uses this hedge strategy to maximize comps in order to get free Royal Caribbean cruises!</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Lay $100 on the 4 or 10. Place $96 across all of the numbers; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8.</li>
+<li>Collect the next three hits on any of the Place numbers.</li>
+<li>On the third hit, take down the Lay bet and regress the Place bets down to $64 across; $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>Collect the first hit on any place number, and then proceed to start any collect and press system that you like. Recommend pressing both the place number that hits and it's sister number, collecting on the hit after that, and so on.</li>
+<li>If the point is hit before the first 3 hits of the system while the Lay bet is active, make sure the place bets are working on the next Come Out roll so you don't miss a number and to protect against the lay bet.</li>
+<li>If the Lay number hits, replace the Lay and restart the system and count off another 3 hits of the place numbers before taking down the Lay and regressing the place bets.</li>
+<li>Restart the system on a 7 out. Feel free to leave the lay bet up and just bet 96
+across and having the Place bets working on the next come out roll if the 7 rolls before the lay bet comes down.</li>
+</ol>
+</div>

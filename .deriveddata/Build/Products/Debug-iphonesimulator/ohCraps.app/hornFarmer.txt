@@ -1,0 +1,14 @@
+<div class="hornFarmer" id="hornFarmer">
+<h3>Horn Farmer</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Very volatile system that benefits most from having a good walk-away point and discipline.</p>
+<ol>
+<li>At any time in the game, bet $20 on the Field and make a $20 Horn bet.</li>
+<li>Depending on your location, the 2 or 12 on the Field may either each pay double, or one may pay triple. A 2 or 12 rolled will net you $135 from the Horn bet alone.</li>
+<li>Rolling a 3 or 11 will win you even money on the Field along with netting $60 from the Horn bet.</li>
+<li>Rolling any other Field number will make the Horn bet lose, but use the winnings from the Field to replenish the $20 Horn bet.</li>
+<li>Replace both the Field and Horn bet if a 5, 6, 7, or 8 is rolled.</li>
+<li>Continue on until you make a profit and then step away, as this system can bite your bankroll pretty quickly.</li>
+</ol>
+</div>

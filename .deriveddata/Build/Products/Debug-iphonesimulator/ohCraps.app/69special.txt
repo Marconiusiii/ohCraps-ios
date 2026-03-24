@@ -1,0 +1,16 @@
+<div class="69special" id="69special">
+<h3>69 Special</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Quick system that gets you to profit within 2 or 3 hits, plus it has a silly name.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $66 Inside; $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>On the first hit of any inside number, you'll win $21. Drop in $1 from your rack and power press the 6 to $30 and the 9 to $25.</li>
+<li>If the 6 or 9 hit, immediately regress to $44 Inside on a $10 table, or to $66 Inside on a $15 table. You are now playing with profit.</li>
+<li>If the 5 or 8 hit instead, drop in $1 again and power press the 5 to $25 and the 8 to $30.</li>
+<li>With all numbers pressed up, on the next hit of any inside number, regress down to $44 or $66 inside.</li>
+<li>Start any collect and press strategy that you like.</li>
+<li>Alternatively, you can press the 6 and 8 up on the first hit of the inside numbers by dropping in $3 instead of $1, then press up the 5 and 9  on the second hit if the 5 or 9 are rolled. Otherwise, if the 6 or 8 hit again, regress down and start playing with the profit on the table.</li>
+</ol>
+</div>

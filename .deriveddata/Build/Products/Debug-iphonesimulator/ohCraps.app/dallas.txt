@@ -1,0 +1,12 @@
+<div class="dallas" id="dallas">
+<h3>Dallas Drawdown</h3>
+<p>Buy-in: $1000-$2500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: High outlay but quick 2 hit regression system. Only meant for winning 20%-30% of your total bankroll before coloring up and cashing out. Built for repeat play and winning modest profits over time.</p>
+<ol>
+<li>Bet 4x the table minimum on all of the place numbers. For a $10 table, this would be $256 across all the place numbers; $40 each on the 4, 5, 9, and 10, and $48 each on the 6 and 8. Have these bets working on the Come Out roll.</li>
+<li>On the first hit of any place number, immediately regress all your bets down by a half, or to $128 across; $20 each on the 4, 5, 9, and 10, and $24 each on the 6 and 8.</li>
+<li>On the second hit of any place number, immediately regress down to $64 across, or the table minimum on all the place numbers; $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8.</li>
+<li>At this point, feel free to start any collect and press system that you like. All the money on the table is pure profit. Feel free to cash out after 3 or 4 full runs of this system to walk away with a nice profit for the day. Tip your dealers as this system may require a lot of work for them to regress your bets.</li>
+</ol>
+</div>

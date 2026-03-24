@@ -1,0 +1,10 @@
+<div class="ladder" id="ladder">
+<h3>Ladder</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<ol>
+<li>Bet $30 on Don't Pass Line.</li>
+<li>When Point is established, bet $30 on Don't Come. Replenish this bet if 11 rolls and keep betting on the DC until 4 DC points are established.</li>
+<li>Once Don't Come bet moves to a number, immediately Place the number for $30. If the number hits, take down the Place bet and continue betting on DC.</li>
+</ol>
+</div>

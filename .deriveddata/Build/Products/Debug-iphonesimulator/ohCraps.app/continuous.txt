@@ -1,0 +1,14 @@
+<div class="continuous" id="continuous">
+<h3>Coming Continuously</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Odds based on 2x Odds limits; adapt as you'd like for the table odds given to you when playing.</p>
+<ol>
+<li>Start with a table minimum 1 unit Pass Line bet. Bet $12 on the Horn.</li>
+<li>If the Horn Bet wins, press it up a full unit to $16. Continue pressing bet up $4 each time the Come Out Horn bet wins, regress back to $12 bet if it loses on the Come Out roll. Replace Pass Line bet if it loses.</li>
+<li>Once Point has been established, bet 2x Pass Line Odds. Bet $5 or one unit on the Come.</li>
+<li>When Come bet point is rolled, place 2x Odds for each Come Bet. After Come Bet moves to a number, make another 1 unit Come bet.</li>
+<li>Continuously replenish 1 unit Come Bet and place 2x Odds on each Come number until 7 out or Point is hit.</li>
+<li>Only bet the Horn on the come Out roll.</li>
+</ol>
+</div>

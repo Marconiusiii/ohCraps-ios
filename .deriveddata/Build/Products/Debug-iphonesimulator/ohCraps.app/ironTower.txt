@@ -1,0 +1,16 @@
+<div class="ironTower" id="ironTower">
+<h3>Iron Tower</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Buy in for $300 for 5 shooters, but initial outlay is $61.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Set up initial Iron Cross by betting $15 on the Place 5 and $18 each on the Place 6 and 8. Bet $10 in the Field.</li>
+<li>If the 5, 6, or 8 hit, replace the Field bet and collect the rest.</li>
+<li>For all other numbers, use the first 3 Field hits to press the 5, 6, and 8 up to 5 units each; press the 5 up to $25 with the first FIeld hit, the 6 to $30 on the second, and the 8 to $30 on the third hit. If the 2 or 12 rolls, press up 2 or all of the numbers at once.</li>
+<li>Once the 5, 6, and 8 are pressed, start using each Field hit to cover the rest of the Place numbers with $10 bets. Always collect on 5, 6, or 8 hits.</li>
+<li>Once the 4, 9, and 10 are covered, let the bets ride and collect on each roll, replacing the Field if the 5, 6, or 8 hit.</li>
+<li>If the 3 or 11 roll, use those Field winnings to press the 4, 9, and 10 Place numbers up to $15 each.  If the 2 or 12 roll, use the winnings to press the 4, 9, and 10 all at once.</li>
+<li>Once all numbers are pressed, let bets ride until a 7 out. When the Horn numbers roll, you can use the winnings to further press the 5, 6, and 8 as you see fit. You can also use the winnings from the 5, 6, or 8 to do a full press on that number, bringing the 5 up to a $50 bet or taking the 6 or 8 up to $60.</li>
+</ol>
+</div>

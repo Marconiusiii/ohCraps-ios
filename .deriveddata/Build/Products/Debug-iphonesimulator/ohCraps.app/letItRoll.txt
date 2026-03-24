@@ -1,0 +1,15 @@
+<div class="letItRoll" id="letItRoll">
+<h3>Crapless Craps: Let It Roll</h3>
+<p>Buy-in: $1500-$2000</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Crapless strategy that gets you covered across all place numbers in 3 hits, and into profit within 3 more hits.</p>
+<ol>
+<li>Wait for a point to be established.</li>
+<li>Place $154 Inside; $35 each on the 5 and 9, $42 each on the 6 and 8.</li>
+<li>If any of these numbers hit, you'll win $49. Drop in $1 and use the winnings to cover and Buy the 4 and 10 for $25 each.</li>
+<li>On the next hit of any covered number, use the winnings to cover and Buy the 3 and 11 for $25 each.</li>
+<li>On the next hit, use the winnings to cover and Buy the 2 and 12 for $25 each.</li>
+<li>Collect winnings on the next 3 hits of the Place bets. This will recoup the outlay and you'll be playing with profit.</li>
+<li>Start any collect and press system that you like.</li>
+</ol>
+</div>

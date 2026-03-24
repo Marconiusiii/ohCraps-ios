@@ -1,0 +1,12 @@
+<div class="wheezy" id="wheezy">
+<h3>The Wheezy</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Supposedly is a strategy that seemingly can't lose, but is a dark side strategy that will get nailed by a good shooter.</p>
+<ol>
+<li>Start with a $30 Don't Pass bet.</li>
+<li>When the point is established, Place the 4 and 10 for $15 each, even if the point is 4 or 10. If the point is any other number, lay $30 in Don't Pass odds.</li>
+<li>If the 4 or 10 hit, immediately pull down that place bet and take down your lay odds.</li>
+<li>Let the remaining place bet ride until it hits or a 7 out. If the remaining place bet hits, collect the winnings and take down the bet, then just ride out the hand until the point is hit or a 7 out.</li>
+</ol>
+</div>

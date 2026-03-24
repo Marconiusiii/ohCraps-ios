@@ -1,0 +1,14 @@
+<div class="negNellie" id="nellie">
+<h3>Negative Nellie</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: A good plan for playing against the House when the table is cold or running into a lot of Point 7s.</p>
+<ol>
+<li>Make a $30 Don't Pass bet before the Come Out roll.</li>
+<li>Once Point has been established, Place $66 inside, so $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>If an inside number hits, regress all inside numbers down to 2 units each, so $10 each on the 5 and 9, $12 each on the 6 and 8. Collect the winnings, and use the $22 coming off of the inside numbers to place a $22 Don't Come bet.</li>
+<li>If inside numbers hit again, regress all numbers down to 1 unit each; $5 each on the 5 and 9, $6 each on the 6 and 8. Collect the winnings, and again use the bets being taken off of the Place bets to put down a $22 Don't Come bet.</li>
+<li>If inside numbers hit a third time, take down all the Place bets, collect winnings, and make one more $22 Don't Come bet.</li>
+<li>Let the bets ride out through the roll and hope for a 7. Repeat after a 7 out. If the Point hits, make another $30 Don't Pass bet on the Coe Out, but let Don't Come bets ride until they are either hit and cleared or another 7 out.</li>
+</ol>
+</div>
