@@ -1,0 +1,19 @@
+<div id="ultPaulSqueeze">
+<h3>Ultimate Paul's Squeeze Play</h3>
+<p>Buy-in: $2500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: New tweak to Ultimate Squeeze Play that gets you out of the hand in 2 hits with a big outlay.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $270 Across; $25 each on the 4 and 10, $50 each on the 5 and 9, and $60 each on the 6 and 8.</li>
+<li>If any of the Inside numbers hit, use the $70 of winnings to press the 4 and 10 up to $50 each and press the 5 and 9 up to $60 each.</li>
+<li>If the 4 or 10 hit instead as the first hit, you can either drop in $21 to add to the winnings to make the same presses, or drop in $1 to press the 5 and 9 up to $60 each and then use the rest to press the 4 and 10 up to $40 each.</li>
+<li>Now, on the next hit of any place number, collect the winnings and regress down to $160 Across; $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>Use minimal power presses to start a power-press and collect strategy. 
+	<ul><li>If the 4 or 10 hit, drop in $1 and use the winnings to press both the 4 and 10 up to $50 each.</li>
+	<li>If the 5 or 9 hit, use the winnings to press whichever number hit up to $60.</li>
+	<li>If the 6 or 8 hit, drop in $1 to press whichever number hit up to $66.</li>
+	</ul></li>
+<li>From here on out, treat each number individually, pressing or power-pressing when they hit, and collecting on every other hit.</li>
+</ol>
+</div>

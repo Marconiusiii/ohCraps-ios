@@ -1,0 +1,20 @@
+<div id="3HopCross">
+<h3>3-Hop Cross</h3>
+<p>Buy-in: $1000-$1500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Inside presses and hop bets for 3 hits until you shift into a modified Iron Cross.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $110 Inside; $25 each on the 5 and 9, $30 each on the 6 and 8. Hop the Easy 4 and 10 for $2 each, make a Horn High Yo prop bet for $5, and bet an extra $1 on Acey-Deucey or the 3, so essentially $10 total for the Prop bets.</li>
+<li>On the first hit of any of these bets, use the winnings to replace any lost Prop Bets and use the rest to press the Inside Place Bets up $22, so you'll now have $30 each on the 5 and 9, and $36 each on the 6 and 8.
+	<ul><li>Rolling a 3, 11, or Easy 4 or 10 will give you exactly $22 to use for this Inside press after replacing the lost Prop bets.</li>
+	<li> Rolling a 2 or 12 will require you to drop in $1 from your rack to make the full $22 Inside press.</li>
+	</ul></li>
+<li>On the second hit of any of these bets, use the winnings again to replace any lost Prop bets and press the Inside numbers up another $22, so you'll have $35 each on the 5 and 9, and $42 each on the 6 and 8.</li>
+<li>On the third hit of any of these bets, take down the 5 and 9 Place bets and regress down to $30 each on the 6 and 8. Take down any remaining Prop bets, and bet $12 on the Field to set up the modified Iron Cross.</li>
+<li>If any of these numbers hit, immediately use the winnings to replace the $12 Field bet if lost, and also place the 5 for $10.</li>
+<li>Now, if the 6 or 8 hit, replace the $12 Field bet and collect the rest. If the Field numbers hit, use the $12 winnings to press the 6 and 8 up $6 each. If the 5 rolls, replace the $12 Field bet and collect the change.</li>
+<li>Continue on with this pattern until a 7 Out, then restart the strategy.</li>
+
+</ol>
+</div>
