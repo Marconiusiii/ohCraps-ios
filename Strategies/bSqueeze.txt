@@ -1,0 +1,17 @@
+<div id="bSqueeze">
+<h3>B Squeeze</h3>
+<p>Buy-in: $2500</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Aggressive Squeeze Play variant  that gets you out of the hand in 2 hits and ready for opportunity.</p>
+<ol>
+<li>Start with $270 Across; $25 each on the 4 and 10, $50 each on the 5 and 9, and $60 each on the 6 and 8. Or $220 Inside with $25 each on the 4 and 10. Have these bets Working on the Come Out roll.</li>
+<li>If any of the inside numbers hit, use the $70 winnings to press the 5 and 9 up $25 each and use the rest to press the 4 and 10 up $10 each. If the 4 or 10 hit, drop in $1 and use the winnings to press the 4 and 10 up $25 each.</li>
+<li>On the next hit of any number, regress down to $160 Across; $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8. No matter what hits, you are now out of the hand and in profit.</li>Start any power press and collect system you like.</li>
+<li>This strategy uses Power Press Plus, where you are drawing more money from your rack to boost the press upwards. Collecting between each hit and press is up to you, but driving the power press with each hit is the aggressive move preferred for this strategy:
+<ul>
+<li>If the 4 or 10 hit, drop in $1 and take the bet up to $75, then power press to $200, then to $500, collecting between each press if you like.</li>
+<li>If the 5 or 9 hit, drop in $15 to take the bet up to $75. On the next hit, drop in $20 to go up to $200, then drop in $20 again to take the next press up to $500.</li>
+<li>If the 6 or 8 hit, drop in $25 to take the bet up to $90. On the next hit, drop in $15 to bring it up to $210, then power press up to $450.</li>
+</ul></li>
+</ol>
+</div>

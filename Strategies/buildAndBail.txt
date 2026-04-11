@@ -1,0 +1,13 @@
+<div id="buildAndBail">
+<h3>Build and Bail</h3>
+<p>Buy-in: $1200</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Big outlay that uses the 6 and 8 to build up the outside numbers for big hits.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $124 Across; $10 each on the 4, 5, 9, and 10, and $42 each on the 6 and 8.</li>
+<li>If the 6 or 8 hit, you win $49. Drop in $1 to make it $50 and use the winnings to press up the nearest outside numbers $25 each. If the 6 hits, press up the 4 and 5 by $25 each, and the same for the 9 and 10 if the 8 hits.</li>
+<li>If the pressed 4, 5, 9, or 10 hit, collect the winnings and regress that number back down to $10.</li>
+<li>If the 6 or 8 hit again, continue dropping in $1 to press up the corresponding outside numbers $25 each, and if any of the outside numbers hit, continue to collect and regress them back down to $10 or just collect the $14 if they are unpressed.</li>
+</ol>
+</div>

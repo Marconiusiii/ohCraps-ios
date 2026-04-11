@@ -1,0 +1,15 @@
+<div id="weBall">
+<h3>We Ball</h3>
+<p>Buy-in: $250</li>
+<li>Table Minimum: $5</li>
+<li>Notes: Short money system that leans into the math of the dice outcomes.</li>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $22 Inside; $5 each on the 5 and 9, $6 each on the 6 and 8.</li>
+<li>On the first hit of any number, drop in $5 and use the winnings to press either the 6 or the 8 up to $18. Whichever number you pick to press, stick with that number as the rounds progress to keep things easy.</li>
+<li>If the pressed up 6 or 8 hits, you'll win $21. Drop in $1 from your rack and use the winnings to press the other 6 or 8 up to $18, and use the rest to place the 4 and 10 for $5 each.</li>
+<li>If the 5 or 9 roll instead, or the unpressed 6 or 8, drop in another $5 to press up the unpressed 6 or 8 up to $18.</li>
+<li>Now if the pressed 6 or 8 hit, collect the first hit to recoup money into your rack if you aren't doing well, otherwise collect $1 in change and use the rest of the winnings to press the 5 and 9 up to $10 each and go up on the 4 and 10 for $5 each.</li>
+<li>Start any collect and press system that you like now that you are out of the hand.</li>
+</ol>
+</div>
