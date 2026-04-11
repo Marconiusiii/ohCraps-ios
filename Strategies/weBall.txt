@@ -1,8 +1,8 @@
 <div id="weBall">
 <h3>We Ball</h3>
-<p>Buy-in: $250</li>
-<li>Table Minimum: $5</li>
-<li>Notes: Short money system that leans into the math of the dice outcomes.</li>
+<p>Buy-in: $250</p>
+<p>Table Minimum: $5</p>
+<p>Notes: Short money system that leans into the math of the dice outcomes.</p>
 <ol>
 <li>Wait for a Point to be established.</li>
 <li>Place $22 Inside; $5 each on the 5 and 9, $6 each on the 6 and 8.</li>

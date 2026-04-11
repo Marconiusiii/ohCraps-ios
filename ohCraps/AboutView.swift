@@ -5,6 +5,7 @@ struct AboutView: View {
 
 	@AccessibilityFocusState private var titleFocused: Bool
 	@State private var showMail = false
+	@Binding var showWhatsNew: Bool
 	@Environment(\.openURL)
 	private var openURL
 
@@ -42,6 +43,12 @@ struct AboutView: View {
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
+						Button("What's New") {
+							showWhatsNew = true
+						}
+						.font(AppTheme.bodyText)
+						.foregroundColor(AppTheme.textPrimary)
+						.accessibilityHint("Opens the latest update notes")
 
 						Text("References")
 							.font(AppTheme.sectionHeader)

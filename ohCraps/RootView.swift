@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct RootView: View {
+	private let whatsNewVersion = "1.2.4"
 	@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
 	@State private var hideTabBar = false
+	@State private var showWhatsNew = false
+	@AppStorage("whatsNewSeenVersion") private var seenWhatsNew = ""
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -26,7 +29,7 @@ struct RootView: View {
 				.allowsHitTesting(selectedTab == .createStrategy)
 				.accessibilityHidden(selectedTab != .createStrategy)
 
-				AboutView()
+				AboutView(showWhatsNew: $showWhatsNew)
 					.opacity(selectedTab == .about ? 1 : 0)
 					.allowsHitTesting(selectedTab == .about)
 					.accessibilityHidden(selectedTab != .about)
@@ -38,5 +41,30 @@ struct RootView: View {
 			}
 		}
 		.dynamicTypeSize(.xSmall ... .accessibility5)
+		.sheet(isPresented: $showWhatsNew, onDismiss: markWhatsNewSeen) {
+			WhatsNewView(
+				version: whatsNewVersion,
+				items: [
+					"Added Strategies: B Squeeze, Build and Bail, We Ball",
+					"App optimization and cleanup to make everything load faster."
+				],
+				onClose: { showWhatsNew = false }
+			)
+		}
+		.task {
+			showWhatsNewIfNeeded()
+		}
+	}
+
+	private func showWhatsNewIfNeeded() {
+		if seenWhatsNew != whatsNewVersion {
+			showWhatsNew = true
+		}
+	}
+
+	private func markWhatsNewSeen() {
+		if seenWhatsNew != whatsNewVersion {
+			seenWhatsNew = whatsNewVersion
+		}
 	}
 }
