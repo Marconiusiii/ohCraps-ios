@@ -1,0 +1,19 @@
+<div id="shimmyGreen">
+<h3>Shimmy Green</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Shimmy up to Green Chips within 3 hits. Short profit system that is scalable to any bankroll or table limit.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $66 Inside; $15 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>On the first hit of any number, drop in $25 from your rack to add to the winnings and use it all to press everything up to $110 Inside; $25 each on the 5 and 9, $30 each on the 6 and 8. You'll get $2 in change.</li>
+<li>On the next hit, regress down to $64 Across; $10 each on the 4, 5, 9, and 10, and $12 each on the 6 and 8. You are now in the hand for only $7.</li>
+<li>When any of these numbers hit, power press them up to $25, shimmying them up to Green chips:
+	<ul>
+	<li>If the 4 or 10 hit, immediately press up to $25 and collect the change.</li>
+	<li>If the 5 or 9 hit, drop in $1 and press it up to $25 with the winnings.</li>
+	<li>If the 6 or 8 hit, drop in $4 and press up to $30 with the winnings.</li>
+	</ul></li>
+<li>Collect on the first hit of any of the pressed up numbers, then start treating them individually with any press and collect system you like.</li>
+</ol>
+</div>

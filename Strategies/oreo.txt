@@ -1,0 +1,19 @@
+<div id="oreo">
+<h3>The Oreo</h3>
+<p>Buy-in: $500-$1000</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: A Dark side strategy stuffed with Light side action in the middle to get the best of both worlds.</p>
+<ol>
+<li>Start with a $10 Don't Pass bet.</li>
+<li>Depending on which number becomes the Point, you'll Lay enough money against the number to win back $20:
+	<ul>
+	<li>If the 4 or 10 is the Point, Lay $40 in Don't Pass odds.</li>
+	<li>If 5 or 9 become the Point, Lay $30 in Don't Pass Odds.</li>
+	<li>If 6 or 8 become the Point, Lay $24 in Don't Pass Odds.</li>
+	</ul></li>
+<li>If the 6 or 8 is the Point, place the sister number for $12. If any other number is the Point, place both the 6 and 8 for $12 each. Make a $10 Come bet.</li>
+<li>Continue to make $10 Come bets throughout the hand until a 7 out.</li>
+<li>If the 6 or 8 have a Place bet and they roll and receive a Come bet, take down the Place bet.</li>
+<li>In a situation where the Point is hit and you have at least 3 other Come bets on the table, make a $10 Any 7 bet on the Come Out roll to hedge yourself against the 7. You can also Hop the 7s instead.</li>
+</ol>
+</div>
