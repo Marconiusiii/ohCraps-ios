@@ -92,8 +92,12 @@ struct StrategiesView: View {
 	}
 
 	@AccessibilityFocusState private var a11yFocus: A11yFocus?
-	@AccessibilityFocusState private var titleFocused: Bool
-	@AccessibilityFocusState private var focusedStrategyID: UUID?
+	@AccessibilityFocusState private var listFocus: StratListFocus?
+
+	private enum StratListFocus: Hashable {
+		case title
+		case strategy(UUID)
+	}
 
 	@State private var announceWorkItem: DispatchWorkItem?
 	@State private var didFocusTitleOnLoad = false
@@ -133,7 +137,7 @@ struct StrategiesView: View {
 						showBack: false,
 						backAction: {}
 					)
-					.accessibilityFocused($titleFocused)
+					.accessibilityFocused($listFocus, equals: .title)
 					if isLoading {
 						loadingView
 					} else {
@@ -218,7 +222,7 @@ struct StrategiesView: View {
 										.fixedSize(horizontal: false, vertical: true)
 								}
 								.listRowBackground(Color.black.opacity(0.45))
-								.accessibilityFocused($focusedStrategyID, equals: strategy.id)
+								.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
 							}
 						} header: {
 							Text(section.display)
@@ -492,10 +496,10 @@ struct StrategiesView: View {
 
 	private func focusTitleAfterLoad() {
 		Task { @MainActor in
-			titleFocused = false
+			listFocus = nil
 			await Task.yield()
 			await Task.yield()
-			titleFocused = true
+			listFocus = .title
 		}
 	}
 
@@ -512,10 +516,10 @@ struct StrategiesView: View {
 
 	private func applyReturnFocus(for strategy: Strategy) {
 		Task { @MainActor in
-			focusedStrategyID = nil
+			listFocus = nil
 			await Task.yield()
 			await Task.yield()
-			focusedStrategyID = strategy.id
+			listFocus = .strategy(strategy.id)
 		}
 	}
 
