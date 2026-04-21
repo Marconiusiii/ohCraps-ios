@@ -35,11 +35,19 @@ struct StrategyDetailView: View {
 	let delete: (() -> Void)?
 	let onShow: (() -> Void)?
 	let onGone: (() -> Void)?
+	let onWillDismiss: (() -> Void)?
+	let onFavToggled: ((UUID) -> Void)?
 	let initialAccessibilityFocus: DetailFocusTarget
 	let focusRevision: Int
-	@AccessibilityFocusState private var titleFocused: Bool
-	@AccessibilityFocusState private var actionsFocused: Bool
-	@AccessibilityFocusState private var coreShareFocused: Bool
+	@EnvironmentObject private var favStore: FavoritesStore
+	@AccessibilityFocusState private var detailFocus: DetailFocusField?
+
+	private enum DetailFocusField: Hashable {
+		case title
+		case actions
+		case share
+		case favorite
+	}
 	@State private var sharePayload: SharePayload?
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
@@ -59,6 +67,8 @@ struct StrategyDetailView: View {
 		delete: (() -> Void)? = nil,
 		onShow: (() -> Void)? = nil,
 		onGone: (() -> Void)? = nil,
+		onWillDismiss: (() -> Void)? = nil,
+		onFavToggled: ((UUID) -> Void)? = nil,
 		initialAccessibilityFocus: DetailFocusTarget = .title,
 		focusRevision: Int = 0
 	) {
@@ -73,8 +83,14 @@ struct StrategyDetailView: View {
 		self.delete = delete
 		self.onShow = onShow
 		self.onGone = onGone
+		self.onWillDismiss = onWillDismiss
+		self.onFavToggled = onFavToggled
 		self.initialAccessibilityFocus = initialAccessibilityFocus
 		self.focusRevision = focusRevision
+	}
+
+	private var isFav: Bool {
+		favStore.isFavorite(strategy.id)
 	}
 
 	// Interpret the tagged step strings from Strategy.steps
@@ -157,7 +173,7 @@ struct StrategyDetailView: View {
 			VStack(spacing: 0) {
 				
 				HStack(alignment: .center, spacing: 8) {
-					Button(action: { dismiss() }) {
+					Button(action: { onWillDismiss?(); dismiss() }) {
 						Text("Back")
 							.font(AppTheme.cardTitle)
 					}
@@ -173,7 +189,7 @@ struct StrategyDetailView: View {
 						.minimumScaleFactor(titleScale(for: strategy.name))
 						.fixedSize(horizontal: false, vertical: true)
 						.accessibilityAddTraits(.isHeader)
-						.accessibilityFocused($titleFocused)
+						.accessibilityFocused($detailFocus, equals: .title)
 
 					Spacer(minLength: 8)
 
@@ -217,21 +233,56 @@ struct StrategyDetailView: View {
 					.font(AppTheme.cardTitle)
 					.padding(.vertical, 8)
 					.accessibilityLabel("Strategy Actions")
-					.accessibilityFocused($actionsFocused)
+					.accessibilityFocused($detailFocus, equals: .actions)
 
 					Text(submissionStatusText(for: userStrategy))
 						.font(AppTheme.bodyText)
 						.padding(.horizontal)
 				} else {
-					Button("Share Strategy") {
-						sharePayload = SharePayload(
-							strategyName: strategy.name,
-							text: StrategyShareFormatter.shareText(for: strategy)
+					HStack(spacing: 12) {
+						Button(action: { favStore.toggle(strategy.id); onFavToggled?(strategy.id) }) {
+							HStack(spacing: 6) {
+								Image(systemName: isFav ? "star.fill" : "star")
+									.foregroundColor(isFav ? .yellow : AppTheme.textPrimary)
+									.accessibilityHidden(true)
+								Text("Favorite Strategy")
+							}
+						}
+						.font(AppTheme.cardTitle)
+						.foregroundColor(AppTheme.textPrimary)
+						.padding(.horizontal, 12)
+						.padding(.vertical, 8)
+						.background(Color.black.opacity(0.4))
+						.overlay(
+							RoundedRectangle(cornerRadius: 8)
+								.stroke(AppTheme.borderColor, lineWidth: 1)
 						)
+						.cornerRadius(8)
+						.accessibilityLabel("Favorite Strategy")
+						.accessibilityValue(isFav ? "On" : "Off")
+						.accessibilityHint(isFav ? "Double-tap to unfavorite" : "Double-tap to favorite")
+						.accessibilityFocused($detailFocus, equals: .favorite)
+
+						Button("Share Strategy") {
+							sharePayload = SharePayload(
+								strategyName: strategy.name,
+								text: StrategyShareFormatter.shareText(for: strategy)
+							)
+						}
+						.font(AppTheme.cardTitle)
+						.foregroundColor(AppTheme.textPrimary)
+						.padding(.horizontal, 12)
+						.padding(.vertical, 8)
+						.background(Color.black.opacity(0.4))
+						.overlay(
+							RoundedRectangle(cornerRadius: 8)
+								.stroke(AppTheme.borderColor, lineWidth: 1)
+						)
+						.cornerRadius(8)
+						.accessibilityFocused($detailFocus, equals: .share)
 					}
-					.font(AppTheme.cardTitle)
+					.padding(.horizontal)
 					.padding(.vertical, 8)
-					.accessibilityFocused($coreShareFocused)
 				}
 
 				ScrollView {
@@ -315,6 +366,7 @@ struct StrategyDetailView: View {
 			.navigationBarBackButtonHidden(true)
 		}
 		.accessibilityAction(.escape) {
+			onWillDismiss?()
 			dismiss()
 		}
 		.onAppear {
@@ -327,15 +379,16 @@ struct StrategyDetailView: View {
 			keepBarHiddenOnClose = false
 			onGone?()
 		}
-		.onChange(of: focusRevision) { _ in
+		.onChange(of: focusRevision) {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.sheet(item: $sharePayload, onDismiss: {
 			if userStrategy != nil {
 				applyAccessibilityFocus(.actions)
 			} else {
-				DispatchQueue.main.async {
-					coreShareFocused = true
+				Task { @MainActor in
+					await Task.yield()
+					detailFocus = .share
 				}
 			}
 		}) { payload in
@@ -379,23 +432,12 @@ struct StrategyDetailView: View {
 
 	private func applyAccessibilityFocus(_ target: DetailFocusTarget) {
 		Task { @MainActor in
-			titleFocused = false
-			actionsFocused = false
-			coreShareFocused = false
+			detailFocus = nil
 			await Task.yield()
 			await Task.yield()
 			switch target {
-			case .title:
-				titleFocused = true
-			case .actions:
-				actionsFocused = true
-			}
-			await Task.yield()
-			switch target {
-			case .title:
-				titleFocused = true
-			case .actions:
-				actionsFocused = true
+			case .title: detailFocus = .title
+			case .actions: detailFocus = .actions
 			}
 		}
 	}
