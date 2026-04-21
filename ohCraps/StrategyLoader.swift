@@ -278,7 +278,7 @@ private func extractContentBlocks(from html: String) -> [StrategyContentBlock] {
 		
 		// Map inner UL to original for clean text
 		let ulInnerOriginal = original[ulOpenEnd..<ulCloseStart]
-		var ulInner = String(ulInnerOriginal)
+		let ulInner = String(ulInnerOriginal)
 		
 		var innerSearch = ulInner.startIndex..<ulInner.endIndex
 		

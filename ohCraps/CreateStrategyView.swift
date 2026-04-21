@@ -167,21 +167,21 @@ struct CreateStrategyView: View {
 		.onDisappear {
 			hideTabBar = false
 		}
-		.onChange(of: isEditing) { editing in
+		.onChange(of: isEditing) { _, editing in
 			hideTabBar = editing
 			if !editing {
 				editTitleFocus = false
 			}
 		}
-		.onChange(of: hideTabBar) { hidden in
+		.onChange(of: hideTabBar) { _, hidden in
 			guard !hidden else { return }
 			scheduleRowFocus()
 		}
-		.onChange(of: pendingListFocusID) { strategyID in
+		.onChange(of: pendingListFocusID) { _, strategyID in
 			guard strategyID != nil else { return }
 			scheduleRowFocus()
 		}
-		.onChange(of: mode) { newMode in
+		.onChange(of: mode) { _, newMode in
 			guard newMode == .myStrategies else { return }
 			scheduleRowFocus()
 		}
@@ -227,7 +227,7 @@ struct CreateStrategyView: View {
 				}
 			}
 		}
-		.onChange(of: showStrategyActions) { isPresented in
+		.onChange(of: showStrategyActions) { _, isPresented in
 			if !isPresented {
 				if let id = listEditOriginID {
 					focusedUserStrategyID = id
@@ -262,7 +262,7 @@ struct CreateStrategyView: View {
 				deleteCandidate = nil
 			}
 		}
-		.onChange(of: showDeleteAlert) { isPresented in
+		.onChange(of: showDeleteAlert) { _, isPresented in
 			if !isPresented {
 				if !didConfirmDelete {
 					handleDeleteCancelled()
@@ -425,7 +425,7 @@ struct CreateStrategyView: View {
 					})
 				}
 			}
-			.onChange(of: pendingScrollID) { id in
+			.onChange(of: pendingScrollID) { _, id in
 				guard let id else { return }
 				focusRowNow(id, proxy: proxy)
 			}

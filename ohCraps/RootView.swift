@@ -4,6 +4,7 @@ struct RootView: View {
 	private let whatsNewVersion = "1.2.4"
 	@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
+	@StateObject private var favStore = FavoritesStore()
 	@State private var hideTabBar = false
 	@State private var showWhatsNew = false
 	@AppStorage("whatsNewSeenVersion") private var seenWhatsNew = ""
@@ -12,6 +13,7 @@ struct RootView: View {
 		VStack(spacing: 0) {
 			ZStack {
 				StrategiesView(hideTabBar: $hideTabBar)
+					.environmentObject(favStore)
 					.opacity(selectedTab == .strategies ? 1 : 0)
 					.allowsHitTesting(selectedTab == .strategies)
 					.accessibilityHidden(selectedTab != .strategies)
@@ -25,6 +27,7 @@ struct RootView: View {
 					CreateStrategyView(hideTabBar: $hideTabBar)
 				}
 				.environmentObject(userStrategyStore)
+				.environmentObject(favStore)
 				.opacity(selectedTab == .createStrategy ? 1 : 0)
 				.allowsHitTesting(selectedTab == .createStrategy)
 				.accessibilityHidden(selectedTab != .createStrategy)

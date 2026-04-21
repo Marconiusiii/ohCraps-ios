@@ -27,26 +27,26 @@ enum BuyInFilter: CaseIterable {
 }
 
 enum SectionKey: Hashable, Comparable {
+	case favorites
 	case number
 	case letter(Character)
-	
+
 	var display: String {
 		switch self {
+		case .favorites: return "Favorites"
 		case .number: return "#"
 		case .letter(let c): return String(c)
 		}
 	}
-	
+
 	static func < (lhs: SectionKey, rhs: SectionKey) -> Bool {
 		switch (lhs, rhs) {
-		case (.number, .letter):
-			return true
-		case (.letter, .number):
-			return false
-		case (.number, .number):
-			return false
-		case let (.letter(a), .letter(b)):
-			return a < b
+		case (.favorites, _): return true
+		case (_, .favorites): return false
+		case (.number, .letter): return true
+		case (.letter, .number): return false
+		case (.number, .number): return false
+		case let (.letter(a), .letter(b)): return a < b
 		}
 	}
 }
@@ -54,6 +54,7 @@ enum SectionKey: Hashable, Comparable {
 
 struct StrategiesView: View {
 	@Binding var hideTabBar: Bool
+	@EnvironmentObject private var favStore: FavoritesStore
 
 	@State private var allStrategies: [Strategy] = []
 	@State private var isLoading = true
@@ -92,6 +93,7 @@ struct StrategiesView: View {
 
 	@AccessibilityFocusState private var a11yFocus: A11yFocus?
 	@AccessibilityFocusState private var titleFocused: Bool
+	@AccessibilityFocusState private var focusedStrategyID: UUID?
 
 	@State private var announceWorkItem: DispatchWorkItem?
 	@State private var didFocusTitleOnLoad = false
@@ -147,19 +149,22 @@ struct StrategiesView: View {
 					isLoading = false
 				}
 			}
-			.onChange(of: allStrategies) { _ in
+			.onChange(of: allStrategies) {
 				rebuildDerivedStrategies()
 			}
-			.onChange(of: searchText) { _ in
+			.onChange(of: searchText) {
 				rebuildDerivedStrategies()
 			}
-			.onChange(of: tableMinFilter) { _ in
+			.onChange(of: tableMinFilter) {
 				rebuildDerivedStrategies()
 			}
-			.onChange(of: buyInFilter) { _ in
+			.onChange(of: buyInFilter) {
 				rebuildDerivedStrategies()
 			}
-			.onChange(of: isLoading) { loading in
+			.onChange(of: favStore.favoriteIDs) {
+				rebuildDerivedStrategies()
+			}
+			.onChange(of: isLoading) { _, loading in
 				guard !loading, !didFocusTitleOnLoad else { return }
 				didFocusTitleOnLoad = true
 				focusTitleAfterLoad()
@@ -188,10 +193,10 @@ struct StrategiesView: View {
 		VStack(spacing: 16) {
 			searchBar
 			filterRow
-				.onChange(of: tableMinFilter) { _ in
+				.onChange(of: tableMinFilter) {
 					restorePendingAccessibilityFocus()
 				}
-				.onChange(of: buyInFilter) { _ in
+				.onChange(of: buyInFilter) {
 					restorePendingAccessibilityFocus()
 				}
 
@@ -204,7 +209,8 @@ struct StrategiesView: View {
 									destination: StrategyDetailView(
 										strategy: strategy,
 										hideTabBar: $hideTabBar,
-										keepBarHiddenOnClose: .constant(false)
+										keepBarHiddenOnClose: .constant(false),
+										onGone: { applyReturnFocus(for: strategy) }
 									)
 								) {
 									Text(strategy.name)
@@ -212,6 +218,7 @@ struct StrategiesView: View {
 										.fixedSize(horizontal: false, vertical: true)
 								}
 								.listRowBackground(Color.black.opacity(0.45))
+								.accessibilityFocused($focusedStrategyID, equals: strategy.id)
 							}
 						} header: {
 							Text(section.display)
@@ -252,7 +259,7 @@ struct StrategiesView: View {
 			}
 		}
 		.padding(.horizontal)
-		.onChange(of: searchText) { _ in
+		.onChange(of: searchText) {
 			announceSearchResultsSoon()
 		}
 		.onSubmit {
@@ -444,7 +451,17 @@ struct StrategiesView: View {
 			filtered = filtered.filter { matchesBuyInFilter(strategy: $0, filter: f) }
 		}
 
-		let sectioned = buildSectionedStrategies(from: filtered)
+		let favIDs = favStore.favoriteIDs
+		let favs = filtered
+			.filter { favIDs.contains($0.id) }
+			.sorted { $0.sortName.localizedCaseInsensitiveCompare($1.sortName) == .orderedAscending }
+		let rest = filtered.filter { !favIDs.contains($0.id) }
+
+		var sectioned = buildSectionedStrategies(from: rest)
+		if !favs.isEmpty {
+			sectioned[.favorites] = favs
+		}
+
 		filteredStrategiesCache = filtered
 		sectionedStrategiesCache = sectioned
 		sectionOrderCache = sectioned.keys.sorted()
@@ -484,10 +501,21 @@ struct StrategiesView: View {
 
 	private func sectionID(for key: SectionKey) -> String {
 		switch key {
+		case .favorites:
+			return "section-favorites"
 		case .number:
 			return "section-number"
 		case .letter(let c):
 			return "section-\(c)"
+		}
+	}
+
+	private func applyReturnFocus(for strategy: Strategy) {
+		Task { @MainActor in
+			focusedStrategyID = nil
+			await Task.yield()
+			await Task.yield()
+			focusedStrategyID = strategy.id
 		}
 	}
 

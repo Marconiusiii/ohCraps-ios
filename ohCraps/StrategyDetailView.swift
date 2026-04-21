@@ -37,9 +37,11 @@ struct StrategyDetailView: View {
 	let onGone: (() -> Void)?
 	let initialAccessibilityFocus: DetailFocusTarget
 	let focusRevision: Int
+	@EnvironmentObject private var favStore: FavoritesStore
 	@AccessibilityFocusState private var titleFocused: Bool
 	@AccessibilityFocusState private var actionsFocused: Bool
 	@AccessibilityFocusState private var coreShareFocused: Bool
+	@AccessibilityFocusState private var coreFavFocused: Bool
 	@State private var sharePayload: SharePayload?
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
@@ -75,6 +77,10 @@ struct StrategyDetailView: View {
 		self.onGone = onGone
 		self.initialAccessibilityFocus = initialAccessibilityFocus
 		self.focusRevision = focusRevision
+	}
+
+	private var isFav: Bool {
+		favStore.isFavorite(strategy.id)
 	}
 
 	// Interpret the tagged step strings from Strategy.steps
@@ -223,15 +229,29 @@ struct StrategyDetailView: View {
 						.font(AppTheme.bodyText)
 						.padding(.horizontal)
 				} else {
-					Button("Share Strategy") {
-						sharePayload = SharePayload(
-							strategyName: strategy.name,
-							text: StrategyShareFormatter.shareText(for: strategy)
-						)
+					HStack(spacing: 16) {
+						Button("Share Strategy") {
+							sharePayload = SharePayload(
+								strategyName: strategy.name,
+								text: StrategyShareFormatter.shareText(for: strategy)
+							)
+						}
+						.accessibilityFocused($coreShareFocused)
+
+						Button(action: { favStore.toggle(strategy.id) }) {
+							HStack(spacing: 6) {
+								Image(systemName: isFav ? "star.fill" : "star")
+									.accessibilityHidden(true)
+								Text("Favorite Strategy")
+							}
+						}
+						.accessibilityLabel("Favorite Strategy")
+						.accessibilityValue(isFav ? "On" : "Off")
+						.accessibilityHint(isFav ? "Double-tap to unfavorite" : "Double-tap to favorite")
+						.accessibilityFocused($coreFavFocused)
 					}
 					.font(AppTheme.cardTitle)
 					.padding(.vertical, 8)
-					.accessibilityFocused($coreShareFocused)
 				}
 
 				ScrollView {
@@ -327,7 +347,7 @@ struct StrategyDetailView: View {
 			keepBarHiddenOnClose = false
 			onGone?()
 		}
-		.onChange(of: focusRevision) { _ in
+		.onChange(of: focusRevision) {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.sheet(item: $sharePayload, onDismiss: {
