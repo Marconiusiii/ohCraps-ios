@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RootView: View {
-	private let whatsNewVersion = "1.2.4"
+	private let whatsNewVersion = "1.3.0"
 	@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
 	@StateObject private var favStore = FavoritesStore()
@@ -48,8 +48,8 @@ struct RootView: View {
 			WhatsNewView(
 				version: whatsNewVersion,
 				items: [
-					"Added Strategies: B Squeeze, Build and Bail, We Ball",
-					"App optimization and cleanup to make everything load faster."
+					"Added Strategies: The Oreo, Shimmy Green",
+					"Added ability to Favorite core strategies."
 				],
 				onClose: { showWhatsNew = false }
 			)
