@@ -101,6 +101,7 @@ struct StrategiesView: View {
 
 	@State private var announceWorkItem: DispatchWorkItem?
 	@State private var didFocusTitleOnLoad = false
+	@State private var pendingReturnFocusID: UUID? = nil
 
 	private var searchTextField: some View {
 		ZStack(alignment: .leading) {
@@ -214,7 +215,17 @@ struct StrategiesView: View {
 										strategy: strategy,
 										hideTabBar: $hideTabBar,
 										keepBarHiddenOnClose: .constant(false),
-										onGone: { applyReturnFocus(for: strategy) }
+										onGone: {
+											guard let id = pendingReturnFocusID else { return }
+											pendingReturnFocusID = nil
+											Task { @MainActor in
+												await Task.yield()
+												listFocus = .strategy(id)
+											}
+										},
+										onFavToggled: { id in
+											pendingReturnFocusID = id
+										}
 									)
 								) {
 									Text(strategy.name)
@@ -514,13 +525,5 @@ struct StrategiesView: View {
 		}
 	}
 
-	private func applyReturnFocus(for strategy: Strategy) {
-		Task { @MainActor in
-			listFocus = nil
-			await Task.yield()
-			await Task.yield()
-			listFocus = .strategy(strategy.id)
-		}
-	}
 
 }

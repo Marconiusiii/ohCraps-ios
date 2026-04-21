@@ -35,6 +35,8 @@ struct StrategyDetailView: View {
 	let delete: (() -> Void)?
 	let onShow: (() -> Void)?
 	let onGone: (() -> Void)?
+	let onWillDismiss: (() -> Void)?
+	let onFavToggled: ((UUID) -> Void)?
 	let initialAccessibilityFocus: DetailFocusTarget
 	let focusRevision: Int
 	@EnvironmentObject private var favStore: FavoritesStore
@@ -65,6 +67,8 @@ struct StrategyDetailView: View {
 		delete: (() -> Void)? = nil,
 		onShow: (() -> Void)? = nil,
 		onGone: (() -> Void)? = nil,
+		onWillDismiss: (() -> Void)? = nil,
+		onFavToggled: ((UUID) -> Void)? = nil,
 		initialAccessibilityFocus: DetailFocusTarget = .title,
 		focusRevision: Int = 0
 	) {
@@ -79,6 +83,8 @@ struct StrategyDetailView: View {
 		self.delete = delete
 		self.onShow = onShow
 		self.onGone = onGone
+		self.onWillDismiss = onWillDismiss
+		self.onFavToggled = onFavToggled
 		self.initialAccessibilityFocus = initialAccessibilityFocus
 		self.focusRevision = focusRevision
 	}
@@ -167,7 +173,7 @@ struct StrategyDetailView: View {
 			VStack(spacing: 0) {
 				
 				HStack(alignment: .center, spacing: 8) {
-					Button(action: { dismiss() }) {
+					Button(action: { onWillDismiss?(); dismiss() }) {
 						Text("Back")
 							.font(AppTheme.cardTitle)
 					}
@@ -234,7 +240,7 @@ struct StrategyDetailView: View {
 						.padding(.horizontal)
 				} else {
 					HStack(spacing: 12) {
-						Button(action: { favStore.toggle(strategy.id) }) {
+						Button(action: { favStore.toggle(strategy.id); onFavToggled?(strategy.id) }) {
 							HStack(spacing: 6) {
 								Image(systemName: isFav ? "star.fill" : "star")
 									.foregroundColor(isFav ? .yellow : AppTheme.textPrimary)
@@ -360,6 +366,7 @@ struct StrategyDetailView: View {
 			.navigationBarBackButtonHidden(true)
 		}
 		.accessibilityAction(.escape) {
+			onWillDismiss?()
 			dismiss()
 		}
 		.onAppear {
