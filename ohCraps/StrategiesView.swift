@@ -102,6 +102,7 @@ struct StrategiesView: View {
 	@State private var announceWorkItem: DispatchWorkItem?
 	@State private var didFocusTitleOnLoad = false
 	@State private var pendingReturnFocusID: UUID? = nil
+	@State private var selectedStrategy: Strategy?
 
 	private var searchTextField: some View {
 		ZStack(alignment: .leading) {
@@ -174,6 +175,16 @@ struct StrategiesView: View {
 				didFocusTitleOnLoad = true
 				focusTitleAfterLoad()
 			}
+			.navigationDestination(item: $selectedStrategy) { strategy in
+				StrategyDetailView(
+					strategy: strategy,
+					hideTabBar: $hideTabBar,
+					keepBarHiddenOnClose: .constant(false),
+					onFavToggled: { id in
+						pendingReturnFocusID = id
+					}
+				)
+			}
 		}
 	}
 
@@ -211,28 +222,17 @@ struct StrategiesView: View {
 						if let items = sectionedStrategiesCache[section], !items.isEmpty {
 							Section {
 								ForEach(items) { strategy in
-									NavigationLink(
-										destination: StrategyDetailView(
-											strategy: strategy,
-											hideTabBar: $hideTabBar,
-											keepBarHiddenOnClose: .constant(false),
-											onShow: {
-												listFocus = nil
-											},
-											onGone: {
-												guard let id = pendingReturnFocusID else { return }
-												pendingReturnFocusID = nil
-												restoreRowFocus(id, with: proxy)
-											},
-											onFavToggled: { id in
-												pendingReturnFocusID = id
-											}
-										)
-									) {
+									Button {
+										pendingReturnFocusID = strategy.id
+										listFocus = nil
+										selectedStrategy = strategy
+									} label: {
 										Text(strategy.name)
 											.foregroundColor(.white)
 											.fixedSize(horizontal: false, vertical: true)
 									}
+									.buttonStyle(.plain)
+									.contentShape(Rectangle())
 									.id(strategy.id)
 									.listRowBackground(Color.black.opacity(0.45))
 									.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
@@ -251,6 +251,11 @@ struct StrategiesView: View {
 				.listStyle(.plain)
 				.scrollContentBackground(.hidden)
 				.background(Color.clear)
+				.onChange(of: selectedStrategy) { _, strategy in
+					guard strategy == nil, let id = pendingReturnFocusID else { return }
+					pendingReturnFocusID = nil
+					restoreRowFocus(id, with: proxy)
+				}
 			}
 		}
 
