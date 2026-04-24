@@ -54,7 +54,7 @@ struct StrategyLoader {
 		guard let raw = try? String(contentsOf: url, encoding: .utf8) else {
 			return nil
 		}
-		return parseStrategy(html: raw, id: UUID())
+		return parseStrategy(html: raw, id: stableID(for: url))
 	}
 
 	private static func loadStrategies(from urls: [URL]) -> [Strategy] {
@@ -73,6 +73,28 @@ struct StrategyLoader {
 		}
 
 		return loaded.compactMap { $0 }
+	}
+
+	private static func stableID(for url: URL) -> UUID {
+		let key = url.deletingPathExtension().lastPathComponent.lowercased()
+		let chars = Array(key.utf8)
+		var bytes = [UInt8](repeating: 0, count: 16)
+
+		for (idx, ch) in chars.enumerated() {
+			let slot = idx % 16
+			let salt = UInt8((idx * 17) & 0xFF)
+			bytes[slot] = bytes[slot] &+ ch &+ salt
+		}
+
+		bytes[6] = (bytes[6] & 0x0F) | 0x50
+		bytes[8] = (bytes[8] & 0x3F) | 0x80
+
+		return UUID(uuid: (
+			bytes[0], bytes[1], bytes[2], bytes[3],
+			bytes[4], bytes[5], bytes[6], bytes[7],
+			bytes[8], bytes[9], bytes[10], bytes[11],
+			bytes[12], bytes[13], bytes[14], bytes[15]
+		))
 	}
 }
 

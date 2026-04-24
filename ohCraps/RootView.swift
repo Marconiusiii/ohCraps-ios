@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct RootView: View {
-	private let whatsNewVersion = "1.3.0"
 	@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
 	@StateObject private var favStore = FavoritesStore()
@@ -46,7 +45,7 @@ struct RootView: View {
 		.dynamicTypeSize(.xSmall ... .accessibility5)
 		.sheet(isPresented: $showWhatsNew, onDismiss: markWhatsNewSeen) {
 			WhatsNewView(
-				version: whatsNewVersion,
+				version: appVer,
 				items: [
 					"Added Strategies: The Oreo, Shimmy Green",
 					"Added ability to Favorite core strategies."
@@ -59,15 +58,19 @@ struct RootView: View {
 		}
 	}
 
+	private var appVer: String {
+		Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+	}
+
 	private func showWhatsNewIfNeeded() {
-		if seenWhatsNew != whatsNewVersion {
+		if seenWhatsNew != appVer {
 			showWhatsNew = true
 		}
 	}
 
 	private func markWhatsNewSeen() {
-		if seenWhatsNew != whatsNewVersion {
-			seenWhatsNew = whatsNewVersion
+		if seenWhatsNew != appVer {
+			seenWhatsNew = appVer
 		}
 	}
 }

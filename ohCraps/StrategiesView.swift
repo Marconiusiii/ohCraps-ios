@@ -215,16 +215,17 @@ struct StrategiesView: View {
 										strategy: strategy,
 										hideTabBar: $hideTabBar,
 										keepBarHiddenOnClose: .constant(false),
+										onShow: {
+											listFocus = nil
+										},
 										onGone: {
 											guard let id = pendingReturnFocusID else { return }
 											pendingReturnFocusID = nil
-											Task { @MainActor in
-												await Task.yield()
-												listFocus = .strategy(id)
-											}
+											focusRow(id)
 										},
 										onFavToggled: { id in
 											pendingReturnFocusID = id
+											listFocus = nil
 										}
 									)
 								) {
@@ -232,6 +233,7 @@ struct StrategiesView: View {
 										.foregroundColor(.white)
 										.fixedSize(horizontal: false, vertical: true)
 								}
+								.id(strategy.id)
 								.listRowBackground(Color.black.opacity(0.45))
 								.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
 							}
@@ -511,6 +513,12 @@ struct StrategiesView: View {
 			await Task.yield()
 			await Task.yield()
 			listFocus = .title
+		}
+	}
+
+	private func focusRow(_ id: UUID) {
+		Task { @MainActor in
+			listFocus = .strategy(id)
 		}
 	}
 
