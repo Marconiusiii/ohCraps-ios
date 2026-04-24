@@ -101,7 +101,7 @@ struct StrategiesView: View {
 
 	@State private var announceWorkItem: DispatchWorkItem?
 	@State private var didFocusTitleOnLoad = false
-	@State private var pendingReturnFocusID: UUID? = nil
+	@State private var pendingFavRefresh = false
 
 	private var searchTextField: some View {
 		ZStack(alignment: .leading) {
@@ -167,12 +167,14 @@ struct StrategiesView: View {
 				rebuildDerivedStrategies()
 			}
 			.onChange(of: favStore.favoriteIDs) {
-				rebuildDerivedStrategies()
+				handleFavChange()
 			}
 			.onChange(of: hideTabBar) { _, hidden in
-				guard !hidden, let id = pendingReturnFocusID else { return }
-				pendingReturnFocusID = nil
-				focusRow(id)
+				guard !hidden, pendingFavRefresh else { return }
+				pendingFavRefresh = false
+				DispatchQueue.main.async {
+					rebuildDerivedStrategies()
+				}
 			}
 			.onChange(of: isLoading) { _, loading in
 				guard !loading, !didFocusTitleOnLoad else { return }
@@ -224,9 +226,8 @@ struct StrategiesView: View {
 											listFocus = nil
 										},
 										onGone: {},
-										onFavToggled: { id in
-											pendingReturnFocusID = id
-											listFocus = nil
+										onFavToggled: { _ in
+											pendingFavRefresh = true
 										}
 									)
 								) {
@@ -484,6 +485,14 @@ struct StrategiesView: View {
 		sectionedStrategiesCache = sectioned
 		sectionOrderCache = sectioned.keys.sorted()
 	}
+
+	private func handleFavChange() {
+		if hideTabBar {
+			pendingFavRefresh = true
+			return
+		}
+		rebuildDerivedStrategies()
+	}
 	private func announceSearchResults() {
 		let count = filteredStrategiesCache.count
 		let msg = count == 1 ? "Showing 1 strategy" : "Showing \(count) strategies"
@@ -514,15 +523,6 @@ struct StrategiesView: View {
 			await Task.yield()
 			await Task.yield()
 			listFocus = .title
-		}
-	}
-
-	private func focusRow(_ id: UUID) {
-		Task { @MainActor in
-			listFocus = nil
-			await Task.yield()
-			await Task.yield()
-			listFocus = .strategy(id)
 		}
 	}
 

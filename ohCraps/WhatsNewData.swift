@@ -2,7 +2,7 @@ import Foundation
 
 enum WhatsNewData {
 	static let items = [
-		"Added Strategies: The Oreo, Shimmy Green",
-		"Added ability to Favorite core strategies."
+		"Updated VoiceOver focus management when coming back to the Strategies screen after adding or removing a Favorite strategy.",
+		"Added strategy: Dave's Method"
 	]
 }
