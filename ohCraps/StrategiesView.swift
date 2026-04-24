@@ -101,7 +101,7 @@ struct StrategiesView: View {
 
 	@State private var announceWorkItem: DispatchWorkItem?
 	@State private var didFocusTitleOnLoad = false
-	@State private var pendingFavRefresh = false
+	@State private var pendingReturnFocusID: UUID? = nil
 
 	private var searchTextField: some View {
 		ZStack(alignment: .leading) {
@@ -167,14 +167,7 @@ struct StrategiesView: View {
 				rebuildDerivedStrategies()
 			}
 			.onChange(of: favStore.favoriteIDs) {
-				handleFavChange()
-			}
-			.onChange(of: hideTabBar) { _, hidden in
-				guard !hidden, pendingFavRefresh else { return }
-				pendingFavRefresh = false
-				DispatchQueue.main.async {
-					rebuildDerivedStrategies()
-				}
+				rebuildDerivedStrategies()
 			}
 			.onChange(of: isLoading) { _, loading in
 				guard !loading, !didFocusTitleOnLoad else { return }
@@ -212,49 +205,53 @@ struct StrategiesView: View {
 					restorePendingAccessibilityFocus()
 				}
 
-			List {
-				ForEach(sectionOrderCache, id: \.self) { section in
-					if let items = sectionedStrategiesCache[section], !items.isEmpty {
-						Section {
-							ForEach(items) { strategy in
-								NavigationLink(
-									destination: StrategyDetailView(
-										strategy: strategy,
-										hideTabBar: $hideTabBar,
-										keepBarHiddenOnClose: .constant(false),
-										onShow: {
-											listFocus = nil
-										},
-										onGone: {},
-										onFavToggled: { _ in
-											pendingFavRefresh = true
-										}
-									)
-								) {
-									Text(strategy.name)
-										.foregroundColor(.white)
-										.fixedSize(horizontal: false, vertical: true)
+			ScrollViewReader { proxy in
+				List {
+					ForEach(sectionOrderCache, id: \.self) { section in
+						if let items = sectionedStrategiesCache[section], !items.isEmpty {
+							Section {
+								ForEach(items) { strategy in
+									NavigationLink(
+										destination: StrategyDetailView(
+											strategy: strategy,
+											hideTabBar: $hideTabBar,
+											keepBarHiddenOnClose: .constant(false),
+											onShow: {
+												listFocus = nil
+											},
+											onGone: {
+												guard let id = pendingReturnFocusID else { return }
+												pendingReturnFocusID = nil
+												restoreRowFocus(id, with: proxy)
+											},
+											onFavToggled: { id in
+												pendingReturnFocusID = id
+											}
+										)
+									) {
+										Text(strategy.name)
+											.foregroundColor(.white)
+											.fixedSize(horizontal: false, vertical: true)
+									}
+									.id(strategy.id)
+									.listRowBackground(Color.black.opacity(0.45))
+									.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
 								}
-								.id(strategy.id)
-								.listRowBackground(Color.black.opacity(0.45))
-								.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
+							} header: {
+								Text(section.display)
+									.font(AppTheme.sectionHeader)
+									.background(Color.black.opacity(0.6))
+									.cornerRadius(6)
+									.accessibilityAddTraits(.isHeader)
+									.accessibilityIdentifier(sectionID(for: section))
 							}
-						} header: {
-							Text(section.display)
-								.font(AppTheme.sectionHeader)
-								.background(Color.black.opacity(0.6))
-								.cornerRadius(6)
-								.accessibilityAddTraits(.isHeader)
-								.accessibilityIdentifier(sectionID(for: section))
 						}
-						
-
 					}
 				}
+				.listStyle(.plain)
+				.scrollContentBackground(.hidden)
+				.background(Color.clear)
 			}
-			.listStyle(.plain)
-			.scrollContentBackground(.hidden)
-			.background(Color.clear)
 		}
 
 	}
@@ -486,13 +483,6 @@ struct StrategiesView: View {
 		sectionOrderCache = sectioned.keys.sorted()
 	}
 
-	private func handleFavChange() {
-		if hideTabBar {
-			pendingFavRefresh = true
-			return
-		}
-		rebuildDerivedStrategies()
-	}
 	private func announceSearchResults() {
 		let count = filteredStrategiesCache.count
 		let msg = count == 1 ? "Showing 1 strategy" : "Showing \(count) strategies"
@@ -523,6 +513,16 @@ struct StrategiesView: View {
 			await Task.yield()
 			await Task.yield()
 			listFocus = .title
+		}
+	}
+
+	private func restoreRowFocus(_ id: UUID, with proxy: ScrollViewProxy) {
+		Task { @MainActor in
+			listFocus = nil
+			proxy.scrollTo(id, anchor: .center)
+			await Task.yield()
+			await Task.yield()
+			listFocus = .strategy(id)
 		}
 	}
 
