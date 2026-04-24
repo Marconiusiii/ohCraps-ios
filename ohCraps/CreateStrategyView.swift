@@ -389,39 +389,38 @@ struct CreateStrategyView: View {
 				}
 
 				ForEach(store.strategies) { strategy in
-					NavigationLink(
-						destination: detailScreen(viewByID[strategy.id] ?? makeDisplayStrategy(from: strategy))
-					) {
-						StrategyRow(
-							strategy: strategy,
-							edit: {
-								beginEditing(strategy, origin: .myStrategies(strategy.id))
-							},
-							duplicate: {
-								duplicateStrategy(strategy, origin: .list(strategy.id))
-							},
-							submit: {
-								beginSubmit(strategy, origin: .list(strategy.id))
-							},
-							share: {
-								beginShare(strategy, originID: strategy.id)
-							},
-							delete: {
-								beginDelete(strategy, origin: .list(strategy.id))
-							},
-							showActions: {
-								longPressStrategy = strategy
-								listEditOriginID = strategy.id
-								showStrategyActions = true
-							}
-						)
-					}
+					StrategyRow(
+						strategy: strategy,
+						edit: {
+							beginEditing(strategy, origin: .myStrategies(strategy.id))
+						},
+						duplicate: {
+							duplicateStrategy(strategy, origin: .list(strategy.id))
+						},
+						submit: {
+							beginSubmit(strategy, origin: .list(strategy.id))
+						},
+						share: {
+							beginShare(strategy, originID: strategy.id)
+						},
+						delete: {
+							beginDelete(strategy, origin: .list(strategy.id))
+						},
+						showActions: {
+							longPressStrategy = strategy
+							listEditOriginID = strategy.id
+							showStrategyActions = true
+						}
+					)
 					.id(strategy.id)
 					.accessibilityFocused($focusedUserStrategyID, equals: strategy.id)
 					.listRowBackground(Color.black.opacity(0.45))
 					.simultaneousGesture(TapGesture().onEnded {
 						pendingListFocusID = strategy.id
 						modePickerFocused = false
+						selectedDetailFocus = .title
+						detailFocusRevision += 1
+						selectedStrategy = viewByID[strategy.id] ?? makeDisplayStrategy(from: strategy)
 					})
 				}
 			}
