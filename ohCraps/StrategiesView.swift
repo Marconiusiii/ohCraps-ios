@@ -169,6 +169,11 @@ struct StrategiesView: View {
 			.onChange(of: favStore.favoriteIDs) {
 				rebuildDerivedStrategies()
 			}
+			.onChange(of: hideTabBar) { _, hidden in
+				guard !hidden, let id = pendingReturnFocusID else { return }
+				pendingReturnFocusID = nil
+				focusRow(id)
+			}
 			.onChange(of: isLoading) { _, loading in
 				guard !loading, !didFocusTitleOnLoad else { return }
 				didFocusTitleOnLoad = true
@@ -218,11 +223,7 @@ struct StrategiesView: View {
 										onShow: {
 											listFocus = nil
 										},
-										onGone: {
-											guard let id = pendingReturnFocusID else { return }
-											pendingReturnFocusID = nil
-											focusRow(id)
-										},
+										onGone: {},
 										onFavToggled: { id in
 											pendingReturnFocusID = id
 											listFocus = nil
@@ -518,6 +519,9 @@ struct StrategiesView: View {
 
 	private func focusRow(_ id: UUID) {
 		Task { @MainActor in
+			listFocus = nil
+			await Task.yield()
+			await Task.yield()
 			listFocus = .strategy(id)
 		}
 	}

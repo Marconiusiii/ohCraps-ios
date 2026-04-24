@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct WhatsNewView: View {
-	let version: String
 	let items: [String]
 	let onClose: () -> Void
 
@@ -12,7 +11,7 @@ struct WhatsNewView: View {
 					.ignoresSafeArea()
 
 				VStack(alignment: .leading, spacing: 20) {
-					Text("What's New in v.\(version)")
+					Text("What's New in v.\(appVer)")
 						.font(AppTheme.screenTitle)
 						.foregroundColor(AppTheme.textPrimary)
 						.accessibilityAddTraits(.isHeader)
@@ -47,5 +46,9 @@ struct WhatsNewView: View {
 				onClose()
 			}
 		}
+	}
+
+	private var appVer: String {
+		Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
 	}
 }

@@ -45,11 +45,7 @@ struct RootView: View {
 		.dynamicTypeSize(.xSmall ... .accessibility5)
 		.sheet(isPresented: $showWhatsNew, onDismiss: markWhatsNewSeen) {
 			WhatsNewView(
-				version: appVer,
-				items: [
-					"Added Strategies: The Oreo, Shimmy Green",
-					"Added ability to Favorite core strategies."
-				],
+				items: WhatsNewData.items,
 				onClose: { showWhatsNew = false }
 			)
 		}
