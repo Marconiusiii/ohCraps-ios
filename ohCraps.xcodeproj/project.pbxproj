@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8242D7682F9ED240007BEF34 /* StrategyNotesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8242D7672F9ED23A007BEF34 /* StrategyNotesStore.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		8242D7672F9ED23A007BEF34 /* StrategyNotesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyNotesStore.swift; sourceTree = "<group>"; };
 		82FBC0F62EEA264600FA6E81 /* ohCraps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ohCraps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +42,7 @@
 		82FBC0ED2EEA264600FA6E81 = {
 			isa = PBXGroup;
 			children = (
+				8242D7672F9ED23A007BEF34 /* StrategyNotesStore.swift */,
 				82FBC0F82EEA264600FA6E81 /* ohCraps */,
 				82FBC0F72EEA264600FA6E81 /* Products */,
 				8279C3F32EEA9CF000F13DC9 /* Strategies */,
@@ -126,6 +132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8242D7682F9ED240007BEF34 /* StrategyNotesStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
