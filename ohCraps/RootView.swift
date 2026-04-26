@@ -4,6 +4,8 @@ struct RootView: View {
 	@State private var selectedTab: AppTab = .strategies
 	@StateObject private var userStrategyStore = UserStrategyStore()
 	@StateObject private var favStore = FavoritesStore()
+	@StateObject private var notesStore = StrategyNotesStore()
+	
 	@State private var hideTabBar = false
 	@State private var showWhatsNew = false
 	@AppStorage("whatsNewSeenVersion") private var seenWhatsNew = ""
@@ -13,6 +15,7 @@ struct RootView: View {
 			ZStack {
 				StrategiesView(hideTabBar: $hideTabBar)
 					.environmentObject(favStore)
+					.environmentObject(notesStore)
 					.opacity(selectedTab == .strategies ? 1 : 0)
 					.allowsHitTesting(selectedTab == .strategies)
 					.accessibilityHidden(selectedTab != .strategies)
