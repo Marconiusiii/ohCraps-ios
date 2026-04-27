@@ -361,6 +361,31 @@ struct StrategyDetailView: View {
 								}
 							}
 						}
+						// Personal Notes
+						VStack(alignment: .leading, spacing: 8) {
+							Text("Personal Notes")
+								.font(AppTheme.sectionHeader)
+								.accessibilityAddTraits(.isHeader)
+
+							Text("Your own notes for this strategy.")
+								.font(AppTheme.metadataText)
+								.foregroundColor(AppTheme.textPrimary)
+
+							TextEditor(text: $personalNote)
+								.frame(minHeight: 180)
+								.padding(8)
+								.background(Color.black.opacity(0.35))
+								.overlay(
+									RoundedRectangle(cornerRadius: 8)
+										.stroke(AppTheme.borderColor, lineWidth: 1)
+								)
+								.cornerRadius(8)
+								.font(AppTheme.bodyText)
+								.foregroundColor(AppTheme.textPrimary)
+								.accessibilityLabel("Personal Notes")
+
+
+						}
 					}
 					.padding()
 				}
@@ -421,6 +446,21 @@ struct StrategyDetailView: View {
 				applyAccessibilityFocus(.actions)
 			}
 		}
+		.toolbar {
+			ToolbarItemGroup(placement: .keyboard) {
+				Spacer()
+				Button("Dismiss Keyboard") {
+					UIApplication.shared.sendAction(
+						#selector(UIResponder.resignFirstResponder),
+						to: nil,
+						from: nil,
+						for: nil
+					)
+				}
+				.accessibilityLabel("Dismiss keyboard")
+			}
+		}
+
 	}
 
 	private func submissionStatusText(for strategy: UserStrategy) -> String {
