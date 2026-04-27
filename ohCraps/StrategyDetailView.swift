@@ -40,6 +40,7 @@ struct StrategyDetailView: View {
 	let initialAccessibilityFocus: DetailFocusTarget
 	let focusRevision: Int
 	@EnvironmentObject private var favStore: FavoritesStore
+	@EnvironmentObject private var notesStore: StrategyNotesStore
 	@AccessibilityFocusState private var detailFocus: DetailFocusField?
 
 	private enum DetailFocusField: Hashable {
@@ -51,6 +52,7 @@ struct StrategyDetailView: View {
 	@State private var sharePayload: SharePayload?
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
+	@State private var personalNote = ""
 
 	private static let lineLock = NSLock()
 	private static var lineCache: [LineKey: [RenderLine]] = [:]
@@ -372,6 +374,7 @@ struct StrategyDetailView: View {
 		.onAppear {
 			hideTabBar = true
 			onShow?()
+			personalNote = notesStore.note(for: strategy.id)
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.onDisappear {
