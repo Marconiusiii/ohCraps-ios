@@ -131,6 +131,14 @@ struct CreateStrategyView: View {
 		return "Strategy Actions"
 	}
 
+	private var submitAlertTitle: String {
+		"Submit \(submittingStrategy?.name ?? "") to Oh Craps?"
+	}
+
+	private var deleteAlertTitle: String {
+		"Delete \(deleteCandidate?.name ?? "Strategy")?"
+	}
+
 	var body: some View {
 		ZStack {
 			FeltBackground()
@@ -246,7 +254,7 @@ struct CreateStrategyView: View {
 		}
 
 		.alert(
-			"Submit \(submittingStrategy?.name ?? "") to Oh Craps?",
+			submitAlertTitle,
 			isPresented: $showSubmitAlert
 		) {
 			Button("Yes, Submit") {
@@ -260,16 +268,11 @@ struct CreateStrategyView: View {
 			Text("Submit your strategy so it will appear for all Oh Craps! users. It will be added in the next app update.")
 		}
 		.alert(
-			"Delete \(deleteCandidate?.name ?? "Strategy")?",
+			deleteAlertTitle,
 			isPresented: $showDeleteAlert
 		) {
 			Button("Delete", role: .destructive) {
-				if let strategy = deleteCandidate {
-					didConfirmDelete = true
-					store.delete(strategy)
-					handleDeleteConfirmed(strategy)
-				}
-				deleteCandidate = nil
+				confirmDelete()
 			}
 		}
 		.onChange(of: showDeleteAlert) { _, isPresented in
@@ -488,6 +491,15 @@ struct CreateStrategyView: View {
 		if listEditOriginID == deleted.id {
 			listEditOriginID = nil
 		}
+	}
+
+	private func confirmDelete() {
+		if let strategy = deleteCandidate {
+			didConfirmDelete = true
+			store.delete(strategy)
+			handleDeleteConfirmed(strategy)
+		}
+		deleteCandidate = nil
 	}
 
 	private func handleDeleteCancelled() {
@@ -795,10 +807,14 @@ struct CreateStrategyView: View {
 				}
 			},
 			onShow: {
+				hideTabBar = true
 				if let id = userStrategy?.id {
 					pendingListFocusID = id
 				}
 				modePickerFocused = false
+			},
+			onWillDismiss: {
+				hideTabBar = isEditing || keepBarHiddenOnClose
 			},
 			onGone: {
 				if suppressDetailClose {
