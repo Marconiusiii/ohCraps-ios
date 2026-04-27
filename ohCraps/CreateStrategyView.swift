@@ -304,11 +304,7 @@ struct CreateStrategyView: View {
 			Button("Cancel", role: .cancel) {}
 		}
 
-		.sheet(isPresented: $showMailComposer, onDismiss: {
-			if pendingListFocusID != nil {
-				scheduleRowFocus()
-			}
-		}) {
+		.sheet(isPresented: $showMailComposer, onDismiss: handleMailDismiss) {
 			if let strategy = submittingStrategy {
 					MailComposer(
 						recipient: "marco@marconius.com",
@@ -323,14 +319,7 @@ struct CreateStrategyView: View {
 				)
 			}
 		}
-		.sheet(item: $sharePayload, onDismiss: {
-			if let id = shareOriginID {
-				DispatchQueue.main.async {
-					focusedUserStrategyID = id
-					shareOriginID = nil
-				}
-			}
-		}) { payload in
+		.sheet(item: $sharePayload, onDismiss: handleShareDismiss) { payload in
 			ShareSheet(payload: payload)
 		}
 	}
@@ -565,6 +554,21 @@ struct CreateStrategyView: View {
 			strategyName: strategy.name,
 			text: StrategyShareFormatter.shareText(for: strategy)
 		)
+	}
+
+	private func handleMailDismiss() {
+		if pendingListFocusID != nil {
+			scheduleRowFocus()
+		}
+	}
+
+	private func handleShareDismiss() {
+		if let id = shareOriginID {
+			DispatchQueue.main.async {
+				focusedUserStrategyID = id
+				shareOriginID = nil
+			}
+		}
 	}
 
 	private func validateAndSave() {
