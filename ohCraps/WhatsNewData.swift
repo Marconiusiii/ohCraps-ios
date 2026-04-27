@@ -2,8 +2,7 @@ import Foundation
 
 enum WhatsNewData {
 	static let items = [
-		"Updated VoiceOver focus management when coming back to the Strategies screen after adding or removing a Favorite strategy.",
-		"Same focus fix applied to My Strategies list in the Create Strategy screen.",
-		"Added strategy: Dave's Method"
+		"Added Personal Notes to core and user strategies. These save locally to your device and are not shared, so treat them as a good scratchpad, keep track of winnings, anything you'd like!",
+		"The Personal Notes save immediately as you type them or when you back out of a strategy."
 	]
 }

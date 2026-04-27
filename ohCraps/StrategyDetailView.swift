@@ -53,6 +53,8 @@ struct StrategyDetailView: View {
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
 	@State private var personalNote = ""
+	@State private var noteSaveWork: DispatchWorkItem?
+
 
 	private static let lineLock = NSLock()
 	private static var lineCache: [LineKey: [RenderLine]] = [:]
@@ -406,14 +408,23 @@ struct StrategyDetailView: View {
 			hideTabBar = keepBarHiddenOnClose
 			keepBarHiddenOnClose = false
 			onGone?()
+			noteSaveWork?.cancel()
+			notesStore.setNote(personalNote, for: strategy.id)
 		}
 		.onChange(of: focusRevision) {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
 		.onChange(of: personalNote) { _, newValue in
-			notesStore.setNote(newValue, for: strategy.id)
+			noteSaveWork?.cancel()
+
+			let work = DispatchWorkItem {
+				notesStore.setNote(newValue, for: strategy.id)
+			}
+
+			noteSaveWork = work
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: work)
 		}
-		.sheet(item: $sharePayload, onDismiss: {
+.sheet(item: $sharePayload, onDismiss: {
 			if userStrategy != nil {
 				applyAccessibilityFocus(.actions)
 			} else {
