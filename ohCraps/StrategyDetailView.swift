@@ -410,6 +410,9 @@ struct StrategyDetailView: View {
 		.onChange(of: focusRevision) {
 			applyAccessibilityFocus(initialAccessibilityFocus)
 		}
+		.onChange(of: personalNote) { _, newValue in
+			notesStore.setNote(newValue, for: strategy.id)
+		}
 		.sheet(item: $sharePayload, onDismiss: {
 			if userStrategy != nil {
 				applyAccessibilityFocus(.actions)
