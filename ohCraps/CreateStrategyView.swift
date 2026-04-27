@@ -61,6 +61,7 @@ struct CreateStrategyView: View {
 	}
 
 	@EnvironmentObject private var store: UserStrategyStore
+	@EnvironmentObject private var notesStore: StrategyNotesStore
 
 	@State private var mode: Mode = .create
 	@State private var isEditing = false

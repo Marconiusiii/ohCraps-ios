@@ -29,6 +29,7 @@ struct RootView: View {
 					CreateStrategyView(hideTabBar: $hideTabBar)
 				}
 				.environmentObject(userStrategyStore)
+				.environmentObject(notesStore)
 				.environmentObject(favStore)
 				.opacity(selectedTab == .createStrategy ? 1 : 0)
 				.allowsHitTesting(selectedTab == .createStrategy)
