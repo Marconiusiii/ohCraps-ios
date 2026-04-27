@@ -176,9 +176,6 @@ struct CreateStrategyView: View {
 			hideTabBar = barHiddenNow
 			syncCaches()
 		}
-		.onDisappear {
-			hideTabBar = false
-		}
 		.onChange(of: isEditing) { _, editing in
 			hideTabBar = barHiddenNow
 			if !editing {
@@ -813,9 +810,6 @@ struct CreateStrategyView: View {
 				}
 				modePickerFocused = false
 			},
-			onWillDismiss: {
-				hideTabBar = isEditing || keepBarHiddenOnClose
-			},
 			onGone: {
 				if suppressDetailClose {
 					suppressDetailClose = false
@@ -826,6 +820,9 @@ struct CreateStrategyView: View {
 					}
 					return
 				}
+			},
+			onWillDismiss: {
+				hideTabBar = isEditing || keepBarHiddenOnClose
 			},
 			initialAccessibilityFocus: selectedDetailFocus,
 			focusRevision: detailFocusRevision
