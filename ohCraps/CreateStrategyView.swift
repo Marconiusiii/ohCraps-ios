@@ -113,6 +113,9 @@ struct CreateStrategyView: View {
 	@AccessibilityFocusState private var focusedUserStrategyID: UserStrategy.ID?
 	@AccessibilityFocusState private var modePickerFocused: Bool
 	@AccessibilityFocusState private var editTitleFocus: Bool
+	private var barHiddenNow: Bool {
+		isEditing || selectedStrategy != nil || keepBarHiddenOnClose
+	}
 	private var screenTitle: String {
 		if isEditing {
 			let trimmed = strategyName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -162,17 +165,23 @@ struct CreateStrategyView: View {
 			}
 		}
 		.onAppear {
-			hideTabBar = isEditing
+			hideTabBar = barHiddenNow
 			syncCaches()
 		}
 		.onDisappear {
 			hideTabBar = false
 		}
 		.onChange(of: isEditing) { _, editing in
-			hideTabBar = editing
+			hideTabBar = barHiddenNow
 			if !editing {
 				editTitleFocus = false
 			}
+		}
+		.onChange(of: selectedStrategy) { _, _ in
+			hideTabBar = barHiddenNow
+		}
+		.onChange(of: keepBarHiddenOnClose) { _, _ in
+			hideTabBar = barHiddenNow
 		}
 		.onChange(of: hideTabBar) { _, hidden in
 			guard !hidden else { return }
