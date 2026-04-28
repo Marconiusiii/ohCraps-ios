@@ -977,7 +977,12 @@ struct CreateStrategyView: View {
 		field: Field,
 		next: Field?
 	) -> some View {
-		TextField(label, text: text)
+		TextField(
+			"",
+			text: text,
+			prompt: Text(label).foregroundColor(AppTheme.placeholderText)
+		)
+			.foregroundColor(AppTheme.textPrimary)
 			.focused($focusField, equals: field)
 			.submitLabel(next == nil ? .done : .next)
 			.onSubmit {
@@ -996,7 +1001,13 @@ struct CreateStrategyView: View {
 		field: Field,
 		next: Field?
 	) -> some View {
-		TextField(label, text: text, axis: .vertical)
+		TextField(
+			"",
+			text: text,
+			prompt: Text(label).foregroundColor(AppTheme.placeholderText),
+			axis: .vertical
+		)
+			.foregroundColor(AppTheme.textPrimary)
 			.focused($focusField, equals: field)
 			.submitLabel(next == nil ? .done : .next)
 			.onSubmit {

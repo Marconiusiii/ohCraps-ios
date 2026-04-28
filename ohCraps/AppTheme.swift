@@ -74,6 +74,7 @@ struct AppTheme {
 
 	static let textPrimary = Color.white
 	static let textSecondary = feltGold
+	static let placeholderText = Color.white.opacity(0.92)
 	static let borderColor = feltGold
 	static let controlFill = LinearGradient(
 		colors: [

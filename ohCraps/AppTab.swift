@@ -10,7 +10,7 @@ enum AppTab: Hashable, CaseIterable {
 		switch self {
 		case .strategies: return "Strategies"
 		case .rules: return "Rules"
-		case .createStrategy: return "Create Strategy"
+		case .createStrategy: return "Create"
 		case .about: return "About"
 		}
 	}

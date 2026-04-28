@@ -31,11 +31,11 @@ struct AboutView: View {
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
-						Text("The app updates whenever new strategies are added to the main Oh Craps project, and the Create Strategy tab lets you write, save, and submit your own strategies from your phone.")
+						Text("The app updates whenever new strategies are added to the main Oh Craps site, and the Create Strategy tab lets you write, save, and submit your own strategies from your phone.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
-						Text("This app is built with a Blind-first accessibility approach, supports Dynamic Type and assistive technologies on iOS, and never promises winnings in a game ruled by the dice.")
+						Text("This app is built with a Blind-first accessibility approach, and supports Dynamic Type and assistive technologies on iOS.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
@@ -144,7 +144,7 @@ struct AboutView: View {
 							.foregroundColor(AppTheme.textPrimary)
 							.accessibilityAddTraits(.isHeader)
 							.padding(.top, 12)
-						Text("Gambling should always be approached as entertainment, not as a way to make money. The strategies presented in this app are educational examples only and do not guarantee winnings or reduce the inherent risk involved in casino games.")
+						Text("Gambling should always be approached as entertainment, not as a way to make money. The strategies presented in this app are educational examples only and do not guarantee winnings or reduce the inherent risk involved in casino games. Please game responsibly.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
