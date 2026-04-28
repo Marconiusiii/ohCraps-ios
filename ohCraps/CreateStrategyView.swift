@@ -332,69 +332,49 @@ struct CreateStrategyView: View {
 			Text("All fields are required except for Notes and Credit.")
 				.font(AppTheme.bodyText)
 
-			labeledField("Strategy Name", text: $strategyName, field: .name, next: .buyIn)
+			formField("Strategy Name", field: .name) {
+				labeledField("Strategy Name", text: $strategyName, field: .name, next: .buyIn)
+			}
 			fieldErrorText(for: .name)
-			labeledField("Buy-in Amount", text: $buyIn, field: .buyIn, next: .tableMin)
+			formField("Buy-in Amount", field: .buyIn) {
+				labeledField("Buy-in Amount", text: $buyIn, field: .buyIn, next: .tableMin)
+			}
 			fieldErrorText(for: .buyIn)
-			labeledField("Table Minimum", text: $tableMinimum, field: .tableMin, next: .steps)
+			formField("Table Minimum", field: .tableMin) {
+				labeledField("Table Minimum", text: $tableMinimum, field: .tableMin, next: .steps)
+			}
 			fieldErrorText(for: .tableMin)
 
 			Text("Make a numbered list of steps for your strategy.")
 
-			labeledMultilineField("Steps", text: $stepsText, field: .steps, next: .notes)
+			formField("Steps", field: .steps) {
+				labeledMultilineField("Steps", text: $stepsText, field: .steps, next: .notes)
+			}
 			fieldErrorText(for: .steps)
-			labeledMultilineField("Notes", text: $notesText, field: .notes, next: .credit)
-			labeledField("Credit", text: $credit, field: .credit, next: nil)
+			formField("Notes", field: .notes) {
+				labeledMultilineField("Notes", text: $notesText, field: .notes, next: .credit)
+			}
+			formField("Credit", field: .credit) {
+				labeledField("Credit", text: $credit, field: .credit, next: nil)
+			}
 
 			if isEditing {
 				HStack(spacing: 16) {
 					Button("Save Changes") {
 						validateAndSave()
 					}
-					.foregroundColor(AppTheme.textPrimary)
-					.background(
-						AppTheme.feltControl {
-							Text("Save Changes")
-								.font(AppTheme.cardTitle)
-								.foregroundColor(AppTheme.textPrimary)
-						}
-					)
 					Button("Cancel") {
 						showDiscardAlert = true
 					}
-					.foregroundColor(AppTheme.textSecondary)
-					.background(
-						AppTheme.feltControl(redAccent: true) {
-							Text("Cancel")
-								.font(AppTheme.cardTitle)
-								.foregroundColor(AppTheme.textPrimary)
-						}
-					)
 				}
 			} else {
 				HStack(spacing: 16) {
 					Button("Reset Form") {
 						resetForm()
 					}
-					.foregroundColor(AppTheme.textSecondary)
-					.background(
-						AppTheme.feltControl(redAccent: true) {
-							Text("Reset Form")
-								.font(AppTheme.cardTitle)
-								.foregroundColor(AppTheme.textPrimary)
-						}
-					)
 					Button("Save Strategy") {
 						validateAndSave()
 					}
-					.foregroundColor(AppTheme.textPrimary)
-					.background(
-						AppTheme.feltControl {
-							Text("Save Strategy")
-								.font(AppTheme.cardTitle)
-								.foregroundColor(AppTheme.textPrimary)
-						}
-					)
 				}
 			}
 		}
@@ -977,11 +957,7 @@ struct CreateStrategyView: View {
 		field: Field,
 		next: Field?
 	) -> some View {
-		TextField(
-			"",
-			text: text,
-			prompt: Text(label).foregroundColor(AppTheme.placeholderText)
-		)
+		TextField("", text: text)
 			.foregroundColor(AppTheme.textPrimary)
 			.focused($focusField, equals: field)
 			.submitLabel(next == nil ? .done : .next)
@@ -992,6 +968,7 @@ struct CreateStrategyView: View {
 					focusField = nil
 				}
 			}
+			.accessibilityLabel(label)
 			.accessibilityHint(fieldErrorMessage(for: field) ?? "")
 	}
 
@@ -1001,12 +978,7 @@ struct CreateStrategyView: View {
 		field: Field,
 		next: Field?
 	) -> some View {
-		TextField(
-			"",
-			text: text,
-			prompt: Text(label).foregroundColor(AppTheme.placeholderText),
-			axis: .vertical
-		)
+		TextField("", text: text, axis: .vertical)
 			.foregroundColor(AppTheme.textPrimary)
 			.focused($focusField, equals: field)
 			.submitLabel(next == nil ? .done : .next)
@@ -1017,7 +989,22 @@ struct CreateStrategyView: View {
 					focusField = nil
 				}
 			}
+			.accessibilityLabel(label)
 			.accessibilityHint(fieldErrorMessage(for: field) ?? "")
+	}
+
+	private func formField<Content: View>(
+		_ label: String,
+		field: Field,
+		@ViewBuilder content: () -> Content
+	) -> some View {
+		VStack(alignment: .leading, spacing: 6) {
+			Text(label)
+				.font(AppTheme.bodyText.weight(.semibold))
+				.foregroundColor(AppTheme.textSecondary)
+				.accessibilityHidden(true)
+			content()
+		}
 	}
 
 	private func fieldErrorMessage(for field: Field) -> String? {
