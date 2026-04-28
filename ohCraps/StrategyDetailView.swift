@@ -259,13 +259,13 @@ struct StrategyDetailView: View {
 									Image(systemName: isFav ? "star.fill" : "star")
 										.foregroundColor(isFav ? AppTheme.feltGold : AppTheme.textSecondary)
 										.accessibilityHidden(true)
-									Text("Favorite Strategy")
+									Text("Favorite")
 										.foregroundColor(AppTheme.textPrimary)
 								}
 							}
 						}
 						.font(AppTheme.cardTitle)
-						.accessibilityLabel("Favorite Strategy")
+						.accessibilityLabel("Favorite")
 						.accessibilityValue(isFav ? "On" : "Off")
 						.accessibilityHint(isFav ? "Double-tap to unfavorite" : "Double-tap to favorite")
 						.accessibilityFocused($detailFocus, equals: .favorite)
@@ -277,11 +277,12 @@ struct StrategyDetailView: View {
 							)
 						}) {
 							AppTheme.feltControl {
-								Text("Share Strategy")
+								Text("Share")
 									.font(AppTheme.cardTitle)
 									.foregroundColor(AppTheme.textPrimary)
 							}
 						}
+						.accessibilityLabel("Share")
 						.accessibilityFocused($detailFocus, equals: .share)
 					}
 					.padding(.horizontal)

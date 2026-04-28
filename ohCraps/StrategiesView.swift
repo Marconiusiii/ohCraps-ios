@@ -105,35 +105,37 @@ struct StrategiesView: View {
 	@State private var selectedStrategy: Strategy?
 
 	private var searchTextField: some View {
-		ZStack(alignment: .leading) {
-			// Visual placeholder (sighted users only)
-			if searchText.isEmpty {
-				Text("Search strategies")
-					.foregroundColor(AppTheme.placeholderText)
-					.padding(.leading, 12)
-					.accessibilityHidden(true)
-			}
+		HStack(spacing: 8) {
+			Image(systemName: "magnifyingglass")
+				.foregroundColor(AppTheme.textSecondary)
+				.accessibilityHidden(true)
 
-			TextField("", text: $searchText)
+			TextField(
+				"",
+				text: $searchText,
+				prompt: Text("Search strategies")
+					.foregroundColor(AppTheme.placeholderText)
+			)
 				.textFieldStyle(.plain)
-				.padding(10)
-				.background(AppTheme.controlFill)
-				.overlay(
-					RoundedRectangle(cornerRadius: 8, style: .continuous)
-						.stroke(AppTheme.borderColor, lineWidth: 1)
-				)
-				.overlay(
-					RoundedRectangle(cornerRadius: 8, style: .continuous)
-						.stroke(AppTheme.feltLineSoft, lineWidth: 1)
-						.padding(2)
-				)
-				.cornerRadius(8)
 				.foregroundColor(AppTheme.textPrimary)
 				.focused($isSearchFocused)
 				.submitLabel(.search)
 				.accessibilityLabel("Search Strategies")
 				.accessibilityValue(searchText)
 		}
+		.padding(.horizontal, 12)
+		.padding(.vertical, 10)
+		.background(AppTheme.controlFill)
+		.overlay(
+			RoundedRectangle(cornerRadius: 8, style: .continuous)
+				.stroke(AppTheme.borderColor, lineWidth: 1)
+		)
+		.overlay(
+			RoundedRectangle(cornerRadius: 8, style: .continuous)
+				.stroke(AppTheme.feltLineSoft, lineWidth: 1)
+				.padding(2)
+		)
+		.cornerRadius(8)
 	}
 
 	

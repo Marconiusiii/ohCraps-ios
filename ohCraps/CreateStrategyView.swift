@@ -958,6 +958,19 @@ struct CreateStrategyView: View {
 		next: Field?
 	) -> some View {
 		TextField("", text: text)
+			.padding(.horizontal, 12)
+			.frame(minHeight: 44)
+			.background(AppTheme.controlFill)
+			.overlay(
+				RoundedRectangle(cornerRadius: 8, style: .continuous)
+					.stroke(AppTheme.borderColor, lineWidth: 1)
+			)
+			.overlay(
+				RoundedRectangle(cornerRadius: 8, style: .continuous)
+					.stroke(AppTheme.feltLineSoft, lineWidth: 1)
+					.padding(2)
+			)
+			.cornerRadius(8)
 			.foregroundColor(AppTheme.textPrimary)
 			.focused($focusField, equals: field)
 			.submitLabel(next == nil ? .done : .next)
@@ -979,6 +992,20 @@ struct CreateStrategyView: View {
 		next: Field?
 	) -> some View {
 		TextField("", text: text, axis: .vertical)
+			.padding(.horizontal, 12)
+			.padding(.vertical, 10)
+			.frame(minHeight: 120, alignment: .topLeading)
+			.background(AppTheme.controlFill)
+			.overlay(
+				RoundedRectangle(cornerRadius: 8, style: .continuous)
+					.stroke(AppTheme.borderColor, lineWidth: 1)
+			)
+			.overlay(
+				RoundedRectangle(cornerRadius: 8, style: .continuous)
+					.stroke(AppTheme.feltLineSoft, lineWidth: 1)
+					.padding(2)
+			)
+			.cornerRadius(8)
 			.foregroundColor(AppTheme.textPrimary)
 			.focused($focusField, equals: field)
 			.submitLabel(next == nil ? .done : .next)
