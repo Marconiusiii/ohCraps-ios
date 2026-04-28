@@ -3,15 +3,13 @@ import SwiftUI
 struct FeltBackground: View {
 	var body: some View {
 		ZStack {
-			// Base felt color (deterministic)
-			Color(red: 0.10, green: 0.32, blue: 0.14)
+			AppTheme.feltGradient
 				.ignoresSafeArea()
 
-			// Subtle vignette to sell depth
 			RadialGradient(
 				colors: [
 					Color.black.opacity(0.0),
-					Color.black.opacity(0.35)
+					Color.black.opacity(0.30)
 				],
 				center: .center,
 				startRadius: 200,
@@ -19,6 +17,11 @@ struct FeltBackground: View {
 			)
 			.ignoresSafeArea()
 			.allowsHitTesting(false)
+
+			AppTheme.feltNoise
+				.blendMode(.overlay)
+				.ignoresSafeArea()
+				.allowsHitTesting(false)
 		}
 	}
 }

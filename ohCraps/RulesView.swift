@@ -43,13 +43,19 @@ struct RulesView: View {
 			Button {
 				toggleSec(section.title)
 			} label: {
-				Text(section.title)
-					.font(AppTheme.sectionHeader)
-					.foregroundColor(AppTheme.textPrimary)
-					.padding(.vertical, 12)
-					.padding(.horizontal, 14)
-					.background(Color.black.opacity(0.4))
-					.cornerRadius(8)
+				AppTheme.feltControl {
+					HStack {
+						Text(section.title)
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textPrimary)
+						Spacer()
+						Text(isExp ? "−" : "+")
+							.font(AppTheme.sectionHeader)
+							.foregroundColor(AppTheme.textSecondary)
+							.accessibilityHidden(true)
+					}
+					.padding(.vertical, 4)
+				}
 			}
 			.accessibilityValue(isExp ? "Expanded" : "Collapsed")
 			.accessibilityHint(

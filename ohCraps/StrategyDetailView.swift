@@ -207,7 +207,7 @@ struct StrategyDetailView: View {
 				.background(AppTheme.topBarBackground)
 				if let userStrategy = userStrategy {
 					let isSub = userStrategy.isSubmitted || justSubID == userStrategy.id
-					Menu("Strategy Actions") {
+					Menu {
 						Button("Edit") {
 							dismiss()
 							DispatchQueue.main.async {
@@ -233,6 +233,15 @@ struct StrategyDetailView: View {
 						Button("Delete \(userStrategy.name)", role: .destructive) {
 							showDetailDeleteAlert = true
 						}
+					} label: {
+						AppTheme.feltControl {
+							HStack(spacing: 6) {
+								Text("Strategy Actions")
+									.foregroundColor(AppTheme.textPrimary)
+								Image(systemName: "chevron.down")
+									.foregroundColor(AppTheme.textSecondary)
+							}
+						}
 					}
 					.font(AppTheme.cardTitle)
 					.padding(.vertical, 8)
@@ -245,44 +254,34 @@ struct StrategyDetailView: View {
 				} else {
 					HStack(spacing: 12) {
 						Button(action: { favStore.toggle(strategy.id); onFavToggled?(strategy.id) }) {
-							HStack(spacing: 6) {
-								Image(systemName: isFav ? "star.fill" : "star")
-									.foregroundColor(isFav ? .yellow : AppTheme.textPrimary)
-									.accessibilityHidden(true)
-								Text("Favorite Strategy")
+							AppTheme.feltControl {
+								HStack(spacing: 6) {
+									Image(systemName: isFav ? "star.fill" : "star")
+										.foregroundColor(isFav ? AppTheme.feltGold : AppTheme.textSecondary)
+										.accessibilityHidden(true)
+									Text("Favorite Strategy")
+										.foregroundColor(AppTheme.textPrimary)
+								}
 							}
 						}
 						.font(AppTheme.cardTitle)
-						.foregroundColor(AppTheme.textPrimary)
-						.padding(.horizontal, 12)
-						.padding(.vertical, 8)
-						.background(Color.black.opacity(0.4))
-						.overlay(
-							RoundedRectangle(cornerRadius: 8)
-								.stroke(AppTheme.borderColor, lineWidth: 1)
-						)
-						.cornerRadius(8)
 						.accessibilityLabel("Favorite Strategy")
 						.accessibilityValue(isFav ? "On" : "Off")
 						.accessibilityHint(isFav ? "Double-tap to unfavorite" : "Double-tap to favorite")
 						.accessibilityFocused($detailFocus, equals: .favorite)
 
-						Button("Share Strategy") {
+						Button(action: {
 							sharePayload = SharePayload(
 								strategyName: strategy.name,
 								text: StrategyShareFormatter.shareText(for: strategy)
 							)
+						}) {
+							AppTheme.feltControl {
+								Text("Share Strategy")
+									.font(AppTheme.cardTitle)
+									.foregroundColor(AppTheme.textPrimary)
+							}
 						}
-						.font(AppTheme.cardTitle)
-						.foregroundColor(AppTheme.textPrimary)
-						.padding(.horizontal, 12)
-						.padding(.vertical, 8)
-						.background(Color.black.opacity(0.4))
-						.overlay(
-							RoundedRectangle(cornerRadius: 8)
-								.stroke(AppTheme.borderColor, lineWidth: 1)
-						)
-						.cornerRadius(8)
 						.accessibilityFocused($detailFocus, equals: .share)
 					}
 					.padding(.horizontal)
@@ -372,10 +371,15 @@ struct StrategyDetailView: View {
 							TextEditor(text: $personalNote)
 								.frame(minHeight: 180)
 								.padding(8)
-								.background(Color.black.opacity(0.35))
+								.background(AppTheme.controlFill)
 								.overlay(
 									RoundedRectangle(cornerRadius: 8)
 										.stroke(AppTheme.borderColor, lineWidth: 1)
+								)
+								.overlay(
+									RoundedRectangle(cornerRadius: 8)
+										.stroke(AppTheme.feltLineSoft, lineWidth: 1)
+										.padding(2)
 								)
 								.cornerRadius(8)
 								.font(AppTheme.bodyText)
@@ -384,7 +388,7 @@ struct StrategyDetailView: View {
 
 							Text("Your own notes for this strategy. These save automatically.")
 								.font(AppTheme.metadataText)
-								.foregroundColor(AppTheme.textPrimary)
+								.foregroundColor(AppTheme.textSecondary)
 
 
 

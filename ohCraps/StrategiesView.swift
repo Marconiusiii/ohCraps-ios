@@ -109,17 +109,26 @@ struct StrategiesView: View {
 			// Visual placeholder (sighted users only)
 			if searchText.isEmpty {
 				Text("Search strategies")
-					.foregroundColor(Color.white.opacity(0.8))
+					.foregroundColor(AppTheme.feltGold.opacity(0.9))
 					.padding(.leading, 12)
 					.accessibilityHidden(true)
 			}
 
 			TextField("", text: $searchText)
 				.textFieldStyle(.plain)
-				.padding(8)
-				.background(Color(red: 0.05, green: 0.12, blue: 0.07))
+				.padding(10)
+				.background(AppTheme.controlFill)
+				.overlay(
+					RoundedRectangle(cornerRadius: 8, style: .continuous)
+						.stroke(AppTheme.borderColor, lineWidth: 1)
+				)
+				.overlay(
+					RoundedRectangle(cornerRadius: 8, style: .continuous)
+						.stroke(AppTheme.feltLineSoft, lineWidth: 1)
+						.padding(2)
+				)
 				.cornerRadius(8)
-				.foregroundColor(.white)
+				.foregroundColor(AppTheme.textPrimary)
 				.focused($isSearchFocused)
 				.submitLabel(.search)
 				.accessibilityLabel("Search Strategies")
@@ -227,24 +236,23 @@ struct StrategiesView: View {
 										listFocus = nil
 										selectedStrategy = strategy
 									} label: {
-										Text(strategy.name)
-											.foregroundColor(.white)
-											.fixedSize(horizontal: false, vertical: true)
-									}
-									.buttonStyle(.plain)
-									.contentShape(Rectangle())
-									.id(strategy.id)
-									.listRowBackground(Color.black.opacity(0.45))
-									.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
+								Text(strategy.name)
+									.foregroundColor(AppTheme.textPrimary)
+									.fixedSize(horizontal: false, vertical: true)
 								}
-							} header: {
-								Text(section.display)
-									.font(AppTheme.sectionHeader)
-									.background(Color.black.opacity(0.6))
-									.cornerRadius(6)
-									.accessibilityAddTraits(.isHeader)
-									.accessibilityIdentifier(sectionID(for: section))
+								.buttonStyle(.plain)
+								.contentShape(Rectangle())
+								.id(strategy.id)
+								.listRowBackground(AppTheme.feltBlackInk.opacity(0.72))
+								.accessibilityFocused($listFocus, equals: .strategy(strategy.id))
 							}
+						} header: {
+							Text(section.display)
+								.font(AppTheme.sectionHeader)
+								.foregroundColor(section == .favorites ? AppTheme.feltRed : AppTheme.textSecondary)
+								.accessibilityAddTraits(.isHeader)
+								.accessibilityIdentifier(sectionID(for: section))
+						}
 						}
 					}
 				}
@@ -303,7 +311,7 @@ struct StrategiesView: View {
 			announceSearchResults()
 		}
 		.buttonStyle(.plain)
-		.foregroundColor(.white)
+		.foregroundColor(AppTheme.textSecondary)
 		.accessibilityLabel("Clear search")
 	}
 
@@ -323,7 +331,11 @@ struct StrategiesView: View {
 		}
 		.padding(.horizontal)
 		.padding(.vertical, 8)
-		.background(Color.black.opacity(0.4))
+		.overlay(alignment: .top) {
+			Rectangle()
+				.fill(AppTheme.feltLineSoft)
+				.frame(height: 1)
+		}
 	}
 
 	private var tableMinMenu: some View {

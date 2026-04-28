@@ -47,7 +47,7 @@ struct AboutView: View {
 							showWhatsNew = true
 						}
 						.font(AppTheme.bodyText)
-						.foregroundColor(AppTheme.textPrimary)
+						.foregroundColor(AppTheme.textSecondary)
 						.accessibilityHint("Opens the latest update notes")
 
 						Text("References")
@@ -221,7 +221,7 @@ struct AboutView: View {
 	private func externalLink(title: String, url: String) -> some View {
 		Link(title, destination: URL(string: url)!)
 			.font(AppTheme.bodyText)
-			.foregroundColor(AppTheme.textPrimary)
+			.foregroundColor(AppTheme.textSecondary)
 			.underline()
 			.accessibilityAddTraits(.isLink)
 			.accessibilityRemoveTraits(.isButton)

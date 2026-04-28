@@ -21,7 +21,7 @@ struct WhatsNewView: View {
 							HStack(alignment: .top, spacing: 10) {
 								Text("•")
 									.font(AppTheme.bodyText)
-									.foregroundColor(AppTheme.textPrimary)
+									.foregroundColor(AppTheme.feltRed)
 									.accessibilityHidden(true)
 
 								Text(item)
@@ -38,7 +38,7 @@ struct WhatsNewView: View {
 						onClose()
 					}
 					.font(AppTheme.bodyText)
-					.foregroundColor(AppTheme.textPrimary)
+					.foregroundColor(AppTheme.textSecondary)
 				}
 				.padding()
 			}

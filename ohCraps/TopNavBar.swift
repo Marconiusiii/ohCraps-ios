@@ -36,9 +36,19 @@ struct TopNavBar: View {
 			}
 		}
 		.padding(.horizontal)
-		.padding(.vertical, 6)
+		.padding(.vertical, 8)
 		.frame(minHeight: 44, maxHeight: 72)
 		.background(AppTheme.topBarBackground)
+		.overlay(alignment: .bottom) {
+			VStack(spacing: 0) {
+				Rectangle()
+					.fill(AppTheme.feltGold)
+					.frame(height: 1)
+				Rectangle()
+					.fill(AppTheme.feltBlackInk)
+					.frame(height: 1)
+			}
+		}
 	}
 	private func titleScale(for text: String) -> CGFloat {
 		let count = text.count
