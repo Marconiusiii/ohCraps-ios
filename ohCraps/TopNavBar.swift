@@ -21,6 +21,7 @@ struct TopNavBar: View {
 
 			Text(title)
 				.font(AppTheme.screenTitle)
+				.foregroundColor(AppTheme.textPrimary)
 				.multilineTextAlignment(.center)
 				.lineLimit(2)
 				.minimumScaleFactor(titleScale(for: title))
