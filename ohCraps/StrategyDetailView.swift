@@ -369,10 +369,6 @@ struct StrategyDetailView: View {
 								.font(AppTheme.sectionHeader)
 								.accessibilityAddTraits(.isHeader)
 
-							Text("Your own notes for this strategy.")
-								.font(AppTheme.metadataText)
-								.foregroundColor(AppTheme.textPrimary)
-
 							TextEditor(text: $personalNote)
 								.frame(minHeight: 180)
 								.padding(8)
@@ -385,6 +381,11 @@ struct StrategyDetailView: View {
 								.font(AppTheme.bodyText)
 								.foregroundColor(AppTheme.textPrimary)
 								.accessibilityLabel("Personal Notes")
+
+							Text("Your own notes for this strategy. These save automatically.")
+								.font(AppTheme.metadataText)
+								.foregroundColor(AppTheme.textPrimary)
+
 
 
 						}
