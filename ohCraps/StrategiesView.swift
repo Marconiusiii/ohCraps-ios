@@ -109,7 +109,7 @@ struct StrategiesView: View {
 			// Visual placeholder (sighted users only)
 			if searchText.isEmpty {
 				Text("Search strategies")
-					.foregroundColor(AppTheme.feltGold.opacity(0.9))
+					.foregroundColor(AppTheme.placeholderText)
 					.padding(.leading, 12)
 					.accessibilityHidden(true)
 			}
