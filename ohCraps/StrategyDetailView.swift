@@ -188,6 +188,7 @@ struct StrategyDetailView: View {
 
 					Text(strategy.name)
 						.font(AppTheme.screenTitle)
+						.foregroundColor(AppTheme.textPrimary)
 						.multilineTextAlignment(.center)
 						.lineLimit(2)
 						.minimumScaleFactor(titleScale(for: strategy.name))
