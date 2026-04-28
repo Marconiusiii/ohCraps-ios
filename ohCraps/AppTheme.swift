@@ -4,7 +4,7 @@ struct AppTheme {
 
 	// MARK: - Typography
 
-	static let screenTitle = Font.title3.weight(.semibold)
+	static let screenTitle = Font.system(.title3, design: .serif).weight(.semibold)
 	static let sectionHeader = Font.title3.weight(.bold)
 	static let cardTitle = Font.headline
 	static let bodyText = Font.body

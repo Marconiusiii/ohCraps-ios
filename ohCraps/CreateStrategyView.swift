@@ -351,18 +351,50 @@ struct CreateStrategyView: View {
 					Button("Save Changes") {
 						validateAndSave()
 					}
+					.foregroundColor(AppTheme.textPrimary)
+					.background(
+						AppTheme.feltControl {
+							Text("Save Changes")
+								.font(AppTheme.cardTitle)
+								.foregroundColor(AppTheme.textPrimary)
+						}
+					)
 					Button("Cancel") {
 						showDiscardAlert = true
 					}
+					.foregroundColor(AppTheme.textSecondary)
+					.background(
+						AppTheme.feltControl(redAccent: true) {
+							Text("Cancel")
+								.font(AppTheme.cardTitle)
+								.foregroundColor(AppTheme.textPrimary)
+						}
+					)
 				}
 			} else {
 				HStack(spacing: 16) {
 					Button("Reset Form") {
 						resetForm()
 					}
+					.foregroundColor(AppTheme.textSecondary)
+					.background(
+						AppTheme.feltControl(redAccent: true) {
+							Text("Reset Form")
+								.font(AppTheme.cardTitle)
+								.foregroundColor(AppTheme.textPrimary)
+						}
+					)
 					Button("Save Strategy") {
 						validateAndSave()
 					}
+					.foregroundColor(AppTheme.textPrimary)
+					.background(
+						AppTheme.feltControl {
+							Text("Save Strategy")
+								.font(AppTheme.cardTitle)
+								.foregroundColor(AppTheme.textPrimary)
+						}
+					)
 				}
 			}
 		}

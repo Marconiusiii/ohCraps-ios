@@ -27,19 +27,15 @@ struct AboutView: View {
 				ScrollView {
 					VStack(alignment: .leading, spacing: 20) {
 
-						Text("Oh Craps! is a collection of Craps strategies I've collected and compiled in one accessible app. Use these when playing my Oh Craps Python game or when you are out and about at a real casino!")
+						Text("Oh Craps! brings together my accessible collection of Craps strategies for quick reference at home or at the table.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
-						Text("Whenever a new strategy is put up on my main Oh Craps website, this app will be updated. Use the Create Strategy tab to write up and save your own strategies locally to your phone. You can then submit them so everyone who uses this app can check out your strategy!")
+						Text("The app updates whenever new strategies are added to the main Oh Craps project, and the Create Strategy tab lets you write, save, and submit your own strategies from your phone.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
-						Text("Remember, none of these are guaranteed to make you a winner, as you can never predict how the dice will roll in any given session.")
-							.font(AppTheme.bodyText)
-							.foregroundColor(AppTheme.textPrimary)
-
-						Text("This app has been built with a Blind-first accessibility and usability methodology, and supports Dynamic Type and all other assistive technologies on iOS.")
+						Text("This app is built with a Blind-first accessibility approach, supports Dynamic Type and assistive technologies on iOS, and never promises winnings in a game ruled by the dice.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
 
