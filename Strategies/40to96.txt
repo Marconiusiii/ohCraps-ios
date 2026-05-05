@@ -1,0 +1,14 @@
+<div id="40to96">
+<h3>40 to 96</h3>
+<p>Buy-in: $400</p>
+<p>Table Minimum: $5-$15</p>
+<p>Credit: Joe Rose</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place the 6 and 8 for $18 each.</li>
+<li>On the first hit of either number, drop in $3 and use the winnings to press both the 6 and 8 up to $30 each.</li>
+<li>On the next hit of either number, drop in $1 from your rack and use the winnings to go to $96 Across; $15 each on the 4, 5, 9, and 10, and $18 each on the 6 and 8.</li>
+<li>You now have $96 Across on a $40 investment. Start any collect and press system that you wish.</li>
+<li>Restart the system after a 7 Out.</li>
+</ol>
+</div>

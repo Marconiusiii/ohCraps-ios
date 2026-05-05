@@ -34,7 +34,7 @@ enum SectionKey: Hashable, Comparable {
 	var display: String {
 		switch self {
 		case .favorites: return "Favorites"
-		case .number: return "#"
+		case .number: return "Numbers"
 		case .letter(let c): return String(c)
 		}
 	}

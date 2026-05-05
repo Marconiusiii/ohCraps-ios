@@ -1,0 +1,14 @@
+<div id="theHoppa">
+<h3>The Hoppa</h3>
+<p>Buy-in: $1200</p>
+<p>Table Minimum: Any</p>
+<p>Credit: Joe Rose</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $110 Inside; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>On the first hit of any number, you'l win $35. Drop in $5 from your rack and use the $40 to Hop the Inside Easies, or $5 each Hopping the 5 and 9 along with the 6 and 8 easies.</li>
+<li>If you win on the hop on the next roll, collect the winnings and take down the winning Hop bet if it stays up. You'll pull in $80, and that added to the $35 coming from the place bets pays for the entire hand with some profit.</li>
+<li>If the Hop bets lose on a Hard Way or a 4 and 10, repeat the Hop the Easy step the next time an Inside number hits.</li>
+<li>Once you win on the Hop bets, stay with $110 Inside or spread out to $96 Across, then start any collect and press system that you like.</li> 
+</ol>
+</div>

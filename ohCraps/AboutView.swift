@@ -183,6 +183,8 @@ struct AboutView: View {
 						}
 						.accessibilityHint("Opens mail composer to send feedback")
 
+						externalLink(title: "Privacy Policy", url: "https://marconius.com/craps/privacy/")
+						
 						Text(appFooterText)
 							.font(AppTheme.metadataText)
 							.foregroundColor(AppTheme.textPrimary.opacity(0.75))

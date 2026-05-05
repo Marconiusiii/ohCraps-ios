@@ -1,0 +1,16 @@
+<div id="outsideSpecial">
+<h3>Outside Special</h3>
+<p>Buy-in: $600</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes: Start pulling in black $100 chips within 2 hits.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $15 each on the 4, 5, 9, and 10.</li>
+<li>On the first hit of any number, use the winnings to press the 4 and 10 up to $25 each and Buy them if the casino doesn't have auto-buy.</li>
+<li>Collect the first $50 for $1 win on the pressed 4 or 10 if they hit. If the 5 or 9 hit, just collect the $21 winnings.</li>
+<li>Collecting the first $50 for $1 hit from the 4 or 10 pays for most of the original $60 outlay, but if you hit the 5 or 9 3 times before hitting the 4 or 10, or hit the 5 or 9 one or two times more before hitting the 4 or 10, then you are out of the hand and are playing with profit.</li>
+<li>On the second hit of the pressed 4 or 10, drop in $1 from your rack and use the winnings to press the 4 and 10 up to $50 each.</li>
+<li>If the 5 or 9 hit after pressing the 4 and 10 up to $50 each, use the winnings to press the 5 and 9 up to $25 each.</li>
+<li>Let the bets ride until a 7 out; you'll be collecting black $100 chips for a $2 vig whenever the 4 or 10 hit, and will just keep collecting $35 when the 5 or 9 hit.</li>
+</ol>
+</div>
