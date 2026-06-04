@@ -1,0 +1,14 @@
+<div id="3GreenOut">
+<h3>3 Green Out</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Gets you up to pulling in green chips within 3 hits.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $56 Inside; $10 each on the 5 and 9, $18 each on the 6 and 8.</li>
+<li>When these numbers hit, you'll press them from the inside out and keep the downtown and uptown bets separate. If the 5 or 6 hit, use the winnings to press the 6 up to $30. Alternatively, if the 8 or 9 hit, use the winnings to press the 8 up to $30.</li>
+<li>If the 5 or 6 hit again, use the winnings to press the 5 up to $25. Alternatively, do the same for the 9 if the 8 or 9 hit.</li>
+<li>On the third hit of the 5 or 6, use the winnings to Place the 4 for $25. Again, if the 8 or 9 hit instead and they are pressed up, use the winnings to Place the 10 for $25.</li>
+<li>Let the bets ride and start collecting on each hit. You'll be out of the hand within 3 hits.</li>
+</ol>
+</div>

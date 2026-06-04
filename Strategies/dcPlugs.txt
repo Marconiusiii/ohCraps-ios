@@ -1,0 +1,15 @@
+<div id="dcPlugs">
+<h3>DC Plugs</h3>
+<p>Buy-iun: $400</p>
+<p>Table Minimum: Any</p>
+<p>Notes: This strategy scales for any table minimum, with the biggest bet being 3x the table minimum. Adjust bankroll as needed. Strategy is written for a $10 table. $100 is the walk-away amount.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Make a 3x table minimum Don't Come bet; for a $10 table, this would be a $30 DC.</li>
+<li>When this Don't Come bet moves to a number, follow it up with a $10 Don't Come bet.</li>
+<li>When the $10 Don't Come bet moves to a number, make a place bet on that number for the equivalent $10 amount. If the DC is on the 6 or 8, the casino may force you to make a $12 place bet instead of $10.</li>
+<li>Continue making $10 Don't Come bets for the rest of the hand, making a corresponding $10 Place bet on whichever number the DC travels to.</li>
+<li>If a Place bet hits, take the bet down and collect the winnings.</li>
+<li>If the big 3x Don't Come bet falls, follow it up with a 4x Don't Come bet. Any time this big bet loses, go up one table minimum unit. Each time you win, take the bet down one table minimum unit and use the 3x amount as the base amount for the strategy.</li>
+</ol> 
+</div>

@@ -1,0 +1,14 @@
+<div id="bigBirdSurge">
+<h3>Big Bird Surge</h3>
+<p>Buy-in: $2000</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Uses a repeated hit of a power-pressed plus number to get out of the hand with profit.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $160 Across; $25 each on the 4, 5, 9, and 10, and $30 each on the 6 and 8.</li>
+<li>On the first hit of any number, Power Press Plus it to go all the way up: If the bought 4 or 10 hit, drop in $6 and use the winnings to press up to $80. If the 5 or 9 hit, drop in $15 and use the winnings to press it up to $75. If the 6 or 8 hit, drop in $25 and use the winnings to press it up to $90.</li>
+<li>If non-pressed numbers hit, repeat the Power Press Plus step.</li>
+<li>As soon as a power pressed number hits, collect the winnings and regress only that number down to the starting minimum bet. You'll now be playing mostly with profit with good bets built up on the rest of the Place numbers.</li>
+<li>Start any Collect and Press system that you like.</li>
+</ol>
+</div>

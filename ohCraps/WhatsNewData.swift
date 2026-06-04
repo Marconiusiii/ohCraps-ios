@@ -2,7 +2,6 @@ import Foundation
 
 enum WhatsNewData {
 	static let items = [
-		"Strategies Added: 40 to 96, The Hoppa, Outside Special",
-		"Added Privacy Policy link to About screen."
+		"Added Age Assurance code which will appear in the relevant legal regions where it is required."
 	]
 }
