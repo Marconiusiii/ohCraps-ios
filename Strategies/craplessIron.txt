@@ -1,0 +1,16 @@
+<div id="craplessIron">
+<h3>Crapless Craps: Iron Cross</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$15</p>
+<p>Notes:Adapted Iron Cross strategy for Crapless tables.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place the 5 for $30 and the 6 and 8 for $36 each. Make a $15 Field bet.</li>
+<li>If the 5, 6, or 8 hit, replace the $15 Field bet and collect the rest.</li>
+<li>If the Field hits, use the winnings to start spreading out to all the Place bet numbers. You can start from the Inside numbers and move out, or start from the outside numbers and move in.</li>
+<li>Repeat these steps until all the Place numbers are covered with $15 bets.</li>
+<li>If the 2 or 12 rolls, use the double or triple Field win to spread to more numbers at once.</li>
+<li>Once all the Place numbers are covered, take down the Field bet.</li>
+<li>Once you've recouped $100, you are basically out of the hand.</li>
+</ol>
+</div>

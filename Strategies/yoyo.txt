@@ -1,0 +1,16 @@
+<div id="yoyo">
+<h3>The Yo-Yo</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Simple cycle strategy all on the Inside numbers.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $46 inside; $18 each on the 6 and 8, $10 each on the 5 and 9.</li>
+<li>No matter what hits, use $10 of the winnings to press the 5 and 9 up to $15 each.</li>
+<li>On the next hit of any number, collect the winnings and take down the 5 and 9.</li>
+<li>On the next hit of the 6 or 8, use the winnings to go back up on the 5 and 9 for $10 each and collect the remaining $1.</li>
+<li>Once again, on any hit, use the winnings to press the 5 and 9 up to $15 each.</li>
+<li>Again, on the next hit of any number, collect the winnings and take down the 5 and 9.</li>
+<li>Repeat this cycle until a 7 out, then restart the strategy.</li>
+</ol>
+</div>
