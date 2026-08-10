@@ -1,0 +1,17 @@
+<div id="shadow">
+<h3>The Shadow</h3>
+<p>Buy-in: $1000</p>
+<p>Table Minimum: $5-$25</p>
+<p>Notes: Running hedge strategy that backs up Place bets with a Lay bet.</p>
+<ol>
+<li>Wait for a Point to be established.</li>
+<li>Place $110 Inside; $25 each on the 5 and 9, $30 each on the 6 and 8.</li>
+<li>When any of these hit, take down the 9 Place bet and then Lay the 9 for $60.</li>
+<li>If the 5, 6, or 8 hit, collect the winnings and take down the Lay bet.</li>
+<li>Collect the next hit of any Place bet.</li>
+<li>On following hits, spread out to the 9, then start any collect and press system that you wish.</li>
+<li>Alternatively, if you lose the Lay 9 bet, on the next hit of the 5, 6, or 8, take down the Place 5 and then Lay the 5 for $60.</li>
+<li>In this instance, if the 6 or 8 hit, collect the winnings and take down the Lay 5. From here, collect the following hit on the 6 or 8, then start spreading to the 5 and 9 between collected hits as you see fit.</li>
+<li>If the Lay 9 or 5 is up and the Point is hit, let your Place bets work on the following Come Out roll.</li>
+</ol>
+</div>
