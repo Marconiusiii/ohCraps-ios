@@ -1,0 +1,19 @@
+<div id="jMethod">
+<h3>J Method</h3>
+<p>Buy-in: $160</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Has a 0.38% to 1.13% House Edge.</p>
+<p>Credit: Jay Smile</p>
+<ol>
+<li>Start with $10 on the Pass Line.</li>
+<li>If the 4, 5, 9, or 10 become the Point, place the 6 and 8 for $12 each. If either the 6 or 8 becomes the point, just place $12 on the opposite number.</li>
+<li>When either the 6 or 8 Place bet hits, collect the winnings and immediately take down the Place bets.</li>
+<li>Wait for the Point to hit or a 7 out, then restart the strategy.</li>
+<li>As your bankroll increases during play, start adding in Pass Line Odds:
+	<ul>
+	<li>Bankroll is greater than or equal to $230 - bet 1x Odds.</li>
+	<li>Bankroll is greater than or equal to $320 - bet 2x Odds.</li>
+	<li>Bankroll is greater than or equal to $510 - bet 3x or 4x Odds.</li>
+	</ul></li>
+</ol>
+</div>

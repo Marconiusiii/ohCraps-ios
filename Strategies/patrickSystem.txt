@@ -1,0 +1,15 @@
+<div id="patrickSystem">
+<h3>The Patrick System</h3>
+<p>Buy-in: $200</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: Perhaps the strongest Dark Side system you can play in the casino which can scale up to any table minimum.</p>
+<p>Credit: John Patrick</p>
+<ol>
+<li>Start with a Do'ey-Don't, or betting the table minimum on both the Pass and Don't Pass Lines.</li>
+<li>Once a Point is established, Lay 1x in Odds on the Don't Pass bet, and bet the table minimum in the Don't Come.</li>
+<li>When the Don't Come bet moves to the number, take down the Lay odds and make another table minimum Don't Come bet.</li>
+<li>If the Don't Come bet loses, just replace the bet. Do not keep chasing your bets. If you lose two Don't Come bets to a shooter, just let your bets ride until a 7 out or the Point is hit to restart the strategy.</li>
+<li>It's up to you if you want to make only one or two Don't Come bets.</li>
+<li>For table minimums starting at $15 and higher, make a $1 Boxcars bet on the Come Out roll.</li>
+</ol>
+</div>

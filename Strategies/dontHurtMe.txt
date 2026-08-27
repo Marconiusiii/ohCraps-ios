@@ -1,0 +1,13 @@
+<div id="dontHurtMe">
+<h3>Don't Hurt Me 4</h3>
+<p>Buy-in: $500</p>
+<p>Table Minimum: $5-$10</p>
+<p>Notes: This strategy moves all the danger away from the 7 and places it all on the 4.</p>
+<ol>
+<li>Start with a $25 Don't Pass bet, and Lay the 4 for $100.</li>
+<li>When a Point is established, Place table minimum bets on the 5, 6, 8, 9, and 10, and double the bet on the Point number. So if the Point is 9, the Place 9 bet would be $20. Bet $10 on the Hard 4.</li>
+<li>Keep these bets up for 4 hits.</li>
+<li>After the 4th hit, start taking down the Place bets from the outside in towards the point number with each subsequent hit. This includes taking down the Hard 4 bet when all the Place bets are down.</li>
+<li>When all the Place bets are cleared, take down the Lay 4 and let the hand play through to a 7 out or the point being hit.</li>
+</ol>
+</div>
