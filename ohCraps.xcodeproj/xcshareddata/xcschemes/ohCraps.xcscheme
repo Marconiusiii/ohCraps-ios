@@ -74,23 +74,5 @@
    <ArchiveAction
       buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "BUILD_NUM=$(agvtool what-version -terse)&#10;NEW_BUILD_NUM=$((BUILD_NUM + 1))&#10;agvtool new-version -all $NEW_BUILD_NUM&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "82FBC0F52EEA264600FA6E81"
-                     BuildableName = "ohCraps.app"
-                     BlueprintName = "ohCraps"
-                     ReferencedContainer = "container:ohCraps.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
    </ArchiveAction>
 </Scheme>
