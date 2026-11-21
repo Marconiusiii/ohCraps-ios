@@ -157,20 +157,7 @@ enum StrategyShareFormatter {
 	}
 
 	private static func orderedLineContent(from value: String) -> String? {
-		let pattern = #"^\d+[\.\)]\s+(.+)$"#
-		guard let regex = try? NSRegularExpression(pattern: pattern) else {
-			return nil
-		}
-		let range = NSRange(location: 0, length: value.utf16.count)
-		guard let match = regex.firstMatch(in: value, options: [], range: range), match.numberOfRanges > 1 else {
-			return nil
-		}
-		let capture = match.range(at: 1)
-		guard let swiftRange = Range(capture, in: value) else {
-			return nil
-		}
-		let text = String(value[swiftRange]).trimmingCharacters(in: .whitespacesAndNewlines)
-		return text.isEmpty ? nil : text
+		UserStrategyStepParser.orderedContent(from: value)
 	}
 
 	private static func bulletLineContent(from value: String) -> String? {

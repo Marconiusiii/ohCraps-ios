@@ -11,7 +11,6 @@ An accessible iOS app that brings together my full library of Craps strategies f
 * Native sharing for strategies through the iOS share sheet.
 * User-created strategy support with create, edit, duplicate, delete, and local save flows.
 * Strategy submission flow for sending user-created strategies to be considered for future app updates.
-* What's New sheet that appears after app updates and remains available from the About screen.
 * Accessibility-first design with strong VoiceOver support, Dynamic Type support, and careful focus management across list, detail, and editing flows.
 * Craps table-inspired theming that matches the online Oh Craps experience.
 

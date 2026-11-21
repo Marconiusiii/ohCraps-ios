@@ -2,28 +2,67 @@ import Foundation
 import SwiftUI
 import Combine
 
+enum UserStrategyPersistenceIssue: Identifiable, Equatable {
+	case loadFailed
+	case saveFailed
+
+	var id: Self { self }
+
+	var title: String {
+		switch self {
+		case .loadFailed: return "Couldn't Load Strategies"
+		case .saveFailed: return "Couldn't Save Strategies"
+		}
+	}
+
+	var message: String {
+		switch self {
+		case .loadFailed:
+			return "Your saved strategies couldn't be loaded. Try again before making changes."
+		case .saveFailed:
+			return "Your latest strategy changes couldn't be saved. Try again."
+		}
+	}
+}
+
 @MainActor
 final class UserStrategyStore: ObservableObject {
 
 	@Published private(set) var strategies: [UserStrategy] = []
+	@Published var persistenceIssue: UserStrategyPersistenceIssue?
 
 	private let storageKey = "userStrategies"
+	private let userDefaults: UserDefaults
+	private let encodeStrategies: @Sendable ([UserStrategy]) throws -> Data
+	private let decodeStrategies: @Sendable (Data) throws -> [UserStrategy]
 	private let persistenceQueue = DispatchQueue(
 		label: "com.ohcraps.userstrategystore.persistence",
 		qos: .utility
 	)
 	private var pendingSaveSnapshot: [UserStrategy]?
 	private var isSaveInFlight = false
+	private var persistenceBlockedByLoadFailure = false
 
-	init() {
+	init(
+		userDefaults: UserDefaults = .standard,
+		encodeStrategies: @escaping @Sendable ([UserStrategy]) throws -> Data = { try JSONEncoder().encode($0) },
+		decodeStrategies: @escaping @Sendable (Data) throws -> [UserStrategy] = { try JSONDecoder().decode([UserStrategy].self, from: $0) }
+	) {
+		self.userDefaults = userDefaults
+		self.encodeStrategies = encodeStrategies
+		self.decodeStrategies = decodeStrategies
 		load()
 	}
 
-	func add(_ strategy: UserStrategy) {
+	@discardableResult
+	func add(_ strategy: UserStrategy) -> Bool {
+		guard canModifyStrategies else { return false }
 		strategies.append(strategy)
 		save()
+		return true
 	}
 
+	@discardableResult
 	func update(
 		id: UUID,
 		name: String,
@@ -32,9 +71,10 @@ final class UserStrategyStore: ObservableObject {
 		steps: String,
 		notes: String,
 		credit: String
-	) {
+	) -> Bool {
+		guard canModifyStrategies else { return false }
 		guard let index = strategies.firstIndex(where: { $0.id == id }) else {
-			return
+			return false
 		}
 
 		let existing = strategies[index]
@@ -46,7 +86,7 @@ final class UserStrategyStore: ObservableObject {
 			existing.notes != notes ||
 			existing.credit != credit
 		guard didChange else {
-			return
+			return true
 		}
 
 		let updatedDate = Date()
@@ -67,25 +107,32 @@ final class UserStrategyStore: ObservableObject {
 		)
 
 		save()
+		return true
 	}
 
 
-	func delete(_ strategy: UserStrategy) {
+	@discardableResult
+	func delete(_ strategy: UserStrategy) -> Bool {
+		guard canModifyStrategies else { return false }
 		let oldCount = strategies.count
 		strategies.removeAll { $0.id == strategy.id }
 		guard strategies.count != oldCount else {
-			return
+			return false
 		}
 		save()
+		return true
 	}
-	func setSubmitted(id: UUID, isSubmitted: Bool) {
+
+	@discardableResult
+	func setSubmitted(id: UUID, isSubmitted: Bool) -> Bool {
+		guard canModifyStrategies else { return false }
 		guard let index = strategies.firstIndex(where: { $0.id == id }) else {
-			return
+			return false
 		}
 
 		let existing = strategies[index]
 		guard existing.isSubmitted != isSubmitted else {
-			return
+			return true
 		}
 
 		strategies[index] = UserStrategy(
@@ -103,6 +150,31 @@ final class UserStrategyStore: ObservableObject {
 		)
 
 		save()
+		return true
+	}
+
+	func retryPersistence() {
+		switch persistenceIssue {
+		case .loadFailed:
+			load()
+		case .saveFailed:
+			persistenceIssue = nil
+			save()
+		case nil:
+			break
+		}
+	}
+
+	func dismissPersistenceIssue() {
+		persistenceIssue = nil
+	}
+
+	private var canModifyStrategies: Bool {
+		guard !persistenceBlockedByLoadFailure else {
+			persistenceIssue = .loadFailed
+			return false
+		}
+		return true
 	}
 
 	private func save() {
@@ -117,20 +189,25 @@ final class UserStrategyStore: ObservableObject {
 
 		isSaveInFlight = true
 		pendingSaveSnapshot = nil
-		let storageKey = self.storageKey
+		let encodeStrategies = self.encodeStrategies
 
 		persistenceQueue.async {
+			let encodedData: Data?
 			do {
-				let data = try JSONEncoder().encode(snapshot)
-				let existing = UserDefaults.standard.data(forKey: storageKey)
-				if existing != data {
-					UserDefaults.standard.set(data, forKey: storageKey)
-				}
+				encodedData = try encodeStrategies(snapshot)
 			} catch {
-				// Fail silently — user data should never crash the app
+				encodedData = nil
 			}
 
 			Task { @MainActor in
+				if let encodedData {
+					let existing = self.userDefaults.data(forKey: self.storageKey)
+					if existing != encodedData {
+						self.userDefaults.set(encodedData, forKey: self.storageKey)
+					}
+				} else {
+					self.persistenceIssue = .saveFailed
+				}
 				self.isSaveInFlight = false
 				self.scheduleNextSaveIfNeeded()
 			}
@@ -138,13 +215,19 @@ final class UserStrategyStore: ObservableObject {
 	}
 
 	private func load() {
-		guard
-			let data = UserDefaults.standard.data(forKey: storageKey),
-			let decoded = try? JSONDecoder().decode([UserStrategy].self, from: data)
-		else {
+		guard let data = userDefaults.data(forKey: storageKey) else {
+			persistenceBlockedByLoadFailure = false
+			persistenceIssue = nil
 			return
 		}
 
-		strategies = decoded
+		do {
+			strategies = try decodeStrategies(data)
+			persistenceBlockedByLoadFailure = false
+			persistenceIssue = nil
+		} catch {
+			persistenceBlockedByLoadFailure = true
+			persistenceIssue = .loadFailed
+		}
 	}
 }

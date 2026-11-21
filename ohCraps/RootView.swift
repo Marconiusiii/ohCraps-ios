@@ -7,8 +7,6 @@ struct RootView: View {
 	@StateObject private var notesStore = StrategyNotesStore()
 	
 	@State private var hideTabBar = false
-	@State private var showWhatsNew = false
-	@AppStorage("whatsNewSeenVersion") private var seenWhatsNew = ""
 
 	var body: some View {
 		VStack(spacing: 0) {
@@ -35,7 +33,7 @@ struct RootView: View {
 				.allowsHitTesting(selectedTab == .createStrategy)
 				.accessibilityHidden(selectedTab != .createStrategy)
 
-				AboutView(showWhatsNew: $showWhatsNew)
+				AboutView()
 					.opacity(selectedTab == .about ? 1 : 0)
 					.allowsHitTesting(selectedTab == .about)
 					.accessibilityHidden(selectedTab != .about)
@@ -47,30 +45,5 @@ struct RootView: View {
 			}
 		}
 		.dynamicTypeSize(.xSmall ... .accessibility5)
-		.sheet(isPresented: $showWhatsNew, onDismiss: markWhatsNewSeen) {
-			WhatsNewView(
-				items: WhatsNewData.items,
-				onClose: { showWhatsNew = false }
-			)
-		}
-		.task {
-			showWhatsNewIfNeeded()
-		}
-	}
-
-	private var appVer: String {
-		Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-	}
-
-	private func showWhatsNewIfNeeded() {
-		if seenWhatsNew != appVer {
-			showWhatsNew = true
-		}
-	}
-
-	private func markWhatsNewSeen() {
-		if seenWhatsNew != appVer {
-			seenWhatsNew = appVer
-		}
 	}
 }

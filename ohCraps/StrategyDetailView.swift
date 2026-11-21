@@ -52,6 +52,7 @@ struct StrategyDetailView: View {
 	@State private var sharePayload: SharePayload?
 	@State private var showDetailSubmitAlert = false
 	@State private var showDetailDeleteAlert = false
+	@State private var shareExportFailed = false
 	@State private var personalNote = ""
 	@State private var noteSaveWork: DispatchWorkItem?
 
@@ -441,8 +442,15 @@ struct StrategyDetailView: View {
 				}
 			}
 		}) { payload in
-			ShareSheet(payload: payload)
+				ShareSheet(payload: payload) {
+					shareExportFailed = true
+				}
 		}
+			.alert("Couldn't Share Strategy", isPresented: $shareExportFailed) {
+				Button("OK", role: .cancel) {}
+			} message: {
+				Text("The strategy file couldn't be created. Try sharing again.")
+			}
 		.alert(
 			"Submit \(userStrategy?.name ?? "") to Oh Craps?",
 			isPresented: $showDetailSubmitAlert

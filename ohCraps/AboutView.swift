@@ -5,7 +5,6 @@ struct AboutView: View {
 
 	@AccessibilityFocusState private var titleFocused: Bool
 	@State private var showMail = false
-	@Binding var showWhatsNew: Bool
 	@Environment(\.openURL)
 	private var openURL
 
@@ -38,13 +37,6 @@ struct AboutView: View {
 						Text("This app is built with a Blind-first accessibility approach, and supports Dynamic Type and assistive technologies on iOS.")
 							.font(AppTheme.bodyText)
 							.foregroundColor(AppTheme.textPrimary)
-
-						Button("What's New") {
-							showWhatsNew = true
-						}
-						.font(AppTheme.bodyText)
-						.foregroundColor(AppTheme.textSecondary)
-						.accessibilityHint("Opens the latest update notes")
 
 						Text("References")
 							.font(AppTheme.sectionHeader)

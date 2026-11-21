@@ -10,45 +10,7 @@ struct CreateStrategyView: View {
 		case myStrategies
 	}
 
-	private enum Field: Hashable {
-		case name
-		case buyIn
-		case tableMin
-		case steps
-		case notes
-		case credit
-	}
-
-	private enum ValidationError: Identifiable {
-		case missingName
-		case missingBuyIn
-		case missingTableMinimum
-		case missingSteps
-
-		var id: Self { self }
-
-		var message: String {
-			switch self {
-			case .missingName:
-				return "Please enter a strategy name."
-			case .missingBuyIn:
-				return "Please enter a buy-in amount."
-			case .missingTableMinimum:
-				return "Please enter a table minimum."
-			case .missingSteps:
-				return "Please enter at least one step for the strategy."
-			}
-		}
-
-		var field: Field {
-			switch self {
-			case .missingName: return .name
-			case .missingBuyIn: return .buyIn
-			case .missingTableMinimum: return .tableMin
-			case .missingSteps: return .steps
-			}
-		}
-	}
+	private typealias Field = UserStrategyField
 
 	private enum EditOrigin {
 		case myStrategies(UserStrategy.ID)
@@ -76,8 +38,9 @@ struct CreateStrategyView: View {
 	@State private var notesText = ""
 	@State private var credit = ""
 
-	@State private var validationErrors: [ValidationError] = []
+	@State private var validationErrors: [UserStrategyValidationIssue] = []
 	@State private var showValidationAlert = false
+	@State private var shareExportFailed = false
 
 	@State private var longPressStrategy: UserStrategy?
 	@State private var showStrategyActions = false
@@ -281,13 +244,30 @@ struct CreateStrategyView: View {
 				deleteCandidate = nil
 			}
 		}
-		.alert("Missing Required Fields", isPresented: $showValidationAlert) {
+			.alert("Check Strategy Details", isPresented: $showValidationAlert) {
 			Button("OK") {
 				showValidationAlert = false
 			}
 		} message: {
 			Text(validationErrors.map { $0.message }.joined(separator: "\n"))
 		}
+			.alert("Couldn't Share Strategy", isPresented: $shareExportFailed) {
+				Button("OK", role: .cancel) {}
+			} message: {
+				Text("The strategy file couldn't be created. Try sharing again.")
+			}
+			.alert(item: $store.persistenceIssue) { issue in
+				Alert(
+					title: Text(issue.title),
+					message: Text(issue.message),
+					primaryButton: .default(Text("Try Again")) {
+						store.retryPersistence()
+					},
+					secondaryButton: .cancel {
+						store.dismissPersistenceIssue()
+					}
+				)
+			}
 		.alert("Discard Changes?", isPresented: $showDiscardAlert) {
 			Button("Yes, discard", role: .destructive) {
 				discardEditing()
@@ -320,7 +300,9 @@ struct CreateStrategyView: View {
 			}
 		}
 		.sheet(item: $sharePayload, onDismiss: handleShareDismiss) { payload in
-			ShareSheet(payload: payload)
+				ShareSheet(payload: payload) {
+					shareExportFailed = true
+				}
 		}
 	}
 
@@ -593,26 +575,7 @@ struct CreateStrategyView: View {
 	}
 
 	private func validateAndSave() {
-		validationErrors = []
-
-		if strategyName.isEmpty {
-			validationErrors.append(.missingName)
-		}
-		if buyIn.isEmpty {
-			validationErrors.append(.missingBuyIn)
-		}
-		if tableMinimum.isEmpty {
-			validationErrors.append(.missingTableMinimum)
-		}
-		if stepsText.isEmpty {
-			validationErrors.append(.missingSteps)
-		}
-
-		if let firstError = validationErrors.first {
-			focusField = firstError.field
-			showValidationAlert = true
-			return
-		}
+		guard validateDraft(creatingNewStrategy: !isEditing) else { return }
 
 		if isEditing {
 			showSaveOptionsAlert = true
@@ -623,6 +586,7 @@ struct CreateStrategyView: View {
 	}
 
 	private func saveStrategy() {
+		guard validateDraft(creatingNewStrategy: true) else { return }
 		let finalName = newSaveName()
 		let strategy = UserStrategy(
 			name: finalName,
@@ -633,7 +597,7 @@ struct CreateStrategyView: View {
 			credit: credit
 		)
 
-		store.add(strategy)
+		guard store.add(strategy) else { return }
 		finishSaveFlow(savedOriginalID: nil, createdStrategy: strategy)
 	}
 
@@ -681,7 +645,7 @@ struct CreateStrategyView: View {
 			return
 		}
 
-		store.update(
+		guard store.update(
 			id: editingID,
 			name: strategyName,
 			buyIn: buyIn,
@@ -689,7 +653,7 @@ struct CreateStrategyView: View {
 			steps: stepsText,
 			notes: notesText,
 			credit: credit
-		)
+		) else { return }
 
 		if let updated = store.strategies.first(where: { $0.id == editingID }) {
 			finishSaveFlow(savedOriginalID: editingID, createdStrategy: nil, updatedOriginal: updated)
@@ -842,6 +806,11 @@ struct CreateStrategyView: View {
 	}
 
 	private func duplicateStrategy(_ strategy: UserStrategy, origin: ActionOrigin) {
+		guard store.strategies.count < UserStrategyValidation.maximumStrategyCount else {
+			validationErrors = [.strategyLimit(maximum: UserStrategyValidation.maximumStrategyCount)]
+			showValidationAlert = true
+			return
+		}
 		let copied = UserStrategy(
 			name: strategy.name + " (Copy)",
 			buyIn: strategy.buyIn,
@@ -850,7 +819,7 @@ struct CreateStrategyView: View {
 			notes: strategy.notes,
 			credit: strategy.credit
 		)
-		store.add(copied)
+		guard store.add(copied) else { return }
 
 		switch origin {
 		case .list:
@@ -925,7 +894,7 @@ struct CreateStrategyView: View {
 			credit: user.credit,
 			steps: user.steps
 				.split(separator: "\n")
-				.map { "§STEP§" + $0 }
+				.map { "§STEP§" + UserStrategyStepParser.displayContent(from: String($0)) }
 		)
 	}
 
@@ -1035,22 +1004,28 @@ struct CreateStrategyView: View {
 	}
 
 	private func fieldErrorMessage(for field: Field) -> String? {
-		guard isFieldEmpty(field) else {
-			return nil
-		}
+		validationErrors.first(where: { $0.field == field })?.message
+	}
 
-		switch field {
-		case .name:
-			return validationErrors.contains(.missingName) ? ValidationError.missingName.message : nil
-		case .buyIn:
-			return validationErrors.contains(.missingBuyIn) ? ValidationError.missingBuyIn.message : nil
-		case .tableMin:
-			return validationErrors.contains(.missingTableMinimum) ? ValidationError.missingTableMinimum.message : nil
-		case .steps:
-			return validationErrors.contains(.missingSteps) ? ValidationError.missingSteps.message : nil
-		default:
-			return nil
+	private func validateDraft(creatingNewStrategy: Bool) -> Bool {
+		validationErrors = UserStrategyValidation.issues(
+			for: UserStrategyDraft(
+				name: strategyName,
+				buyIn: buyIn,
+				tableMinimum: tableMinimum,
+				steps: stepsText,
+				notes: notesText,
+				credit: credit
+			),
+			currentStrategyCount: store.strategies.count,
+			creatingNewStrategy: creatingNewStrategy
+		)
+		guard validationErrors.isEmpty else {
+			focusField = validationErrors.compactMap(\.field).first
+			showValidationAlert = true
+			return false
 		}
+		return true
 	}
 
 	private func fieldErrorText(for field: Field) -> some View {
